@@ -1,0 +1,31 @@
+# Utility
+alias reload='source ~/bin/dotfiles/bash/aliases'
+alias ea='mate -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
+alias ee="mate ~/bin/dotfiles/bash/env"
+
+alias tree="ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
+# Quicker cd
+function cdp {
+    cd ~/AGWebdesign/Projects/$*
+}
+
+alias ..='cd ..'
+
+function take() {
+    mkdir -p "$1"
+    cd "$1"
+}
+
+# Utilities
+alias lsh='ls -lhG'
+
+# Git
+alias gs='git status'
+alias gb='git branch'
+alias gc='git commit -v'
+
+# Commit pending changes and quote all args as message
+function gg() {
+    git commit -v -a -m "$*"
+}

@@ -1,0 +1,7 @@
+export EDITOR="mate -w"
+export SVN_EDITOR=$EDITOR
+export GIT_EXTERNAL_DIFF="/users/arjan/AGWebdesign/Tools/git-external-chdiff"
+
+export PATH=/opt/subversion/bin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin:~/bin
+#export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"

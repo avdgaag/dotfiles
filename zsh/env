@@ -1,0 +1,1 @@
+. ~/bin/dotfiles/bash/env
