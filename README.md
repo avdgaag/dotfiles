@@ -1,0 +1,1 @@
+These are my dotfiles, which set up aliases, functions and environment variables the way I like them for bash and zsh.
