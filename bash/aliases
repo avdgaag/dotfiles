@@ -25,6 +25,12 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit -v'
 
+# Subversion
+alias surl='svn info | grep URL'
+alias srev='svn info | grep Revision'
+alias ss='svn status'
+alias slsoc='svn log --verbose --stop-on-copy'
+
 # Commit pending changes and quote all args as message
 function gg() {
     git commit -v -a -m "$*"
