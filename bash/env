@@ -1,6 +1,5 @@
 export EDITOR="mate -w"
 export SVN_EDITOR=$EDITOR
-export GIT_EXTERNAL_DIFF="~/bin/git-external-chdiff"
 
 export PATH=/opt/subversion/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin:~/bin
