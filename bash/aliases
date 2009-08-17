@@ -24,6 +24,7 @@ alias lsh='ls -lhG'
 alias gs='git status'
 alias gb='git branch'
 alias gc='git commit -v'
+alias grd='git rm $(git ls-files -d)'   # git remove deleted
 
 # Subversion
 alias surl='svn info | grep URL'
