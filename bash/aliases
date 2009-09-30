@@ -18,7 +18,7 @@ function take() {
 }
 
 # Utilities
-alias lsh='ls -lhG'
+alias lsh='ls -lhGF'
 
 # Git
 alias gs='git status'
@@ -27,10 +27,11 @@ alias gc='git commit -v'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 
 # Subversion
-alias surl='svn info | grep URL'
+alias surl="svn info | grep URL | grep -Eo 'http[a-zA-Z0-9:/@\.\-]+'"
 alias srev='svn info | grep Revision'
-alias ss='svn status'
+alias ss='svn status --ignore-externals'
 alias slsoc='svn log --verbose --stop-on-copy'
+alias su='svn update --ignore-externals'
 
 # Commit pending changes and quote all args as message
 function gg() {
