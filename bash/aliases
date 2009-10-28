@@ -18,7 +18,7 @@ alias ee="mate ~/bin/dotfiles/bash/env"
 # ---------------------------------------------------------------------------------------
 alias gs='git status'
 alias gb='git branch'
-alias gc='git commit -v'
+alias gc='git commit'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 
 # Commit pending changes and quote all args as message
