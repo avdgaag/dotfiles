@@ -13,7 +13,7 @@ syntax on
 set sw=4 sts=4 et
 set showmatch " matching braces
 set background=dark
-colorscheme desert
+colorscheme ir_black
 
 " Auto-reading on file changes
 set autoread
