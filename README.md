@@ -5,10 +5,15 @@ These are my dotfiles, which set up aliases, functions and environment variables
 # Installation
 
 1. Checkout somewhere on disk, say ~/bin/dotfiles.
-2. ln -s ~/bin/dotfiles/vim/vim ~/.vim
-   ln -s ~/bin/dotfiles/vim/vimrc ~/.vimrc
-   ln -s ~/bin/dotfiles/gemrc ~/.gemrc
-   ln -s ~/bin/dotfiles/zshrc ~/.zshrc
+2. Create some symbolic links:
+
+        ln -s ~/bin/dotfiles/vim/vim    ~/.vim
+        ln -s ~/bin/dotfiles/vim/vimrc  ~/.vimrc
+        ln -s ~/bin/dotfiles/gemrc      ~/.gemrc
+        ln -s ~/bin/dotfiles/zshrc      ~/.zshrc
+        ln -s ~/bin/dotfiles/gitconfig  ~/.gitconfig
+        ln -s ~/bin/dotfiles/gitignore  ~/.gitignore
+
 3. Done!
 
 # Credits
