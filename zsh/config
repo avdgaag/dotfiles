@@ -1,7 +1,7 @@
 autoload -U colors
 colors
 setopt prompt_subst
-PROMPT='%3~ %{$fg_bold[black]%}$(vcprompt)→ %{$reset_color%}'
+PROMPT='%3~ %{$fg_bold[darkgrey]%}$(vcprompt)→ %{$reset_color%}'
 
 # Load completions for Ruby, Git, etc.
 autoload compinit

@@ -1,5 +1,5 @@
-export EDITOR="mate -w"
+export EDITOR="vim"
 export SVN_EDITOR=$EDITOR
 
 export PATH=/opt/subversion/bin:$PATH
-export PATH=$PATH:/usr/local/mysql/bin:~/bin
+export PATH=$PATH:/usr/local/mysql/bin:~/bin/dotfiles/scripts

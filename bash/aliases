@@ -1,39 +1,46 @@
-# Utility
-alias reload='source ~/bin/dotfiles/bash/aliases'
-alias ea='mate -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
-alias ee="mate ~/bin/dotfiles/bash/env"
+# Utilities
+# ---------------------------------------------------------------------------------------
 
-alias tree="ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+alias lsh='ls -lhGF'
 
-# Quicker cd
-function cdp {
-    cd ~/AGWebdesign/Projects/$*
-}
-
-alias ..='cd ..'
-
+# Create and change into a new directory
 function take() {
     mkdir -p "$1"
     cd "$1"
 }
 
-# Utilities
-alias lsh='ls -lhGF'
+# Working with these dotfiles made easier
+alias reload='source ~/bin/dotfiles/bash/aliases'
+alias ea='mate -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
+alias ee="mate ~/bin/dotfiles/bash/env"
 
 # Git
+# ---------------------------------------------------------------------------------------
 alias gs='git status'
 alias gb='git branch'
 alias gc='git commit -v'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 
+# Commit pending changes and quote all args as message
+function gg() {
+    git commit -v -a -m "$*"
+}
+
 # Subversion
+# ---------------------------------------------------------------------------------------
 alias surl="svn info | grep URL | grep -Eo 'http[a-zA-Z0-9:/@\.\-]+'"
 alias srev='svn info | grep Revision'
 alias ss='svn status --ignore-externals'
 alias slsoc='svn log --verbose --stop-on-copy'
 alias su='svn update --ignore-externals'
 
-# Commit pending changes and quote all args as message
-function gg() {
-    git commit -v -a -m "$*"
+# Create and switch to a new  subversion branch, provided
+# you are currently on trunk
+function sb() {
+    branch_name=$1
+    trunk_url=`surl`
+    branch_url=${trunk_url/trunk/branches\/$branch_name}
+    svn copy $trunk_url $branch_url
+    svn switch $branch_url
+    echo "Now at branch $branch_name"
 }
