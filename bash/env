@@ -1,5 +1,4 @@
 export EDITOR="mate -w"
 export SVN_EDITOR=$EDITOR
 
-export PATH=/opt/subversion/bin:$PATH
-export PATH=$PATH:/usr/local/mysql/bin:~/bin
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/opt/subversion/bin:$PATH:/Users/arjan/bin"

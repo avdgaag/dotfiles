@@ -3,12 +3,12 @@ colors
 setopt prompt_subst
 PROMPT='%3~ %{$fg_bold[black]%}$(vcprompt)→ %{$reset_color%}'
 
+# Enable coloured output from ls, etc
+export CLICOLOR=1
+
 # Load completions for Ruby, Git, etc.
 autoload compinit
 compinit
 
 # Automatically enter dirs without cd
 setopt auto_cd
-
-# expand functions in the prompt
-setopt prompt_subst

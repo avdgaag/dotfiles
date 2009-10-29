@@ -35,3 +35,6 @@ alias slsoc='svn log --verbose --stop-on-copy'
 function gg() {
     git commit -v -a -m "$*"
 }
+
+# Apache
+alias ar='sudo apachectl graceful'
