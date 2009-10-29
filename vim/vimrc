@@ -1,0 +1,42 @@
+" Backspace
+set bs=indent,eol,start
+
+" Filetype detection
+filetype plugin indent on
+
+" Line wrapping
+set nowrap
+set linebreak
+
+" Syntax highlighting
+syntax on
+set sw=4 sts=4 et
+set showmatch " matching braces
+set background=dark
+colorscheme ir_black
+
+" Auto-reading on file changes
+set autoread
+
+" Status line
+set showcmd
+set ruler
+set nu
+
+" Scrollbars
+set sidescrolloff=2
+set numberwidth=4
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Indenting
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set ai " Automatically set the indent of a new line
+set si " Smart indent

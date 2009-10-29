@@ -1,0 +1,15 @@
+[user]
+    name = Arjan van der Gaag
+    email = info@agwebdesign.nl
+[github]
+    user = avdgaag
+    token = dfa66ea4c83842d5e3a0a0e65e98f56d
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[core]
+    excludesfile = ~/.gitignore
+    editor = vim
+[apply]
+    whitespace = nowarn
