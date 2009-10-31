@@ -12,7 +12,7 @@ function take() {
 # Working with these dotfiles made easier
 alias reload='source ~/bin/dotfiles/bash/aliases'
 alias ea='mate -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
-alias ee="mate ~/bin/dotfiles/bash/env"
+alias ee="mate ~/bin/dotfiles/bash/env && reload"
 
 # Other
 alias ar='sudo apachectl graceful'
