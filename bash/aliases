@@ -11,8 +11,8 @@ function take() {
 
 # Working with these dotfiles made easier
 alias reload='source ~/bin/dotfiles/bash/aliases'
-alias ea='mate -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
-alias ee="mate ~/bin/dotfiles/bash/env && reload"
+alias ea='vim ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
+alias ee="vim ~/bin/dotfiles/bash/env && reload"
 
 # Other
 alias ar='sudo apachectl graceful'
@@ -23,6 +23,7 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
+alias gpom='git push origin master'
 
 # Commit pending changes and quote all args as message
 function gg() {
