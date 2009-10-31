@@ -11,6 +11,8 @@ These are my dotfiles, which set up aliases, functions and environment variables
         ln -s ~/bin/dotfiles/vim/vimrc  ~/.vimrc
         ln -s ~/bin/dotfiles/gemrc      ~/.gemrc
         ln -s ~/bin/dotfiles/zshrc      ~/.zshrc
+        ln -s ~/bin/dotfiles/hgrc       ~/.hgrc
+        ln -s ~/bin/dotfiles/irbrc      ~/.irbrc
         ln -s ~/bin/dotfiles/gitconfig  ~/.gitconfig
         ln -s ~/bin/dotfiles/gitignore  ~/.gitignore
 
