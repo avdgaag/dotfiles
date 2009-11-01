@@ -2,6 +2,7 @@
 # ---------------------------------------------------------------------------------------
 
 alias lsh='ls -lhGF'
+alias lsa='ls -lhaGF'
 
 # Create and change into a new directory
 function take() {
@@ -24,6 +25,7 @@ alias gb='git branch'
 alias gc='git commit'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 alias gpom='git push origin master'
+alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate'
 
 # Commit pending changes and quote all args as message
 function gg() {
