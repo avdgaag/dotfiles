@@ -40,6 +40,11 @@ alias ss='svn status --ignore-externals'
 alias slsoc='svn log --verbose --stop-on-copy'
 alias su='svn update --ignore-externals'
 
+# Commit pending changes and quote all args as message
+function sc() {
+  svn commit -m "$*"
+}
+
 # Create and switch to a new  subversion branch, provided
 # you are currently on trunk
 function sb() {
