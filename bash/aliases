@@ -6,8 +6,8 @@ alias lsa='ls -lhaGF'
 
 # Create and change into a new directory
 function take() {
-    mkdir -p "$1"
-    cd "$1"
+    mkdir -p "$*"
+    cd "$*"
 }
 
 # Working with these dotfiles made easier
