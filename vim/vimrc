@@ -36,6 +36,9 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Turn off search highlighting
+nmap <silent> <C-n> :silent :nohlsearch<CR>
+
 " Indenting
 set softtabstop=2
 set tabstop=2
