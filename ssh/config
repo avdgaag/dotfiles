@@ -1,4 +1,6 @@
 Host webfaction
   HostName avdgaag.webfactional.com
   User avdgaag
-
+Host flexvps
+  HostName mixe.flexvps.nl
+  User root
