@@ -1,3 +1,9 @@
+" Deal witg multiple buffers better
+set hidden
+
+" Keep a longer history
+set history=100
+
 " Make file/command completion useful
 set wildmenu
 set wildmode=list:longest
@@ -5,7 +11,7 @@ set wildmode=list:longest
 " Do not emulate vi
 set nocompatible
 
-" Backspace
+" Intuitive Backspace
 set bs=indent,eol,start
 
 " Filetype detection
@@ -33,6 +39,9 @@ set nu
 " Scrollbars
 set sidescrolloff=2
 set numberwidth=4
+
+" Maintain more context around the cursor
+set scrolloff=3
 
 " Store temporary files in a central location
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
