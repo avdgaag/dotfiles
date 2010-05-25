@@ -30,6 +30,10 @@ set nu
 set sidescrolloff=2
 set numberwidth=4
 
+" Store temporary files in a central location
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
 " Searching
 set hlsearch
 set incsearch
