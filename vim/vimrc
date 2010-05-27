@@ -63,3 +63,9 @@ set shiftwidth=2
 set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
+
+" Custom SVN location for vcscommand plugin
+let VCSCommandSVNExec="/opt/subversion/bin/svn"
+
+" Toggle word wrap with \w
+map <Leader>w :set nowrap!<CR>
