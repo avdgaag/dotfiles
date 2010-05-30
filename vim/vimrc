@@ -23,7 +23,6 @@ set linebreak
 
 " Syntax highlighting
 syntax on
-set sw=4 sts=4 et
 set showmatch " matching braces
 set background=dark
 colorscheme ir_black
