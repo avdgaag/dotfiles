@@ -69,3 +69,10 @@ let VCSCommandSVNExec="/opt/subversion/bin/svn"
 
 " Toggle word wrap with \w
 map <Leader>w :set nowrap!<CR>
+
+" Treat .less files as .css files
+au BufNewFile,BufRead *.less setfiletype css
+
+" Always open new windows below/to the right
+set sb
+set spr
