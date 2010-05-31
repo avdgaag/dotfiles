@@ -1,7 +1,7 @@
 autoload -U colors
 colors
 setopt prompt_subst
-PROMPT='%n@%m:%3~ %{$fg_bold[darkgrey]%}$(vcprompt)%# %{$reset_color%}'
+PROMPT='%n@%m:%1~ %{$fg_bold[darkgrey]%}$(vcprompt)%# %{$reset_color%}'
 
 # Enable coloured output from ls, etc
 export CLICOLOR=1
