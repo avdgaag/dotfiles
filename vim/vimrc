@@ -56,12 +56,15 @@ set smartcase
 nmap <silent> <C-n> :silent :nohlsearch<CR>
 
 " Indenting
-set softtabstop=2
-set tabstop=2
-set shiftwidth=2
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
+
+" Use 2 spaces for tabs in ruby and associated langs
+autocmd Filetype ruby,eruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
 
 " Custom SVN location for vcscommand plugin
 let VCSCommandSVNExec="/opt/subversion/bin/svn"
