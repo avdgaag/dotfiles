@@ -1,0 +1,3 @@
+--pager=less
+--sort-files
+--ignore-dir=rails
