@@ -70,6 +70,12 @@ set si " Smart indent
 " Use 2 spaces for tabs in ruby and associated langs
 autocmd Filetype ruby,eruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
 
+" Run ruby files using \r
+autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>  
+
+" Open HTML files in Safari using \r
+autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
+
 " Custom SVN location for vcscommand plugin
 let VCSCommandSVNExec="/opt/subversion/bin/svn"
 
