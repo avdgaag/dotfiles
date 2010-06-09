@@ -94,3 +94,8 @@ au BufNewFile,BufRead *.less setfiletype css
 " Always open new windows below/to the right
 set sb
 set spr
+
+" Use Ack
+if executable("ack")
+    set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
+endif
