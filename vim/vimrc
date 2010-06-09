@@ -59,8 +59,11 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Turn off search highlighting
-nmap <silent> <C-n> :silent :nohlsearch<CR>
+" Set terminal title
+set title
+
+" Hide search highlighting
+map <Leader>h :set invhls <CR>
 
 " Quickly toggle NERDTree
 nmap <Leader>n :NERDTreeToggle<CR>
@@ -81,6 +84,9 @@ autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
 
 " Open HTML files in Safari using \r
 autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
+
+" Enable soft-wrapping for text files
+autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
 
 " Custom SVN location for vcscommand plugin
 let VCSCommandSVNExec="/opt/subversion/bin/svn"
