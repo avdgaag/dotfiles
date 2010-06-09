@@ -1,6 +1,9 @@
 " Deal witg multiple buffers better
 set hidden
 
+" Automatically update changes to a file when receiving focus
+set autoread
+
 " Keep a longer history
 set history=100
 
@@ -58,6 +61,9 @@ set smartcase
 
 " Turn off search highlighting
 nmap <silent> <C-n> :silent :nohlsearch<CR>
+
+" Quickly toggle NERDTree
+nmap <Leader>n :NERDTreeToggle<CR>
 
 " Indenting
 set softtabstop=4
