@@ -8,6 +8,10 @@ set history=100
 set wildmenu
 set wildmode=list:longest
 
+" Fast editing and updating of the .vimrc (reloads on save)
+map <Leader>e :e! ~/.vimrc<cr>
+autocmd! bufwritepost vimrc source ~/.vimrc
+
 " Do not emulate vi
 set nocompatible
 
