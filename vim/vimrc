@@ -80,7 +80,7 @@ set si " Smart indent
 autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
 
 " Run ruby files using \r
-autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>  
+autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
 
 " Open HTML files in Safari using \r
 autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
@@ -105,3 +105,9 @@ set spr
 if executable("ack")
     set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
+
+" Unmap arrow keys to force learning hjkl
+map <Left> \
+map <Right> \
+map <Up> \
+map <Down> \
