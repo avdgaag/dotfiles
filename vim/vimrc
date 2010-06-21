@@ -77,7 +77,7 @@ set ai " Automatically set the indent of a new line
 set si " Smart indent
 
 " Use 2 spaces for tabs in ruby and associated langs
-autocmd Filetype ruby,eruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
 
 " Run ruby files using \r
 autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>  
