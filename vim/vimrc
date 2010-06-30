@@ -49,9 +49,10 @@ set numberwidth=4
 " Maintain more context around the cursor
 set scrolloff=3
 
-" Store temporary files in a central location
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" Do not keep backup files. We use source control anyway.
+set nobackup
+set nowritebackup
+set noswapfile
 
 " Searching
 set hlsearch
