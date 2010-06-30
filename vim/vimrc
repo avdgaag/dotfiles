@@ -112,3 +112,10 @@ map <Left> \
 map <Right> \
 map <Up> \
 map <Down> \
+
+" Fuzzyfinder plugin
+try
+    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
+    map <leader>t :FufCWD **/<CR>
+catch
+endtry
