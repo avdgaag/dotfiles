@@ -119,3 +119,9 @@ try
     map <leader>t :FufCWD **/<CR>
 catch
 endtry
+
+" Customizations for the surround plugin
+" PHP
+" Use p to get php tags
+autocmd FileType php let b:surround_112 = "<?php \r ?>"     " p
+autocmd FileType php let b:surround_61 = "<?php echo \r ?>"     " =
