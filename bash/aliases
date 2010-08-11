@@ -20,6 +20,7 @@ alias ar='sudo apachectl graceful'
 
 # Git
 # ---------------------------------------------------------------------------------------
+alias git=hub # we use hub to add some github power to git
 alias gs='git status -s'
 alias gb='git branch'
 alias gc='git commit'
