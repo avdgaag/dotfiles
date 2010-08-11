@@ -20,7 +20,7 @@ alias ar='sudo apachectl graceful'
 
 # Git
 # ---------------------------------------------------------------------------------------
-alias gs='git status'
+alias gs='git status -s'
 alias gb='git branch'
 alias gc='git commit'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
