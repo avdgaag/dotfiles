@@ -36,6 +36,17 @@ filetype plugin indent on
 set nowrap
 set linebreak
 
+" ...but make sure the editor uses editor lines, not real lines
+" when navigating
+nnoremap j gj
+nnoremap k gk
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 " Syntax highlighting
 syntax on
 set showmatch " matching braces
