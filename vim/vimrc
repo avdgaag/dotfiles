@@ -91,6 +91,9 @@ map <Leader>h :set invhls <CR>
 " Quickly toggle NERDTree
 nmap <Leader>n :NERDTreeToggle<CR>
 
+" Toggle word wrap with \w
+map <Leader>w :set nowrap!<CR>
+
 " Indenting
 set softtabstop=4
 set tabstop=4
@@ -99,32 +102,40 @@ set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
 
-" Use 2 spaces for tabs in ruby and associated langs
-autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
+" Autocommands
+if has('autocmd')
 
-" Run ruby files using \r
-autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
+    " Remove trailing whitespace before saving
+    autocmd BufWritePre * :%s/\s\+$//e
 
-" Open HTML files in Safari using \r
-autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
 
-" Enable soft-wrapping for text files
-autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+    " Use 2 spaces for tabs in ruby and associated langs
+    autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
 
-" Custom SVN location for vcscommand plugin
-let VCSCommandSVNExec="/opt/subversion/bin/svn"
+    " Run ruby files using \r
+    autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
 
-" Toggle word wrap with \w
-map <Leader>w :set nowrap!<CR>
+    " Open HTML files in Safari using \r
+    autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
 
-" Treat .less files as .css files
-au BufNewFile,BufRead *.less setfiletype css
+    " Enable soft-wrapping for text files
+    autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+
+    " Treat .less files as .css files
+    autocmd BufNewFile,BufRead *.less setfiletype css
+
+    " Customizations for the surround plugin
+    " PHP
+    " Use p to get php tags
+    autocmd FileType php let b:surround_112 = "<?php \r ?>"     " p
+    autocmd FileType php let b:surround_61 = "<?php echo \r ?>"     " =
+endif
 
 " Always open new windows below/to the right
 set sb
 set spr
 
-" Use Ack
+" Use Ack for searching
 if executable("ack")
     set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
@@ -142,8 +153,3 @@ try
 catch
 endtry
 
-" Customizations for the surround plugin
-" PHP
-" Use p to get php tags
-autocmd FileType php let b:surround_112 = "<?php \r ?>"     " p
-autocmd FileType php let b:surround_61 = "<?php echo \r ?>"     " =
