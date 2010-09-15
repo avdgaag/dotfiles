@@ -15,6 +15,11 @@ set wildmode=list:longest
 map <Leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
 
+" No more toolbar
+if has("gui_running")
+  set guioptions=egmrt
+endif
+
 " Do not emulate vi
 set nocompatible
 
