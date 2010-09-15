@@ -15,6 +15,9 @@ set wildmode=list:longest
 map <Leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
 
+" Toggle paste mode to reduce paste indent suckage
+set pastetoggle=<F2>
+
 " No more toolbar
 if has("gui_running")
   set guioptions=egmrt
