@@ -82,6 +82,9 @@ set smartcase
 " Set terminal title
 set title
 
+" Use the Inconsolata font
+set gfn=Inconsolata:h14
+
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
