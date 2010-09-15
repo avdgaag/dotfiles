@@ -1,1 +1,2 @@
 tComment.vba: call delete('/Users/arjan/.vim/doc/tComment.txt')|call delete('/Users/arjan/.vim/plugin/tComment.vim')|call delete('/Users/arjan/.vim/autoload/tcomment.vim')
+markdown-1.1.0.vba: call delete('/Users/arjan/.vim/ftdetect/markdown.vim')|call delete('/Users/arjan/.vim/snippets/markdown.snippets')|call delete('/Users/arjan/.vim/syntax/markdown.vim')
