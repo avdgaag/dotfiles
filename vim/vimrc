@@ -102,12 +102,30 @@ set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
 
+" Remove trailing whitespace from code files on save
+function StripTrailingWhitespace()
+
+  " store current cursor location
+  silent exe "normal ma<CR>"
+  " store the current search value
+  let saved_search = @/
+
+
+  " delete the whitespace (e means don't warn if pattern not found)
+  %s/\s\+$//e
+
+  " restore old cursor location
+  silent exe "normal `a<CR>"
+  " restore the search value
+  let @/ = saved_search
+
+endfunction
+
 " Autocommands
 if has('autocmd')
 
-    " Remove trailing whitespace before saving
-    autocmd BufWritePre * :%s/\s\+$//e
-
+    " Remove trailing whitespace from various files
+    au BufWritePre * call StripTrailingWhitespace()
 
     " Use 2 spaces for tabs in ruby and associated langs
     autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
