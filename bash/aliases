@@ -40,30 +40,34 @@ alias srev='svn info | grep Revision'
 alias ss='svn status --ignore-externals'
 alias slsoc='svn log --verbose --stop-on-copy'
 alias su='svn update --ignore-externals'
+alias sroot='surl | sed -E "s/(trunk|tags|branches).*$//"'
 
 # Commit pending changes and quote all args as message
 function sc() {
   svn commit -m "$*"
 }
 
-# Create and switch to a new  subversion branch, provided
-# you are currently on trunk
+# List directory contents from the root URL of the current project.
+function sl() {
+    dir=`sroot`$1
+    svn list $dir
+}
+
+function sw() {
+    dir=`sroot`"/"$1
+    svn switch $dir
+}
+
+# Create and switch to a new subversion branch
 function sb() {
-    branch_name=$1
-    trunk_url=`surl`
-    branch_url=${trunk_url/trunk/branches\/$branch_name}
-    svn copy $trunk_url $branch_url
-    svn switch $branch_url
+    svn copy `surl` `sroot`"/branches/"$1
+    svn switch !!:$
     echo "Now at branch $branch_name"
 }
 
-# Create a new tag from trunk:HEAD, provided you are currently
-# on trunk
+# Create a new tag from the current URL
 function st() {
-    tag_name=$1
-    trunk_url=`surl`
-    tag_url=${trunk_url/trunk/tags\/$tag_name}
-    svn copy $trunk_url $tag_url
+    svn copy `surl` `sroot`"/tags/"$1
     echo "Created new tag $tag_name"
 }
 

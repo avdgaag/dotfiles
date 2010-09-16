@@ -18,6 +18,14 @@ set wildmode=list:longest
 map <Leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
 
+" Toggle paste mode to reduce paste indent suckage
+set pastetoggle=<F2>
+
+" No more toolbar
+if has("gui_running")
+  set guioptions=egmrt
+endif
+
 " Intuitive Backspace
 set bs=indent,eol,start
 
@@ -27,6 +35,17 @@ filetype plugin indent on
 " Line wrapping
 set nowrap
 set linebreak
+
+" ...but make sure the editor uses editor lines, not real lines
+" when navigating
+nnoremap j gj
+nnoremap k gk
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " Syntax highlighting
 syntax on
@@ -63,11 +82,17 @@ set smartcase
 " Set terminal title
 set title
 
+" Use the Inconsolata font
+set gfn=Inconsolata:h14
+
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
 " Quickly toggle NERDTree
 nmap <Leader>n :NERDTreeToggle<CR>
+
+" Toggle word wrap with \w
+map <Leader>w :set nowrap!<CR>
 
 " Indenting
 set softtabstop=4
@@ -77,32 +102,58 @@ set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
 
-" Use 2 spaces for tabs in ruby and associated langs
-autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
+" Remove trailing whitespace from code files on save
+function StripTrailingWhitespace()
 
-" Run ruby files using \r
-autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
+  " store current cursor location
+  silent exe "normal ma<CR>"
+  " store the current search value
+  let saved_search = @/
 
-" Open HTML files in Safari using \r
-autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
 
-" Enable soft-wrapping for text files
-autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+  " delete the whitespace (e means don't warn if pattern not found)
+  %s/\s\+$//e
 
-" Custom SVN location for vcscommand plugin
-let VCSCommandSVNExec="/opt/subversion/bin/svn"
+  " restore old cursor location
+  silent exe "normal `a<CR>"
+  " restore the search value
+  let @/ = saved_search
 
-" Toggle word wrap with \w
-map <Leader>w :set nowrap!<CR>
+endfunction
 
-" Treat .less files as .css files
-au BufNewFile,BufRead *.less setfiletype css
+" Autocommands
+if has('autocmd')
+
+    " Remove trailing whitespace from various files
+    au BufWritePre * call StripTrailingWhitespace()
+
+    " Use 2 spaces for tabs in ruby and associated langs
+    autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
+
+    " Run ruby files using \r
+    autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
+
+    " Open HTML files in Safari using \r
+    autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
+
+    " Enable soft-wrapping for text files
+    autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+
+    " Treat .less files as .css files
+    autocmd BufNewFile,BufRead *.less setfiletype css
+
+    " Customizations for the surround plugin
+    " PHP
+    " Use p to get php tags
+    autocmd FileType php let b:surround_112 = "<?php \r ?>"     " p
+    autocmd FileType php let b:surround_61 = "<?php echo \r ?>"     " =
+endif
 
 " Always open new windows below/to the right
 set sb
 set spr
 
-" Use Ack
+" Use Ack for searching
 if executable("ack")
     set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
@@ -119,9 +170,3 @@ try
     map <leader>t :FufCWD **/<CR>
 catch
 endtry
-
-" Customizations for the surround plugin
-" PHP
-" Use p to get php tags
-autocmd FileType php let b:surround_112 = "<?php \r ?>"     " p
-autocmd FileType php let b:surround_61 = "<?php echo \r ?>"     " =
