@@ -1,6 +1,15 @@
 " Do not emulate vi
 set nocompatible
 
+" We don't use em
+set modelines=0
+
+" Always work with utf-8
+set encoding=utf-8
+
+" Highlight the current line
+set cursorline
+
 " Deal witg multiple buffers better
 set hidden
 
@@ -14,6 +23,10 @@ set history=100
 set wildmenu
 set wildmode=list:longest
 
+" Invisible characters
+set list
+set listchars=tab:▸\ ,eol:¬
+
 " Fast editing and updating of the .vimrc (reloads on save)
 map <Leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
@@ -21,9 +34,15 @@ autocmd! bufwritepost vimrc source ~/.vimrc
 " Toggle paste mode to reduce paste indent suckage
 set pastetoggle=<F2>
 
+" Quickly re-select pasted text
+nnoremap <leader>v V`]
+
 " No more toolbar
 if has("gui_running")
   set guioptions=egmrt
+
+  " Use the Inconsolata font
+  set gfn=Inconsolata:h14
 endif
 
 " Intuitive Backspace
@@ -46,6 +65,21 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" Re-map arrow keys to do something useful, but not
+" the usual navigation (force use of hjkl)
+"
+" The left and right keys always indent and outdent
+" The up and down keys move a line up and down in normal mode
+nmap <silent> <Left> <<
+nmap <silent> <Right> >>
+vmap <silent> <Left> <
+vmap <silent> <Right> >
+imap <silent> <Left> <C-D>
+imap <silent> <Right> <C-T>
+nmap <Up> ddkP
+nmap <Down> ddp
+nmap <Down> ddp
 
 " Syntax highlighting
 syntax on
@@ -79,11 +113,12 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Search with sane regex syntax by default
+nnoremap / /\v
+vnoremap / /\v
+
 " Set terminal title
 set title
-
-" Use the Inconsolata font
-set gfn=Inconsolata:h14
 
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
@@ -134,7 +169,7 @@ if has('autocmd')
     autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
 
     " Open HTML files in Safari using \r
-    autocmd Filetype html nmap <Leader>r :!open -a Safari %<CR>
+    autocmd Filetype html nmap <Leader>r :!open -a Safari "%"<CR>
 
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
@@ -157,12 +192,6 @@ set spr
 if executable("ack")
     set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
-
-" Unmap arrow keys to force learning hjkl
-map <Left> \
-map <Right> \
-map <Up> \
-map <Down> \
 
 " Fuzzyfinder plugin
 try
