@@ -27,6 +27,7 @@ alias gc='git commit'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 alias gpom='git push origin master'
 alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches'
+alias gz='git archive -o snapshot.zip HEAD'
 
 # Commit pending changes and quote all args as message
 function gg() {
