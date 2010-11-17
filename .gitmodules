@@ -49,3 +49,6 @@
 [submodule "vim/vim/bundle/tcomment"]
 	path = vim/vim/bundle/tcomment
 	url = http://github.com/tsaleh/vim-tcomment.git
+[submodule "vim/vim/bundle/vim-mac-classic-theme"]
+	path = vim/vim/bundle/vim-mac-classic-theme
+	url = https://github.com/nelstrom/vim-mac-classic-theme.git
