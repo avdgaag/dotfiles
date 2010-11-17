@@ -1,3 +1,7 @@
+" Set up pathogen to load plugins
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " Do not emulate vi
 set nocompatible
 
