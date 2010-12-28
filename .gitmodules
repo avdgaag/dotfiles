@@ -52,3 +52,9 @@
 [submodule "vim/vim/bundle/vim-mac-classic-theme"]
 	path = vim/vim/bundle/vim-mac-classic-theme
 	url = https://github.com/nelstrom/vim-mac-classic-theme.git
+[submodule "vim/vim/bundle/vim-textobj-user"]
+	path = vim/vim/bundle/vim-textobj-user
+	url = git://github.com/kana/vim-textobj-user.git
+[submodule "vim/vim/bundle/vim-textobj-rubyblock"]
+	path = vim/vim/bundle/vim-textobj-rubyblock
+	url = git://github.com/nelstrom/vim-textobj-rubyblock.git
