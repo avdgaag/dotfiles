@@ -43,6 +43,9 @@ if has("gui_running")
 
   " Use the Inconsolata font
   set gfn=Inconsolata:h14
+
+  " Use the entire screen when in full-screen mode
+  set fuopt=maxvert,maxhorz
 endif
 
 " Intuitive Backspace

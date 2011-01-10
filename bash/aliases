@@ -62,8 +62,8 @@ function sw() {
 # Create and switch to a new subversion branch
 function sb() {
     svn copy `surl` `sroot`"/branches/"$1
-    svn switch !!:$
-    echo "Now at branch $branch_name"
+    svn switch `sroot`"/branches/"$1
+    echo "Now at branch $1"
 }
 
 # Create a new tag from the current URL
