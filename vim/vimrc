@@ -1,9 +1,9 @@
+" Do not emulate vi
+set nocompatible
+
 " Set up pathogen to load plugins
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
-
-" Do not emulate vi
-set nocompatible
 
 " We don't use em
 set modelines=0
