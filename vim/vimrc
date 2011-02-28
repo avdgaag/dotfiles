@@ -166,10 +166,13 @@ if has('autocmd')
     au BufWritePre * call StripTrailingWhitespace()
 
     " Use 2 spaces for tabs in ruby and associated langs
-    autocmd Filetype ruby,yaml,rake,rb setlocal ts=2 sw=2 expandtab
+    autocmd Filetype ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
+    autocmd BufNewFile,BufRead {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
+    autocmd BufNewFile,BufRead Gemfile.lock set ft=yaml
 
     " Run ruby files using \r
     autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
+    autocmd Filetype ru nmap <leader>r :!rackup<CR>
 
     " Open HTML files in Safari using \r
     autocmd Filetype html nmap <Leader>r :!open -a Safari "%"<CR>
