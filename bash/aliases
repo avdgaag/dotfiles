@@ -16,7 +16,8 @@ alias ea='vim ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
 alias ee="vim ~/bin/dotfiles/bash/env && reload"
 
 # Other
-alias ar='sudo apachectl graceful'
+alias apache-restart='sudo apachectl graceful'
+alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
 
 # Git
 # ---------------------------------------------------------------------------------------
