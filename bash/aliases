@@ -77,3 +77,6 @@ function mate_with {
     file_pattern=$1
     find . -name $file_pattern -print0 | xargs -0 mate
 }
+
+# Rsync
+alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
