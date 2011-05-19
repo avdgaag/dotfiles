@@ -58,3 +58,6 @@
 [submodule "vim/vim/bundle/vim-textobj-rubyblock"]
 	path = vim/vim/bundle/vim-textobj-rubyblock
 	url = git://github.com/nelstrom/vim-textobj-rubyblock.git
+[submodule "vim/vim/bundle/vim-unimpaired"]
+	path = vim/vim/bundle/vim-unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git
