@@ -4,4 +4,7 @@ Host webfaction
 Host mixe_webfaction
   HostName mixe.webfactional.com
   User mixe
+Host ycb
+  HostName ssh.pcextreme.nl
+  User yogacentrumboxmeer-nl
 
