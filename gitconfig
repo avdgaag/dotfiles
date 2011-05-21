@@ -1,10 +1,8 @@
 [user]
 	name = Arjan van der Gaag
-	email = info@agwebdesign.nl
+	email = arjan@arjanvandergaag.nl
 [color]
-    diff = auto
-    status = auto
-    branch = auto
+    ui = auto
 [core]
     excludesfile = ~/.gitignore
 	editor = /usr/bin/vim
