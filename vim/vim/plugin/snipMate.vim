@@ -1,6 +1,7 @@
 " File:          snipMate.vim
 " Author:        Michael Sanders
-" Version:       0.84
+" Last Updated:  July 13, 2009
+" Version:       0.83
 " Description:   snipMate.vim implements some of TextMate's snippets features in
 "                Vim. A snippet is a piece of often-typed text that you can
 "                insert into your document using a trigger word followed by a "<tab>".
@@ -32,9 +33,8 @@ fun! MakeSnip(scope, trigger, content, ...)
 		let {var}[a:scope][a:trigger] = multisnip ? [[a:1, a:content]] : a:content
 	elseif multisnip | let {var}[a:scope][a:trigger] += [[a:1, a:content]]
 	else
-		let {var}[a:scope][a:trigger] = multisnip ? [[a:1, a:content]] : a:content
-		" echom 'Warning in snipMate.vim: Snippet '.a:trigger.' is already defined.'
-				" \ .' See :h multi_snip for help on snippets with multiple matches.'
+		echom 'Warning in snipMate.vim: Snippet '.a:trigger.' is already defined.'
+				\ .' See :h multi_snip for help on snippets with multiple matches.'
 	endif
 endf
 
@@ -92,33 +92,8 @@ fun! ExtractSnipsFile(file, ft)
 	endfor
 endf
 
-" Reset snippets for filetype.
-fun! ResetSnippets(ft)
-	let ft = a:ft == '' ? '_' : a:ft
-	for dict in [s:snippets, s:multi_snips, g:did_ft]
-		if has_key(dict, ft)
-			unlet dict[ft]
-		endif
-	endfor
-endf
-
-" Reset snippets for all filetypes.
-fun! ResetAllSnippets()
+fun! ResetSnippets()
 	let s:snippets = {} | let s:multi_snips = {} | let g:did_ft = {}
-endf
-
-" Reload snippets for filetype.
-fun! ReloadSnippets(ft)
-	let ft = a:ft == '' ? '_' : a:ft
-	call ResetSnippets(ft)
-	call GetSnippets(g:snippets_dir, ft)
-endf
-
-" Reload snippets for all filetypes.
-fun! ReloadAllSnippets()
-	for ft in keys(g:did_ft)
-		call ReloadSnippets(ft)
-	endfor
 endf
 
 let g:did_ft = {}
@@ -173,7 +148,7 @@ fun! TriggerSnippet()
 		" the snippet.
 		if snippet != ''
 			let col = col('.') - len(trigger)
-			sil exe 's/\V'.escape(trigger, '/\.').'\%#//'
+			sil exe 's/\V'.escape(trigger, '/.').'\%#//'
 			return snipMate#expandSnip(snippet, col)
 		endif
 	endfor
