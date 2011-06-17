@@ -141,7 +141,7 @@ set ai " Automatically set the indent of a new line
 set si " Smart indent
 
 " Remove trailing whitespace from code files on save
-function StripTrailingWhitespace()
+function! StripTrailingWhitespace()
 
   " store current cursor location
   silent exe "normal ma<CR>"
