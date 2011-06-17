@@ -184,6 +184,9 @@ if has('autocmd')
     autocmd Filetype coffee vmap <Leader>b :CoffeeCompile<CR>
     autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
 
+    " Enable SCSS syntax
+    au BufRead,BufNewFile *.scss set filetype=scss
+
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
 
