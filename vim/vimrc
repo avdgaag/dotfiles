@@ -177,6 +177,13 @@ if has('autocmd')
     " Open HTML files in Safari using \r
     autocmd Filetype html nmap <Leader>r :!open -a Safari "%"<CR>
 
+    " Set up some build commands for Coffeescript. Compile the entire
+    " file or a selection with \b and always compile the file
+    " on save.
+    autocmd Filetype coffee nmap <Leader>b :CoffeeCompile<CR>
+    autocmd Filetype coffee vmap <Leader>b :CoffeeCompile<CR>
+    autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
+
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
 
