@@ -166,7 +166,7 @@ if has('autocmd')
     autocmd BufWritePre,FileWritePre *.html,*.rb,*.php,*.yaml,*.yml,*.xml,*.erb call StripTrailingWhitespace()
 
     " Use 2 spaces for tabs in ruby and associated langs
-    autocmd Filetype ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
+    autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
     autocmd BufNewFile,BufRead {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
     autocmd BufNewFile,BufRead Gemfile.lock set ft=yaml
 
