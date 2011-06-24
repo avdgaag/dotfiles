@@ -12,8 +12,7 @@ function take() {
 
 # Working with these dotfiles made easier
 alias reload='source ~/bin/dotfiles/bash/aliases'
-alias ea='vim ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
-alias ee="vim ~/bin/dotfiles/bash/env && reload"
+alias ea='vim ~/.bashrc && reload' # Edit aliases
 
 # Other
 alias apache-restart='sudo apachectl graceful'
