@@ -37,8 +37,8 @@ set pastetoggle=<F2>
 " Quickly re-select pasted text
 nnoremap <leader>v V`]
 
-" No more toolbar
 if has("gui_running")
+  " No more toolbar
   set guioptions=egmrt
 
   " Use the Inconsolata font
