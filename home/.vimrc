@@ -139,6 +139,7 @@ set shiftwidth=4
 set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
+set list listchars=tab:\ \ ,trail:·
 
 " Remove trailing whitespace from code files on save
 function! StripTrailingWhitespace()
