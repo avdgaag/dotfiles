@@ -189,15 +189,6 @@ if has('autocmd')
 
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
-
-    " Treat .less files as .css files
-    autocmd BufNewFile,BufRead *.less setfiletype css
-
-    " Customizations for the surround plugin
-    " PHP
-    " Use p to get php tags
-    autocmd FileType php let b:surround_112 = "<?php \r ?>"     " p
-    autocmd FileType php let b:surround_61 = "<?php echo \r ?>"     " =
 endif
 
 " Always open new windows below/to the right
@@ -209,9 +200,3 @@ if executable("ack")
     set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
 
-" Fuzzyfinder plugin
-try
-    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-    map <leader>t :FufCWD **/<CR>
-catch
-endtry
