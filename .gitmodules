@@ -1,66 +1,69 @@
-[submodule "vim/vim/bundle/vim-coffee-script"]
-	path = vim/vim/bundle/vim-coffee-script
+[submodule "home/.vim/bundle/vim-coffee-script"]
+	path = home/.vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
-[submodule "vim/vim/bundle/fugitive"]
-	path = vim/vim/bundle/fugitive
+[submodule "home/.vim/bundle/fugitive"]
+	path = home/.vim/bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
-[submodule "vim/vim/bundle/vim-javascript"]
-	path = vim/vim/bundle/vim-javascript
+[submodule "home/.vim/bundle/vim-javascript"]
+	path = home/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
-[submodule "vim/vim/bundle/vim-surround"]
-	path = vim/vim/bundle/vim-surround
+[submodule "home/.vim/bundle/vim-surround"]
+	path = home/.vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/vim/bundle/vim-rails"]
-	path = vim/vim/bundle/vim-rails
+[submodule "home/.vim/bundle/vim-rails"]
+	path = home/.vim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
-[submodule "vim/vim/bundle/vim-cucumber"]
-	path = vim/vim/bundle/vim-cucumber
+[submodule "home/.vim/bundle/vim-cucumber"]
+	path = home/.vim/bundle/vim-cucumber
 	url = https://github.com/tpope/vim-cucumber.git
-[submodule "vim/vim/bundle/vim-rake"]
-	path = vim/vim/bundle/vim-rake
+[submodule "home/.vim/bundle/vim-rake"]
+	path = home/.vim/bundle/vim-rake
 	url = https://github.com/tpope/vim-rake.git
-[submodule "vim/vim/bundle/vim-markdown"]
-	path = vim/vim/bundle/vim-markdown
+[submodule "home/.vim/bundle/vim-markdown"]
+	path = home/.vim/bundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "vim/vim/bundle/vim-ragtag"]
-	path = vim/vim/bundle/vim-ragtag
+[submodule "home/.vim/bundle/vim-ragtag"]
+	path = home/.vim/bundle/vim-ragtag
 	url = https://github.com/tpope/vim-ragtag.git
-[submodule "vim/vim/bundle/vim-liquid"]
-	path = vim/vim/bundle/vim-liquid
+[submodule "home/.vim/bundle/vim-liquid"]
+	path = home/.vim/bundle/vim-liquid
 	url = https://github.com/tpope/vim-liquid.git
-[submodule "vim/vim/bundle/vim-repeat"]
-	path = vim/vim/bundle/vim-repeat
+[submodule "home/.vim/bundle/vim-repeat"]
+	path = home/.vim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/vim/bundle/nerdtree"]
-	path = vim/vim/bundle/nerdtree
+[submodule "home/.vim/bundle/nerdtree"]
+	path = home/.vim/bundle/nerdtree
 	url = http://github.com/scrooloose/nerdtree.git
-[submodule "vim/vim/bundle/command-t"]
-	path = vim/vim/bundle/command-t
+[submodule "home/.vim/bundle/command-t"]
+	path = home/.vim/bundle/command-t
 	url = http://github.com/wincent/Command-T.git
-[submodule "vim/vim/bundle/align"]
-	path = vim/vim/bundle/align
+[submodule "home/.vim/bundle/align"]
+	path = home/.vim/bundle/align
 	url = http://github.com/tsaleh/vim-align.git
-[submodule "vim/vim/bundle/matchit"]
-	path = vim/vim/bundle/matchit
+[submodule "home/.vim/bundle/matchit"]
+	path = home/.vim/bundle/matchit
 	url = http://github.com/tsaleh/vim-matchit.git
-[submodule "vim/vim/bundle/taglist"]
-	path = vim/vim/bundle/taglist
+[submodule "home/.vim/bundle/taglist"]
+	path = home/.vim/bundle/taglist
 	url = https://github.com/mexpolk/vim-taglist.git
-[submodule "vim/vim/bundle/tcomment"]
-	path = vim/vim/bundle/tcomment
+[submodule "home/.vim/bundle/tcomment"]
+	path = home/.vim/bundle/tcomment
 	url = http://github.com/tsaleh/vim-tcomment.git
-[submodule "vim/vim/bundle/vim-mac-classic-theme"]
-	path = vim/vim/bundle/vim-mac-classic-theme
+[submodule "home/.vim/bundle/vim-mac-classic-theme"]
+	path = home/.vim/bundle/vim-mac-classic-theme
 	url = https://github.com/nelstrom/vim-mac-classic-theme.git
-[submodule "vim/vim/bundle/vim-textobj-user"]
-	path = vim/vim/bundle/vim-textobj-user
+[submodule "home/.vim/bundle/vim-textobj-user"]
+	path = home/.vim/bundle/vim-textobj-user
 	url = git://github.com/kana/vim-textobj-user.git
-[submodule "vim/vim/bundle/vim-textobj-rubyblock"]
-	path = vim/vim/bundle/vim-textobj-rubyblock
+[submodule "home/.vim/bundle/vim-textobj-rubyblock"]
+	path = home/.vim/bundle/vim-textobj-rubyblock
 	url = git://github.com/nelstrom/vim-textobj-rubyblock.git
-[submodule "vim/vim/bundle/vim-unimpaired"]
-	path = vim/vim/bundle/vim-unimpaired
+[submodule "home/.vim/bundle/vim-unimpaired"]
+	path = home/.vim/bundle/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
-[submodule "vim/vim/bundle/vim-coffee-script"]
-	path = vim/vim/bundle/vim-coffee-script
+[submodule "home/.vim/bundle/vim-coffee-script"]
+	path = home/.vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "home/.vim/bundle/scss-syntax"]
+	path = home/.vim/bundle/scss-syntax
+	url = git://github.com/cakebaker/scss-syntax.vim.git

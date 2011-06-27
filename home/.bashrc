@@ -12,8 +12,7 @@ function take() {
 
 # Working with these dotfiles made easier
 alias reload='source ~/bin/dotfiles/bash/aliases'
-alias ea='vim ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
-alias ee="vim ~/bin/dotfiles/bash/env && reload"
+alias ea='vim ~/.bashrc && reload' # Edit aliases
 
 # Other
 alias apache-restart='sudo apachectl graceful'
@@ -80,3 +79,9 @@ function mate_with {
 
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
+
+export EDITOR="/usr/bin/vim"
+export SVN_EDITOR=$EDITOR
+export PATH="/opt/subversion/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH:/Users/arjan/bin:/Users/arjan/bin/dotfiles/scripts"
+export PYTHONPATH=/usr/local/lib/python2.6/site-packages
+if [[ -s /Users/arjan/.rvm/scripts/rvm ]] ; then source /Users/arjan/.rvm/scripts/rvm ; fi

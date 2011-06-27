@@ -37,8 +37,8 @@ set pastetoggle=<F2>
 " Quickly re-select pasted text
 nnoremap <leader>v V`]
 
-" No more toolbar
 if has("gui_running")
+  " No more toolbar
   set guioptions=egmrt
 
   " Use the Inconsolata font
@@ -139,9 +139,10 @@ set shiftwidth=4
 set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
+set list listchars=tab:\ \ ,trail:·
 
 " Remove trailing whitespace from code files on save
-function StripTrailingWhitespace()
+function! StripTrailingWhitespace()
 
   " store current cursor location
   silent exe "normal ma<CR>"
@@ -169,6 +170,7 @@ if has('autocmd')
     autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
     autocmd BufNewFile,BufRead {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
     autocmd BufNewFile,BufRead Gemfile.lock set ft=yaml
+    autocmd BufNewFile,BufRead *.json set ft=javascript
 
     " Run ruby files using \r
     autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
@@ -176,6 +178,16 @@ if has('autocmd')
 
     " Open HTML files in Safari using \r
     autocmd Filetype html nmap <Leader>r :!open -a Safari "%"<CR>
+
+    " Set up some build commands for Coffeescript. Compile the entire
+    " file or a selection with \b and always compile the file
+    " on save.
+    autocmd Filetype coffee nmap <Leader>b :CoffeeCompile<CR>
+    autocmd Filetype coffee vmap <Leader>b :CoffeeCompile<CR>
+    autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
+
+    " Enable SCSS syntax
+    au BufRead,BufNewFile *.scss set filetype=scss
 
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist

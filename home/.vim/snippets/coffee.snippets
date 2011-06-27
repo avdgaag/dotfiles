@@ -1,0 +1,143 @@
+# Class
+snippet class
+	class ${1:name}
+		constructor: (${2:params...}) ->
+			${3://body...}
+
+# Funcion
+snippet fun
+	${1:function_name} = (${2:argumen}) ->
+		${3: //body...}
+
+# Asignation if
+snippet =if
+	${1:variable} = ${2:valor} if ${3:condition}
+
+# Asignation if and
+snippet ifand
+	if ${1} and ${2}
+
+# Asignation if then else
+snippet =ifthen
+	${1: value} = if ${2:option} then ${3:asignation} else ${4:else}
+
+# Asignation or=
+snippet or=
+	${1:options} or= ${2:defaults}
+
+# Asignation forin
+snippet forin
+	${1:countdown} = (${2:num} for ${3:num} in ${4:[10..1]})
+
+# Asignation forof
+snippet forof
+	${1:ages} = for ${2:key}, ${3:value} of ${4:yearsOld}
+		key + " is " + value
+
+# Asignation while
+snippet while
+	${1:action()} while ${2:condition}
+
+# Asignation until
+snippet until
+	${1:action()} until ${2:condition}
+
+# Asignation forindo
+snippet forindo
+	for ${1:filename} in ${2:list}
+		do (${3:filename}) ->
+
+# Asignation try
+snippet try
+	try
+		${1:expresion}
+	catch error
+		${2:error}
+
+# Asignation tryfin
+snippet tryfin
+	try
+		${1:expresion}
+	catch error
+		${2:error}
+	finally
+		${3:cleanAll()}
+
+# Asignation ?=
+snippet ?=
+	${1:speed} ?= ${2:75}
+
+# Asignation =?
+snippet =?
+	${1:footprints} = ${2:yetis} ? ${3:bear}
+
+# Asignation switch
+snippet switch
+	switch ${1:day}
+		when ${2:Mon} then ${3:go work}
+		else ${4:go relax}
+
+# Asignation ##
+snippet ##
+	###
+		${1:comment}
+	###
+
+## Jasmine Snippets
+## Thibault NORMAND <Zenithar>
+##
+snippet desc
+	# ${1:Specification}
+
+describe '${2:Model or When ...}', ->
+	${3}
+	return
+
+snippet it
+	it '${1:Should ...}', ->
+		${2}
+
+snippet exp
+	expect(${1:predicate})
+
+snippet exp=
+	expect(${1:predicate}).toEqual ${2:value}
+
+snippet expmatch
+	expect(${1:predicate}).toMatch /${2:regex}/
+
+snippet expdef
+	expect(${1:predicate}).toBeDefined
+
+snippet expnull
+	expect(${1:predicate}).toBeNull
+
+snippet exptrue
+	expect(${1:predicate}).toBeThruthy
+
+snippet expfalse
+	expect(${1:predicate}).toBeFalsy()
+
+snippet expcon
+	expect(${1:predicate}).toContain ${2:value}
+
+snippet befe
+	# Configuration
+	beforeEach ->
+		${1}
+
+snippet spyon
+	spyOn ${1:object}, ${2:method}
+
+snippet expcall
+	expect(${1:predicate}).wasCalled
+
+snippet expncall
+	expect(${1:predicate}).wasNotCalled
+
+snippet expcallw
+	expect(${1:predicate}).wasCalledWith ${2:arguments}
+
+snippet expncallw
+	expect(${1:predicate}).wasNotCalledWith ${2:arguments}
+
