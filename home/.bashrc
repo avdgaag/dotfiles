@@ -11,7 +11,7 @@ function take() {
 }
 
 # Working with these dotfiles made easier
-alias reload='source ~/bin/dotfiles/bash/aliases'
+alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
 
 # Other
