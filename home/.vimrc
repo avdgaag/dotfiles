@@ -46,6 +46,8 @@ if has("gui_running")
 
   " Use the entire screen when in full-screen mode
   set fuopt=maxvert,maxhorz
+
+  set list listchars=tab:\ \ ,trail:·
 endif
 
 " Intuitive Backspace
@@ -139,7 +141,6 @@ set shiftwidth=4
 set expandtab
 set ai " Automatically set the indent of a new line
 set si " Smart indent
-set list listchars=tab:\ \ ,trail:·
 
 " Remove trailing whitespace from code files on save
 function! StripTrailingWhitespace()
