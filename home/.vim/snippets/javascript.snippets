@@ -5,6 +5,21 @@ snippet class
 		}
 		return $1;
 	})();
+# Describe
+snippet desc
+	describe('${1:subject}', function() {
+		$2
+	});
+# It
+snippet it
+	it('${1:should}', function() {
+		${2:// do something}
+	});
+# BeforeEach
+snippet bef
+	beforeEach(function() {
+		${1:// set up environment}
+	});
 # Prototype
 snippet proto
 	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {

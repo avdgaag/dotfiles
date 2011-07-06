@@ -185,7 +185,7 @@ if has('autocmd')
     " on save.
     autocmd Filetype coffee nmap <Leader>b :CoffeeCompile<CR>
     autocmd Filetype coffee vmap <Leader>b :CoffeeCompile<CR>
-    autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
+    " autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
 
     " Enable SCSS syntax
     au BufRead,BufNewFile *.scss set filetype=scss

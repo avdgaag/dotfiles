@@ -61,9 +61,6 @@
 [submodule "home/.vim/bundle/vim-unimpaired"]
 	path = home/.vim/bundle/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
-[submodule "home/.vim/bundle/vim-coffee-script"]
-	path = home/.vim/bundle/vim-coffee-script
-	url = git://github.com/kchmck/vim-coffee-script.git
 [submodule "home/.vim/bundle/scss-syntax"]
 	path = home/.vim/bundle/scss-syntax
 	url = git://github.com/cakebaker/scss-syntax.vim.git
