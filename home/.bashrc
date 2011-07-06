@@ -77,6 +77,10 @@ function mate_with {
     find . -name $file_pattern -print0 | xargs -0 mate
 }
 
+# Bundler
+alias benc='bundle exec nanoc co'
+alias benv='bundle exec nanoc view'
+
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
 
