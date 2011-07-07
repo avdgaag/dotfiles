@@ -3,6 +3,8 @@
 
 alias lsh='ls -lhGF'
 alias lsa='ls -lhaGF'
+alias nicedate='date "+%Y-%m-%d"'
+alias nicedatetime='date "+%Y-%m-%d %H:%M"'
 
 # Create and change into a new directory
 function take() {
