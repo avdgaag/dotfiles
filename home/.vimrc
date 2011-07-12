@@ -89,8 +89,8 @@ nmap <Down> ddp
 " Syntax highlighting
 syntax on
 set showmatch " matching braces
-set background=dark
-colorscheme ir_black
+set background=light
+colorscheme mac_classic
 
 " Auto-reading on file changes
 set autoread
