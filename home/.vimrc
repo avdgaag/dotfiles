@@ -187,6 +187,9 @@ if has('autocmd')
     autocmd Filetype coffee vmap <Leader>b :CoffeeCompile<CR>
     " autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
 
+    " Enable Less syntax
+    au BufRead,BufNewFile *.less set filetype=less
+
     " Enable SCSS syntax
     au BufRead,BufNewFile *.scss set filetype=scss
 
