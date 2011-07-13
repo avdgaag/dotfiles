@@ -1,14 +1,33 @@
+# slice method
+snippet slice
+	Array.prototype.slice.call(${1:obj});
+# hasOwnProperty method
+snippet hasown
+	Object.prototype.hasOwnProperty.call(${1:obj}, ${2:key});
+# for each own property
+snippet foro
+	for(${1:key} in ${2:obj}) {
+		if($2.hasOwnProperty($1)) {
+			${3:// ...}
+		}
+	}
+# Self-executing closure
+snippet ff
+	(function() {
+		${1:// ...}
+	})();
 # Pseudo-class
 snippet class
 	var ${1:class_name} = (function() {
-		function $1() {
+		function $1(${2:arg}) {
+			${3:// initializer}
 		}
 		return $1;
 	})();
 # Describe
 snippet desc
 	describe('${1:subject}', function() {
-		$2
+		${2:it}
 	});
 # It
 snippet it
