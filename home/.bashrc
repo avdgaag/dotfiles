@@ -82,6 +82,8 @@ function mate_with {
 # Bundler
 alias benc='bundle exec nanoc co'
 alias benv='bundle exec nanoc view'
+alias be='bundle exec'
+alias ber='bundle exec rake'
 
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
