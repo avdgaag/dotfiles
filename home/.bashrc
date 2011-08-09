@@ -90,4 +90,3 @@ export EDITOR="/usr/bin/vim"
 export SVN_EDITOR=$EDITOR
 export PATH="/opt/subversion/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH:/Users/arjan/bin:/Users/arjan/bin/dotfiles/scripts"
 export PYTHONPATH=/usr/local/lib/python2.6/site-packages
-if [[ -s /Users/arjan/.rvm/scripts/rvm ]] ; then source /Users/arjan/.rvm/scripts/rvm ; fi

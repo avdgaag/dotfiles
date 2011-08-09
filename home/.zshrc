@@ -29,3 +29,4 @@ autoload -U compinit
 compinit
 
 source ~/.bashrc
+source ~/.zshenv
