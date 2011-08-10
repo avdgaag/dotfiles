@@ -37,12 +37,22 @@ set pastetoggle=<F2>
 " Quickly re-select pasted text
 nnoremap <leader>v V`]
 
+" Syntax highlighting
+syntax on
+set showmatch " matching braces
+set background=dark
+colorscheme ir_black
+
 if has("gui_running")
   " No more toolbar
   set guioptions=egmrt
 
-  " Use the Inconsolata font
-  set gfn=Inconsolata:h14
+  " Use light color scheme
+  set background=light
+  colorscheme mac_classic
+
+  " Use a nice font
+  set gfn=Menlo\ Regular:h13
 
   " Use the entire screen when in full-screen mode
   set fuopt=maxvert,maxhorz
@@ -85,12 +95,6 @@ imap <silent> <Right> <C-T>
 nmap <Up> ddkP
 nmap <Down> ddp
 nmap <Down> ddp
-
-" Syntax highlighting
-syntax on
-set showmatch " matching braces
-set background=light
-colorscheme mac_classic
 
 " Auto-reading on file changes
 set autoread
