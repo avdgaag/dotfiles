@@ -64,3 +64,6 @@
 [submodule "home/.vim/bundle/scss-syntax"]
 	path = home/.vim/bundle/scss-syntax
 	url = git://github.com/cakebaker/scss-syntax.vim.git
+[submodule "home/.vim/bundle/specky"]
+	path = home/.vim/bundle/specky
+	url = https://github.com/vim-scripts/Specky.git
