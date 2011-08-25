@@ -17,6 +17,8 @@ alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
 
 # Other
+alias apache-config='sudo vim /etc/apache2/httpd.conf'
+alias apache-check='sudo apachectl configtest'
 alias apache-restart='sudo apachectl graceful'
 alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
 
