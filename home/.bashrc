@@ -26,9 +26,14 @@ alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
 # ---------------------------------------------------------------------------------------
 alias git=hub # we use hub to add some github power to git
 alias gs='git status -s --ignore-submodules=dirty'
+alias gsf='git svn fetch'
+alias gsr='git svn rebase'
+alias gsd='git svn dcommit'
 alias gb='git branch'
 alias gc='git commit'
+alias go='git checkout'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
+alias gw='git whatchanged --oneline'
 alias gpom='git push origin master'
 alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches'
 alias gz='git archive -o snapshot.zip HEAD'
