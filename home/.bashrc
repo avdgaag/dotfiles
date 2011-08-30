@@ -35,7 +35,7 @@ alias go='git checkout'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 alias gw='git whatchanged --oneline'
 alias gpom='git push origin master'
-alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches'
+alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches -a -15'
 alias gz='git archive -o snapshot.zip HEAD'
 
 # Commit pending changes and quote all args as message
