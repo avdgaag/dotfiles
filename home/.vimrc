@@ -44,7 +44,7 @@ map <Leader>f :vertical wincmd f<CR>
 syntax on
 set showmatch " matching braces
 set background=dark
-colorscheme tomorrow-night
+colorscheme Tomorrow-Night
 
 if has("gui_running")
   " No more toolbar
@@ -52,7 +52,7 @@ if has("gui_running")
 
   " Use light color scheme
   set background=light
-  colorscheme mac_classic
+  colorscheme Tomorrow
 
   " Use a nice font
   set gfn=Menlo\ Regular:h13
