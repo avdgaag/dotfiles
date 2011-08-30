@@ -17,6 +17,8 @@ alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
 
 # Other
+alias apache-config='sudo vim /etc/apache2/httpd.conf'
+alias apache-check='sudo apachectl configtest'
 alias apache-restart='sudo apachectl graceful'
 alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
 
@@ -24,11 +26,16 @@ alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
 # ---------------------------------------------------------------------------------------
 alias git=hub # we use hub to add some github power to git
 alias gs='git status -s --ignore-submodules=dirty'
+alias gsf='git svn fetch'
+alias gsr='git svn rebase'
+alias gsd='git svn dcommit'
 alias gb='git branch'
 alias gc='git commit'
+alias go='git checkout'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
+alias gw='git whatchanged --oneline'
 alias gpom='git push origin master'
-alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches'
+alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches -a -15'
 alias gz='git archive -o snapshot.zip HEAD'
 
 # Commit pending changes and quote all args as message
@@ -80,10 +87,11 @@ function mate_with {
 }
 
 # Bundler
-alias benc='bundle exec nanoc co'
-alias benv='bundle exec nanoc view'
 alias be='bundle exec'
-alias ber='bundle exec rake'
+
+# Auto-detect if 'bundle exec' should be used when using nanoc or rake
+function rake  { if [ -e ./Gemfile.lock ]; then bundle exec rake  "$@"; else /usr/bin/env rake  "$@"; fi; }
+function nanoc { if [ -e ./Gemfile.lock ]; then bundle exec nanoc "$@"; else /usr/bin/env nanoc "$@"; fi; }
 
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'

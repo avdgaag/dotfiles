@@ -1,3 +1,4 @@
---pager=less
+--pager=less -R
 --sort-files
 --ignore-dir=rails
+--ignore-dir=.bundle

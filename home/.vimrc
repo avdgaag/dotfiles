@@ -37,6 +37,9 @@ set pastetoggle=<F2>
 " Quickly re-select pasted text
 nnoremap <leader>v V`]
 
+" Open related file in a vertical split window
+map <Leader>f :vertical wincmd f<CR>
+
 " Syntax highlighting
 syntax on
 set showmatch " matching braces
@@ -49,7 +52,7 @@ if has("gui_running")
 
   " Use light color scheme
   set background=light
-  colorscheme tomorrow
+  colorscheme mac_classic
 
   " Use a nice font
   set gfn=Menlo\ Regular:h13
