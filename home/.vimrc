@@ -37,6 +37,9 @@ set pastetoggle=<F2>
 " Quickly re-select pasted text
 nnoremap <leader>v V`]
 
+" Open related file in a vertical split window
+map <Leader>f :vertical wincmd f<CR>
+
 " Syntax highlighting
 syntax on
 set showmatch " matching braces
