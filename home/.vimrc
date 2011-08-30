@@ -41,7 +41,7 @@ nnoremap <leader>v V`]
 syntax on
 set showmatch " matching braces
 set background=dark
-colorscheme ir_black
+colorscheme vividchalk
 
 if has("gui_running")
   " No more toolbar
