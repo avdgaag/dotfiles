@@ -41,7 +41,7 @@ nnoremap <leader>v V`]
 syntax on
 set showmatch " matching braces
 set background=dark
-colorscheme ir_black
+colorscheme tomorrow-night
 
 if has("gui_running")
   " No more toolbar
@@ -49,7 +49,7 @@ if has("gui_running")
 
   " Use light color scheme
   set background=light
-  colorscheme mac_classic
+  colorscheme tomorrow
 
   " Use a nice font
   set gfn=Menlo\ Regular:h13
