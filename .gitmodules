@@ -67,3 +67,6 @@
 [submodule "home/.vim/bundle/specky"]
 	path = home/.vim/bundle/specky
 	url = https://github.com/vim-scripts/Specky.git
+[submodule "home/.vim/bundle/vim-vividchalk"]
+	path = home/.vim/bundle/vim-vividchalk
+	url = https://github.com/tpope/vim-vividchalk.git
