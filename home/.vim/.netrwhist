@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/arjan/Sites/clinix/wp-content/themes/clinix'
-let g:netrw_dirhist_2='/Users/arjan/Sites/fondsjanssen'
-let g:netrw_dirhist_3='/Users/arjan/Sites/clinix/wp-content/themes/clinix'
