@@ -22,6 +22,15 @@ vcs_info_wrapper() {
 setopt prompt_subst
 PROMPT='%n@%m:%1~ $(vcs_info_wrapper)%# '
 
+# Indicate insert or command mode on right-hand side prompt
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/N}/(main|viins)/}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 # Enable coloured output from ls, etc
 export CLICOLOR=1
 
