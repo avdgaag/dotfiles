@@ -176,9 +176,10 @@ if has('autocmd')
 
     " Use 2 spaces for tabs in ruby and associated langs
     autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
-    autocmd BufNewFile,BufRead {Gemfile,Rakefile,Thorfile,config.ru} set ft=ruby
+    autocmd BufNewFile,BufRead {Gemfile,Guardfile,Capfile,Rakefile,Thorfile,config.ru} set ft=ruby
     autocmd BufNewFile,BufRead Gemfile.lock set ft=yaml
     autocmd BufNewFile,BufRead *.json set ft=javascript
+    autocmd BufNewFile,BufRead *.prawn set ft=ruby
 
     " Run ruby files using \r
     autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
