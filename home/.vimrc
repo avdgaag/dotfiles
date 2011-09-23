@@ -52,7 +52,7 @@ if has("gui_running")
 
   " Use light color scheme
   set background=light
-  colorscheme Tomorrow
+  colorscheme mac_classic
 
   " Use a nice font
   set gfn=Menlo\ Regular:h13
