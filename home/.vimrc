@@ -141,6 +141,10 @@ nmap <Leader>n :NERDTreeToggle<CR>
 " Toggle word wrap with \w
 map <Leader>w :set nowrap!<CR>
 
+" Align on hash rockets and equals
+vmap <Leader>a :Align =><CR>
+vmap <Leader>A :Align =<CR>
+
 " Indenting
 set softtabstop=4
 set tabstop=4
