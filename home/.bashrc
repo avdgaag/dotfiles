@@ -1,8 +1,8 @@
 # Utilities
 # ---------------------------------------------------------------------------------------
 
-alias lsh='ls -lhGF'
-alias lsa='ls -lhaGF'
+alias lsh='ls -lhGFr'
+alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
 alias nicedatetime='date "+%Y-%m-%d %H:%M"'
 alias ffind='find -E . -type f -regex'
