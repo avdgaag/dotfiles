@@ -1,4 +1,4 @@
---pager=less -R
 --sort-files
 --ignore-dir=rails
 --ignore-dir=.bundle
+--type-add=ruby=.haml,.rake
