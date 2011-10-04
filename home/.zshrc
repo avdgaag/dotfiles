@@ -38,5 +38,9 @@ export CLICOLOR=1
 autoload -U compinit
 compinit
 
+# autocomplete frequently used paths
+setopt auto_cd
+cdpath=($HOME/code)
+
 source ~/.bashrc
 source ~/.zshenv
