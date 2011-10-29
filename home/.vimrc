@@ -28,7 +28,7 @@ set wildmenu
 set wildmode=list:longest
 
 " Fast editing and updating of the .vimrc (reloads on save)
-map <Leader>e :e! ~/.vimrc<cr>
+map <Leader>E :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
 
 " Toggle paste mode to reduce paste indent suckage
@@ -98,6 +98,17 @@ imap <silent> <Right> <C-T>
 nmap <Up> ddkP
 nmap <Down> ddp
 nmap <Down> ddp
+
+" Quickly edit files from the same directory as the current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+
+" Some Rails-specific jump-to-file bindings
+map <leader>gr :topleft :split config/routes.rb<cr>
+map <leader>gg :topleft :split config/Gemfile<cr>
+
+" Quickly jump between current and last file
+nnoremap <leader><leader> <c-^>
 
 " Auto-reading on file changes
 set autoread
