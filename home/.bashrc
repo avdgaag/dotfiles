@@ -39,7 +39,7 @@ alias go='git checkout'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 alias gw='git whatchanged --oneline'
 alias gpom='git push origin master'
-alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches -a'
+alias glog='git log --graph --pretty=format:"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --branches -a'
 alias gz='git archive -o snapshot.zip HEAD'
 alias gmc='git ls-files --unmerged | cut -f2 | uniq' # git merge conflicts
 
