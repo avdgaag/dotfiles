@@ -105,7 +105,7 @@ map <leader>e :edit %%
 
 " Some Rails-specific jump-to-file bindings
 map <leader>gr :topleft :split config/routes.rb<cr>
-map <leader>gg :topleft :split config/Gemfile<cr>
+map <leader>gg :topleft :split Gemfile<cr>
 
 " Quickly jump between current and last file
 nnoremap <leader><leader> <c-^>
@@ -187,7 +187,7 @@ endfunction
 if has('autocmd')
 
     " Remove trailing whitespace from various files
-    autocmd BufWritePre,FileWritePre *.html,*.rb,*.php,*.yaml,*.yml,*.xml,*.erb call StripTrailingWhitespace()
+    autocmd BufWritePre,FileWritePre *.html,*.rb,*.php,*.xml,*.erb call StripTrailingWhitespace()
 
     " Use 2 spaces for tabs in ruby and associated langs
     autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
