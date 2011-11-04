@@ -1,8 +1,8 @@
 # Utilities
 # ---------------------------------------------------------------------------------------
 
-alias lsh='ls -lhGF'
-alias lsa='ls -lhaGF'
+alias lsh='ls -lhGFr'
+alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
 alias nicedatetime='date "+%Y-%m-%d %H:%M"'
 alias ffind='find -E . -type f -regex'
@@ -22,6 +22,9 @@ alias apache-config='sudo vim /etc/apache2/httpd.conf'
 alias apache-check='sudo apachectl configtest'
 alias apache-restart='sudo apachectl graceful'
 alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
+alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias postgres-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+alias redis-start='redis-server /usr/local/etc/redis.conf'
 
 # Git
 # ---------------------------------------------------------------------------------------
@@ -36,8 +39,9 @@ alias go='git checkout'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 alias gw='git whatchanged --oneline'
 alias gpom='git push origin master'
-alias glog='git log --graph --pretty=oneline --abbrev-commit --decorate --branches -a'
+alias glog='git log --graph --pretty=format:"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --branches -a'
 alias gz='git archive -o snapshot.zip HEAD'
+alias gmc='git ls-files --unmerged | cut -f2 | uniq' # git merge conflicts
 
 # Commit pending changes and quote all args as message
 function gg() {
@@ -101,3 +105,4 @@ export EDITOR="/usr/bin/vim"
 export SVN_EDITOR=$EDITOR
 export PATH="/opt/subversion/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH:/Users/arjan/bin:/Users/arjan/bin/dotfiles/scripts"
 export PYTHONPATH=/usr/local/lib/python2.6/site-packages
+export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH

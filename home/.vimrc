@@ -28,7 +28,7 @@ set wildmenu
 set wildmode=list:longest
 
 " Fast editing and updating of the .vimrc (reloads on save)
-map <Leader>e :e! ~/.vimrc<cr>
+map <Leader>E :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc
 
 " Toggle paste mode to reduce paste indent suckage
@@ -52,7 +52,7 @@ if has("gui_running")
 
   " Use light color scheme
   set background=light
-  colorscheme Tomorrow
+  colorscheme mac_classic
 
   " Use a nice font
   set gfn=Menlo\ Regular:h13
@@ -99,6 +99,17 @@ nmap <Up> ddkP
 nmap <Down> ddp
 nmap <Down> ddp
 
+" Quickly edit files from the same directory as the current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+
+" Some Rails-specific jump-to-file bindings
+map <leader>gr :topleft :split config/routes.rb<cr>
+map <leader>gg :topleft :split Gemfile<cr>
+
+" Quickly jump between current and last file
+nnoremap <leader><leader> <c-^>
+
 " Auto-reading on file changes
 set autoread
 
@@ -141,6 +152,10 @@ nmap <Leader>n :NERDTreeToggle<CR>
 " Toggle word wrap with \w
 map <Leader>w :set nowrap!<CR>
 
+" Align on hash rockets and equals
+vmap <Leader>a :Align =><CR>
+vmap <Leader>A :Align =<CR>
+
 " Indenting
 set softtabstop=4
 set tabstop=4
@@ -172,7 +187,7 @@ endfunction
 if has('autocmd')
 
     " Remove trailing whitespace from various files
-    autocmd BufWritePre,FileWritePre *.html,*.rb,*.php,*.yaml,*.yml,*.xml,*.erb call StripTrailingWhitespace()
+    autocmd BufWritePre,FileWritePre *.html,*.rb,*.php,*.xml,*.erb call StripTrailingWhitespace()
 
     " Use 2 spaces for tabs in ruby and associated langs
     autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
