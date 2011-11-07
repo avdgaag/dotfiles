@@ -218,6 +218,9 @@ if has('autocmd')
 
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+
+    " Auto-resise windows when resizing
+    autocmd VimResized * wincmd =
 endif
 
 " Always open new windows below/to the right
