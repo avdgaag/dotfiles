@@ -41,6 +41,8 @@ alias gw='git whatchanged --oneline'
 alias gpom='git push origin master'
 alias glog='git log --graph --pretty=format:"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --branches -a'
 alias gz='git archive -o snapshot.zip HEAD'
+alias gm='git merge'
+alias gmnff='git merge --no-ff'
 alias gmc='git ls-files --unmerged | cut -f2 | uniq' # git merge conflicts
 
 # Commit pending changes and quote all args as message
