@@ -106,6 +106,8 @@ map <leader>e :edit %%
 " Some Rails-specific jump-to-file bindings
 map <leader>gr :topleft :split config/routes.rb<cr>
 map <leader>gg :topleft :split Gemfile<cr>
+map <leader>gn :topleft :split config/locales/nl.yml<cr>
+map <leader>ge :topleft :split config/locales/en.yml<cr>
 
 " Quickly jump between current and last file
 nnoremap <leader><leader> <c-^>
