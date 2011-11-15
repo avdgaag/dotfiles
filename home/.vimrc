@@ -151,6 +151,9 @@ map <Leader>h :set invhls <CR>
 " Quickly toggle NERDTree
 nmap <Leader>n :NERDTreeToggle<CR>
 
+" Reveal a file in the NERDTree
+nmap <Leader>N :NERDTreeFind<CR>
+
 " Toggle word wrap with \w
 map <Leader>w :set nowrap!<CR>
 
