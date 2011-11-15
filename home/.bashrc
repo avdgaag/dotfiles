@@ -44,6 +44,7 @@ alias gz='git archive -o snapshot.zip HEAD'
 alias gm='git merge'
 alias gmnff='git merge --no-ff'
 alias gmc='git ls-files --unmerged | cut -f2 | uniq' # git merge conflicts
+alias gtimelog='git --no-pager log --pretty=format:"%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset" --abbrev-commit --date=iso'
 
 # Commit pending changes and quote all args as message
 function gg() {
