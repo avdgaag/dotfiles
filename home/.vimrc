@@ -108,6 +108,8 @@ map <leader>gr :topleft :split config/routes.rb<cr>
 map <leader>gg :topleft :split Gemfile<cr>
 map <leader>gn :topleft :split config/locales/nl.yml<cr>
 map <leader>ge :topleft :split config/locales/en.yml<cr>
+" Hany for keeping a TODO list in the project root
+map <leader>gt :topleft :split TODO<cr>
 
 " Quickly jump between current and last file
 nnoremap <leader><leader> <c-^>
