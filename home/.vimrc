@@ -51,8 +51,8 @@ if has("gui_running")
   set guioptions=egmrt
 
   " Use light color scheme
-  set background=light
-  colorscheme mac_classic
+  " set background=light
+  " colorscheme mac_classic
 
   " Use a nice font
   set gfn=Menlo\ Regular:h13
