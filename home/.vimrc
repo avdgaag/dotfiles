@@ -102,6 +102,8 @@ nmap <Down> ddp
 " Quickly edit files from the same directory as the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
+map <leader>] :cnext<cr>
+map <leader>[ :cprev<cr>
 
 " Some Rails-specific jump-to-file bindings
 map <leader>gr :topleft :split config/routes.rb<cr>
