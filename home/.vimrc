@@ -208,6 +208,8 @@ if has('autocmd')
     " Run ruby files using \r
     autocmd Filetype ruby,rb nmap <Leader>r :!ruby %<CR>
     autocmd Filetype ru nmap <leader>r :!rackup<CR>
+    autocmd BufNewFile,BufRead *_spec.rb nmap <Leader>r :!bundle exec rspec %<CR>
+    autocmd BufNewFile,BufRead *_spec.rb nmap <Leader>R :exe "!bundle exec rspec %:" . line(".")<cr>
 
     " Open HTML files in Safari using \r
     autocmd Filetype html nmap <Leader>r :!open -a Safari "%"<CR>
