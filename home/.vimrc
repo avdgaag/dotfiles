@@ -40,6 +40,9 @@ nnoremap <leader>v V`]
 " Open related file in a vertical split window
 map <Leader>f :vertical wincmd f<CR>
 
+" Command-t buffer
+nnoremap <silent> <Leader>T :CommandTBuffer<CR>
+
 " Syntax highlighting
 syntax on
 set showmatch " matching braces
