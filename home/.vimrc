@@ -43,6 +43,8 @@ map <Leader>f :vertical wincmd f<CR>
 " Command-t buffer
 nnoremap <silent> <Leader>T :CommandTBuffer<CR>
 
+set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg
+
 " Syntax highlighting
 syntax on
 set showmatch " matching braces
