@@ -28,7 +28,6 @@ alias redis-start='redis-server /usr/local/etc/redis.conf'
 
 # Git
 # ---------------------------------------------------------------------------------------
-alias git=hub # we use hub to add some github power to git
 alias gs='git status -s --ignore-submodules=dirty'
 alias gsf='git svn fetch'
 alias gsr='git svn rebase'
