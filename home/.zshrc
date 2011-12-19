@@ -19,12 +19,16 @@ vcs_info_wrapper() {
   fi
 }
 
+function parse_git_dirty {
+    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+
 setopt prompt_subst
-PROMPT='%n@%m:%1~ $(vcs_info_wrapper)%# '
+PROMPT='%1~ $(vcs_info_wrapper)%# '
 
 # Indicate insert or command mode on right-hand side prompt
 function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/N}/(main|viins)/}"
+    RPS1="%{$fg[grey]%}%n@%m%{$reset_color%} %{$fg[cyan]%}${${KEYMAP/vicmd/N}/(main|viins)/ }%{$reset_color%} %{$fg[red]%}$(parse_git_dirty)%{$reset_color%}$del"
     RPS2=$RPS1
     zle reset-prompt
 }
@@ -35,7 +39,7 @@ zle -N zle-keymap-select
 export CLICOLOR=1
 
 # Load completions for Ruby, Git, etc.
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 # autocomplete frequently used paths
