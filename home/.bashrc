@@ -102,6 +102,7 @@ alias be='bundle exec'
 # Auto-detect if 'bundle exec' should be used when using nanoc or rake
 function rake  { if [ -e ./Gemfile.lock ]; then bundle exec rake  "$@"; else /usr/bin/env rake  "$@"; fi; }
 function nanoc { if [ -e ./Gemfile.lock ]; then bundle exec nanoc "$@"; else /usr/bin/env nanoc "$@"; fi; }
+function rspec { if [ -e ./Gemfile.lock ]; then bundle exec rspec "$@"; else /usr/bin/env rspec "$@"; fi; }
 
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
