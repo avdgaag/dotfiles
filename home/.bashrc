@@ -113,7 +113,7 @@ alias hrr='heroku run rake'
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
 
-export EDITOR="/usr/bin/vim"
+export EDITOR="/usr/local/bin/vim"
 export SVN_EDITOR=$EDITOR
 export PATH="/opt/subversion/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH:/Users/arjan/bin:/Users/arjan/bin/dotfiles/scripts"
 export PYTHONPATH=/usr/local/lib/python2.6/site-packages
