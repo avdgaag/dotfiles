@@ -53,49 +53,6 @@ function gg() {
     git commit -v -a -m "$*"
 }
 
-# Subversion
-# ---------------------------------------------------------------------------------------
-alias surl="svn info | grep URL | grep -Eo 'http[a-zA-Z0-9:/@\.\-]+'"
-alias srev='svn info | grep Revision'
-alias ss='svn status --ignore-externals'
-alias slsoc='svn log --verbose --stop-on-copy'
-alias su='svn update --ignore-externals'
-alias sroot='surl | sed -E "s/(trunk|tags|branches).*$//"'
-
-# Commit pending changes and quote all args as message
-function sc() {
-  svn commit -m "$*"
-}
-
-# List directory contents from the root URL of the current project.
-function sl() {
-    dir=`sroot`$1
-    svn list $dir
-}
-
-function sw() {
-    dir=`sroot`"/"$1
-    svn switch $dir
-}
-
-# Create and switch to a new subversion branch
-function sb() {
-    svn copy `surl` `sroot`"/branches/"$1
-    svn switch `sroot`"/branches/"$1
-    echo "Now at branch $1"
-}
-
-# Create a new tag from the current URL
-function st() {
-    svn copy `surl` `sroot`"/tags/"$1
-    echo "Created new tag $tag_name"
-}
-
-function mate_with {
-    file_pattern=$1
-    find . -name $file_pattern -print0 | xargs -0 mate
-}
-
 # Bundler
 alias be='bundle exec'
 
