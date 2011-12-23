@@ -17,6 +17,13 @@ function take() {
 alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
 
+# To Do files
+alias td='cat TODO'                  # what to do
+alias tdn='head -1 TODO'             # what to do next
+alias tdc='sed "/^$/d" TODO | wc -l' # to do count
+alias tdd='sed "1d" TODO > TODO'     # mark next to do done
+alias tdg='cat TODO | grep'          # what to do grep
+
 # Other
 alias apache-config='sudo vim /etc/apache2/httpd.conf'
 alias apache-check='sudo apachectl configtest'
