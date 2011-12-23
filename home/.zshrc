@@ -8,27 +8,23 @@ autoload -U colors
 colors
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:( sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git cvs svn
-vcs_info_wrapper() {
+zstyle ':vcs_info:*' actionformats "%{$fg[grey]%}%s %{$reset_color%}%r/%S%{$fg[grey]%} %{$fg[blue]%}%b%{$reset_color%} (%{$fg[red]%}%a%{$reset_color%}) %m%u%c%{$reset_color%}%{$fg[grey]%}%{$reset_color%}"
+zstyle ':vcs_info:git*' formats "%{$fg[grey]%}%s %{$reset_color%}%r/%S%{$fg[grey]%} %{$fg[blue]%}%b%{$reset_color%}%m%u%c%{$reset_color%}%{$fg[grey]%}%{$reset_color%} "
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' stagedstr "%{$fg[green]%}+%{$reset_color%}"
+zstyle ':vcs_info:*' unstagedstr "%{$fg[red]%}+%{$reset_color%}"
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' enable git svn
+precmd() {
   vcs_info
-  if [ -n "$vcs_info_msg_0_" ]; then
-    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
-  fi
-}
-
-function parse_git_dirty {
-    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 
 setopt prompt_subst
-PROMPT='%1~ $(vcs_info_wrapper)%# '
+PROMPT='${vcs_info_msg_0_}%# '
 
 # Indicate insert or command mode on right-hand side prompt
 function zle-line-init zle-keymap-select {
-    RPS1="%{$fg[grey]%}%n@%m%{$reset_color%} %{$fg[cyan]%}${${KEYMAP/vicmd/N}/(main|viins)/ }%{$reset_color%} %{$fg[red]%}$(parse_git_dirty)%{$reset_color%}$del"
+    RPS1="%{$fg[red]%}${${KEYMAP/vicmd/N}/(main|viins)/ }%{$reset_color%} %{$fg[grey]%}%n@%m%{$reset_color%}$del"
     RPS2=$RPS1
     zle reset-prompt
 }
