@@ -1,5 +1,6 @@
 --sort-files
 --ignore-dir=rails
+--ignore-dir=tmp
 --ignore-dir=.bundle
 --type-add=ruby=haml,rake
 --type-add=css=scss,sass
