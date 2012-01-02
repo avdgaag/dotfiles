@@ -227,16 +227,19 @@ if has('autocmd')
     " autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
 
     " Enable Less syntax
-    au BufRead,BufNewFile *.less set filetype=less
+    autocmd BufRead,BufNewFile *.less set filetype=less
 
     " Enable SCSS syntax
-    au BufRead,BufNewFile *.scss set filetype=scss
+    autocmd BufRead,BufNewFile *.scss set filetype=scss
 
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
 
     " Auto-resise windows when resizing
     autocmd VimResized * wincmd =
+
+    " Folding on indent for HAML and coffee-script files
+    autocmd BufNewFile,BufReadPost *.{coffee,haml} setl foldmethod=indent nofoldenable
 endif
 
 " Always open new windows below/to the right
