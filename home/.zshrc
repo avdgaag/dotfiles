@@ -8,8 +8,8 @@ autoload -U colors
 colors
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats "%{$fg[grey]%}%s %{$reset_color%}%r/%S%{$fg[grey]%} %{$fg[blue]%}%b%{$reset_color%} (%{$fg[red]%}%a%{$reset_color%}) %m%u%c%{$reset_color%}%{$fg[grey]%}%{$reset_color%}"
-zstyle ':vcs_info:git*' formats "%{$fg[grey]%}%s %{$reset_color%}%r/%S%{$fg[grey]%} %{$fg[blue]%}%b%{$reset_color%}%m%u%c%{$reset_color%}%{$fg[grey]%}%{$reset_color%} "
+zstyle ':vcs_info:*' actionformats "%{$fg[grey]%}%s %{$fg[blue]%}%b%{$reset_color%} (%{$fg[red]%}%a%{$reset_color%}) %m%u%c%{$reset_color%}%{$fg[grey]%}%{$reset_color%}"
+zstyle ':vcs_info:git*' formats "%{$fg[grey]%}%s %{$fg[blue]%}%b%{$reset_color%}%m%u%c%{$reset_color%}%{$fg[grey]%}%{$reset_color%} "
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:*' stagedstr "%{$fg[green]%}+%{$reset_color%}"
 zstyle ':vcs_info:*' unstagedstr "%{$fg[red]%}+%{$reset_color%}"
@@ -19,8 +19,11 @@ precmd() {
   vcs_info
 }
 
+local prompt_with_exit_status="%(?,%{$fg[green]%}%#%{$reset_color%},%{$fg[red]%}%#%{$reset_color%})"
+local colored_path="%{$fg[grey]%}%~%{$reset_color%}"
 setopt prompt_subst
-PROMPT='${vcs_info_msg_0_}%# '
+PROMPT='${colored_path}
+${vcs_info_msg_0_}${prompt_with_exit_status} '
 
 # Indicate insert or command mode on right-hand side prompt
 function zle-line-init zle-keymap-select {
