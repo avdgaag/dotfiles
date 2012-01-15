@@ -70,10 +70,10 @@ function nanoc { if [ -e ./Gemfile.lock ]; then bundle exec nanoc "$@"; else /us
 function rspec { if [ -e ./Gemfile.lock ]; then bundle exec rspec "$@"; else /usr/bin/env rspec "$@"; fi; }
 
 # Heroku
-alias ht='heroku logs -t'
-alias h='heroku'
-alias hr='heroku run'
-alias hrr='heroku run rake'
+alias hrl='heroku logs -t'
+alias hr='heroku'
+alias hrr='heroku run'
+alias hrake='heroku run rake'
 
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
