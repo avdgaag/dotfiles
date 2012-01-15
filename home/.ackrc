@@ -2,9 +2,10 @@
 --ignore-dir=rails
 --ignore-dir=tmp
 --ignore-dir=.bundle
---type-add=ruby=haml,rake
+--type-add=ruby=rake
 --type-add=css=scss,sass
 --type-add=vim=vimrc
 --type-add=js=json
---type-set=MARKDOWN=md,mkd,markdown
---type-set=RDOC=rdoc
+--type-set=markdown=md,mkd,markdown
+--type-set=rdoc=rdoc
+--type-set=haml=haml
