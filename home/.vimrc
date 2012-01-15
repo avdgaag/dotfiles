@@ -1,9 +1,16 @@
 " Do not emulate vi
 set nocompatible
 
+" Force 256 colors
+set t_Co=256
+
 " Set up pathogen to load plugins
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+
+" Always show status line
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
 
 " We don't use em
 set modelines=0
