@@ -79,3 +79,6 @@
 [submodule "home/.vim/bundle/vim-turbux"]
 	path = home/.vim/bundle/vim-turbux
 	url = git://github.com/jgdavey/vim-turbux.git
+[submodule "home/.vim/bundle/tcomment"]
+	path = home/.vim/bundle/tcomment
+	url = git://github.com/tomtom/tcomment_vim.git
