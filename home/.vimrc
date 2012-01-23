@@ -205,6 +205,10 @@ function! StripTrailingWhitespace()
 
 endfunction
 
+let g:no_turbux_mappings = 'true'
+nmap <leader>k <Plug>SendTestToTmux
+nmap <leader>K <Plug>SendFocusedTestToTmux
+
 " Autocommands
 if has('autocmd')
 
