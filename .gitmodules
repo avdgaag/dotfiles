@@ -46,9 +46,6 @@
 [submodule "home/.vim/bundle/taglist"]
 	path = home/.vim/bundle/taglist
 	url = https://github.com/mexpolk/vim-taglist.git
-[submodule "home/.vim/bundle/tcomment"]
-	path = home/.vim/bundle/tcomment
-	url = http://github.com/tsaleh/vim-tcomment.git
 [submodule "home/.vim/bundle/vim-mac-classic-theme"]
 	path = home/.vim/bundle/vim-mac-classic-theme
 	url = https://github.com/nelstrom/vim-mac-classic-theme.git
