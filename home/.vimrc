@@ -123,6 +123,10 @@ map <leader>gs :topleft :split db/schema.rb<cr>
 map <leader>gg :topleft :split Gemfile<cr>
 map <leader>gn :topleft :split config/locales/nl.yml<cr>
 map <leader>ge :topleft :split config/locales/en.yml<cr>
+
+" Replace Ruby 1.8 Hash syntax with 1.9 Hash syntax
+nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
+
 " Hany for keeping a TODO list in the project root
 map <leader>gt :topleft :split TODO<cr>
 
