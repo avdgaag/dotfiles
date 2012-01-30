@@ -82,3 +82,6 @@
 [submodule "home/.vim/bundle/tcomment"]
 	path = home/.vim/bundle/tcomment
 	url = git://github.com/tomtom/tcomment_vim.git
+[submodule "home/.vim/bundle/vim-numbertoggle"]
+	path = home/.vim/bundle/vim-numbertoggle
+	url = git://github.com/jeffkreeftmeijer/vim-numbertoggle.git
