@@ -82,3 +82,6 @@
 [submodule "home/.vim/bundle/vim-numbertoggle"]
 	path = home/.vim/bundle/vim-numbertoggle
 	url = git://github.com/jeffkreeftmeijer/vim-numbertoggle.git
+[submodule "home/.vim/bundle/tabular"]
+	path = home/.vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git

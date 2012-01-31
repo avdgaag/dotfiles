@@ -58,6 +58,18 @@ set showmatch " matching braces
 set background=dark
 colorscheme Tomorrow-Night
 
+" Tabular
+nmap <Leader>t= :Tabularize /=<CR>
+vmap <Leader>t= :Tabularize /=<CR>
+nmap <Leader>t: :Tabularize /:\zs<CR>
+vmap <Leader>t: :Tabularize /:\zs<CR>
+nmap <Leader>t, :Tabularize /,\zs<CR>
+vmap <Leader>t, :Tabularize /,\zs<CR>
+nmap <Leader>t> :Tabularize /=>\zs<CR>
+vmap <Leader>t> :Tabularize /=>\zs<CR>
+nmap <Leader>t" :Tabularize /"<CR>
+vmap <Leader>t" :Tabularize /"<CR>
+
 if has("gui_running")
   " No more toolbar
   set guioptions=egmrt
@@ -177,10 +189,6 @@ nmap <Leader>N :NERDTreeFind<CR>
 
 " Toggle word wrap with \w
 map <Leader>w :set nowrap!<CR>
-
-" Align on hash rockets and equals
-vmap <Leader>a :Align =><CR>
-vmap <Leader>A :Align =<CR>
 
 " Indenting
 set softtabstop=4
