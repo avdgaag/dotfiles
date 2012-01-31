@@ -47,9 +47,6 @@ nnoremap <leader>v V`]
 " Open related file in a vertical split window
 map <Leader>f :vertical wincmd f<CR>
 
-" Command-t buffer
-nnoremap <silent> <Leader>T :CommandTBuffer<CR>
-
 set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg
 
 " Syntax highlighting
@@ -57,6 +54,12 @@ syntax on
 set showmatch " matching braces
 set background=dark
 colorscheme Tomorrow-Night
+
+" Command-T
+nnoremap <silent> <C-b> :CommandTBuffer<CR>
+nnoremap <silent> <C-t> :CommandT<CR>
+let g:CommandTMaxHeight=20
+let g:CommandTMatchWindowReverse=1
 
 " Tabular
 nmap <Leader>t= :Tabularize /=<CR>
@@ -97,8 +100,8 @@ filetype plugin indent on
 set nowrap
 set linebreak
 
-" ...but make sure the editor uses editor lines, not real lines
-" when navigating
+" ...but make sure the editor uses editor lines, not real lines when
+" navigating
 nnoremap j gj
 nnoremap k gk
 
@@ -108,8 +111,8 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Re-map arrow keys to do something useful, but not
-" the usual navigation (force use of hjkl)
+" Re-map arrow keys to do something useful, but not the usual navigation
+" (force use of hjkl)
 "
 " The left and right keys always indent and outdent
 " The up and down keys move a line up and down in normal mode
@@ -139,7 +142,7 @@ map <leader>ge :topleft :split config/locales/en.yml<cr>
 " Replace Ruby 1.8 Hash syntax with 1.9 Hash syntax
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
-" Hany for keeping a TODO list in the project root
+" Handy for keeping a TODO list in the project root
 map <leader>gt :topleft :split TODO<cr>
 
 " Quickly jump between current and last file
@@ -181,10 +184,8 @@ set title
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
-" Quickly toggle NERDTree
+" NERDTree
 nmap <Leader>n :NERDTreeToggle<CR>
-
-" Reveal a file in the NERDTree
 nmap <Leader>N :NERDTreeFind<CR>
 
 " Toggle word wrap with \w
