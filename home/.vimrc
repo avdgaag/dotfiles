@@ -244,6 +244,9 @@ if has('autocmd')
     " Open HTML files in Safari using \r
     autocmd Filetype html nmap <Leader>r :!open -a Safari "%"<CR>
 
+    " Run JS files with Node
+    autocmd Filetype javascript nmap <Leader>r :!node %<CR>
+
     " Set up some build commands for Coffeescript. Compile the entire
     " file or a selection with \b and always compile the file
     " on save.
