@@ -85,3 +85,6 @@
 [submodule "home/.vim/bundle/tabular"]
 	path = home/.vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule "home/.vim/bundle/vim-javascript-syntax"]
+	path = home/.vim/bundle/vim-javascript-syntax
+	url = git@github.com:jelera/vim-javascript-syntax
