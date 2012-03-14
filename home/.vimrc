@@ -18,8 +18,9 @@ set modelines=0
 " Always work with utf-8
 set encoding=utf-8
 
-" Highlight the current line
+" Highlight the current line and column
 set cursorline
+set cursorcolumn
 
 " Deal witg multiple buffers better
 set hidden
