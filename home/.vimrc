@@ -33,7 +33,7 @@ set history=100
 
 " Make file/command completion useful
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:longest,list:full
 
 " Fast editing and updating of the .vimrc (reloads on save)
 map <Leader>E :e! ~/.vimrc<cr>
