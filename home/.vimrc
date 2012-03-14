@@ -115,17 +115,15 @@ map <C-l> <C-w>l
 " Re-map arrow keys to do something useful, but not the usual navigation
 " (force use of hjkl)
 "
-" The left and right keys always indent and outdent
-" The up and down keys move a line up and down in normal mode
+" Cycle up and down through buffers, left and right to indent or outdent
+nmap <up>   :bp<cr>
+nmap <down> :bn<cr>
 nmap <silent> <Left> <<
 nmap <silent> <Right> >>
 vmap <silent> <Left> <
 vmap <silent> <Right> >
 imap <silent> <Left> <C-D>
 imap <silent> <Right> <C-T>
-nmap <Up> ddkP
-nmap <Down> ddp
-nmap <Down> ddp
 
 " Quickly edit files from the same directory as the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
