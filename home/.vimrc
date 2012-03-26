@@ -66,6 +66,7 @@ nnoremap <silent> <C-b> :CommandTBuffer<CR>
 nnoremap <silent> <C-t> :CommandT<CR>
 let g:CommandTMaxHeight=20
 let g:CommandTMatchWindowReverse=1
+let g:CommandTAcceptSelectionSplitMap='<C-g>'
 
 " Tabular
 nmap <Leader>t= :Tabularize /=<CR>
