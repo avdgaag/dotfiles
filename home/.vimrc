@@ -1,6 +1,11 @@
 " Do not emulate vi
 set nocompatible
 
+" Speed up ruby.vim loading
+if !empty($MY_RUBY_HOME)
+  let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/ruby/site_ruby/*'),"\n"),',')
+endif
+
 " Force 256 colors
 set t_Co=256
 
