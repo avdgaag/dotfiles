@@ -95,9 +95,9 @@ if has("gui_running")
 
   " Use the entire screen when in full-screen mode
   set fuopt=maxvert,maxhorz
-
-  set list listchars=tab:\ \ ,trail:·
 endif
+
+set list listchars=tab:\·\ ,trail:·,eol:¬
 
 " Intuitive Backspace
 set bs=indent,eol,start
