@@ -56,6 +56,7 @@ alias gmf='git commit -F .git/MERGE_MSG'
 alias gmnff='git merge --no-ff'
 alias gmc='git ls-files --unmerged | cut -f2 | uniq' # git merge conflicts
 alias gtimelog='git --no-pager log --pretty=format:"%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset" --abbrev-commit --date=iso'
+alias gap='git add -p'
 
 # Commit pending changes and quote all args as message
 function gg() {
