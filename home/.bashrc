@@ -71,6 +71,7 @@ function rake  { if [ -e ./Gemfile.lock ]; then bundle exec rake  "$@"; else /us
 function nanoc { if [ -e ./Gemfile.lock ]; then bundle exec nanoc "$@"; else /usr/bin/env nanoc "$@"; fi; }
 function rspec { if [ -e ./Gemfile.lock ]; then bundle exec rspec "$@"; else /usr/bin/env rspec "$@"; fi; }
 function guard { if [ -e ./Gemfile.lock ]; then bundle exec guard "$@"; else /usr/bin/env guard "$@"; fi; }
+function cucumber { if [ -e ./Gemfile.lock ]; then bundle exec cucumber "$@"; else /usr/bin/env cucumber "$@"; fi; }
 
 # Heroku
 alias hrl='heroku logs -t'
