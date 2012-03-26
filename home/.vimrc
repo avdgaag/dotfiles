@@ -244,7 +244,6 @@ if has('autocmd')
 
     " Run ruby files using \r
     autocmd Filetype,BufEnter ruby,rb nmap <Leader>r :!ruby %<CR>
-    autocmd Filetype ru nmap <leader>r :!rackup<CR>
     autocmd BufNewFile,BufRead,BufEnter *_spec.rb nmap <Leader>r :!bundle exec rspec %<CR>
     autocmd BufNewFile,BufRead,BufEnter *_spec.rb nmap <Leader>R :exe "!bundle exec rspec %\:" . line(".")<cr>
 
@@ -254,18 +253,10 @@ if has('autocmd')
     " Run JS files with Node
     autocmd Filetype javascript nmap <Leader>r :!node %<CR>
 
-    " Set up some build commands for Coffeescript. Compile the entire
-    " file or a selection with \b and always compile the file
-    " on save.
+    " Set up some build commands for Coffeescript. Compile the entire file or
+    " a selection with \b and always compile the file on save.
     autocmd Filetype coffee nmap <Leader>b :CoffeeCompile<CR>
     autocmd Filetype coffee vmap <Leader>b :CoffeeCompile<CR>
-    " autocmd BufWritePost,FileWritePost *.coffee :silent !coffee -c <afile>
-
-    " Enable Less syntax
-    autocmd BufRead,BufNewFile *.less set filetype=less
-
-    " Enable SCSS syntax
-    autocmd BufRead,BufNewFile *.scss set filetype=scss
 
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
