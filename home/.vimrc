@@ -61,6 +61,9 @@ set showmatch " matching braces
 set background=dark
 colorscheme Tomorrow-Night
 
+" Find merge conflict markers
+nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
 " Command-T
 nnoremap <silent> <C-b> :CommandTBuffer<CR>
 nnoremap <silent> <C-t> :CommandT<CR>
@@ -151,6 +154,9 @@ nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
 " Handy for keeping a TODO list in the project root
 map <leader>gt :topleft :split TODO<cr>
+
+" Quickly start a big-ass top-left split
+map <leader>ts :topleft :split 
 
 " Quickly jump between current and last file
 nnoremap <leader><leader> <c-^>
@@ -266,6 +272,9 @@ if has('autocmd')
 
     " Folding on indent for HAML and coffee-script files
     autocmd BufNewFile,BufReadPost *.{coffee,haml} setl foldmethod=indent nofoldenable
+
+    " Auto-disable paste mode when leaving insert mode
+    autocmd InsertLeave * set nopaste
 endif
 
 " Always open new windows below/to the right
