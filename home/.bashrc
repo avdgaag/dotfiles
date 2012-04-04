@@ -73,6 +73,15 @@ function rspec { if [ -e ./Gemfile.lock ]; then bundle exec rspec "$@"; else /us
 function guard { if [ -e ./Gemfile.lock ]; then bundle exec guard "$@"; else /usr/bin/env guard "$@"; fi; }
 function cucumber { if [ -e ./Gemfile.lock ]; then bundle exec cucumber "$@"; else /usr/bin/env cucumber "$@"; fi; }
 
+# Function for symlinking apps into ~/.pow
+function kapow() {
+    name=`basename $PWD`
+    echo "Using name: $name"
+    rm ~/.pow/$name
+    ln -s $PWD ~/.pow/$name
+    echo "Created pow rails app at: http://$name.dev"
+}
+
 # Heroku
 alias hrl='heroku logs -t'
 alias hr='heroku'
