@@ -41,6 +41,7 @@ alias gsr='git svn rebase'
 alias gsd='git svn dcommit'
 alias gb='git branch'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias gc='git commit'
 alias go='git checkout'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
