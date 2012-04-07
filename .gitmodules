@@ -25,9 +25,6 @@
 [submodule "home/.vim/bundle/vim-ragtag"]
 	path = home/.vim/bundle/vim-ragtag
 	url = https://github.com/tpope/vim-ragtag.git
-[submodule "home/.vim/bundle/vim-liquid"]
-	path = home/.vim/bundle/vim-liquid
-	url = https://github.com/tpope/vim-liquid.git
 [submodule "home/.vim/bundle/vim-repeat"]
 	path = home/.vim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
@@ -40,9 +37,6 @@
 [submodule "home/.vim/bundle/matchit"]
 	path = home/.vim/bundle/matchit
 	url = http://github.com/tsaleh/vim-matchit.git
-[submodule "home/.vim/bundle/vim-mac-classic-theme"]
-	path = home/.vim/bundle/vim-mac-classic-theme
-	url = https://github.com/nelstrom/vim-mac-classic-theme.git
 [submodule "home/.vim/bundle/vim-textobj-user"]
 	path = home/.vim/bundle/vim-textobj-user
 	url = git://github.com/kana/vim-textobj-user.git
@@ -52,18 +46,9 @@
 [submodule "home/.vim/bundle/vim-unimpaired"]
 	path = home/.vim/bundle/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
-[submodule "home/.vim/bundle/scss-syntax"]
-	path = home/.vim/bundle/scss-syntax
-	url = git://github.com/cakebaker/scss-syntax.vim.git
-[submodule "home/.vim/bundle/specky"]
-	path = home/.vim/bundle/specky
-	url = https://github.com/vim-scripts/Specky.git
 [submodule "home/.vim/bundle/vim-vividchalk"]
 	path = home/.vim/bundle/vim-vividchalk
 	url = https://github.com/tpope/vim-vividchalk.git
-[submodule "home/.vim/bundle/vim-stylus"]
-	path = home/.vim/bundle/vim-stylus
-	url = git://github.com/wavded/vim-stylus.git
 [submodule "home/.vim/bundle/vim-powerline"]
 	path = home/.vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
@@ -82,3 +67,12 @@
 [submodule "home/.vim/bundle/vim-javascript-syntax"]
 	path = home/.vim/bundle/vim-javascript-syntax
 	url = git@github.com:jelera/vim-javascript-syntax
+[submodule "home/.vim/bundle/vim-eunuch"]
+	path = home/.vim/bundle/vim-eunuch
+	url = git://github.com/tpope/vim-eunuch.git
+[submodule "home/.vim/bundle/vim-bundler"]
+	path = home/.vim/bundle/vim-bundler
+	url = git://github.com/tpope/vim-bundler.git
+[submodule "home/.vim/bundle/vim-haml"]
+	path = home/.vim/bundle/vim-haml
+	url = git://github.com/tpope/vim-haml.git
