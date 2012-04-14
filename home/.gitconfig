@@ -16,3 +16,7 @@
 	user = avdgaag
 [branch]
 	autosetuprebase = always
+[mergetool]
+	keepBackup = true
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
