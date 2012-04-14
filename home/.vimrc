@@ -1,13 +1,13 @@
 " Do not emulate vi
 set nocompatible
 
+" Force 256 colors
+set t_Co=256
+
 " Speed up ruby.vim loading
 if !empty($MY_RUBY_HOME)
   let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/ruby/site_ruby/*'),"\n"),',')
 endif
-
-" Force 256 colors
-set t_Co=256
 
 " Set up pathogen to load plugins
 call pathogen#runtime_append_all_bundles()
@@ -59,7 +59,7 @@ set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg
 syntax on
 set showmatch " matching braces
 set background=dark
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Bright
 
 " Find merge conflict markers
 nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
