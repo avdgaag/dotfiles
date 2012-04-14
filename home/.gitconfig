@@ -6,6 +6,8 @@
 [core]
     excludesfile = ~/.gitignore
 	editor = /usr/local/bin/vim
+	autocrlf = input
+	safecrlf = true
 [apply]
     whitespace = nowarn
 [difftool]
