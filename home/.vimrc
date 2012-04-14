@@ -53,7 +53,7 @@ nnoremap <leader>v V`]
 " Open related file in a vertical split window
 map <Leader>f :vertical wincmd f<CR>
 
-set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg
+set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg,doc
 
 " Syntax highlighting
 syntax on
