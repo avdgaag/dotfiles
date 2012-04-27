@@ -31,6 +31,7 @@ alias apache-restart='sudo apachectl graceful'
 alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
 alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias postgres-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+alias postgres-kill='ps aux | grep backoffice_development | grep -v grep | awk "{print \$2}" | xargs kill'
 alias redis-start='redis-server /usr/local/etc/redis.conf'
 
 # Git
