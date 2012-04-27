@@ -191,6 +191,10 @@ set smartcase
 nnoremap / /\v
 vnoremap / /\v
 
+" Extract spec local variable into Rspec let(...) { ... }
+" foo = bar -> let(:foo) { bar }
+let @l='jmlkdd?\vdescribe|context?p==I:^ys2w)Iletf=xys${`l'
+
 " Set terminal title
 set title
 
