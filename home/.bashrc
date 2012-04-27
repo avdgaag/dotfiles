@@ -80,6 +80,9 @@ function kapow() {
     echo "Created pow rails app at: http://$name.dev"
 }
 
+# Rake
+alias migrate='rake db:migrate db:test:prepare'
+
 # Heroku
 alias hrl='heroku logs -t'
 alias hr='heroku'
