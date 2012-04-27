@@ -4,6 +4,11 @@ zle -N edit-command-line
 bindkey -v
 bindkey -M vicmd v edit-command-line
 
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+
 autoload -U colors
 colors
 
