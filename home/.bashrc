@@ -51,13 +51,13 @@ alias grs='git rebase --skip'
 alias gra='git rebase --abort'
 alias gw='git whatchanged --oneline'
 alias gpom='git push origin master'
-alias glog='git log --graph --pretty=format:"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --branches -a'
+alias glog='! git log --pretty=format:"%C(yellow)%h%C(reset){%C(green)%ar%C(reset){%C(bold blue)%an%C(reset){%C(red)%d%C(reset) %s" --graph -50 --abbrev-commit --decorate --branches -a | column -t -s"{" | less -FXRS'
 alias gz='git archive -o snapshot.zip HEAD'
 alias gm='git merge --no-ff --no-commit'
 alias gmf='git commit -F .git/MERGE_MSG'
 alias gmnff='git merge --no-ff'
 alias gmc='git ls-files --unmerged | cut -f2 | uniq' # git merge conflicts
-alias gtimelog='git --no-pager log --pretty=format:"%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset" --abbrev-commit --date=iso'
+alias gtimelog='! git --no-pager log --pretty=format:"%C(red)%h%C(reset){%C(green)%cd%C(reset){%C(bold blue)%an%C(reset){%s" --date=iso | column -t -s"{" | less -FXRS'
 alias gap='git add -p'
 
 # Commit pending changes and quote all args as message
