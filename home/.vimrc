@@ -59,7 +59,7 @@ set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg,doc
 syntax on
 set showmatch " matching braces
 set background=dark
-colorscheme Tomorrow-Night-Bright
+colorscheme smyck
 
 " Find merge conflict markers
 nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
