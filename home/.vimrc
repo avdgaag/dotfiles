@@ -24,8 +24,7 @@ set modelines=0
 set encoding=utf-8
 
 " Highlight the current line and column
-set cursorline
-set cursorcolumn
+nnoremap <Space> :set cursorcolumn!<Bar>set cursorline!<CR>
 
 " Deal witg multiple buffers better
 set hidden
