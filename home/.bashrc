@@ -94,6 +94,7 @@ function kapow() {
 
 # Rake
 alias migrate='rake db:migrate db:test:prepare'
+alias remigrate='rake db:drop db:create db:migrate db:test:prepare'
 
 # Heroku
 alias hrl='heroku logs -t'
