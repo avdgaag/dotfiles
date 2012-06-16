@@ -3,6 +3,7 @@
 --ignore-dir=tmp
 --ignore-dir=.bundle
 --type-add=ruby=rake
+--type-add=ruby=prawn
 --type-add=css=scss,sass
 --type-add=vim=vimrc
 --type-add=js=json
