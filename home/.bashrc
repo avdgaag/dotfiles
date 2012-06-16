@@ -1,6 +1,7 @@
 # Utilities
 # ---------------------------------------------------------------------------------------
 
+alias vi='vim'
 alias lsh='ls -lhGFr'
 alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
