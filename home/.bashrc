@@ -75,6 +75,14 @@ alias be='bundle exec'
 # Add ./bin to PATH to use bundler binstubs
 alias binstubs='export PATH=./bin:$PATH'
 
+function heroku_deploy_to() {
+    target=$1
+    git push origin $1
+    git push $1 $1:master
+    heroku run rake db:migrate --remote $1
+    heroku restart --remote $1
+}
+
 # Function for symlinking apps into ~/.pow
 function kapow() {
     name=`basename $PWD`
