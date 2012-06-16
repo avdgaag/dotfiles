@@ -38,7 +38,7 @@ alias uc='bundle exec unicorn_rails -p 3000'
 
 # Git
 # ---------------------------------------------------------------------------------------
-alias gs='git status -s --ignore-submodules=dirty'
+alias gs='git status -b -s --ignore-submodules=dirty'
 alias gsf='git svn fetch'
 alias gsr='git svn rebase'
 alias gsd='git svn dcommit'
