@@ -7,6 +7,7 @@ end
 # Autocompletion
 require 'irb/completion'
 
+IRB.conf[:PROMPT_MODE] = :SIMPLE
 # Prompt behaviour
 ARGV.concat ['--readline', '--prompt-mode', 'simple']
 
