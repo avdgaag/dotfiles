@@ -4,18 +4,25 @@ set nocompatible
 " Force 256 colors
 set t_Co=256
 
-" Speed up ruby.vim loading
-if !empty($MY_RUBY_HOME)
-  let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/ruby/site_ruby/*'),"\n"),',')
-endif
-
 " Set up pathogen to load plugins
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " Always show status line
 set laststatus=2
-let g:Powerline_symbols = 'fancy'
+set statusline=%n              " buffer number
+set statusline+=\ %-.40F       " filename
+set statusline+=\ %y           " filetype
+set statusline+=%m             " modified flag
+set statusline+=%r             " read only flag
+set statusline+=%q             " quick fix
+set statusline+=%=             " left/right separator
+set statusline+=%{v:register}\ " active register
+set statusline+=%c,            " cursor column
+set statusline+=%l/%L          " cursor line/total lines
+
+" Use pretty characters for horizontal and vertical split bars
+set fillchars=stl:-,stlnc:-,vert:│
 
 " We don't use em
 set modelines=0
@@ -200,10 +207,6 @@ set title
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
-" NERDTree
-nmap <Leader>n :NERDTreeToggle<CR>
-nmap <Leader>N :NERDTreeFind<CR>
-
 " Toggle word wrap with \w
 map <Leader>w :set nowrap!<CR>
 
@@ -288,4 +291,3 @@ set spr
 if executable("ack")
     set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
-
