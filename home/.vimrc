@@ -48,7 +48,6 @@ set wildmode=list:longest,list:full
 
 " Fast editing and updating of the .vimrc (reloads on save)
 map <Leader>E :e! ~/.vimrc<cr>
-autocmd! bufwritepost vimrc source ~/.vimrc
 
 " Toggle paste mode to reduce paste indent suckage
 set pastetoggle=<F2>
@@ -281,6 +280,9 @@ if has('autocmd')
 
     " Auto-disable paste mode when leaving insert mode
     autocmd InsertLeave * set nopaste
+
+    " Auto-source vimrc
+    autocmd! BufWritePost .vimrc source $MYVIMRC
 endif
 
 " Always open new windows below/to the right
