@@ -52,9 +52,6 @@ map <Leader>E :e! ~/.vimrc<cr>
 " Toggle paste mode to reduce paste indent suckage
 set pastetoggle=<F2>
 
-" Quickly re-select pasted text
-nnoremap <leader>v V`]
-
 " Open related file in a vertical split window
 map <Leader>f :vertical wincmd f<CR>
 
@@ -89,21 +86,6 @@ nmap <Leader>t" :Tabularize /"<CR>
 vmap <Leader>t" :Tabularize /"<CR>
 nmap <Leader>t{ :Tabularize /{<CR>
 vmap <Leader>t{ :Tabularize /{<CR>
-
-if has("gui_running")
-  " No more toolbar
-  set guioptions=egmrt
-
-  " Use light color scheme
-  " set background=light
-  " colorscheme mac_classic
-
-  " Use a nice font
-  set gfn=Menlo\ Regular:h13
-
-  " Use the entire screen when in full-screen mode
-  set fuopt=maxvert,maxhorz
-endif
 
 set list listchars=tab:\·\ ,trail:·,eol:¬
 
@@ -165,9 +147,6 @@ map <leader>ts :topleft :split
 
 " Quickly jump between current and last file
 nnoremap <leader><leader> <c-^>
-
-" Auto-reading on file changes
-set autoread
 
 " Status line
 set showcmd
