@@ -215,38 +215,41 @@ function! StripTrailingWhitespace()
 
 endfunction
 
-let g:no_turbux_mappings = 'true'
-nmap <leader>k <Plug>SendTestToTmux
-nmap <leader>K <Plug>SendFocusedTestToTmux
+" Vimux
+nnoremap <Leader>vv :VimuxRunLastCommand<CR>
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+nnoremap <Leader>v[ :VimuxInspectRunner<CR>
+nnoremap <Leader>vc :VimuxInterruptRunner<CR>
+nnoremap <Leader>vq :VimuxCloseRunner<CR>
 
 " Autocommands
 if has('autocmd')
 
     " Remove trailing whitespace from various files
-    autocmd BufWritePre,FileWritePre *.html,*.rb,*.php,*.xml,*.erb call StripTrailingWhitespace()
+    autocmd BufWritePre,FileWritePre *.html,*.rb,*.php,*.xml,*.erb,*.yml call StripTrailingWhitespace()
 
     " Use 2 spaces for tabs in ruby and associated langs
     autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
-    autocmd BufNewFile,BufRead {Gemfile,Guardfile,Capfile,Rakefile,Thorfile,config.ru} set ft=ruby
-    autocmd BufNewFile,BufRead Gemfile.lock set ft=yaml
+    autocmd BufNewFile,BufRead {Gemfile,Guardfile,Capfile,Rakefile,Thorfile,config.ru,Vagrantfile,*.prawn} set ft=ruby
+    autocmd BufNewFile,BufRead Gemfile.lock,Procfile set ft=yaml
     autocmd BufNewFile,BufRead *.json set ft=javascript
-    autocmd BufNewFile,BufRead *.prawn set ft=ruby
 
     " Run ruby files using \r
-    autocmd Filetype,BufEnter ruby,rb nmap <Leader>r :!ruby %<CR>
-    autocmd BufNewFile,BufRead,BufEnter *_spec.rb nmap <Leader>r :!bundle exec rspec %<CR>
-    autocmd BufNewFile,BufRead,BufEnter *_spec.rb nmap <Leader>R :exe "!bundle exec rspec %\:" . line(".")<cr>
-
-    " Open HTML files in Safari using \r
-    autocmd Filetype html nmap <Leader>r :!open -a Safari "%"<CR>
+    autocmd Filetype ruby,rb nnoremap <Leader>r :!ruby %<CR>
+    autocmd Filetype ruby,rb nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
+    autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>k :!bundle exec rspec %<CR>
+    autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
+    autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
+    autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
 
     " Run JS files with Node
-    autocmd Filetype javascript nmap <Leader>r :!node %<CR>
+    autocmd Filetype javascript nnoremap <Leader>r :!node %<CR>
+    autocmd Filetype javascript nnoremap <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
 
     " Set up some build commands for Coffeescript. Compile the entire file or
-    " a selection with \b and always compile the file on save.
-    autocmd Filetype coffee nmap <Leader>b :CoffeeCompile<CR>
-    autocmd Filetype coffee vmap <Leader>b :CoffeeCompile<CR>
+    " a selection with \b
+    autocmd Filetype coffee nnoremap <Leader>b :CoffeeCompile<CR>
+    autocmd Filetype coffee vnoremap <Leader>b :CoffeeCompile<CR>
 
     " Enable soft-wrapping for text files
     autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
