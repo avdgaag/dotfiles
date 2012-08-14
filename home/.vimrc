@@ -54,6 +54,7 @@ set pastetoggle=<F2>
 
 " Open related file in a vertical split window
 map <Leader>f :vertical wincmd f<CR>
+nnoremap <Leader>n :topleft 30vsp.<cr>
 
 set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg,doc
 
