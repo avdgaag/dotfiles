@@ -219,10 +219,10 @@ if has('autocmd')
   " Run ruby files using \r
   autocmd Filetype ruby,rb nnoremap <Leader>r :!ruby %<CR>
   autocmd Filetype ruby,rb nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
-  autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>k :!bundle exec rspec %<CR>
-  autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
-  autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
-  autocmd BufNewFile,BufRead *_spec.rb nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>k :!bundle exec rspec %<CR>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
 
   " Run JS files with Node
   autocmd Filetype javascript nnoremap <Leader>r :!node %<CR>
