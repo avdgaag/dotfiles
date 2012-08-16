@@ -95,7 +95,7 @@ nnoremap <Leader>E :e! ~/.vimrc<cr> " Fast editing and updating of the .vimrc (r
 nnoremap <Leader>h :set invhls <CR> " Hide search highlighting
 nnoremap <Leader>w :set nowrap!<CR> " Toggle word wrap with \w
 
-nnoremap / /\v " Search with sane regex syntax by default
+nnoremap / /\v
 vnoremap / /\v
 
 " use editor lines, not real lines
@@ -132,9 +132,9 @@ nnoremap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr> " Replace Ruby 1.8 Hash syntax w
 
 " Quickly edit files from the same directory as the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-nnoremap <leader>e :edit %%
-nnoremap <leader>] :cnext<cr>
-nnoremap <leader>[ :cprev<cr>
+map <leader>e :edit %%
+map <leader>] :cnext<cr>
+map <leader>[ :cprev<cr>
 
 " Some Rails-specific jump-to-file bindings
 nnoremap <leader>gr :topleft :split config/routes.rb<cr>
