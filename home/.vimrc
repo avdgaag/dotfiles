@@ -168,6 +168,7 @@ nnoremap <Leader>vp :VimuxPromptCommand<CR>
 nnoremap <Leader>v[ :VimuxInspectRunner<CR>
 nnoremap <Leader>vc :VimuxInterruptRunner<CR>
 nnoremap <Leader>vq :VimuxCloseRunner<CR>
+let g:VimuxHeight = '30'
 
 " Tabular
 nmap <Leader>t= :Tabularize /=<CR>
