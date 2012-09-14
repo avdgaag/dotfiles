@@ -186,6 +186,9 @@ vmap <Leader>t" :Tabularize /"<CR>
 nmap <Leader>t{ :Tabularize /{<CR>
 vmap <Leader>t{ :Tabularize /{<CR>
 
+" Map switch.vim plugin to -
+nnoremap - :Switch<cr>
+
 " Remove trailing whitespace from code files on save
 function! StripTrailingWhitespace()
 
