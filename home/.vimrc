@@ -168,7 +168,9 @@ nnoremap <Leader>vp :VimuxPromptCommand<CR>
 nnoremap <Leader>v[ :VimuxInspectRunner<CR>
 nnoremap <Leader>vc :VimuxInterruptRunner<CR>
 nnoremap <Leader>vq :VimuxCloseRunner<CR>
-let g:VimuxHeight = '30'
+let g:VimuxHeight = '15'
+let g:VimuxOrientation = "h"
+let g:VimuxUseNearestPane = 1
 
 " Tabular
 nmap <Leader>t= :Tabularize /=<CR>
@@ -224,6 +226,8 @@ if has('autocmd')
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vs :call VimuxRunCommand("clear; spin push " . bufname("%"))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vS :call VimuxRunCommand("clear; spin push " . bufname("%") . ":" . line("."))<CR>
 
   " Run JS files with Node
   autocmd Filetype javascript nnoremap <Leader>r :!node %<CR>
