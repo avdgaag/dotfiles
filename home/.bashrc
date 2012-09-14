@@ -25,6 +25,11 @@ alias tdc='sed "/^$/d" TODO | wc -l' # to do count
 alias tdd='sed "1d" TODO > TODO'     # mark next to do done
 alias tdg='cat TODO | grep'          # what to do grep
 
+# Pretty printing files
+function pp() {
+  pygmentize -f terminal256 "$1" | less -R
+}
+
 # Other
 alias apache-config='sudo vim /etc/apache2/httpd.conf'
 alias apache-check='sudo apachectl configtest'
