@@ -1,25 +1,26 @@
 [user]
-	name = Arjan van der Gaag
-	email = arjan@arjanvandergaag.nl
+  name = Arjan van der Gaag
+  email = arjan@Kabisa.nl
 [color]
-    ui = auto
+  ui = auto
 [core]
-    excludesfile = ~/.gitignore
-	editor = /usr/local/bin/vim
-	autocrlf = input
-	safecrlf = true
+  excludesfile = ~/.gitignore
+  editor = /usr/local/bin/vim
+  autocrlf = input
+  safecrlf = true
+  quotepath = false
 [apply]
-    whitespace = nowarn
+  whitespace = nowarn
 [difftool]
-	prompt = false
+  prompt = false
 [github]
-	user = avdgaag
-    password = !security 2>&1 >/dev/null find-generic-password -gs github.password | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
+  user = avdgaag
+  password = !security 2>&1 >/dev/null find-generic-password -gs github.password | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [mergetool]
-	keepBackup = true
+  keepBackup = true
 [difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [diff]
-	tool = Kaleidoscope
+  tool = vimdiff
