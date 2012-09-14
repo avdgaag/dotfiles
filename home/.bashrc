@@ -83,11 +83,14 @@ alias be='bundle exec'
 alias binstubs='export PATH=./bin:$PATH'
 
 function heroku_deploy_to() {
-    target=$1
-    git push origin $1
-    git push $1 $1:master
-    heroku run rake db:migrate --remote $1
-    heroku restart --remote $1
+    remote=$1
+    branch=$2
+    git push origin $2 &&
+    git push $1 $2:master &&
+    heroku maintenance:on --remote $1 &&
+    heroku run rake db:migrate --remote $1 &&
+    heroku restart --remote $1 &&
+    heroku maintenance:off --remote $1
 }
 
 # Function for symlinking apps into ~/.pow
