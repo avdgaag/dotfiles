@@ -40,3 +40,6 @@
 [submodule "home/.vim/bundle/switch.vim"]
 	path = home/.vim/bundle/switch.vim
 	url = git://github.com/AndrewRadev/switch.vim.git
+[submodule "home/.vim/bundle/vim-fugitive"]
+	path = home/.vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
