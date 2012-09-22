@@ -7,6 +7,7 @@ alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
 alias nicedatetime='date "+%Y-%m-%d %H:%M"'
 alias ffind='find -E . -type f -regex'
+alias iaw='open -a iA\ Writer'
 
 # Create and change into a new directory
 function take() {
