@@ -15,6 +15,13 @@ function take() {
     cd "$*"
 }
 
+function acksed() {
+  pattern=$1
+  shift 1
+  query=$(echo $pattern | cut -f2 -d'/')
+  ack -l --print0 "$query" $@ | xargs -0 -n 1 sed -i '' -e "$pattern"
+}
+
 # Working with these dotfiles made easier
 alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
