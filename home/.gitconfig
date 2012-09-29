@@ -6,8 +6,6 @@
 [core]
   excludesfile = ~/.gitignore
   editor = /usr/local/bin/vim
-  autocrlf = input
-  safecrlf = true
   quotepath = false
 [apply]
   whitespace = nowarn
