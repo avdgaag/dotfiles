@@ -80,6 +80,12 @@ set background=dark
 colorscheme smyck
 set synmaxcol=400                    " Do not highlight long lines
 
+" Copy & Paste
+noremap <leader>y "*y
+noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
+noremap <leader>P :set paste<CR>"*P<CR>:set nopaste<CR>
+vnoremap <leader>y "*ygv
+
 " Swap files
 set nobackup                         " Do not keep backup files. We use source control anyway.
 set nowritebackup
