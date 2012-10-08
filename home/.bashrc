@@ -15,13 +15,6 @@ function take() {
     cd "$*"
 }
 
-function acksed() {
-  pattern=$1
-  shift 1
-  query=$(echo $pattern | cut -f2 -d'/')
-  ack -l --print0 "$query" $@ | xargs -0 -n 1 sed -i '' -e "$pattern"
-}
-
 # Working with these dotfiles made easier
 alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
@@ -39,16 +32,6 @@ function pp() {
 }
 
 # Other
-alias apache-config='sudo vim /etc/apache2/httpd.conf'
-alias apache-check='sudo apachectl configtest'
-alias apache-restart='sudo apachectl graceful'
-alias apache-vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
-alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias postgres-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-alias postgres-kill='ps aux | grep backoffice_development | grep -v grep | awk "{print \$2}" | xargs kill'
-alias pg='psql -d backoffice_development'
-alias pgd='pg_dump -Fc --no-acl --no-owner'
-alias pgr='pg_restore --clean --no-acl --no-owner'
 alias redis-start='redis-server /usr/local/etc/redis.conf'
 
 # Git
@@ -92,26 +75,6 @@ alias be='bundle exec'
 
 # Add ./bin to PATH to use bundler binstubs
 alias binstubs='export PATH=./bin:$PATH'
-
-function heroku_deploy_to() {
-    remote=$1
-    branch=$2
-    git push origin $2 &&
-    git push $1 $2:master &&
-    heroku maintenance:on --remote $1 &&
-    heroku run rake db:migrate --remote $1 &&
-    heroku restart --remote $1 &&
-    heroku maintenance:off --remote $1
-}
-
-# Function for symlinking apps into ~/.pow
-function kapow() {
-    name=`basename $PWD`
-    echo "Using name: $name"
-    rm ~/.pow/$name
-    ln -s $PWD ~/.pow/$name
-    echo "Created pow rails app at: http://$name.dev"
-}
 
 # Rake
 alias migrate='rake db:migrate db:test:prepare'
