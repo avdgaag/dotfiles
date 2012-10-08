@@ -22,5 +22,7 @@
   cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [diff]
   tool = vimdiff
+[credential]
+	helper = osxkeychain
 [rerere]
 	enabled = true
