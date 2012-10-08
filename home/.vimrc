@@ -11,9 +11,24 @@ call pathogen#helptags()
 " Regular Vim settings
 " --------------------
 
+function! StatusMode()
+  if mode() == 'n'
+    return 'N'
+  elseif mode() == 'i'
+    return 'I'
+  elseif mode() ==? 'R'
+    return 'R'
+  elseif mode() ==? 'v'
+    return 'V'
+  else
+    return '?'
+  endif
+endfun
+
 " Status line
 set laststatus=2
-set statusline=%n                    " buffer number
+set statusline+=%-2{StatusMode()}    " current editor mode
+set statusline+=%n                   " buffer number
 set statusline+=\ %-.40F             " filename
 set statusline+=\ %y                 " filetype
 set statusline+=%m                   " modified flag
