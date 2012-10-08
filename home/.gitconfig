@@ -22,3 +22,5 @@
   cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [diff]
   tool = vimdiff
+[rerere]
+	enabled = true
