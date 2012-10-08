@@ -64,6 +64,10 @@ set spr
 set history=100                      " Keep a longer history
 filetype plugin indent on            " Filetype detection
 set title                            " Set terminal title
+set ttyfast                          " fast connection!
+set lazyredraw                       " Do not redraw during macros etc.
+
+
 
 " Invisible characters
 set encoding=utf-8                   " Always work with utf-8
@@ -74,6 +78,7 @@ set listchars=tab:\·\ ,trail:·,eol:¬
 syntax on
 set background=dark
 colorscheme smyck
+set synmaxcol=400                    " Do not highlight long lines
 
 " Swap files
 set nobackup                         " Do not keep backup files. We use source control anyway.
