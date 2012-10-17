@@ -27,7 +27,7 @@ endfun
 
 " Status line
 set laststatus=2
-set statusline+=%-2{StatusMode()}    " current editor mode
+set statusline=%-2{StatusMode()}    " current editor mode
 set statusline+=%n                   " buffer number
 set statusline+=\ %-.40F             " filename
 set statusline+=\ %y                 " filetype
