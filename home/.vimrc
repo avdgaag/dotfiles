@@ -56,7 +56,7 @@ set scrolloff=3                      " Maintain more context around the cursor
 " File navigation and splits
 set hidden                           " Deal witg multiple buffers better
 set autoread                         " Automatically update changes to a file when receiving focus
-set fillchars=stl:─,stlnc:─,vert:│   " Use pretty characters for horizontal and vertical split bars
+set fillchars=vert:│                 " Use pretty characters for horizontal and vertical split bars
 set sb                               " Always open new windows below/to the right
 set spr
 
