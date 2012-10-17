@@ -11,3 +11,4 @@
 --type-set=cucumber=feature
 --type-set=rdoc=rdoc
 --type-set=haml=haml
+--type-set=coffee=coffee
