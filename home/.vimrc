@@ -260,6 +260,11 @@ if has('autocmd')
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vs :call VimuxRunCommand("clear; spin push " . bufname("%"))<CR>
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vS :call VimuxRunCommand("clear; spin push " . bufname("%") . ":" . line("."))<CR>
 
+  " Rails.vim
+  autocmd User Rails Rnavcommand factory spec/factories -suffix=.rb
+  autocmd User Rails Rnavcommand decorator app/decorators -suffix=_decorator.rb
+  autocmd User Rails Rnavcommand concern app/concerns -suffix=.rb
+
   " Run JS files with Node
   autocmd Filetype javascript nnoremap <Leader>r :!node %<CR>
   autocmd Filetype javascript nnoremap <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
