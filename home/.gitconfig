@@ -26,3 +26,5 @@
 	helper = osxkeychain
 [rerere]
 	enabled = true
+[push]
+	default = simple
