@@ -242,7 +242,7 @@ endfunction
 if has('autocmd')
 
   " Remove trailing whitespace from various files
-  autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css call StripTrailingWhitespace()
+  autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css,*.js,*.coffee call StripTrailingWhitespace()
 
   " Use 2 spaces for tabs in ruby and associated langs
   autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
