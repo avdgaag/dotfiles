@@ -273,6 +273,7 @@ if has('autocmd')
   " a selection with \b
   autocmd Filetype coffee nnoremap <Leader>b :CoffeeCompile<CR>
   autocmd Filetype coffee vnoremap <Leader>b :CoffeeCompile<CR>
+  autocmd Filetype coffee nnoremap <Leader>r :CoffeeRun<CR>
 
   " Enable soft-wrapping for text files
   autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
