@@ -177,6 +177,8 @@ nnoremap <leader><leader> <c-^>
 
 " Macros
 let @l='jmlkdd?\vdescribe|context?p==I:^ys2w)Iletf=xys${`l' " Extract spec local variable into Rspec let(...) { ... }
+let @e='mmIdef 2wdwioendmn:-2,.<:-2,.d?def ?%op' " Extract variable into method
+let @c='^/unless|if/DOpj>>oend' " Transform single-line conditional into conditional block
 
 " Plugin settings and keymaps
 " ---------------------------
