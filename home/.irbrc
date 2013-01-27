@@ -23,6 +23,11 @@ class Object
   end
 end
 
+def y(*args)
+  args.each { |arg| puts arg.to_yaml }
+  nil
+end
+
 def copy(*args)
   IO.popen('pbcopy', 'r+') do |clipboard|
     clipboard.puts args.map(&:inspect)
