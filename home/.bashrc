@@ -28,7 +28,7 @@ alias tdg='cat TODO | grep'          # what to do grep
 
 # Pretty printing files
 function pp() {
-  pygmentize -f terminal256 "$1" | less -R
+  pygmentize -O 'bg=dark,style=vim' -f terminal256 "$1" 
 }
 
 # Other
