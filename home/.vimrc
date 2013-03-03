@@ -293,6 +293,9 @@ if has('autocmd')
   " Auto-disable paste mode when leaving insert mode
   autocmd InsertLeave * set nopaste
 
+  " Set Markdown textwidth to 80
+  autocmd Filetype markdown set textwidth=80
+
   " Auto-source vimrc
   autocmd! BufWritePost .vimrc source $MYVIMRC
 endif
