@@ -28,18 +28,12 @@ local prompt_with_exit_status="%(?,%{$fg[green]%}%#%{$reset_color%},%{$fg[red]%}
 local colored_path="%{$fg[white]%}%~%{$reset_color%}"
 setopt prompt_subst
 PROMPT='${colored_path}
-${vcs_info_msg_0_}${prompt_with_exit_status} '
-
-function rbenv_version_info() {
-  local ruby_version
-  ruby_version=$(rbenv version 2>/dev/null) || return
-  echo "$ruby_version" | sed 's/[ \t].*$//'
-}
+${vcs_info_msg_0_}
+${prompt_with_exit_status} '
 
 # Indicate insert or command mode on right-hand side prompt
 function zle-line-init zle-keymap-select {
-    RPS1="%{$fg[red]%}${${KEYMAP/vicmd/N}/(main|viins)/ }%{$reset_color%} %{$fg[white]%}$(rbenv_version_info) %T%{$reset_color%}$del"
-    RPS2=$RPS1
+    RPS1="%{$fg[white]%}%(1j.%j.) %T%{$reset_color%}$del"
     zle reset-prompt
 }
 zle -N zle-line-init
