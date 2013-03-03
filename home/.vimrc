@@ -257,8 +257,14 @@ if has('autocmd')
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
   autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
-  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vs :call VimuxRunCommand("clear; spin push " . bufname("%"))<CR>
-  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vS :call VimuxRunCommand("clear; spin push " . bufname("%") . ":" . line("."))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vs :call VimuxRunCommand("clear; zeus rspec " . bufname("%"))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *_spec.rb nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus rspec " . bufname("%") . ":" . line("."))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>k :!bundle exec cucumber %<CR>
+  autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>K :exe "!bundle exec cucumber %\:" . line(".")<cr>
+  autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>vs :call VimuxRunCommand("clear; zeus cucumber " . bufname("%"))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus cucumber " . bufname("%") . ":" . line("."))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%"))<CR>
+  autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%") . ":" . line("."))<CR>
 
   " Rails.vim
   autocmd User Rails Rnavcommand factory spec/factories -suffix=.rb
