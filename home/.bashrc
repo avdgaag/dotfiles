@@ -31,6 +31,12 @@ function pp() {
   pygmentize -O 'bg=dark,style=vim' -f terminal256 "$1" 
 }
 
+# Generating ctags
+function cctags() {
+  bundle show --paths | xargs ctags -R
+  ctags -a --extra=+f --exclude=.git --exclude=log --exclude=tmp -R *
+}
+
 # Other
 alias redis-start='redis-server /usr/local/etc/redis.conf'
 
