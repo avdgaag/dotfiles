@@ -266,6 +266,9 @@ if has('autocmd')
   autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%"))<CR>
   autocmd BufNewFile,BufRead,BufEnter *.feature nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%") . ":" . line("."))<CR>
 
+  " Sql files
+  autocmd Filetype sql noremap <leader>r :w !psql `ag dburi .` -f -<cr>
+
   " Rails.vim
   autocmd User Rails Rnavcommand factory spec/factories -suffix=.rb
   autocmd User Rails Rnavcommand decorator app/decorators -suffix=_decorator.rb
