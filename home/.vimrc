@@ -296,8 +296,11 @@ if has('autocmd')
   " Auto-disable paste mode when leaving insert mode
   autocmd InsertLeave * set nopaste
 
-  " Set Markdown textwidth to 80
+  " Markdown
   autocmd Filetype markdown set textwidth=80
+  if executable('kramdown')
+    autocmd Filetype markdown setl makeprg=kramdown\ --template\ document\ %\ >\ %<.html
+  endif
 
   " Auto-source vimrc
   autocmd! BufWritePost .vimrc source $MYVIMRC
