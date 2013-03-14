@@ -13,9 +13,6 @@
 [submodule "home/.vim/bundle/vim-markdown"]
 	path = home/.vim/bundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "home/.vim/bundle/command-t"]
-	path = home/.vim/bundle/command-t
-	url = http://github.com/wincent/Command-T.git
 [submodule "home/.vim/bundle/matchit"]
 	path = home/.vim/bundle/matchit
 	url = http://github.com/tsaleh/vim-matchit.git
