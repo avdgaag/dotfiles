@@ -189,17 +189,17 @@ if has('autocmd')
   autocmd Filetype ruby nnoremap <Leader>r :!ruby %<CR>
   autocmd Filetype ruby nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
   autocmd Filetype ruby nnoremap <Leader>k :!rspec %<CR>
-  autocmd Filetype ruby nnoremap <Leader>K :exe "!rspec %\:" . line(".")<cr>
-  autocmd Filetype ruby nnoremap <Leader>vk :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
-  autocmd Filetype ruby nnoremap <Leader>vK :call VimuxRunCommand("clear; rspec " . bufname("%") . ":" . line("."))<CR>
+  autocmd Filetype ruby nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
+  autocmd Filetype ruby nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
+  autocmd Filetype ruby nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
   autocmd Filetype ruby nnoremap <Leader>vs :call VimuxRunCommand("clear; zeus rspec " . bufname("%"))<CR>
   autocmd Filetype ruby nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus rspec " . bufname("%") . ":" . line("."))<CR>
-  autocmd Filetype cucumber nnoremap <Leader>k :!cucumber %<CR>
-  autocmd Filetype cucumber nnoremap <Leader>K :exe "!cucumber %\:" . line(".")<cr>
+  autocmd Filetype cucumber nnoremap <Leader>k :!bundle exec cucumber %<CR>
+  autocmd Filetype cucumber nnoremap <Leader>K :exe "!bundle exec cucumber %\:" . line(".")<cr>
   autocmd Filetype cucumber nnoremap <Leader>vs :call VimuxRunCommand("clear; zeus cucumber " . bufname("%"))<CR>
   autocmd Filetype cucumber nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus cucumber " . bufname("%") . ":" . line("."))<CR>
-  autocmd Filetype cucumber nnoremap <Leader>vk :call VimuxRunCommand("clear; cucumber " . bufname("%"))<CR>
-  autocmd Filetype cucumber nnoremap <Leader>vK :call VimuxRunCommand("clear; cucumber " . bufname("%") . ":" . line("."))<CR>
+  autocmd Filetype cucumber nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%"))<CR>
+  autocmd Filetype cucumber nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%") . ":" . line("."))<CR>
 
   autocmd User Rails Rnavcommand factory spec/factories/ -suffix=.rb
   autocmd User Rails Rnavcommand decorator app/decorators/ -suffix=_decorator.rb
