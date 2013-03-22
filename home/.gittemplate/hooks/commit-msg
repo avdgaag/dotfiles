@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+branchname = `git branch --no-color 2> /dev/null`[/^\* (.+)/, 1].to_s
+
+exit unless matches = branchname.match(/\APT(\d+)\Z/)
+ticket_number = matches[1]
+reference = '[#%s]' % ticket_number
+
+message_file = ARGV[0]
+message = File.read(message_file)
+
+exit if message.include?(ticket_number)
+
+message = 
+  if message =~ /\bnoref\b/i
+    message
+  elsif message =~ /\bfinish|fix|finishes|fixes|closes #{ticket_number}/i
+    message + "\n[Finishes ##{ticket_number}]"
+  else
+    message + "\n[##{ticket_number}]"
+  end
+
+File.open(message_file, 'w') do |f|
+  f.write(message)
+end

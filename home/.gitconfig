@@ -7,6 +7,8 @@
   excludesfile = ~/.gitignore
   editor = /usr/local/bin/vim
   quotepath = false
+[init]
+  tepmlatedir = ~/.gittemplate
 [apply]
   whitespace = nowarn
 [difftool]

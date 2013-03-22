@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+OLDREV=$1
+NEWREV=$2
+IS_BRANCH_CHECKOUT=$3
+
+function has_changes_to() {
+  git diff --name-only "$OLDREV" "$NEWREV" -- "$1" | grep "$1" > /dev/null
+}
+
+if [ -e Gemfile ]; then
+  has_changes_to Gemfile &&
+    bundle check > /dev/null &&
+    echo 'Your bundle is outdated. You should run `bundle install`'
+fi
+
+if [ -e db/schema.rb ]; then
+  has_changes_to db/migrate &&
+    echo 'You have pending migrations. Run `rake db:migrate` to update your database.'
+fi
