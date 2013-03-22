@@ -7,6 +7,7 @@ alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
 alias nicedatetime='date "+%Y-%m-%d %H:%M"'
 alias iaw='open -a iA\ Writer'
+alias bbundle='bundle install | grep -v "Using "'
 
 function ffind() {
   find -E . -type f -regex ".*$@.*"
