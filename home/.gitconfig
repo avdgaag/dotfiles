@@ -20,8 +20,6 @@
   autosetuprebase = always
 [mergetool]
   keepBackup = true
-[difftool "Kaleidoscope"]
-  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [diff]
   tool = vimdiff
 [credential]
