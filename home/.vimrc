@@ -122,7 +122,9 @@ let @l='jmlkdd?\vdescribe|context?p==I:^ys2w)Iletf=xys${`l'
 " Extract variable into method
 let @e='mmIdef 2wdwioendmn:-2,.<:-2,.d?def ?%op' 
 " Transform single-line conditional into conditional block
-let @c='^/unless|if/DOpj>>oend' 
+nnoremap <leader>xc <ESC>^/unless\\|if/<cr>"xD<ESC>O<ESC>"xpj>>oend<ESC>
+" Extract local variable
+vnoremap <leader>xv dO= pI
 
 " -------------------------------------
 " Plugins
@@ -209,4 +211,3 @@ endif
 if executable("ack")
   set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp
 endif
-
