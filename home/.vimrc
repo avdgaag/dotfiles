@@ -208,6 +208,9 @@ if has('autocmd')
   autocmd Filetype cucumber nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%"))<CR>
   autocmd Filetype cucumber nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%") . ":" . line("."))<CR>
 
+  autocmd Filetype ruby let b:dispatch = 'rspec %'
+  autocmd Filetype cucumber let b:dispatch = 'cucumber %'
+
   autocmd User Rails Rnavcommand factory spec/factories/ -suffix=.rb
   autocmd User Rails Rnavcommand decorator app/decorators/ -suffix=_decorator.rb
   autocmd User Rails Rnavcommand concern app/concerns/ -suffix=.rb
