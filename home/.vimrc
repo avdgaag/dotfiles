@@ -185,7 +185,7 @@ if has('autocmd')
   autocmd BufNewFile,BufRead *.json set ft=javascript
 
   autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
-  autocmd Filetype text,markdown set textwidth=80
+  autocmd Filetype text,markdown setlocal textwidth=80
 
   autocmd Filetype javascript nnoremap <Leader>r :!node %<CR>
   autocmd Filetype javascript nnoremap <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
