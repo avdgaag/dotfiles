@@ -37,8 +37,8 @@ function pp() {
 
 # Generating ctags
 function cctags() {
-  bundle show --paths | xargs ctags -R
-  ctags -a --extra=+f --exclude=.git --exclude=log --exclude=tmp -R *
+  bundle show --paths | xargs ctags -R --languages=-javascript
+  ctags -a --extra=+f --exclude=.git --exclude=log --exclude=tmp --languages=-javascript,sql -R *
 }
 
 # Other
@@ -49,7 +49,8 @@ alias redis-start='redis-server /usr/local/etc/redis.conf'
 alias ga='git commit --amend'
 alias gap='git add -p'
 alias gb='git branch'
-alias gc='git commit'
+alias gc='git commit --verbose'
+alias gca='git commit --all --verbose'
 alias gd='git diff'
 alias gdd='git difftool'
 alias gds='git diff -w --staged'
