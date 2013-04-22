@@ -158,6 +158,9 @@ vmap <leader>t\{ :Tabularize /\|<CR>
 " Switch
 nnoremap - :Switch<cr>
 
+" Dispatch
+nnoremap <leader>R :Dispatch<CR>
+
 " Git gutter
 highlight clear SignColumn
 
