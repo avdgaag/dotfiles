@@ -37,6 +37,9 @@ snippet letc
 # Rspec let subject
 snippet lets
 	let(:subject) { ${1:value} }
+# Rspec subject
+snippet sub
+	subject(:${1:name}) { ${2:value} }
 # Rspec let!
 snippet let!
 	let!(:${1:name}) { ${2:value} }
@@ -121,6 +124,21 @@ snippet expn
 	}.to_not ${2:matcher}
 # Rspec expect
 snippet exp
+	expect(${1:obj}).to ${2:matcher}
+# Rspec expect page
+snippet expp Expect page
+	expect(page).to ${2:matcher}
+# Rspec expect page to have content
+snippet expp Expact page to have content
+	expect(page).to have_content("${1:string}")
+snippet expp Expact page to have css
+	expect(page).to have_css("${1:string}")
+snippet expp Expact page to not have content
+	expect(page).to have_no_content("${1:string}")
+snippet expp Expact page to not have css
+	expect(page).to have_no_css("${1:string}")
+# Rspec expect block
+snippet exp{
 	expect {
 	  ${1:something}
 	}.to ${2:matcher}
@@ -136,7 +154,7 @@ snippet itp
 	${2}
 # Rspec it block
 snippet it
-	it 'should ${1:do something}' do
+	it '${1:does something}' do
 	  ${2}
 	end
 # Rspec context with subject
@@ -145,6 +163,14 @@ snippet cons
 	  subject { ${2} }
 
 	  ${3}
+	end
+# Rspec describe controller action
+snippet desc
+	describe '${1:METHOD} ${2:action}' do
+		before { ${3:get} :$2 }
+		it { should render_template('$2') }
+		it { should respond_with(:success) }
+		it { should assign_to(:${4:ivar}) }
 	end
 # Rspec context
 snippet con
