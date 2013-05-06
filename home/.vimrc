@@ -175,6 +175,8 @@ if has('autocmd')
   autocmd BufNewFile,BufRead Gemfile.lock,Procfile set ft=yaml
   autocmd BufNewFile,BufRead *.json set ft=javascript
 
+  autocmd FileType json setlocal equalprg=python\ -m\ json.tool
+
   autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
   autocmd Filetype text,markdown setlocal textwidth=80
 
