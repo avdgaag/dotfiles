@@ -155,15 +155,6 @@ vmap <leader>t{ :Tabularize /{<CR>
 nmap <leader>t\{ :Tabularize /\|<CR>
 vmap <leader>t\{ :Tabularize /\|<CR>
 
-" Switch
-nnoremap - :Switch<cr>
-
-" Dispatch
-nnoremap <leader>R :Dispatch<CR>
-
-" Git gutter
-highlight clear SignColumn
-
 function! StripTrailingWhitespace()
   silent exe "normal ma<CR>"
   let saved_search = @/
@@ -207,13 +198,6 @@ if has('autocmd')
   autocmd Filetype cucumber nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus cucumber " . bufname("%") . ":" . line("."))<CR>
   autocmd Filetype cucumber nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%"))<CR>
   autocmd Filetype cucumber nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%") . ":" . line("."))<CR>
-
-  autocmd Filetype ruby let b:dispatch = 'rspec %'
-  autocmd Filetype cucumber let b:dispatch = 'cucumber %'
-
-  autocmd User Rails Rnavcommand factory spec/factories/ -suffix=.rb
-  autocmd User Rails Rnavcommand decorator app/decorators/ -suffix=_decorator.rb
-  autocmd User Rails Rnavcommand concern app/concerns/ -suffix=.rb
 endif
 
 if executable("ack")
