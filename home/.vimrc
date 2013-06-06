@@ -155,6 +155,11 @@ vmap <leader>t{ :Tabularize /{<CR>
 nmap <leader>t\{ :Tabularize /\|<CR>
 vmap <leader>t\{ :Tabularize /\|<CR>
 
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 function! StripTrailingWhitespace()
   silent exe "normal ma<CR>"
   let saved_search = @/
@@ -184,6 +189,7 @@ if has('autocmd')
   autocmd Filetype javascript nnoremap <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
   autocmd Filetype coffee nnoremap <Leader>r :CoffeeRun<CR>
 
+  autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=rspec.ruby
   autocmd Filetype ruby nnoremap <Leader>r :!ruby %<CR>
   autocmd Filetype ruby nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
   autocmd Filetype ruby nnoremap <Leader>k :!rspec %<CR>
