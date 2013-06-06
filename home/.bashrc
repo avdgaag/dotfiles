@@ -7,6 +7,7 @@ alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
 alias nicedatetime='date "+%Y-%m-%d %H:%M"'
 alias iaw='open -a iA\ Writer'
+alias marked='open -a Marked'
 alias bbundle='bundle check || bundle install | grep -v "Using "'
 alias -g bb='`git rev-parse --abbrev-ref HEAD`'
 
