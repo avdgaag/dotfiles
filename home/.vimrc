@@ -206,6 +206,7 @@ if has('autocmd')
   autocmd Filetype cucumber nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus cucumber " . bufname("%") . ":" . line("."))<CR>
   autocmd Filetype cucumber nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%"))<CR>
   autocmd Filetype cucumber nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%") . ":" . line("."))<CR>
+  autocmd Filetype python nnoremap <Leader>r :!python %<cr>
 endif
 
 if executable("ack")
