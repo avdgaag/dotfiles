@@ -3,6 +3,8 @@ set nocompatible
 
 call pathogen#infect()
 
+let g:airline_powerline_fonts=0
+
 " -------------------------------------
 " General settings
 set nobackup
