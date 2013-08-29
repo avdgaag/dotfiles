@@ -132,14 +132,14 @@ vnoremap <leader>xv dO= pI
 " Plugins
 
 " Vimux
-nnoremap <Leader>vv :VimuxRunLastCommand<CR>
-nnoremap <Leader>vp :VimuxPromptCommand<CR>
-nnoremap <Leader>v[ :VimuxInspectRunner<CR>
-nnoremap <Leader>vc :VimuxInterruptRunner<CR>
-nnoremap <Leader>vq :VimuxCloseRunner<CR>
-let g:VimuxHeight = '15'
-let g:VimuxOrientation = "h"
-let g:VimuxUseNearestPane = 1
+" nnoremap <Leader>vv :VimuxRunLastCommand<CR>
+" nnoremap <Leader>vp :VimuxPromptCommand<CR>
+" nnoremap <Leader>v[ :VimuxInspectRunner<CR>
+" nnoremap <Leader>vc :VimuxInterruptRunner<CR>
+" nnoremap <Leader>vq :VimuxCloseRunner<CR>
+" let g:VimuxHeight = '15'
+" let g:VimuxOrientation = "h"
+" let g:VimuxUseNearestPane = 1
 
 " Tabular
 nmap <leader>t= :Tabularize /=<CR>
@@ -156,6 +156,15 @@ nmap <leader>t{ :Tabularize /{<CR>
 vmap <leader>t{ :Tabularize /{<CR>
 nmap <leader>t\{ :Tabularize /\|<CR>
 vmap <leader>t\{ :Tabularize /\|<CR>
+
+" rspec-vim
+nnoremap <leader>k :call RunCurrentSpecFile()<cr>
+nnoremap <leader>K :call RunNearestSpec()<cr>
+nnoremap <leader>l :call RunLastSpec()<cr>
+nnoremap <leader>L :call RunAllSpecs()<cr>
+
+" Dispatch
+let g:rspec_command = "Dispatch rspec {spec}"
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -191,15 +200,15 @@ if has('autocmd')
   autocmd Filetype javascript nnoremap <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
   autocmd Filetype coffee nnoremap <Leader>r :CoffeeRun<CR>
 
-  autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=rspec.ruby
+  " autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=rspec.ruby
   autocmd Filetype ruby nnoremap <Leader>r :!ruby %<CR>
   autocmd Filetype ruby nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
-  autocmd Filetype ruby nnoremap <Leader>k :!rspec %<CR>
-  autocmd Filetype ruby nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
-  autocmd Filetype ruby nnoremap <Leader>vk :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
-  autocmd Filetype ruby nnoremap <Leader>vK :call VimuxRunCommand("clear; rspec " . bufname("%") . ":" . line("."))<CR>
-  autocmd Filetype ruby nnoremap <Leader>vs :call VimuxRunCommand("clear; zeus rspec " . bufname("%"))<CR>
-  autocmd Filetype ruby nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus rspec " . bufname("%") . ":" . line("."))<CR>
+  " autocmd Filetype ruby nnoremap <Leader>k :!rspec %<CR>
+  " autocmd Filetype ruby nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
+  " autocmd Filetype ruby nnoremap <Leader>vk :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+  " autocmd Filetype ruby nnoremap <Leader>vK :call VimuxRunCommand("clear; rspec " . bufname("%") . ":" . line("."))<CR>
+  " autocmd Filetype ruby nnoremap <Leader>vs :call VimuxRunCommand("clear; zeus rspec " . bufname("%"))<CR>
+  " autocmd Filetype ruby nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus rspec " . bufname("%") . ":" . line("."))<CR>
   autocmd FileType ruby let g:surround_{char2nr("x")} = "expect(\r).to"
   autocmd FileType ruby let g:surround_{char2nr("X")} = "expect { \r }.to"
   autocmd Filetype cucumber nnoremap <Leader>k :!bundle exec cucumber %<CR>
