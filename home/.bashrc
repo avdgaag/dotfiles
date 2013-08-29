@@ -43,6 +43,11 @@ function cctags() {
   ctags -a --extra=+f --exclude=.git --exclude=log --exclude=tmp --languages=-javascript,sql -R *
 }
 
+function respec() {
+  awk '/support/ { next } { print $2 }' failures | xargs bundle exec rspec
+}
+
+
 # Other
 alias redis-start='redis-server /usr/local/etc/redis.conf'
 
