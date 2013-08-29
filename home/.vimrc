@@ -196,8 +196,8 @@ if has('autocmd')
   autocmd Filetype ruby nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
   autocmd Filetype ruby nnoremap <Leader>k :!rspec %<CR>
   autocmd Filetype ruby nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
-  autocmd Filetype ruby nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%"))<CR>
-  autocmd Filetype ruby nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec rspec " . bufname("%") . ":" . line("."))<CR>
+  autocmd Filetype ruby nnoremap <Leader>vk :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+  autocmd Filetype ruby nnoremap <Leader>vK :call VimuxRunCommand("clear; rspec " . bufname("%") . ":" . line("."))<CR>
   autocmd Filetype ruby nnoremap <Leader>vs :call VimuxRunCommand("clear; zeus rspec " . bufname("%"))<CR>
   autocmd Filetype ruby nnoremap <Leader>vS :call VimuxRunCommand("clear; zeus rspec " . bufname("%") . ":" . line("."))<CR>
   autocmd FileType ruby let g:surround_{char2nr("x")} = "expect(\r).to"
