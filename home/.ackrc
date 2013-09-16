@@ -1,7 +1,9 @@
 --sort-files
 --ignore-dir=rails
 --ignore-dir=tmp
+--ignore-dir=.yardoc
 --ignore-dir=.bundle
+--ignore-file=is:tags
 --type-add=ruby:is:Vagrantfile
 --type-add=ruby:is:Cheffile
 --type-add=ruby:is:Rules
