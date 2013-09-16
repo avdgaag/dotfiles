@@ -218,6 +218,7 @@ if has('autocmd')
   autocmd Filetype cucumber nnoremap <Leader>vk :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%"))<CR>
   autocmd Filetype cucumber nnoremap <Leader>vK :call VimuxRunCommand("clear; bundle exec cucumber " . bufname("%") . ":" . line("."))<CR>
   autocmd Filetype python nnoremap <Leader>r :!python %<cr>
+  autocmd FileType scss setlocal suffixesadd+=.css.scss
 endif
 
 if executable("ack")
