@@ -55,3 +55,6 @@
 [submodule "home/.vim/bundle/vim-bundler"]
 	path = home/.vim/bundle/vim-bundler
 	url = git://github.com/tpope/vim-bundler.git
+[submodule "home/.vim/bundle/vim-rbenv"]
+	path = home/.vim/bundle/vim-rbenv
+	url = git://github.com/tpope/vim-rbenv.git
