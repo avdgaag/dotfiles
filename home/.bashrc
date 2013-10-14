@@ -15,6 +15,10 @@ function ffind() {
   find -E . -type f -regex ".*$@.*"
 }
 
+function vfind() {
+  vim `find -E . -type f -regex ".*$@.*"`
+}
+
 # Create and change into a new directory
 function take() {
     mkdir -p "$*"
