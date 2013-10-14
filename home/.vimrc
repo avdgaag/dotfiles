@@ -164,7 +164,7 @@ nnoremap <leader>l :call RunLastSpec()<cr>
 nnoremap <leader>L :call RunAllSpecs()<cr>
 
 " Dispatch
-let g:rspec_command = "Dispatch rspec {spec}"
+let g:rspec_command = "compiler rspec | set makeprg=zeus | Make rspec {spec}"
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -177,6 +177,16 @@ function! StripTrailingWhitespace()
   %s/\s\+$//e
   silent exe "normal `a<CR>"
   let @/ = saved_search
+endfunction
+
+function! PickRspecCommand()
+  if glob('.zeus.sock') != ''
+    let g:rspec_command = 'compiler rspec | set makeprg=zeus | Make rspec {spec}'
+  elseif glob('bin/rspec') != ''
+    let g:rspec_command = 'Dispatch bin/rspec {spec}'
+  else
+    let g:rspec_command = 'Dispatch rspec {spec}'
+  endif
 endfunction
 
 if has('autocmd')
@@ -203,6 +213,7 @@ if has('autocmd')
   " autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=rspec.ruby
   autocmd Filetype ruby nnoremap <Leader>r :!ruby %<CR>
   autocmd Filetype ruby nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
+  autocmd Filetype ruby call PickRspecCommand()
   " autocmd Filetype ruby nnoremap <Leader>k :!rspec %<CR>
   " autocmd Filetype ruby nnoremap <Leader>K :exe "!bundle exec rspec %\:" . line(".")<cr>
   " autocmd Filetype ruby nnoremap <Leader>vk :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
