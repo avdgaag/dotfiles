@@ -197,5 +197,5 @@ if has('autocmd')
 endif
 
 if executable("ack")
-  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp
+  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=doc
 endif
