@@ -61,3 +61,18 @@
 [submodule "home/.vim/bundle/vimux"]
 	path = home/.vim/bundle/vimux
 	url = git@github.com:benmills/vimux.git
+[submodule "home/.vim/bundle/vim-textobj-user"]
+	path = home/.vim/bundle/vim-textobj-user
+	url = git@github.com:kana/vim-textobj-user.git
+[submodule "home/.vim/bundle/vim-textobj-rubyblock"]
+	path = home/.vim/bundle/vim-textobj-rubyblock
+	url = git@github.com:nelstrom/vim-textobj-rubyblock.git
+[submodule "home/.vim/bundle/vim-textobj-ruby"]
+	path = home/.vim/bundle/vim-textobj-ruby
+	url = git@github.com:rhysd/vim-textobj-ruby.git
+[submodule "home/.vim/bundle/vim-ruby"]
+	path = home/.vim/bundle/vim-ruby
+	url = git@github.com:vim-ruby/vim-ruby.git
+[submodule "home/.vim/bundle/vim-rbfactor"]
+	path = home/.vim/bundle/vim-rbfactor
+	url = git@github.com:avdgaag/vim-rbfactor.git
