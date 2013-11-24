@@ -2,6 +2,7 @@
 # ---------------------------------------------------------------------------------------
 
 alias vi='vim'
+alias vims='vim `find . -type f | grep -v "^\./\."  | selecta`'
 alias lsh='ls -lhGFr'
 alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
@@ -65,6 +66,7 @@ alias ga='git commit --amend'
 alias gap='git add -p'
 alias gb='git branch'
 alias gbc='git rev-parse --abbrev-ref HEAD'
+alias gbs='git checkout `git branch --all --remotes | sed "s/..//" | rev | cut -d "/" -f 1 | rev | selecta`'
 alias gc='git commit --verbose'
 alias gca='git commit --all --verbose'
 alias gd='git diff'
@@ -110,6 +112,7 @@ alias binstubs='export PATH=./bin:$PATH'
 # Rake
 alias migrate='rake db:migrate db:test:prepare'
 alias remigrate='rake db:drop db:create db:migrate db:test:prepare'
+alias rakes='rake `rake -T | selecta | awk "{ print $2 }"`'
 
 # Heroku
 alias hrl='heroku logs -t'
