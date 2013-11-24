@@ -64,8 +64,8 @@ set modelines=0
 " Colors, formatting and syntax highlighting
 syntax on
 filetype plugin indent on
-set background=dark
-colorscheme smyck
+set background=light
+colorscheme solarized
 set nowrap
 set synmaxcol=200 " Do not highlight long lines
 set softtabstop=2
