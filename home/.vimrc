@@ -117,18 +117,6 @@ nnoremap <leader>gg :topleft :split Gemfile<cr>
 nnoremap <leader>gt :topleft :split TODO<cr> " Handy for keeping a TODO list in the project root
 
 " -------------------------------------
-" Macros
-
-" Extract spec local variable into Rspec let(...) { ... }
-let @l='jmlkdd?\vdescribe|context?p==I:^ys2w)Iletf=xys${`l' 
-" Extract variable into method
-let @e='mmIdef 2wdwioendmn:-2,.<:-2,.d?def ?%op' 
-" Transform single-line conditional into conditional block
-nnoremap <leader>xc <ESC>^/unless\\|if/<cr>"xD<ESC>O<ESC>"xpj>>oend<ESC>
-" Extract local variable
-vnoremap <leader>xv dO= pI
-
-" -------------------------------------
 " Plugins
 
 " Vimux
