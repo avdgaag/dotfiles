@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Reject any commit that would add a line with tabs.
+if git diff --cached | grep -E '^\+\t' > /dev/null; then
+  echo 'Error: This commit would contain a tab, which is against our style guide.'
+  echo 'If you really, REALLY want to commit this code, skip your pre-commit'
+  echo 'hooks with `git commit --no-verify` (but remember: for every tab you commit,'
+  echo 'a kitten dies).'
+  echo
+  echo 'Found tabs:'
+  git diff --cached --name-status --diff-filter=ACM | awk '{ print $2 }' | xargs grep -H -n -E '\t'
+  exit 1
+fi
+
+# Reject any commit that would include Git conflict markers.
+if git diff --cached --name-only --diff-filter=ACM | xargs grep -H -n -E '^(<|>|=|\|){7}' > /dev/null; then
+  echo "Warning: You have left some Git conflict markers in."
+  echo 'Your commit is bad and you should feel bad.'
+  echo
+  git diff --cached --name-only --diff-filter=ACM | xargs grep -H -n -E '^(<|>|=|\|){7}'
+  exit 1
+fi
