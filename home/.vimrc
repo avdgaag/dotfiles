@@ -158,6 +158,7 @@ endfunction
 if has('autocmd')
   autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css,*.js,*.coffee call StripTrailingWhitespace()
   autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
+  autocmd Filetype java setlocal ts=4 sw=4 expandtab
 
   autocmd VimResized * wincmd =
   autocmd InsertLeave * set nopaste
