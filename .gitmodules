@@ -76,3 +76,6 @@
 [submodule "home/.vim/bundle/vim-rbfactor"]
 	path = home/.vim/bundle/vim-rbfactor
 	url = git@github.com:avdgaag/vim-rbfactor.git
+[submodule "home/.vim/bundle/vim-jade"]
+	path = home/.vim/bundle/vim-jade
+	url = git@github.com:digitaltoad/vim-jade.git
