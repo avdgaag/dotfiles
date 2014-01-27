@@ -1,6 +1,8 @@
-\set PROMPT1 '%n@%/\n%R%x%# '
+\set PROMPT1 '%[%033[1m%]%M %n@%/\n%R%x%#%[%033[0m%] '
 \set PROMPT2 '%R%x%# '
 \pset border 1
 \pset format wrapped
 \pset linestyle unicode
 \pset null NULL
+\x auto
+\set COMP_KEYWORD_CASE upper
