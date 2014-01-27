@@ -157,7 +157,7 @@ endfunction
 
 if has('autocmd')
   autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css,*.js,*.coffee call StripTrailingWhitespace()
-  autocmd Filetype coffee,ruby,yaml,rake,rb,ru setlocal ts=2 sw=2 expandtab
+  autocmd Filetype coffee,ruby,yaml,rake,rb,ru,exs setlocal ts=3 sw=2 expandtab
   autocmd Filetype java setlocal ts=4 sw=4 expandtab
 
   autocmd VimResized * wincmd =
@@ -178,6 +178,8 @@ if has('autocmd')
   autocmd Filetype javascript nnoremap <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
   autocmd Filetype coffee nnoremap <Leader>r :CoffeeRun<CR>
 
+  autocmd Filetype elixir nnoremap <Leader>r :!elixir %<cr>
+  autocmd Filetype elixir nnoremap <Leader>k :!mix test %<cr>
   autocmd Filetype ruby nnoremap <Leader>r :!ruby %<CR>
   autocmd Filetype ruby nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
   autocmd FileType ruby let g:surround_{char2nr("x")} = "expect(\r).to"
