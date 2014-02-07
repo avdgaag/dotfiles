@@ -30,6 +30,10 @@ function take() {
     cd "$*"
 }
 
+function rgem() {
+  curl --silent http://rubygems.org/api/v1/gems/$1.json | jq '.version'
+}
+
 # Working with these dotfiles made easier
 alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
