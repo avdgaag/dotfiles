@@ -15,4 +15,5 @@
 --type-set=cucumber:ext:feature
 --type-set=rdoc:ext:rdoc
 --type-set=haml:ext:haml
+--type-set=erb:ext:erb
 --type-set=coffee:ext:coffee
