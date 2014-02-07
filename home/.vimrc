@@ -3,65 +3,42 @@ set nocompatible
 
 call pathogen#infect()
 
-let g:airline_powerline_fonts=0
-
-" -------------------------------------
-" General settings
+" General settings {{{
 set nobackup
 set nowritebackup
 set noswapfile
+
 set hidden
 set autoread
 set history=100
-set ttyfast
-set lazyredraw
 set backspace=indent,eol,start
-set scrolloff=3
+
 set wildmenu
 set wildmode=longest,full
 set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg,doc,coverage
+
+set scrolloff=3
 set splitright
 set splitbelow
+
+set t_vb=
 set noerrorbells
 set novisualbell
-set t_vb=
 set t_Co=256
-set tm=500
+set ttyfast
+set lazyredraw
+set timeoutlen=500
+" }}}
 
-" -------------------------------------
-" Status line
-function! StatusMode()
-  if mode() == 'n'
-    return 'N'
-  elseif mode() == 'i'
-    return 'I'
-  elseif mode() ==? 'R'
-    return 'R'
-  elseif mode() ==? 'v'
-    return 'V'
-  else
-    return '?'
-  endif
-endfun
-
+" Status line {{{
 set laststatus=2
-set statusline=%-2{StatusMode()}    " current editor mode
-set statusline+=%n                   " buffer number
-set statusline+=\ %-.40F             " filename
-set statusline+=\ %y                 " filetype
-set statusline+=%m                   " modified flag
-set statusline+=%r                   " read only flag
-set statusline+=%q                   " quick fix
-set statusline+=%=                   " left/right separator
-set statusline+=%{v:register}\       " active register
-set statusline+=%c,                  " cursor column
-set statusline+=%l/%L                " cursor line/total lines
-set showcmd                          " Show selection size or last command in command line
+set showcmd
 set ruler
-set modelines=0
+set modelines=1
+let g:airline_powerline_fonts=1
+" }}}
 
-" -------------------------------------
-" Colors, formatting and syntax highlighting
+" Colors, formatting and syntax highlighting {{{
 syntax on
 filetype plugin indent on
 set background=light
@@ -81,25 +58,47 @@ set fillchars=vert:│
 set encoding=utf-8
 set list
 set listchars=tab:\·\ ,trail:·,eol:¬
+" }}}
 
-" -------------------------------------
-" Searching
+" Searching {{{
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set showmatch
 
-" -------------------------------------
-" Custom key mappings
+if executable("ack")
+  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=doc
+endif
+" }}}
+
+" Folding {{{
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+" }}}
+
+" Custom key mappings {{{
+
+" Always search with very magic mode enabled
 nnoremap / /\v
 vnoremap / /\v
+
+" Do not jump over 'real' lines, only over screen lines
 nnoremap j gj
 nnoremap k gk
+
+" Toggle folds with the space bar
+nnoremap <space> za
+
+" Simplify window navigation by removing the need for the W key
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" Expand %% to the file path in command mode
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 nnoremap <leader><leader> <c-^>
@@ -115,18 +114,19 @@ nnoremap <leader>gr :topleft :split config/routes.rb<cr>
 nnoremap <leader>gs :topleft :split db/schema.rb<cr>
 nnoremap <leader>gg :topleft :split Gemfile<cr>
 nnoremap <leader>gt :topleft :split TODO<cr> " Handy for keeping a TODO list in the project root
+" }}}
 
-" -------------------------------------
-" Plugins
+" Plugins {{{
 
-" Vimux
+" Vimux {{{
 nnoremap <Leader>vv :VimuxRunLastCommand<CR>
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 nnoremap <Leader>v[ :VimuxInspectRunner<CR>
 nnoremap <Leader>vc :VimuxInterruptRunner<CR>
 nnoremap <Leader>vq :VimuxCloseRunner<CR>
+" }}}
 
-" Tabular
+" Tabular {{{
 nmap <leader>t= :Tabularize /=<CR>
 vmap <leader>t= :Tabularize /=<CR>
 nmap <leader>t: :Tabularize /:\zs /l0<CR>
@@ -141,11 +141,22 @@ nmap <leader>t{ :Tabularize /{<CR>
 vmap <leader>t{ :Tabularize /{<CR>
 nmap <leader>t\{ :Tabularize /\|<CR>
 vmap <leader>t\{ :Tabularize /\|<CR>
+" }}}
 
-" UltiSnips
+" UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}
+
+" CtrlP {{{
+let g:ctrlp_use_caching=0
+let g:ctrlp_user_command="find %s -type f -not -path '*/.git/*' -not -path '*/.sass-cache/*' -not -path '*/tmp/*'"
+" }}}
+
+" }}}
+
+" Autocommands {{{
 
 function! StripTrailingWhitespace()
   silent exe "normal ma<CR>"
@@ -156,38 +167,94 @@ function! StripTrailingWhitespace()
 endfunction
 
 if has('autocmd')
-  autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css,*.js,*.coffee call StripTrailingWhitespace()
-  autocmd Filetype coffee,ruby,yaml,rake,rb,ru,exs setlocal ts=3 sw=2 expandtab
-  autocmd Filetype java setlocal ts=4 sw=4 expandtab
 
-  autocmd VimResized * wincmd =
-  autocmd InsertLeave * set nopaste
-  autocmd BufWritePost .vimrc source $MYVIMRC
+  augroup configroup
 
-  autocmd BufNewFile,BufRead {Gemfile,Guardfile,Capfile,Rakefile,Thorfile,config.ru,Vagrantfile,*.prawn} set ft=ruby
-  autocmd BufNewFile,BufRead Gemfile.lock,Procfile set ft=yaml
-  autocmd BufNewFile,BufRead *.json set ft=javascript
-  autocmd BufNewFile,BufRead *_spec.rb set ft=rspec.ruby
+    " Remove all previously defined autocommands so re-loading this file doesn't
+    " re-define everything.
+    autocmd!
 
-  autocmd FileType json setlocal equalprg=python\ -m\ json.tool
+    " General hooks {{{
 
-  autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
-  autocmd Filetype text,markdown setlocal textwidth=80
+    " Automatically strip trailing whitespace from most regular source code file
+    " types using a custom function.
+    autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css,*.js,*.coffee call StripTrailingWhitespace()
 
-  autocmd Filetype javascript nnoremap <Leader>r :!node %<CR>
-  autocmd Filetype javascript nnoremap <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
-  autocmd Filetype coffee nnoremap <Leader>r :CoffeeRun<CR>
+    " Resize all windows to optimum distribution whenever Vim itself (the
+    " terminal window it lives in) is resized.
+    autocmd VimResized * wincmd =
 
-  autocmd Filetype elixir nnoremap <Leader>r :!elixir %<cr>
-  autocmd Filetype elixir nnoremap <Leader>k :!mix test %<cr>
-  autocmd Filetype ruby nnoremap <Leader>r :!ruby %<CR>
-  autocmd Filetype ruby nnoremap <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
-  autocmd FileType ruby let g:surround_{char2nr("x")} = "expect(\r).to"
-  autocmd FileType ruby let g:surround_{char2nr("X")} = "expect { \r }.to"
-  autocmd Filetype python nnoremap <Leader>r :!python %<cr>
-  autocmd FileType scss setlocal suffixesadd+=.css.scss
+    " Disable paste mode when leaving insert mode.
+    autocmd InsertLeave * set nopaste
+
+    " When changing this file, always immediately reload it.
+    autocmd BufWritePost .vimrc source $MYVIMRC
+
+    " }}}
+
+    " Ruby {{{
+
+    " Silly Rubyists with their silly extensions. Treat the whole lot of 'em as
+    " Ruby files.
+    autocmd BufNewFile,BufRead {Gemfile,Guardfile,Capfile,Rakefile,Thorfile,config.ru,Vagrantfile,*.prawn} set filetype=ruby
+    autocmd BufNewFile,BufRead Gemfile.lock,Procfile set filetype=yaml
+    autocmd BufNewFile,BufRead *_spec.rb set filetype=rspec.ruby
+
+    " Run Ruby files either directly or in a tmux split pane using Vimux.
+    autocmd Filetype ruby nnoremap <buffer> <Leader>r :!ruby %<CR>
+    autocmd Filetype ruby nnoremap <buffer> <leader>R :cexpr system('rubocop '. expand('%'))<CR>
+    autocmd Filetype ruby nnoremap <buffer> <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
+
+    " Set up custom Ruby surround mapping to wrap a motion in an expect call or
+    " block.
+    autocmd FileType ruby let g:surround_{char2nr("x")} = "expect(\r).to"
+    autocmd FileType ruby let g:surround_{char2nr("X")} = "expect { \r }.to"
+
+    " }}}
+
+    " Javascript {{{
+
+    " Run javascript files with Node either directly or in a split tmux pane
+    " using Vimux.
+    autocmd Filetype javascript nnoremap <buffer> <Leader>r :!node %<CR>
+    autocmd Filetype javascript nnoremap <buffer> <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
+    autocmd Filetype coffee nnoremap <buffer> <Leader>r :CoffeeRun<CR>
+
+    " Treat JSON file as javascript
+    autocmd BufNewFile,BufRead *.json set filetype=javascript
+
+    " Be smart about JSON formatting
+    autocmd FileType json setlocal equalprg=python\ -m\ json.tool
+
+    " }}}
+
+    " Plain text, Markdown and markup {{{
+
+    " For text and markup files do not show special characters and hard-wrap
+    " text. Limit markdown and text files at 80 characters wide.
+    autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+    autocmd Filetype text,markdown setlocal textwidth=80
+
+    " }}}
+
+    " Other languages {{{
+
+    autocmd Filetype elixir nnoremap <buffer> <Leader>r :!elixir %<cr>
+    autocmd Filetype elixir nnoremap <buffer> <Leader>k :!mix test %<cr>
+    autocmd Filetype python nnoremap <buffer> <Leader>r :!python %<cr>
+
+    " Add Railsy file extensions to the suffixes list to enable find and gf to
+    " jump to Sass stylesheets.
+    autocmd FileType scss setlocal suffixesadd+=.css.scss
+
+    " }}}
+
+  augroup END
+
 endif
 
-if executable("ack")
-  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=doc
-endif
+" }}}
+
+let g:ruby_path = '/usr/local/opt/rbenv/shims'
+
+" vim:foldmethod=marker:foldlevel=0
