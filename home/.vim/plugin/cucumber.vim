@@ -48,7 +48,7 @@ function! PickCucumberCommand()
   endif
 endfunction
 
-autocmd Filetype cucumber nmap <leader>k :call RunCucumberFile()<cr>
-autocmd Filetype cucumber nmap <leader>K :call RunCucumberLine()<cr>
-autocmd Filetype cucumber nmap <leader>l :call RunLastCucumber()<cr>
-autocmd Filetype cucumber nmap <leader>L :call RunCucumber()<cr>
+autocmd Filetype cucumber nnoremap <buffer> <leader>k :call RunCucumberFile()<cr>
+autocmd Filetype cucumber nnoremap <buffer> <leader>K :call RunCucumberLine()<cr>
+autocmd Filetype cucumber nnoremap <buffer> <leader>l :call RunLastCucumber()<cr>
+autocmd Filetype cucumber nnoremap <buffer> <leader>L :call RunCucumber()<cr>
