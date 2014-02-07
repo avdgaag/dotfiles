@@ -79,3 +79,6 @@
 [submodule "home/.vim/bundle/vim-jade"]
 	path = home/.vim/bundle/vim-jade
 	url = git@github.com:digitaltoad/vim-jade.git
+[submodule "home/.vim/bundle/mustache"]
+	path = home/.vim/bundle/mustache
+	url = git://github.com/mustache/vim-mustache-handlebars.git
