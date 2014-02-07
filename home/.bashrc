@@ -50,6 +50,11 @@ function pp() {
   pygmentize -O 'bg=dark,style=vim' -f terminal256 "$1" 
 }
 
+# Highlight clipboard in RTF for use in Keynote
+function pk() {
+  pbpaste | pygmentize -O 'style=friendly,fontface=Menlo' -f rtf $@ | sed 's/\f0/\f0\\fs80/g' | pbcopy
+}
+
 # Generating ctags
 function cctags() {
   bundle show --paths | xargs ctags -R --languages=-javascript
