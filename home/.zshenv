@@ -1,5 +1,5 @@
 export EDITOR="/usr/local/bin/vim"
-export PATH="/Users/arjan/bin:/usr/local/bin:/usr/local/sbin:/usr/local/androidsdk/android-sdk-macosx/platform-tools:/usr/local/share/npm/bin:$PATH"
+export PATH="/Users/arjan/bin:/usr/local/bin:/usr/local/sbin:/usr/local/androidsdk/android-sdk-macosx/platform-tools:/usr/local/share/npm/bin:/usr/sbin:$PATH"
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 export RBENV_ROOT=/usr/local/opt/rbenv
 export PAGER=/usr/bin/less
