@@ -19,7 +19,7 @@
 [branch]
   autosetuprebase = always
 [mergetool]
-  keepBackup = true
+	keepBackup = true
 [diff]
   tool = vimdiff
 	algorithm = patience
