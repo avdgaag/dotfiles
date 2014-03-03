@@ -82,3 +82,9 @@
 [submodule "home/.vim/bundle/mustache"]
 	path = home/.vim/bundle/mustache
 	url = git://github.com/mustache/vim-mustache-handlebars.git
+[submodule "home/.vim/bundle/vim-eunuch"]
+	path = home/.vim/bundle/vim-eunuch
+	url = git://github.com/tpope/vim-eunuch.git
+[submodule "home/.vim/bundle/vim-rhubarb"]
+	path = home/.vim/bundle/vim-rhubarb
+	url = git@github.com:tpope/vim-rhubarb.git
