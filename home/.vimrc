@@ -248,6 +248,7 @@ if has('autocmd')
     " Add Railsy file extensions to the suffixes list to enable find and gf to
     " jump to Sass stylesheets.
     autocmd FileType scss setlocal suffixesadd+=.css.scss
+    autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set filetype=tmux
 
     " }}}
 
