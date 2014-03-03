@@ -206,7 +206,8 @@ if has('autocmd')
     autocmd Filetype ruby nnoremap <buffer> <Leader>r :!ruby %<CR>
     autocmd Filetype ruby nnoremap <buffer> <leader>R :cexpr system('rubocop '. expand('%'))<CR>
     autocmd Filetype ruby nnoremap <buffer> <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
-
+    autocmd FileType ruby setlocal path+=lib/**
+    autocmd FileType ruby setlocal includeexpr=substitute(substitute(substitute(v:fname,'::','/','g'),'$','.rb',''),'\\(\\<\\u\\l\\+\\\\|\\l\\+\\)\\(\\u\\)','\\l\\1_\\l\\2','g')
     " Set up custom Ruby surround mapping to wrap a motion in an expect call or
     " block.
     autocmd FileType ruby let g:surround_{char2nr("x")} = "expect(\r).to"
