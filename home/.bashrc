@@ -30,6 +30,9 @@ function rgem() {
   curl --silent http://rubygems.org/api/v1/gems/$1.json | jq '.version'
 }
 
+# Select a Tmux session to attach to
+alias stmux='tmux attach -t `tmux ls | selecta | cut -f1 -d:`'
+
 # Working with these dotfiles made easier
 alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
