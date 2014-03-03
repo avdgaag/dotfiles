@@ -41,8 +41,8 @@ let g:airline_powerline_fonts=1
 " Colors, formatting and syntax highlighting {{{
 syntax on
 filetype plugin indent on
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme smyck
 set nowrap
 set synmaxcol=200 " Do not highlight long lines
 set softtabstop=2
