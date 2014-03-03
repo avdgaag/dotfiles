@@ -50,6 +50,7 @@ set synmaxcol=200 " Do not highlight long lines
 set softtabstop=2
 set tabstop=2
 set shiftwidth=2
+set shiftround
 set expandtab
 set autoindent
 set smartindent
@@ -108,14 +109,15 @@ nnoremap <leader>h :set invhls<CR>
 nnoremap <leader>w :set nowrap<CR>
 nnoremap <leader>y "*y
 vnoremap <leader>y "*ygv
-nnoremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
-nnoremap <leader>P :set paste<CR>"*P<CR>:set nopaste<CR>
+nnoremap <leader>p :set paste<CR>"*]p<CR>:set nopaste<CR>
+nnoremap <leader>P :set paste<CR>"*]P<CR>:set nopaste<CR>
 nnoremap <leader>sc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 nnoremap <leader>sh :%s/\v:(\w+) \=\>/\1:/g<cr> " Replace Ruby 1.8 Hash syntax with 1.9 Hash syntax
 nnoremap <leader>gr :topleft :split config/routes.rb<cr>
 nnoremap <leader>gs :topleft :split db/schema.rb<cr>
 nnoremap <leader>gg :topleft :split Gemfile<cr>
 nnoremap <leader>gt :topleft :split TODO<cr> " Handy for keeping a TODO list in the project root
+nnoremap <leader>i mmgg=G`m
 " }}}
 
 " Plugins {{{
@@ -129,6 +131,8 @@ nnoremap <Leader>vq :VimuxCloseRunner<CR>
 " }}}
 
 " Tabular {{{
+nmap <leader>t# :Tabularize /#<CR>
+vmap <leader>t# :Tabularize /#<CR>
 nmap <leader>t= :Tabularize /=<CR>
 vmap <leader>t= :Tabularize /=<CR>
 nmap <leader>t: :Tabularize /:\zs /l0<CR>
@@ -224,7 +228,7 @@ if has('autocmd')
     autocmd Filetype coffee nnoremap <buffer> <Leader>r :CoffeeRun<CR>
 
     " Treat JSON file as javascript
-    autocmd BufNewFile,BufRead *.json set filetype=javascript
+    autocmd BufNewFile,BufRead *.json setlocal filetype=javascript
 
     " Be smart about JSON formatting
     autocmd FileType json setlocal equalprg=python\ -m\ json.tool
