@@ -3,6 +3,8 @@ set nocompatible
 
 call pathogen#infect()
 
+runtime macros/matchit.vim
+
 " General settings {{{
 set nobackup
 set nowritebackup
