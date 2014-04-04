@@ -46,12 +46,6 @@
 [submodule "home/.vim/bundle/vim-airline"]
 	path = home/.vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
-[submodule "home/.vim/bundle/vim-rspec"]
-	path = home/.vim/bundle/vim-rspec
-	url = git@github.com:thoughtbot/vim-rspec.git
-[submodule "home/.vim/bundle/vim-dispatch"]
-	path = home/.vim/bundle/vim-dispatch
-	url = git://github.com/tpope/vim-dispatch.git
 [submodule "home/.vim/bundle/vim-bundler"]
 	path = home/.vim/bundle/vim-bundler
 	url = git://github.com/tpope/vim-bundler.git
@@ -88,3 +82,6 @@
 [submodule "home/.vim/bundle/vim-rhubarb"]
 	path = home/.vim/bundle/vim-rhubarb
 	url = git@github.com:tpope/vim-rhubarb.git
+[submodule "home/.vim/bundle/syntastic"]
+	path = home/.vim/bundle/syntastic
+	url = git@github.com:scrooloose/syntastic.git
