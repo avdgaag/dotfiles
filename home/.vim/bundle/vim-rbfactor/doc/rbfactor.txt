@@ -1,0 +1,79 @@
+*rbfactor.txt*  Simple refactorings for Ruby programs
+
+Author:  Arjan van der Gaag <http://arjanvandergaag.nl>
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *rbfactor*
+
+Code refactoring is a "disciplined technique for restructuring an existing
+body of code, altering its internal structure without changing its external
+behavior":
+>
+    By continuously improving the design of code, we make it easier and easier
+    to work with. This is in sharp contrast to what typically happens: little
+    refactoring and a great deal of attention paid to expediently adding new
+    features. If you get into the hygienic habit of refactoring continuously,
+    you'll find that it is easier to extend and maintain code.
+
+    — Joshua Kerievsky, Refactoring to Patterns
+<
+
+Rbfactor is a set of Vimscript functions and keymaps to automate refactoring
+Ruby programs.
+
+KEYMAPS                                         *rbfactor-keymaps*
+
+The following keymaps are defined out-of-the box. In visual mode:
+
+<leader>xm              |:ExtractMethod|
+<leader>xv              |:ExtractVariable|
+<leader>xc              |:ExtractConstant|
+<leader>xl              |:ExtractLet|
+
+In normal mode:
+
+<leader>xi              |:InlineModifier|
+<leader>xp              |:AddParameter|
+
+COMMANDS                                        *rbfactor-commands*
+
+                                                *rbfactor-:ExtractMethod*
+:ExtractMethod          Extract the visual selection into a new method
+                        defined right above the current method. You
+                        will be prompted for the new method name.
+
+                                                *rbfactor-:ExtractVariable*
+:ExtractVariable        Extract the visual selection into a local variable
+                        defined right above the current line. You
+                        will be prompted for the new variable name.
+
+                                                *rbfactor-:ExtractConstant*
+:ExtractConstant        Extract the visual selection into a new constant
+                        defined right at the top of the current class or
+                        module. You will be prompted for the new constant
+                        name.
+
+                                                *rbfactor-:ExtractLet*
+:ExtractLet             Extract the visual selection into a new RSpec let
+                        block at the start of the nearest describe or
+                        context block. You will be prompted for the new
+                        method name.
+
+                                                *rbfactor-:AddParameter*
+:AddParameter           Add a new argument to the nearest method definition.
+                        An argument list will be created if it not already
+                        exists. You will be prompted for the new argument
+                        name.
+
+                                                *rbfactor-:InlineModifier*
+:InlineModifier         Convert an inline modifier (such as if, unless,
+                        while or until) into the multi-line block form.
+
+ABOUT                                           *rbfactor-about*
+
+To get the latest version of rbfactor, find more information or report issues,
+find the project on Github:
+
+https://github.com/avdgaag/vim-rbfactor
+
+ vim:tw=78:et:ft=help:norl:
