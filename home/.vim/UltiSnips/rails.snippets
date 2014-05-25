@@ -1,0 +1,481 @@
+priority -50
+
+snippet anaf "accepts_nested_attributes_for"
+accepts_nested_attributes_for :${1:association_name}${2:${3:,
+															allow_destroy: true}${4:,
+															reject_if: proc \{ |obj| ${5:obj.blank?} \}}}
+$0
+endsnippet
+
+snippet tcbi "Create binary column"
+t.binary :${1:title}${2:, limit: ${3:2}.megabytes}
+$0
+endsnippet
+
+snippet tcb "Create boolean column"
+t.boolean :${1:title}
+$0
+endsnippet
+
+snippet tcda "Create date column"
+t.date :${1:title}
+$0
+endsnippet
+
+snippet tcdt "Create datetime column"
+t.datetime :${1:title}
+$0
+endsnippet
+
+snippet tcd "Create decimal column"
+t.decimal :${1:title}${2:${3:, precision: ${4:10}}${5:, scale: ${6:2}}}
+$0
+endsnippet
+
+snippet tcf "Create float column"
+t.float :${1:title}
+$0
+endsnippet
+
+snippet tci "Create integer column"
+t.integer :${1:title}
+$0
+endsnippet
+
+snippet tcl "Create lock_version column"
+t.integer :lock_version, null: false, default: 0
+$0
+endsnippet
+
+# FIXME: handling literal bracket pair inside of nested tab groups?
+snippet tcr "Create references column"
+t.references :${1:taggable}${2:, polymorphic: ${3:{ default: '${4:Photo}' \}}}
+$0
+endsnippet
+
+snippet tcs "Create string column"
+t.string :${1:title}
+$0
+endsnippet
+
+snippet tct "Create text column"
+t.text :${1:title}
+$0
+endsnippet
+
+snippet tcti "Create time column"
+t.time :${1:title}
+$0
+endsnippet
+
+snippet tcts "Create timestamp column"
+t.timestamp :${1:title}
+$0
+endsnippet
+
+snippet tctss "Create timestamps columns"
+t.timestamps
+$0
+endsnippet
+
+snippet mcol "Migration Create Column (mcc)"
+t.column ${1:title}, :${2:string}
+$0
+endsnippet
+
+snippet mccc "Migration Create Column Continue (mccc)"
+t.column ${1:title}, :${2:string}
+mccc$0
+endsnippet
+
+snippet mtab "Migration Drop Create Table (mdct)"
+drop_table :${1:table}${2: [press tab twice to generate create_table]}
+endsnippet
+
+snippet mcol "Migration Remove and Add Column (mrac)"
+remove_column :${1:table}, :${2:column}${3: [press tab twice to generate add_column]}
+endsnippet
+
+snippet tre "Table column(s) rename"
+t.rename(:${1:old_column_name}, :${2:new_column_name})
+$0
+endsnippet
+
+snippet aftc "after_create"
+after_create $0
+endsnippet
+
+snippet aftd "after_destroy"
+after_destroy $0
+endsnippet
+
+snippet afts "after_save"
+after_save $0
+endsnippet
+
+snippet aftu "after_update"
+after_update $0
+endsnippet
+
+snippet aftv "after_validation"
+after_validation $0
+endsnippet
+
+snippet aftvoc "after_validation_on_create"
+after_validation_on_create $0
+endsnippet
+
+snippet aftvou "after_validation_on_update"
+after_validation_on_update $0
+endsnippet
+
+snippet ass "assert_select"
+assert_select '${1:path}'${2:, ${3:text}: ${4:'${5:inner_html}'}}${6: do
+	$0
+end}
+endsnippet
+
+snippet befc "before_create"
+before_create $0
+endsnippet
+
+snippet befd "before_destroy"
+before_destroy $0
+endsnippet
+
+snippet befs "before_save"
+before_save $0
+endsnippet
+
+snippet befu "before_update"
+before_update $0
+endsnippet
+
+snippet befv "before_validation"
+before_validation $0
+endsnippet
+
+snippet befvoc "before_validation_on_create"
+before_validation_on_create $0
+endsnippet
+
+snippet befvou "before_validation_on_update"
+before_validation_on_update
+endsnippet
+
+snippet bt "belongs_to (bt)"
+belongs_to :${1:object}${2:, class_name: '${3:${1/[[:alpha:]]+|(_)/(?1::\u$0)/g}}', foreign_key: '${4:${1}_id}'}
+endsnippet
+
+snippet crw "cattr_accessor"
+cattr_accessor :${0:attr_names}
+endsnippet
+
+snippet habtm "has_and_belongs_to_many (habtm)"
+has_and_belongs_to_many :${1:object}${2:, join_table: '${3:table_name}', foreign_key: '${4:${1}_id}'}
+endsnippet
+
+snippet hm "has_many (hm)"
+has_many :${1:object}s${2:, class_name: '${1}', foreign_key: '${4:reference}_id'}
+endsnippet
+
+snippet hmt "has_many (through)"
+has_many :${1:objects}, through: :${2:join_association}${3:, source: :${4:${2}_table_foreign_key_to_${1}_table}}
+endsnippet
+
+snippet hmd "has_many dependent: :destroy"
+has_many :${1:object}s${2:, class_name: '${1}', foreign_key: '${4:reference}_id'}, dependent: :destroy$0
+endsnippet
+
+snippet ho "has_one (ho)"
+has_one :${1:object}${2:, class_name: '${3:${1/[[:alpha:]]+|(_)/(?1::\u$0)/g}}', foreign_key: '${4:${1}_id}'}
+endsnippet
+
+snippet logd "logger.debug"
+${1:Rails.}logger.debug { "${1:message}" }$0
+endsnippet
+
+snippet loge "logger.error"
+logger.error { "${1:message}" }$0
+endsnippet
+
+snippet logf "logger.fatal"
+logger.fatal { "${1:message}" }$0
+endsnippet
+
+snippet logi "logger.info"
+logger.info { "${1:message}" }$0
+endsnippet
+
+snippet logw "logger.warn"
+logger.warn { "${1:message}" }$0
+endsnippet
+
+snippet mp "map(&:sym_proc)"
+map(&:${1:id})
+endsnippet
+
+snippet mrw "mattr_accessor"
+mattr_accessor :${0:attr_names}
+endsnippet
+
+snippet dscope "default_scope"
+default_scope ${1:order(${2:'${3:created_at DESC}'})}
+endsnippet
+
+snippet flash "flash[...]"
+flash[:${1:notice}] = '${2:Successfully created...}'$0
+endsnippet
+
+snippet flasht "flash[...]"
+flash[:${1:notice}] = t('$2')$0
+endsnippet
+
+snippet renpp "redirect_to (nested path plural)"
+redirect_to(${2:${10:parent}_${11:child}_path(${12:@}${13:${10}})})
+endsnippet
+
+snippet renp "redirect_to (nested path)"
+redirect_to(${2:${12:parent}_${13:child}_path(${14:@}${15:${12}}, ${16:@}${17:${13}})})
+endsnippet
+
+snippet repp "redirect_to (path plural)"
+redirect_to(${2:${10:model}s_path})
+endsnippet
+
+snippet rep "redirect_to (path)"
+redirect_to(${2:${12:model}_path(${13:@}${14:${12}})})
+endsnippet
+
+snippet reb "redirect_to :back"
+redirect_to :back
+endsnippet
+
+snippet rt "render (text) (rt)"
+render text: "${1:text to render...}"
+endsnippet
+
+snippet rest "respond_to"
+respond_to do |format|
+	format.${1:html}${2: { $0 \}}
+end
+endsnippet
+
+snippet resw "respond_with"
+respond_with(${1:@${2:model}})${3: do |format|
+	format.${4:html} { $0 \}
+end}
+endsnippet
+
+snippet t. "t.binary (tcbi)"
+t.binary :${1:title}${2:, limit: ${3:2}.megabytes}
+t.$0
+endsnippet
+
+snippet t. "t.boolean (tcb)"
+t.boolean :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.date (tcda)"
+t.date :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.datetime (tcdt)"
+t.datetime :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.decimal (tcd)"
+t.decimal :${1:title}${2:${3:, precision: ${4:10}}${5:, scale: ${6:2}}}
+t.$0
+endsnippet
+
+snippet t. "t.float (tcf)"
+t.float :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.integer (tci)"
+t.integer :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.lock_version (tcl)"
+t.integer :lock_version, null: false, default: 0
+t.$0
+endsnippet
+
+snippet t. "t.references (tcr)"
+t.references :${1:taggable}${2:, polymorphic: ${3:{ default: '${4:Photo}' \}}}
+t.$0
+endsnippet
+
+snippet t. "t.rename (tre)"
+t.rename(:${1:old_column_name}, :${2:new_column_name})
+t.$0
+endsnippet
+
+snippet t. "t.string (tcs)"
+t.string :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.text (tct)"
+t.text :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.time (tcti)"
+t.time :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.timestamp (tcts)"
+t.timestamp :${1:title}
+t.$0
+endsnippet
+
+snippet t. "t.timestamps (tctss)"
+t.timestamps
+t.$0
+endsnippet
+
+snippet vaoif "validates_acceptance_of if"
+validates_acceptance_of :${1:terms}${2:${3:, accept: "${4:1}"}${5:, message: "${6:You must accept the terms of service}"}}, if: proc { |obj| ${7:obj.condition?} }}
+endsnippet
+
+snippet vao "validates_acceptance_of"
+validates_acceptance_of :${1:terms}${2:${3:, accept: "${4:1}"}${5:, message: "${6:You must accept the terms of service}"}}
+endsnippet
+
+snippet va "validates_associated (va)"
+validates_associated :${1:attribute}${2:, on: :${3:create}}
+endsnippet
+
+snippet vaif "validates_associated if (vaif)"
+validates_associated :${1:attribute}${2:, on: :${3:create}, if: proc { |obj| ${5:obj.condition?} }}
+endsnippet
+
+snippet vc "validates_confirmation_of (vc)"
+validates_confirmation_of :${1:attribute}${2:, on: :${3:create}, message: "${4:should match confirmation}"}
+endsnippet
+
+snippet vcif "validates_confirmation_of if (vcif)"
+validates_confirmation_of :${1:attribute}${2:, on: :${3:create}, message: "${4:should match confirmation}", if: proc { |obj| ${5:obj.condition?} }}
+endsnippet
+
+snippet ve "validates_exclusion_of (ve)"
+validates_exclusion_of :${1:attribute}${2:, in: ${3:%w( ${4:mov avi} )}, on: :${5:create}, message: "${6:extension %s is not allowed}"}
+endsnippet
+
+snippet veif "validates_exclusion_of if (veif)"
+validates_exclusion_of :${1:attribute}${2:, in: ${3:%w( ${4:mov avi} )}, on: :${5:create}, message: "${6:extension %s is not allowed}"}, if: proc { |obj| ${7:obj.condition?} }}
+endsnippet
+
+snippet vfif "validates_format_of if"
+validates_format_of :${1:attribute}, with: /${2:^[${3:\w\d}]+\$}/${4:, on: :${5:create}, message: "${6:is invalid}"}, if: proc { |obj| ${7:obj.condition?} }}
+endsnippet
+
+snippet vf "validates_format_of"
+validates_format_of :${1:attribute}, with: /${2:^[${3:\w\d}]+\$}/${4:, on: :${5:create}, message: "${6:is invalid}"}
+endsnippet
+
+snippet viif "validates_inclusion_of if"
+validates_inclusion_of :${1:attribute}${2:, in: ${3:%w( ${4:mov avi} )}, on: :${5:create}, message: "${6:extension %s is not included in the list}"}, if: proc { |obj| ${7:obj.condition?} }}
+endsnippet
+
+snippet vi "validates_inclusion_of"
+validates_inclusion_of :${1:attribute}${2:, in: ${3:%w( ${4:mov avi} )}, on: :${5:create}, message: "${6:extension %s is not included in the list}"}
+endsnippet
+
+snippet vl "validates_length_of (vl)"
+validates_length_of :${1:attribute}, within: ${2:3..20}${3:, on: :${4:create}, message: "${5:must be present}"}
+endsnippet
+
+snippet vlif "validates_length_of if"
+validates_length_of :${1:attribute}, within: ${2:3..20}${3:, on: :${4:create}, message: "${5:must be present}"}, if: proc { |obj| ${6:obj.condition?} }}
+endsnippet
+
+snippet vnif "validates_numericality_of if"
+validates_numericality_of :${1:attribute}${2:, on: :${3:create}, message: "${4:is not a number}"}, if: proc { |obj| ${5:obj.condition?} }}
+endsnippet
+
+snippet vn "validates_numericality_of"
+validates_numericality_of :${1:attribute}${2:, on: :${3:create}, message: "${4:is not a number}"}
+endsnippet
+
+snippet vp "validates_presence_of (vp)"
+validates_presence_of :${1:attribute}${2:, on: :${3:create}, message: "${4:can't be blank}"}
+endsnippet
+
+snippet vpif "validates_presence_of if (vpif) 2"
+validates_presence_of :${1:attribute}${2:, on: :${3:create}, message: "${4:can't be blank}"}, if: proc { |obj| ${5:obj.condition?} }}
+endsnippet
+
+snippet vu "validates_uniqueness_of (vu)"
+validates_uniqueness_of :${1:attribute}${2:, on: :${3:create}, message: "${4:must be unique}"}
+endsnippet
+
+snippet vuif "validates_uniqueness_of if (vuif)"
+validates_uniqueness_of :${1:attribute}${2:, on: :${3:create}, message: "${4:must be unique}", if: proc { |obj| ${6:obj.condition?} }}
+endsnippet
+
+snippet val "validates"
+validates :${1:attribute}${2:, presence: true}
+endsnippet
+
+snippet gem "gem"
+gem '${1:name}'${2:${3:, '${4:1.0}'}${5:${6:, require: ${7:'${8:$1}'}}${9:, group: :${10:test}}}}
+endsnippet
+
+snippet gemg "gem :git"
+gem '${1:paperclip}', git: '${2:git://github.com/thoughtbot/paperclip.git}'${3:, branch: '${4:rails3}'}
+endsnippet
+
+snippet gemgh "gem :github"
+gem '${1:paperclip}', github: '${2:thoughtbot/paperclip}'${3:, branch: '${4:rails3}'}
+endsnippet
+
+snippet get "GET route"
+get '/${1:path}', to: '${2:controller}#${3:action}'${4:, as: '${5:name}'}
+endsnippet
+
+snippet post "POST route"
+post '/${1:path}', to: '${2:controller}#${3:action}'${4:, as: '${5:name}'}
+endsnippet
+
+snippet patch "PATCH route"
+patch '/${1:path}', to: '${2:controller}#${3:action}'${4:, as: '${5:name}'}
+endsnippet
+
+snippet delete "DELETE route"
+delete '/${1:path}', to: '${2:controller}#${3:action}'${4:, as: '${5:name}'}
+endsnippet
+
+snippet res "resource"
+resource :${1:account}${2: do
+	$3
+end}
+endsnippet
+
+snippet res "resources"
+resources :${1:posts}${2: do
+	$3
+end}
+endsnippet
+
+snippet scope "scope"
+scope :${1:name}, -> { ${2:joins(:${3:table}).}where(${4:'${5:$3.${6:field}} = ?', ${7:'${8:value}'}}) }
+endsnippet
+
+snippet t "Translation snippet"
+t('`!v substitute(substitute(substitute(@%, substitute(getcwd() . "/", "\/", "\\\\/", "g"), "", ""), "\\(\\.\\(html\\|js\\)\\.\\(haml\\|erb\\)\\|\\(_controller\\)\\?\\.rb\\)$", "", ""), "/", ".", "g")`.${2:${1/[^\w]/_/g}}${3}', default: "${1:some_text}"${4})${5:$0}
+endsnippet
+
+snippet i18nt "Translation snippet"
+I18n.t('`!v substitute(substitute(substitute(@%, substitute(getcwd() . "/", "\/", "\\\\/", "g"), "", ""), "\\(\\.\\(html\\|js\\)\\.\\(haml\\|erb\\)\\|\\(_controller\\)\\?\\.rb\\)$", "", ""), "/", ".", "g")`.${2:${1/[^\w]/_/g}}${3}', default: "${1:some_text}"${4})${5:$0}
+endsnippet
+
+# vim:ft=snippets:

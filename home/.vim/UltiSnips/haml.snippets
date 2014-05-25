@@ -1,0 +1,135 @@
+snippet html "HTML boilerplate"
+!!! 5
+%html{ lang: '${1:en}' }
+	%head
+		%meta{ charset: 'UTF-8' }
+		%meta{ 'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }
+		%meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
+		%title ${2:Title}
+	%body
+		$0
+endsnippet
+
+snippet t "I18n.translate"
+t('${1:key}'${2:, scope: [${3::scope}]}${4:, default: '${5:Default text}'}${6:, ${7:option}: ${7:obj}})
+endsnippet
+
+snippet han "human attribute name" w
+human_attribute_name(:${1:attribute})
+endsnippet
+
+snippet %table "table"
+%table
+	%thead
+		%tr
+			%th${1:= $2}
+	%tbody
+		$0
+endsnippet
+
+snippet sff "simple_form form_for"
+simple_form_for ${1:object} do |f|
+	.form-inputs
+		$0
+	.form-actions
+		= f.submit
+endsnippet
+
+snippet ff "form_for"
+form_for ${1:object} do |f|
+	$0
+endsnippet
+
+snippet fi "simple_form input"
+f.input :${1:attribute}${2:, required: ${3:true}}
+$0
+endsnippet
+
+snippet f. "submit"
+f.submit${1: '${2:Submit}'}
+endsnippet
+
+snippet f. "text field"
+f.text_field :${1:attribute}
+endsnippet
+
+snippet f. "password field"
+f.password_field :${1:attribute}
+endsnippet
+
+snippet f. "email field"
+f.email_field :${1:attribute}
+endsnippet
+
+snippet f. "label"
+f.label :${1:attribute}
+endsnippet
+
+snippet f. "text area"
+f.text_area :${1:attribute}
+endsnippet
+
+snippet it "image_tag"
+image_tag '$1${2:.png}'${3:${4:, title: '${5:title}'}${6:, class: '${7:class}'}}
+endsnippet
+
+snippet linpp "link_to (nested path plural)"
+link_to ${1:'${2:link text...}'}, ${3:${10:parent}_${11:child}_path(${12:@}${13:${10}})}
+endsnippet
+
+snippet linp "link_to (nested path)"
+link_to ${1:'${2:link text...}'}, ${3:${12:parent}_${13:child}_path(${14:@}${15:${12}}, ${16:@}${17:${13}})}
+endsnippet
+
+snippet lipp "link_to (path plural)"
+link_to ${1:'${2:link text...}'}, ${3:${4:model}s_path}
+endsnippet
+
+snippet lip "link_to (path)"
+link_to ${1:'${2:link text...}'}, ${3:${12:model}_path(${13:@}${14:${12}})}
+endsnippet
+
+snippet lim "link_to model"
+link_to ${1:model}.${2:name}, ${3:${4:$1}_path(${14:$1})}
+endsnippet
+
+snippet rp "render (partial) (rp)"
+render partial: '${1:item}'
+endsnippet
+
+snippet rpc "render (partial,collection) (rpc)"
+render partial: '${1:item}', collection: ${2:@$1s}
+endsnippet
+
+snippet rpl "render (partial,locals) (rpl)"
+render partial: '${1:item}', locals: { ${2:$1}: ${3:@$1}$0 }
+endsnippet
+
+snippet rpo "render (partial,object) (rpo)"
+render partial: '${1:item}', object: ${2:@$1}
+endsnippet
+
+snippet if "if"
+- if ${1:condition}
+	$0
+endsnippet
+
+snippet ife "if ... else ..."
+- if ${1:condition}
+	$2
+- else
+	$3
+endsnippet
+
+snippet each "each item"
+- ${1:items}.each do |${2:item}|
+	$0
+endsnippet
+
+snippet ifa "if any"
+- if ${1:items}.any?
+	$0
+- else
+	${3:%p Nothing found}
+endsnippet
+# vim:ft=snippets:

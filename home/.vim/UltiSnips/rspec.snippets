@@ -1,5 +1,3 @@
-extends ruby
-
 snippet arx "and_raise" w
 and_raise(${1:exception})
 endsnippet
@@ -29,30 +27,42 @@ at_most(${1:n}).times
 endsnippet
 
 snippet con "context"
-context "${1:context}" do
-  $0
+context '${1:context}' do
+	$0
 end
 endsnippet
 
 snippet des "Describe"
-describe "${1:subject}" do
-  $0
+describe '${1:subject}' do
+	$0
 end
 endsnippet
 
 snippet dest "Describe_type"
 describe ${1:Type} do
-  $0
+	$0
 end
 endsnippet
 
 snippet desc "describe controller action"
-describe "${1:GET} ${2:action}" do
-  before { ${1/\w+/\L$0/} :$2, ${3:id: '1'} }
-  it { should respond_with(${4:success}) }
-  it { should render_template('${5:$2}') }
-  it { should${6:_not} set_the_flash }
-  it { should assign_to(:${7:ivar}) }
+describe '${1:GET} ${2:action}' do
+	before { ${1/\w+/\L$0/} :$2, ${3:id: '1'} }
+
+	it 'responds with success' do
+		expect(response).to be_success
+	end
+
+	it 'renders the $2 template' do
+		expect(response).to render_template('$2')
+	end
+
+	it 'does not set the flash' do
+		expect(flash[:notice]).to be_nil
+	end
+
+	it 'assigns to @${7:ivar}' do
+		expect(assigns(:$7)).to_not be_nil
+	end
 end
 endsnippet
 
@@ -69,13 +79,13 @@ its([:${1:key}]) { should $0 }
 endsnippet
 
 snippet it "It"
-it "${1:does something}" do
+it '${1:does something}' do
   $0
 end
 endsnippet
 
 snippet itv "It visits a page"
-it "${1:does something}" do
+it '${1:does something}' do
   visit "${2:/some/url}"
   $0
 end
@@ -86,29 +96,34 @@ it { expect(${1:get}: '${2:/some/url}').to route_to('${3:controller}#${4:action}
 $0
 endsnippet
 
+snippet itp "It expects path"
+it { expect(${1:article_path(1)}).to eql('${2:/articles/1}') }
+$0
+endsnippet
+
 snippet It "It single line"
 it { $0 }
 endsnippet
 
 snippet mat "Matcher (DSL)"
 RSpec::Matchers.define :${1:name} do |${2:expected}|
-  match do |${3:actual}|
-    $3.$1?($2)
-  end
+	match do |${3:actual}|
+		$3.$1?($2)
+	end
 
-  failure_message_for_should do |$3|
-    "Expected $3 to ${1/_/ /g} $2"
-  end
+	failure_message_for_should do |$3|
+		"Expected $3 to ${1/_/ /g} $2"
+	end
 
-  failure_message_for_should_not do |$3|
-    "Expected $3 not to ${1/_/ /g} $2"
-  end
+	failure_message_for_should_not do |$3|
+		"Expected $3 not to ${1/_/ /g} $2"
+	end
 end
 
 endsnippet
 
 snippet db "double"
-double("${1:double_name}"${2:, null_object: true})
+double('${1:double_name}'${2:, null_object: true})
 $0
 endsnippet
 
@@ -127,50 +142,12 @@ endsnippet
 
 snippet bef "setup"
 before(${1::each}) do
-  $0
+	$0
 end
 endsnippet
 
 snippet Bef "before {}"
 before { $0 }
-endsnippet
-
-snippet she "should eql"
-${1:target}.should eql(${2:value})
-$0
-endsnippet
-
-snippet shne "should_not eql"
-${1:target}.should_not eql(${2:value})
-$0
-endsnippet
-
-snippet shnre "should_not_raise"
-should_not raise_error(${1:error})
-$0
-endsnippet
-
-snippet shnr "should_not_receive"
-should_not_receive(:${1:message})$0
-$0
-
-endsnippet
-
-snippet shre "should_raise"
-.should raise_error(${1:error})
-$0
-endsnippet
-
-snippet shr "should_receive" w
-should_receive(:${1:message})$0
-endsnippet
-
-snippet wia "should_receive_with_args" w
-with(${1})$0
-endsnippet
-
-snippet stu "stub"
-stub(:${1:message})$0
 endsnippet
 
 snippet aft "teardown"
@@ -204,14 +181,14 @@ let!(:${1:symbol}) { create $0 }
 endsnippet
 
 snippet letb "let block"
-let :${1:symbol} do
-  $2
+let(:${1:symbol}) do
+	$2
 end
 $0
 endsnippet
 
 snippet subj "subject"
-subject { $1 }
+subject${1:(:${2:name})} { $3 }
 endsnippet
 
 snippet exp "expect to" w
@@ -250,8 +227,27 @@ expect(${1:subject}).not_to include($2)
 $0
 endsnippet
 
+snippet exprt "expect to render template" w
+expect(response).to render_template('${1:new}')
+$0
+endsnippet
+
+snippet exprd "expect to redirect" w
+expect(response).to redirect_to('${1:url}')
+$0
+endsnippet
+
+snippet exprd "expect to assign" w
+expect(assigns(:${1:name}).to eql(${2:obj})
+$0
+endsnippet
+
 snippet exphc "expect to have content" w
-expect(page).to have_content(${1:"content"})
+expect(page).to have_content('${1:content}')
+endsnippet
+
+snippet exphcss "expect to have css" w
+expect(page).to have_css('${1:selector}'${2:, text: '${3:text}'})
 endsnippet
 
 snippet exphe "expect to have elements" w
@@ -260,20 +256,20 @@ endsnippet
 
 snippet Exp "expect to block"
 expect {
-  $1
+	$1
 }.to $0
 endsnippet
 
 snippet expr "expect to raise error"
 expect {
-  $1
+	$1
 }.to raise_error(${2:error})
 endsnippet
 
 snippet expc "expect to change"
 expect {
-  $1
-}.to change { ${2:subject} }${4:.from($5)}${6:.to($7)}}${8:.by($9)}
+	$1
+}.to change { ${2:subject} }${4:.by(${5:1})}
 endsnippet
 
 snippet fc "FactoryGirl create"
@@ -288,16 +284,28 @@ snippet fbs "FactoryGirl build_stubbed"
 build_stubbed :${1:factory_name}$0
 endsnippet
 
-snippet fcl "FactoryGirl create"
+snippet fcl "FactoryGirl create list"
 create_list :${1:factory_name}, ${2:2}$0
 endsnippet
 
-snippet fbl "FactoryGirl build"
-build_list :${1:factory_name}, ${2: 2}$0
+snippet fbl "FactoryGirl build list"
+build_list :${1:factory_name}, ${2:2}$0
 endsnippet
 
-snippet fbsl "FactoryGirl build_stubbed"
-build_stubbed_list :${1:factory_name}, ${2: 2}$0
+snippet fbsl "FactoryGirl build_stubbed list"
+build_stubbed_list :${1:factory_name}, ${2:2}$0
 endsnippet
 
-# vim:ft=rspec.ruby
+snippet allow "allow to receive"
+allow(${1:object}).to receive(:${2:message})${3:.with(${4:argument})}${5:.and_return(${6:value})}
+endsnippet
+
+snippet expre "expect to receive"
+expect(${1:object}).to receive(:${2:message})${3:.with(${4:argument})}${5:.and_return(${6:value})}
+endsnippet
+
+snippet exphr "expect to have received"
+expect(${1:object}).to have_receive(:${2:message})${3:.with(${4:argument})}
+endsnippet
+
+# vim:ft=snippets:
