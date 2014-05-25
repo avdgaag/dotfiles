@@ -33,6 +33,9 @@ function rgem() {
 # Select a Tmux session to attach to
 alias stmux='tmux attach -t `tmux ls | selecta | cut -f1 -d:`'
 
+# Select a process to kill
+alias skill='kill `ps aux | selecta | awk '"'"'{print $2 }'"'"'`'
+
 # Working with these dotfiles made easier
 alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
