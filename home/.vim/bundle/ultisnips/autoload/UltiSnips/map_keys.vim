@@ -1,6 +1,11 @@
 call UltiSnips#bootstrap#Bootstrap()
 
 function! UltiSnips#map_keys#MapKeys()
+    if !exists('g:_uspy')
+        " Do not map keys if bootstrapping failed (e.g. no Python).
+        return
+    endif
+
     " Map the keys correctly
     if g:UltiSnipsExpandTrigger == g:UltiSnipsJumpForwardTrigger
 
@@ -10,7 +15,7 @@ function! UltiSnips#map_keys#MapKeys()
         exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=UltiSnips#ExpandSnippet()<cr>"
         exec "snoremap <silent> " . g:UltiSnipsExpandTrigger . " <Esc>:call UltiSnips#ExpandSnippet()<cr>"
     endif
-    exec 'xnoremap ' . g:UltiSnipsExpandTrigger. ' :call UltiSnips#SaveLastVisualSelection()<cr>gvs'
+    exec "xnoremap <silent> " . g:UltiSnipsExpandTrigger. " :call UltiSnips#SaveLastVisualSelection()<cr>gvs"
     exec "inoremap <silent> " . g:UltiSnipsListSnippets . " <C-R>=UltiSnips#ListSnippets()<cr>"
     exec "snoremap <silent> " . g:UltiSnipsListSnippets . " <Esc>:call UltiSnips#ListSnippets()<cr>"
 
