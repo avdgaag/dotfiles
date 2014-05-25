@@ -23,8 +23,8 @@ set cpo&vim
 
 function! SyntaxCheckers_javascript_eslint_IsAvailable() dict
     return
-        \ executable('eslint') &&
-        \ syntastic#util#versionIsAtLeast(syntastic#util#getVersion('eslint --version'), [0, 1])
+        \ executable(self.getExec()) &&
+        \ syntastic#util#versionIsAtLeast(syntastic#util#getVersion(self.getExecEscaped() . ' --version'), [0, 1])
 endfunction
 
 function! SyntaxCheckers_javascript_eslint_GetLocList() dict
@@ -34,16 +34,18 @@ function! SyntaxCheckers_javascript_eslint_GetLocList() dict
         \       '--config ' . syntastic#util#shexpand(g:syntastic_javascript_eslint_conf) : '') })
 
     let errorformat =
-        \ '%E%f: line %l\, col %c\, Error - %m'
+        \ '%E%f: line %l\, col %c\, Error - %m,' .
+        \ '%W%f: line %l\, col %c\, Warning - %m'
 
     let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat,
-        \ 'postprocess': ['sort'] })
+        \ 'errorformat': errorformat })
 
     for e in loclist
         let e['col'] += 1
     endfor
+
+    call self.setWantSort(1)
 
     return loclist
 endfunction
