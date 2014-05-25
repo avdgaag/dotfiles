@@ -8,3 +8,4 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 eval "$(/Users/arjan/code/a/bin/a init -)"
+export PATH="./.git/safe/../../bin:$PATH"

@@ -36,3 +36,6 @@
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
+[alias]
+	safe = !mkdir .git/safe
+	unsafe = !rmdir .git/safe
