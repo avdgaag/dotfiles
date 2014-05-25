@@ -3134,6 +3134,27 @@ class ExclusiveSelection_RealWorldCase_Test(_ES_Base):
 	// code
 }"""
 # End: Exclusive Selection  #}}}
+
+# Old Selection {{{#
+class _OS_Base(_VimTest):
+    def _extra_options_pre_init(self, vim_config):
+        vim_config.append("set selection=old")
+class OldSelection_SimpleTabstop_Test(_OS_Base):
+    snippets =("test", "h${1:blah}w $1")
+    keys = "test" + EX + "ui" + JF
+    wanted = "huiw ui"
+
+class OldSelection_RealWorldCase_Test(_OS_Base):
+    snippets = ("for",
+"""for ($${1:i} = ${2:0}; $$1 < ${3:count}; $$1${4:++}) {
+	${5:// code}
+}""")
+    keys = "for" + EX + "k" + JF
+    wanted = """for ($k = 0; $k < count; $k++) {
+	// code
+}"""
+# End: Old Selection #}}}
+
 # Normal mode editing  {{{#
 # Test for bug #927844
 class DeleteLastTwoLinesInSnippet(_VimTest):
@@ -3406,6 +3427,20 @@ class Plugin_Neocomplete_BugTest(_VimTest):
         vim_config.append('let g:neocomplete#enable_auto_delimiter = 1')
         vim_config.append('let g:neocomplete#enable_refresh_always = 1')
 # End: Plugin: Neocomplete  #}}}
+# Plugin: unite {{{#
+class Plugin_unite_BugTest(_VimTest):
+    plugins = ["Shougo/unite.vim"]
+    snippets = ("t", "Hello", "", "w")
+    keys = "iab\\ t=UltiSnipsCallUnite()\n"
+    wanted = "iab\\ Hello "
+
+    def _extra_options_pre_init(self, vim_config):
+        vim_config.append(r'set iskeyword+=\\ ')
+        vim_config.append('function! UltiSnipsCallUnite()')
+        vim_config.append('  Unite -start-insert -winheight=100 -immediately -no-empty ultisnips')
+        vim_config.append('  return ""')
+        vim_config.append('endfunction')
+# End: Plugin: unite  #}}}
 # Plugin: Supertab {{{#
 class Plugin_SuperTab_SimpleTest(_VimTest):
     plugins = ["ervandew/supertab"]
