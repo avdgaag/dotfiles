@@ -1,7 +1,7 @@
 "============================================================================
-"File:        lisp.vim
+"File:        bro.vim
 "Description: Syntax checking plugin for syntastic.vim
-"Maintainer:  Karl Yngve Lervåg <karl.yngve@lervag.net>
+"Maintainer:  Justin Azoff <justin.azoff@gmail.com>
 "License:     This program is free software. It comes without any warranty,
 "             to the extent permitted by applicable law. You can redistribute
 "             it and/or modify it under the terms of the Do What The Fuck You
@@ -10,38 +10,34 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_lisp_clisp_checker")
+if exists("g:loaded_syntastic_bro_bro_checker")
     finish
 endif
-let g:loaded_syntastic_lisp_clisp_checker = 1
+let g:loaded_syntastic_bro_bro_checker = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! SyntaxCheckers_lisp_clisp_GetLocList() dict
-    let makeprg = self.makeprgBuild({
-        \ 'args_after': '-q',
-        \ 'fname_before': '-c' })
+function! SyntaxCheckers_bro_bro_IsAvailable() dict
+    return system(self.getExecEscaped() . ' --help') =~# '--parse-only'
+endfunction
 
-    let errorformat  =
-        \ '%-G;%.%#,' .
-        \ '%W%>WARNING:%.%# line %l : %m,' .
-        \ '%Z  %#%m,' .
-        \ '%W%>WARNING:%.%# lines %l%\%.%\%.%\d%\+ : %m,' .
-        \ '%Z  %#%m,' .
-        \ '%E%>The following functions were %m,' .
-        \ '%Z %m,' .
-        \ '%-G%.%#'
+function! SyntaxCheckers_bro_bro_GetLocList() dict
+    let makeprg = self.makeprgBuild({ 'args_before': '--parse-only' })
+
+    "example: error in ./foo.bro, line 3: unknown identifier banana, at or "near "banana"
+    let errorformat =
+        \ '%trror in %f\, line %l: %m,' .
+        \ '%tarning in %f\, line %l: %m'
 
     return SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat,
-        \ 'defaults': {'bufnr': bufnr('')} })
+        \ 'errorformat': errorformat })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
-    \ 'filetype': 'lisp',
-    \ 'name': 'clisp'})
+    \ 'filetype': 'bro',
+    \ 'name': 'bro'})
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
