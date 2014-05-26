@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Use git-subtree to update a subtree in the current directory.
+#
+# This will read the file .gitsubtrees which contains a line per subtree in the
+# format PATH REPO and uses it to update the repo.
+
+if [ ! -f .gitsubtrees ]
+then
+  echo '.gitsubtrees does not exist.' >&2
+  exit 1
+fi
+
+while IFS=" " read dir repo
+do
+  if [ ! -z "$repo" ]
+  then
+    git subtree pull --squash --prefix "$dir" "$repo" master
+    sleep 2
+  else
+    echo "Skipping $dir" >&2
+  fi
+done < .gitsubtrees
