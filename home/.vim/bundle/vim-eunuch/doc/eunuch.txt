@@ -13,8 +13,11 @@ a buffer and the underlying file at the same time.  Load a `find` or a
 Since this plugin can delete files, you should be aware that this plugin can
 delete files.  Fat fingers beware.
 
-Bonus feature: if you create a new file that starts with #!, `chmod +x` will
-automatically be invoked on it when you first write the file.
+If you create a new file that starts with #!, `chmod +x` will automatically be
+invoked on it when you first write the file.
+
+File type detection for files edited with `sudoedit` and `sudo -e` happens
+based on the original file name.
 
 COMMANDS                                        *eunuch-commands*
 
@@ -64,9 +67,9 @@ COMMANDS                                        *eunuch-commands*
                         internally, so after the first invocation you can
                         subsequently use :w!.
 
-                                                *eunuch-:W*
-:W                      Like |:wall|, but for windows rather than buffers.
-                        It also writes files that haven't changed, which is
+                                                *eunuch-:Wall* *eunuch-:W*
+:Wall                   Like |:wall|, but for windows rather than buffers.
+:W                      It also writes files that haven't changed, which is
                         useful for kicking off build and test suites (such as
                         with watchr or guard).  Furthermore, it handily
                         doubles as a safe fallback for people who, like me,
