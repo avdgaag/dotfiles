@@ -25,28 +25,15 @@ function! RailsDetect(...) abort
   if exists('b:rails_root')
     return 1
   endif
-  let fn = substitute(fnamemodify(a:0 ? a:1 : expand('%'), ":p"),'\c^file://','','')
-  let sep = exists('+shellslash') && !&shellslash ? '\\' : '/'
-  if isdirectory(fn)
-    let fn = fnamemodify(fn,':s?[\/]$??')
-  else
-    let fn = fnamemodify(fn,':s?\(.*\)[\/][^\/]*$?\1?')
-    if !isdirectory(fn)
-      return 0
-    endif
+  let fn = fnamemodify(a:0 ? a:1 : expand('%'), ':p')
+  if !isdirectory(fn)
+    let fn = fnamemodify(fn, ':h')
   endif
-  let ofn = ""
-  let fns = []
-  while fn != ofn && fn !=# '/' && fn !=# '.'
-    call add(fns, fn)
-    if filereadable(fn . "/config/environment.rb")
-      let b:rails_root = resolve(fn)
-      return 1
-    endif
-    let ofn = fn
-    let fn = fnamemodify(ofn,':h')
-  endwhile
-  return 0
+  let file = findfile('config/environment.rb', escape(fn, ', ').';')
+  if !empty(file)
+    let b:rails_root = fnamemodify(file, ':p:h:h')
+    return 1
+  endif
 endfunction
 
 " }}}1
@@ -86,8 +73,11 @@ augroup railsPluginDetect
   autocmd Syntax ruby,eruby,yaml,haml,javascript,coffee,sass,scss
         \ if RailsDetect() | call rails#buffer_syntax() | endif
 
-  autocmd User ProjectileDetect
-        \ if RailsDetect() | call projectile#append(b:rails_root, {}) | endif
+  autocmd User ProjectionistDetect
+        \ if RailsDetect(get(g:, 'projectionist_file', '')) |
+        \   call projectionist#append(b:rails_root,
+        \     {'*': {'make': split(rails#app().rake_command('static'))}}) |
+        \ endif
 augroup END
 
 command! -bar -bang -nargs=* -complete=dir Rails execute rails#new_app_command(<bang>0,<f-args>)
