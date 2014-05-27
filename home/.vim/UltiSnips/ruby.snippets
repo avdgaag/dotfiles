@@ -1,5 +1,83 @@
 priority -50
 
+snippet #@ "Yard docblock"
+# ${1:Description}
+#
+# @example${10: Example title}
+#   $0
+#
+${2:# @param [${3:Object}] ${4:name} ${5:description}}
+${6:# @return [${7:Object}] ${8:return value}}
+endsnippet
+
+
+
+snippet @y "@yieldreturn"
+@yieldreturn [${1:Object}] ${2:description}
+endsnippet
+
+
+
+snippet @y "@yieldparam"
+@yieldparam ${1:name} [${2:Object}] ${3:description}
+endsnippet
+
+
+
+snippet @y "@yield"
+@yield [${1:param}] ${2:description}
+endsnippet
+
+
+
+snippet @!m "@!method"
+@!method ${1:method_name}${2:(${3:argument})}
+#   ${4:Description}
+endsnippet
+
+snippet @o "@option"
+@option ${1:argument} [${2:Object}] :${3:option} ${4:description}
+endsnippet
+
+
+
+snippet @s "@see"
+@see ${1:description}
+endsnippet
+
+
+
+snippet @e "@example"
+@example ${1:description}
+	$0
+endsnippet
+
+
+
+snippet @r "@return"
+@param [${1:Object}] ${2:description}
+endsnippet
+
+
+
+snippet @p "@param"
+@param [${1:Object}] ${2:arg} ${3:description}
+endsnippet
+
+
+
+snippet req "require_relative"
+require_relative './${1:library}'
+endsnippet
+
+
+
+snippet req "require"
+require '${1:library}'
+endsnippet
+
+
+
 snippet "^#!" "#!/usr/bin/env ruby" r
 #!/usr/bin/env ruby
 $0
@@ -86,7 +164,7 @@ endsnippet
 
 
 snippet "\b(de)?f" "def <name>..." r
-def ${1:function_name}${2: ${3:*args}}
+def ${1:function_name}${2:(${3:*args})}
 	${0:# TODO}
 end
 endsnippet
@@ -94,7 +172,7 @@ endsnippet
 
 
 snippet defi "def initialize ..."
-def initialize${1: ${2:*args}}
+def initialize${1:(${2:*args})}
 	${0:# TODO}
 end
 endsnippet
@@ -102,7 +180,7 @@ endsnippet
 
 
 snippet defr "def <name> ... rescue ..."
-def ${1:function_name}${2: ${3:*args}}
+def ${1:function_name}${2:(${3:*args})}
 	${4:# TODO}
 rescue
 	${0:# TODO}
@@ -543,9 +621,23 @@ endsnippet
 
 
 
+snippet am "alias_method :<new_name>, :<old_name>"
+alias_method :${1:new_name}, :${2:old_name}
+endsnippet
+
+
+
+snippet struct "Struct.new"
+${1:ClassName} = Struct.new(:${2:attribute}) do
+	$0
+end
+endsnippet
+
+
+
 snippet class "class <class_name> def initialize ... end end"
 class ${1:class_name}
-	def initialize ${2:*args}
+	def initialize${2:(${3:*args})}
 		$0
 	end
 end
