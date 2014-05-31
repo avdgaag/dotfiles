@@ -1,0 +1,18 @@
+snippet F "Feature" b
+Feature: ${1:title}
+	As a ${2:role}
+	I want to ${3:action}
+	In order to ${4:benefit}
+
+	$0
+endsnippet
+
+snippet B "Background" b
+Background:
+	$0
+endsnippet
+
+snippet S "Scenario" b
+Scenario: ${1:description}
+	$0
+endsnippet

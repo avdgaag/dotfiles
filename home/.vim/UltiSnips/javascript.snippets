@@ -171,4 +171,18 @@ snippet req "require an AMD module"
 require([${1:'dependencies'}], ${2:callback});
 endsnippet
 
+snippet class "class function"
+var ${1:ClassName} = (function() {
+	function $1(${2:argument}) {`!p
+snip >> 2
+for arg in t[2].split(','):
+	snip += 'this.%s = %s;' % (arg.strip(), arg.strip())`
+	}
+
+	$0
+
+	return $1;
+})();
+endsnippet
+
 # vim:ft=snippets:

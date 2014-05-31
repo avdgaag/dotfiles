@@ -1,5 +1,41 @@
 priority -50
 
+global !p
+import re
+import os
+
+def camelize(str):
+	return os.path.splitext(''.join([part.capitalize() for part in str.lower().split('_')]))[0]
+
+class Argument(object):
+	def __init__(self, argument_string):
+		self.value = re.split('=|:', argument_string)[0].strip()
+		self.name = re.sub('\*', '', self.value)
+
+	def __str__(self):
+		return self.name
+
+	def ivar(self):
+		return '@%s = %s' % (self.name, self.value)
+
+	def is_valid(self):
+		return not re.search('\'|"', self.name)
+
+class ArgumentList(object):
+	def __init__(self, argument_list):
+		self.arguments = [
+				Argument(arg) for
+				arg in argument_list.split(',')
+				if Argument(arg).is_valid()
+			]
+
+	def ivars(self):
+		return [arg.ivar() for arg in self.arguments]
+
+	def attr_reader(self):
+		return 'attr_reader ' + ', '.join([':%s' % arg.name for arg in self.arguments])
+endglobal
+
 snippet #@ "Yard docblock"
 # ${1:Description}
 #
@@ -584,7 +620,7 @@ endsnippet
 snippet begin "begin ... rescue ... else ... ensure ... end"
 begin
 	${1:# Raise exception}
-rescue Exception => e
+rescue StandardError => e
 	puts e.message
 	puts e.backtrace.inspect
 	${2:# Rescue}
@@ -598,7 +634,7 @@ endsnippet
 
 
 snippet rescue
-rescue Exception => e
+rescue StandardError => e
 	puts e.message
 	puts e.backtrace.inspect
 	${0:# Rescue}
@@ -636,8 +672,13 @@ endsnippet
 
 
 snippet class "class <class_name> def initialize ... end end"
-class ${1:class_name}
-	def initialize${2:(${3:*args})}
+class ${1:`!p snip.rv = camelize(fn) or 'ClassName'`}${2: < ${3:ParentClass}}
+	`!p snip.rv = ArgumentList(t[5]).attr_reader()`
+
+	def initialize${4:(${5:*args})}`!p
+snip >> 2
+for arg in ArgumentList(t[5]).ivars():
+  snip += arg`
 		$0
 	end
 end
@@ -645,8 +686,16 @@ endsnippet
 
 
 
-snippet module "module"
-module ${1:module_name}
+snippet dm "define_method <name> do ... end"
+define_method :${1:method_name} do${2: |${3:arg,...}|}
+	$0
+end
+endsnippet
+
+
+
+snippet mod "module"
+module ${1:`!p snip.rv = camelize(fn) or 'MyClass'`}
 	$0
 end
 endsnippet
@@ -657,6 +706,14 @@ snippet ###
 =begin
 	$0
 =end
+endsnippet
+
+
+
+snippet ifmain "if $0 == __FILE__"
+if \$0 == __FILE__
+	$0
+end
 endsnippet
 
 # vim: set ts=2 sw=2 expandtab:

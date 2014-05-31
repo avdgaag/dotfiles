@@ -205,6 +205,7 @@ if has('autocmd')
     autocmd BufNewFile,BufRead {Gemfile,Guardfile,Capfile,Rakefile,Thorfile,config.ru,Vagrantfile,*.prawn} set filetype=ruby
     autocmd BufNewFile,BufRead Gemfile.lock,Procfile set filetype=yaml
     autocmd BufNewFile,BufRead *_spec.rb set filetype=rspec.ruby
+    autocmd BufNewFile,BufRead *_steps.rb set filetype=rspec.ruby
 
     " Run Ruby files either directly or in a tmux split pane using Vimux.
     autocmd Filetype ruby nnoremap <buffer> <Leader>r :!ruby %<CR>

@@ -1,3 +1,56 @@
+global !p
+import re
+import os
+
+def described_class_from_filename(filename):
+	return camelize(re.sub('_spec', '', filename))
+
+def camelize(str):
+	return os.path.splitext(''.join([part.capitalize() for part in str.lower().split('_')]))[0]
+endglobal
+
+snippet T "Transform" b
+Transform(/^${1:pattern}$/) do |${2:str}|
+	$0
+end
+endsnippet
+
+snippet W "When" b
+When(/^${1:I perform some kind of action}$/) do${2: |${3:arg, ...}|}
+	$0
+end
+endsnippet
+
+snippet T "Then" b
+Given(/^${1:I observe a change in the world}$/) do${2: |${3:arg, ...}|}
+	$0
+end
+endsnippet
+
+snippet G "Given" b
+Given(/^${1:a certain state of the world}$/) do${2: |${3:arg, ...}|}
+	$0
+end
+endsnippet
+
+snippet isbl "it_should_behave_like ..." b
+it_should_behave_like '${1:shared examples}'$0
+endsnippet
+
+snippet fi "fill_in ..., with: ..." b
+fill_in '${1:Field}', with: ${2:'${3:Value}'}
+endsnippet
+
+snippet sel "select ..., from: ..." b
+select '${1:Value}', from: '${2:Field}'
+endsnippet
+
+snippet wi "within ... do end" b
+within ${1:'${2:selector}'} do
+	$0
+end
+endsnippet
+
 snippet arx "and_raise" w
 and_raise(${1:exception})
 endsnippet
@@ -39,12 +92,20 @@ end
 endsnippet
 
 snippet dest "Describe_type"
-describe ${1:Type} do
+describe ${1:`!p snip.rv = described_class_from_filename(fn) or 'MyClass'`} do
 	$0
 end
 endsnippet
 
-snippet desc "describe controller action"
+snippet desr "Describe routing"
+describe ${1:Articles}Controller do
+	describe 'routing' do
+		$0
+	end
+end
+endsnippet
+
+snippet desc "describe simple controller action"
 describe '${1:GET} ${2:action}' do
 	before { ${1/\w+/\L$0/} :$2, ${3:id: '1'} }
 
@@ -80,25 +141,23 @@ endsnippet
 
 snippet it "It"
 it '${1:does something}' do
-  $0
+	$0
 end
 endsnippet
 
 snippet itv "It visits a page"
 it '${1:does something}' do
-  visit "${2:/some/url}"
-  $0
+	visit "${2:/some/url}"
+	$0
 end
 endsnippet
 
 snippet itr "It expects routing"
 it { expect(${1:get}: '${2:/some/url}').to route_to('${3:controller}#${4:action}'${5:, id: '${6:1}'}) }
-$0
 endsnippet
 
 snippet itp "It expects path"
 it { expect(${1:article_path(1)}).to eql('${2:/articles/1}') }
-$0
 endsnippet
 
 snippet It "It single line"
@@ -124,7 +183,6 @@ endsnippet
 
 snippet db "double"
 double('${1:double_name}'${2:, null_object: true})
-$0
 endsnippet
 
 snippet mm "mock_model"
@@ -141,7 +199,7 @@ require 'spec_helper'
 endsnippet
 
 snippet bef "setup"
-before(${1::each}) do
+before${1:(${2::each})} do
 	$0
 end
 endsnippet
@@ -151,8 +209,8 @@ before { $0 }
 endsnippet
 
 snippet aft "teardown"
-after(${1::each}) do
-  $0
+after${1:(${2::each})} do
+	$0
 end
 endsnippet
 
@@ -172,19 +230,16 @@ snippet let! "let! {}"
 let!(:${1:symbol}) { $2 }
 endsnippet
 
-snippet letc "let { create ... }"
-let(:${1:symbol}) { create $0 }
-endsnippet
-
-snippet letc! "let! { create ... }"
-let!(:${1:symbol}) { create $0 }
+snippet letb! "let block"
+let!(:${1:symbol}) do
+	$0
+end
 endsnippet
 
 snippet letb "let block"
 let(:${1:symbol}) do
-	$2
+	$0
 end
-$0
 endsnippet
 
 snippet subj "subject"
@@ -209,37 +264,34 @@ endsnippet
 
 snippet expe "expect to equal" w
 expect(${1:subject}).to eql($2)
-$0
 endsnippet
 
 snippet expne "expect not to equal" w
 expect(${1:subject}).not_to eql($2)
-$0
 endsnippet
 
 snippet expi "expect to include" w
 expect(${1:subject}).to include($2)
-$0
 endsnippet
 
 snippet expni "expect not to include" w
 expect(${1:subject}).not_to include($2)
-$0
 endsnippet
 
 snippet exprt "expect to render template" w
 expect(response).to render_template('${1:new}')
-$0
 endsnippet
 
 snippet exprd "expect to redirect" w
 expect(response).to redirect_to('${1:url}')
-$0
 endsnippet
 
-snippet exprd "expect to assign" w
-expect(assigns(:${1:name}).to eql(${2:obj})
-$0
+snippet expa "expect assigns to " w
+expect(assigns(:${1:name})).to $0
+endsnippet
+
+snippet expf "expect flash to" w
+expect(flash[:${1:name}]).to $0
 endsnippet
 
 snippet exphc "expect to have content" w
@@ -305,7 +357,7 @@ expect(${1:object}).to receive(:${2:message})${3:.with(${4:argument})}${5:.and_r
 endsnippet
 
 snippet exphr "expect to have received"
-expect(${1:object}).to have_receive(:${2:message})${3:.with(${4:argument})}
+expect(${1:object}).to have_received(:${2:message})${3:.with(${4:argument})}
 endsnippet
 
 # vim:ft=snippets:
