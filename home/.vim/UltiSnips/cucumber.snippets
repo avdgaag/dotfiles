@@ -16,3 +16,12 @@ snippet S "Scenario" b
 Scenario: ${1:description}
 	$0
 endsnippet
+
+snippet O "Scenario Outline" b
+Scenario Outline: ${1:title}
+	$0
+
+	Examples:
+		| A | B |
+		| 1 | 2 |
+endsnippet

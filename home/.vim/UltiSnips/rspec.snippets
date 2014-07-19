@@ -9,7 +9,7 @@ def camelize(str):
 	return os.path.splitext(''.join([part.capitalize() for part in str.lower().split('_')]))[0]
 endglobal
 
-snippet T "Transform" b
+snippet Tr "Transform" b
 Transform(/^${1:pattern}$/) do |${2:str}|
 	$0
 end
@@ -22,7 +22,7 @@ end
 endsnippet
 
 snippet T "Then" b
-Given(/^${1:I observe a change in the world}$/) do${2: |${3:arg, ...}|}
+Then(/^${1:I observe a change in the world}$/) do${2: |${3:arg, ...}|}
 	$0
 end
 endsnippet

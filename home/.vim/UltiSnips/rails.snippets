@@ -1,5 +1,21 @@
 priority -50
 
+global !p
+import re
+import os
+
+def camelize(str):
+	return os.path.splitext(''.join([part.capitalize() for part in str.lower().split('_')]))[0]
+endglobal
+
+snippet aa "after_action" b
+after_action :${1:method_name}${2:, only: %i(${3:index})}
+endsnippet
+
+snippet ba "before_action" b
+before_action :${1:method_name}${2:, only: %i(${3:index})}
+endsnippet
+
 snippet anaf "accepts_nested_attributes_for"
 accepts_nested_attributes_for :${1:association_name}${2:${3:,
 															allow_destroy: true}${4:,
@@ -176,15 +192,14 @@ has_and_belongs_to_many :${1:object}${2:, join_table: '${3:table_name}', foreign
 endsnippet
 
 snippet hm "has_many (hm)"
-has_many :${1:object}s${2:, class_name: '${1}', foreign_key: '${4:reference}_id'}
+has_many :${1:objects},
+				 inverse_of: :${2:assoc},
+				 dependent: :${3:destroy}
 endsnippet
 
 snippet hmt "has_many (through)"
-has_many :${1:objects}, through: :${2:join_association}${3:, source: :${4:${2}_table_foreign_key_to_${1}_table}}
-endsnippet
-
-snippet hmd "has_many dependent: :destroy"
-has_many :${1:object}s${2:, class_name: '${1}', foreign_key: '${4:reference}_id'}, dependent: :destroy$0
+has_many :${1:objects},
+				 through: :${2:join_association}
 endsnippet
 
 snippet ho "has_one (ho)"
@@ -262,9 +277,7 @@ end
 endsnippet
 
 snippet resw "respond_with"
-respond_with(${1:@${2:model}})${3: do |format|
-	format.${4:html} { $0 \}
-end}
+respond_with(${1:@${2:model}})
 endsnippet
 
 snippet t. "t.binary (tcbi)"
@@ -476,6 +489,27 @@ endsnippet
 
 snippet i18nt "Translation snippet"
 I18n.t('`!v substitute(substitute(substitute(@%, substitute(getcwd() . "/", "\/", "\\\\/", "g"), "", ""), "\\(\\.\\(html\\|js\\)\\.\\(haml\\|erb\\)\\|\\(_controller\\)\\?\\.rb\\)$", "", ""), "/", ".", "g")`.${2:${1/[^\w]/_/g}}${3}', default: "${1:some_text}"${4})${5:$0}
+endsnippet
+
+snippet mod "Concern module" b
+module ${1:`!p snip.rv = camelize(fn) or 'MyConcern'`}
+	extend ActiveSupport::Concern
+
+	included do
+		$0
+	end
+
+	module ClassMethods
+	end
+end
+endsnippet
+
+snippet classv "Custom validator class" b
+class ${1:`!p snip.rv = camelize(fn) or 'MyValidator'`} < ActiveModel::EachValidator
+	def validate_each(record, attribute, value)
+		record.errors.add attribute, :${2:invalid} if $0
+	end
+end
 endsnippet
 
 # vim:ft=snippets:
