@@ -45,3 +45,6 @@ accessor
 Metaprogramming
 metaprogramming
 ActiveRecord
+markup
+wiki
+FactoryGirl
