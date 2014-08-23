@@ -141,6 +141,3 @@ alias vsc='vagrant ssh-config'
 
 # Rsync
 alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
-
-# added by travis gem
-source /Users/arjan/.travis/travis.sh

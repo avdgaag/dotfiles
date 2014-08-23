@@ -52,6 +52,3 @@ cdpath=($HOME/code)
 
 source ~/.bashrc
 source ~/.zshenv
-
-# added by travis gem
-source /Users/arjan/.travis/travis.sh
