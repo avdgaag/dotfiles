@@ -7,7 +7,6 @@ alias lsh='ls -lhGFr'
 alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
 alias nicedatetime='date "+%Y-%m-%d %H:%M"'
-alias iaw='open -a iA\ Writer'
 alias marked='open -a Marked'
 alias bbundle='bundle check || bundle install | grep -v "Using "'
 alias -g bb='`git rev-parse --abbrev-ref HEAD`'
@@ -26,10 +25,6 @@ function take() {
     cd "$*"
 }
 
-function rgem() {
-  curl --silent http://rubygems.org/api/v1/gems/$1.json | jq '.version'
-}
-
 # Select a Tmux session to attach to
 alias stmux='tmux attach -t `tmux ls | selecta | cut -f1 -d:`'
 
@@ -40,13 +35,6 @@ alias skill='kill `ps aux | selecta | awk '"'"'{print $2 }'"'"'`'
 alias reload='source ~/.bashrc'
 alias ea='vim ~/.bashrc && reload' # Edit aliases
 
-# To Do files
-alias td='cat TODO'                  # what to do
-alias tdn='head -1 TODO'             # what to do next
-alias tdc='sed "/^$/d" TODO | wc -l' # to do count
-alias tdd='sed "1d" TODO > TODO'     # mark next to do done
-alias tdg='cat TODO | grep'          # what to do grep
-
 # Pretty printing files
 function pp() {
   pygmentize -O 'bg=dark,style=vim' -f terminal256 "$1" 
@@ -56,20 +44,6 @@ function pp() {
 function pk() {
   pbpaste | pygmentize -O 'style=friendly,fontface=Menlo' -f rtf $@ | sed 's/\f0/\f0\\fs80/g' | pbcopy
 }
-
-# Generating ctags
-function cctags() {
-  bundle show --paths | xargs ctags -R --languages=-javascript
-  ctags -a --extra=+f --exclude=.git --exclude=log --exclude=tmp --languages=-javascript,sql -R *
-}
-
-function respec() {
-  awk '/support/ { next } { print $2 }' failures | xargs bundle exec rspec
-}
-
-
-# Other
-alias redis-start='redis-server /usr/local/etc/redis.conf'
 
 # Git
 # ---------------------------------------------------------------------------------------
