@@ -148,7 +148,7 @@ function! airline#extensions#load()
   endif
 
   if (get(g:, 'airline#extensions#hunks#enabled', 1) && get(g:, 'airline_enable_hunks', 1))
-        \ && (exists('g:loaded_signify') || exists('g:loaded_gitgutter'))
+        \ && (exists('g:loaded_signify') || exists('g:loaded_gitgutter') || exists('g:loaded_changes'))
     call airline#extensions#hunks#init(s:ext)
   endif
 
@@ -209,6 +209,10 @@ function! airline#extensions#load()
 
   if get(g:, 'airline#extensions#nrrwrgn#enabled', 1) && exists(':NR') == 2
       call airline#extensions#nrrwrgn#init(s:ext)
+  endif
+
+  if (get(g:, 'airline#extensions#capslock#enabled', 1) && exists('*CapsLockStatusline'))
+    call airline#extensions#capslock#init(s:ext)
   endif
 
   if !get(g:, 'airline#extensions#disable_rtp_load', 0)
