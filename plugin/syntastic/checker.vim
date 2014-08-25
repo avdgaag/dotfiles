@@ -98,7 +98,10 @@ function! g:SyntasticChecker.makeprgBuild(opts) " {{{2
 endfunction " }}}2
 
 function! g:SyntasticChecker.isAvailable() " {{{2
-    return self._isAvailableFunc()
+    if !has_key(self, '_available')
+        let self._available = self._isAvailableFunc()
+    endif
+    return self._available
 endfunction " }}}2
 
 " }}}1
@@ -135,7 +138,7 @@ function! g:SyntasticChecker._populateHighlightRegexes(errors) " {{{2
         for e in a:errors
             if e['valid']
                 let term = self._highlightRegexFunc(e)
-                if len(term) > 0
+                if term != ''
                     let e['hl'] = term
                 endif
             endif
@@ -144,10 +147,9 @@ function! g:SyntasticChecker._populateHighlightRegexes(errors) " {{{2
 endfunction " }}}2
 
 function! g:SyntasticChecker._getOpt(opts, basename, name, default) " {{{2
-    let user_val = syntastic#util#var(a:basename . a:name)
     let ret = []
     call extend( ret, self._shescape(get(a:opts, a:name . '_before', '')) )
-    call extend( ret, self._shescape(user_val != '' ? user_val : get(a:opts, a:name, a:default)) )
+    call extend( ret, self._shescape(syntastic#util#var( a:basename . a:name, get(a:opts, a:name, a:default) )) )
     call extend( ret, self._shescape(get(a:opts, a:name . '_after', '')) )
 
     return ret
