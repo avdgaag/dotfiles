@@ -2,6 +2,8 @@
 
 set -e
 
+.git/hooks/ctags > /dev/null 2>&1 &
+
 OLDREV=$1
 NEWREV=$2
 IS_BRANCH_CHECKOUT=$3

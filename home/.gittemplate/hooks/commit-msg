@@ -1,25 +1,259 @@
 #!/usr/bin/env ruby
+# ## Introduction
+#
+# Auto-labeling Git commits with issues tracker IDs found in the current
+# branch name. This script is meant to be used as a Git commit-msg hook. It
+# expects a single argument, the location of the temporary file with the commit
+# message the user entered, and it outputs that same message with maybe some
+# extra labels added to it.
+#
+# ## Example
+#
+# For example, when on branch `feature_123456_my_new_feature`, it will transform a
+# commit message like this:
+#
+#     Implement new feature
+#
+# Into something like this:
+#
+#     Implement new feature
+#
+#     [#123456]
+#
+# When your commit message already includes a reference to the user story ID
+# this script would want to add, it does not add it again. Also, when you
+# include the special `NOREF` string somewhere in the commit message, that will
+# be stripped out, but no other changes will be made.
+#
+# ## Supported formats
+#
+# The following formats are currently supported:
+#
+# * Pivotal Tracker IDs: 7-9 digits
+# * Jira issue IDs: Two or more capitals, dash, one or more digits
+#
+# You can add more formats by subclassing the `Issue` class.
+#
+# ## Testing
+#
+# To run this script's tests, simply run it with no arguments:
+#
+#     $ ./auto_reference_pt_ids
+#
+# This will cause it to run its own unit tests (requires Rubygems and Rspec).
+#
+# ## Installation
+#
+# To install, copy it into `path/to/project/.git/hooks/commit-msg` and make it
+# executable.
+#
+# Author: Arjan van der Gaag
+# URL:    http://arjanvandergaag.nl
+class Issue
+  attr_reader :branch_name
+  private :branch_name
 
-branchname = `git branch --no-color 2> /dev/null`[/^\* (.+)/, 1].to_s
+  @subclasses = []
 
-exit unless matches = branchname.match(/\APT(\d+)\Z/)
-ticket_number = matches[1]
-reference = '[#%s]' % ticket_number
-
-message_file = ARGV[0]
-message = File.read(message_file)
-
-exit if message.include?(ticket_number)
-
-message = 
-  if message =~ /\bnoref\b/i
-    message
-  elsif message =~ /\bfinish|fix|finishes|fixes|closes #{ticket_number}/i
-    message + "\n[Finishes ##{ticket_number}]"
-  else
-    message + "\n[##{ticket_number}]"
+  def self.inherited(subclass)
+    @subclasses << subclass
   end
 
-File.open(message_file, 'w') do |f|
-  f.write(message)
+  def self.matching(branch_name)
+    @subclasses
+      .map  { |subclass| subclass.new(branch_name) }
+      .find { |issue| issue.matches? } || NullIssue.new
+  end
+
+  def initialize(branch_name)
+    @branch_name = branch_name
+  end
+
+  def id
+    branch_name[pattern, 1]
+  end
+
+  def id?
+    true
+  end
+
+  def matches?
+    pattern === branch_name
+  end
+
+  def pattern
+    //
+  end
+end
+
+class NullIssue
+  def matches?
+    true
+  end
+
+  def id?
+    false
+  end
+
+  def format
+    ''
+  end
+end
+
+class JiraIssue < Issue
+  def pattern
+    /([A-Z]{2,}[\-_]\d+)/
+  end
+
+  def format
+    "\n\n%s" % id.sub('_', '-')
+  end
+end
+
+class PivotalTrackerIssue < Issue
+  def pattern
+    /(\d{7,9})/
+  end
+
+  def format
+    "\n\n[#%s]" % id
+  end
+end
+
+class Labeler
+  OUTPUT_FORMAT = "\n\n[#%s]".freeze
+
+  ID_IN_BRANCH_FORMAT = /(\d{7,9}|[A-Z]{2,}[\-_]\d+)/.freeze
+
+  ESCAPE = 'NOREF'.freeze
+
+  attr_reader :original_message
+
+  def initialize(original_message)
+    @original_message = original_message
+  end
+
+  def filtered_message
+    if requires_update?
+      original_message + formatted_id_from_branch_name
+    elsif contains_escape?
+      original_message.sub(ESCAPE, '').strip
+    else
+      original_message
+    end
+  end
+
+  def branch_name
+    @branch_name ||= `git branch --no-color 2>/dev/null`[/^\* (\w+)$/, 1]
+  end
+
+  private
+
+  def requires_update?
+    !contains_escape? &&
+      branch_name_contains_id? &&
+      !original_message_already_contains_reference?
+  end
+
+  def contains_escape?
+    original_message.include?(ESCAPE)
+  end
+
+  def formatted_id_from_branch_name
+    issue.format
+  end
+
+  def issue
+    @issue ||= Issue.matching(branch_name)
+  end
+
+  def original_message_already_contains_reference?
+    original_message.include?(formatted_id_from_branch_name.strip)
+  end
+
+  def branch_name_contains_id?
+    branch_name && issue.id?
+  end
+end
+
+if ARGV.any?
+  commit_message_filename = ARGV[0]
+  labeler = Labeler.new(File.read(commit_message_filename))
+  File.open(commit_message_filename, 'w') do |f|
+    f.write(labeler.filtered_message)
+  end
+else
+  require 'minitest/autorun'
+
+  class TestLabeler < Minitest::Test
+    attr_reader :subject, :msg
+
+    def setup
+      @msg = "Add new feature.\n\nDetailed description."
+      @subject = Labeler.new(@msg)
+    end
+
+    def test_finds_no_branch_in_empty_output
+      def subject.`(str); ''; end
+      assert_nil subject.branch_name
+    end
+
+    def test_does_not_change_the_message_when_not_on_any_branch
+      assert_equal msg, subject.filtered_message
+    end
+
+    def test_parses_the_current_branch_when_on_a_regular_branch
+      def subject.`(str); "* new_feature\n  other_branch"; end
+      assert_equal 'new_feature', subject.branch_name
+    end
+
+    def test_does_not_change_the_message_when_on_a_regular_branch
+      def subject.`(str); "* new_feature\n  other_branch"; end
+      assert_equal msg, subject.filtered_message
+    end
+
+    def test_adds_jira_id_from_branch_to_simple_message
+      def subject.`(str); "  other_branch\n* JIR_136_timezones"; end
+      assert_equal "#{msg}\n\nJIR-136", subject.filtered_message
+    end
+
+    def test_adds_jira_id_from_branch_to_simple_message_even_when_using_dash
+      def subject.`(str); "  other_branch\n* JIR-136_timezones"; end
+      assert_equal "#{msg}\n\nJIR-136", subject.filtered_message
+    end
+
+    def test_it_does_not_repeat_the_jira_id_when_already_present
+      def subject.`(str); "  other_branch\n* JIR_136_timezones"; end
+      message = "JIR-136: add new feature"
+      subject = Labeler.new(message)
+      assert_equal message, subject.filtered_message
+    end
+
+    def test_does_not_add_jira_id_when_noref_comment_is_present
+      def subject.`(str); "  other_branch\n* JIR_136_timezones"; end
+      message = "add new feature\n\nNOREF"
+      subject = Labeler.new(message)
+      assert_equal 'add new feature', subject.filtered_message
+    end
+
+    def test_adds_pt_id_from_branch_to_simple_message
+      def subject.`(str); "  other_branch\n* 12345678_timezones"; end
+      assert_equal "#{msg}\n\n[#12345678]", subject.filtered_message
+    end
+
+    def test_it_does_not_repeat_the_pt_id_when_already_present
+      def subject.`(str); "  other_branch\n* 12345678_timezones"; end
+      message = "12345678: add new feature"
+      subject = Labeler.new(message)
+      assert_equal message, subject.filtered_message
+    end
+
+    def test_does_not_add_pt_id_when_noref_comment_is_present
+      def subject.`(str); "  other_branch\n* 12345678_timezones"; end
+      message = "add new feature\n\nNOREF"
+      subject = Labeler.new(message)
+      assert_equal 'add new feature', subject.filtered_message
+    end
+  end
+
 end

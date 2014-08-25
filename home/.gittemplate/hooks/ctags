@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Generate a tags file with ctags for a proejct. Intended to be called by
+# various Git commit hooks. Stores the tags file in the .git directory to not
+# clutter the project and let Fugitive automatically find it.
+
+set -e
+
+PATH="/usr/local/bin:$PATH"
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/$$.tags"' EXIT
+git ls-files | \
+  ctags --tag-relative -L - -f "$dir/$$.tags" --languages=-javascript,sql
+mv "$dir/$$.tags" "$dir/tags"
