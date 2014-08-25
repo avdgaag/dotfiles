@@ -164,6 +164,41 @@ let g:ctrlp_user_command="find %s -type f -not -path '*/.git/*' -not -path '*/.s
 let g:mustache_abbreviations = 1
 " }}}
 
+" {{{ Projectionist
+let g:rails_gem_projections = {
+  \ "draper": {
+  \   "app/decorators/*_decorator.rb": {
+  \     "command": "decorator",
+  \     "template": "class %SDecorator < ApplicationDecorator\nend",
+  \     "affinity": "model",
+  \     "related": "app/models/%s.rb",
+  \     "test": ["test/decorators/%s_decorator_test.rb", "spec/decorators/%s_decorator_spec.rb"]
+  \   }
+  \ },
+  \ "pundit": {
+  \   "app/policies/*_policy.rb": {
+  \     "command": "policy",
+  \     "template": ["class %SPolicy < ApplicationPolicy\nend"],
+  \     "affinity": "model",
+  \     "related": "app/models/%s.rb",
+  \     "test": ["test/policies/%s_policy_test.rb", "spec/policies/%s_policy_spec.rb"]
+  \   }
+  \ },
+  \ "cucumber": {
+  \   "features/*.feature": {
+  \     "command": "feature",
+  \     "alternate": "features/step_definitions/%s_steps.rb",
+  \     "template": "Feature: %h\n"
+  \   },
+  \   "features/step_definitions/*_steps.rb": {
+  \     "command": "step",
+  \     "alternate": "features/%s.feature",
+  \     "template": ""
+  \   }
+  \ }
+\ }
+" }}}
+
 " }}}
 
 " Autocommands {{{
