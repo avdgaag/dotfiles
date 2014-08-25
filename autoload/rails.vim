@@ -1073,7 +1073,7 @@ function! rails#new_app_command(bang,...) abort
   return ''
 endfunction
 
-function! s:app_tags_command() dict
+function! s:app_tags_command() dict abort
   if exists("g:Tlist_Ctags_Cmd")
     let cmd = g:Tlist_Ctags_Cmd
   elseif executable("exuberant-ctags")
@@ -1090,8 +1090,19 @@ function! s:app_tags_command() dict
     call s:error("ctags not found")
     return ''
   endif
-  let args = s:split(get(g:, 'rails_ctags_arguments', '--languages=-javascript'))
-  exe '!'.cmd.' -f '.s:escarg(self.path("tags")).' -R --langmap="ruby:+.rake.builder.jbuilder.rjs" '.join(args,' ').' '.s:escarg(self.path())
+  let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd' : 'cd'
+  let cwd = getcwd()
+  try
+    execute cd fnameescape(self.path())
+    if self.has_path('.ctags')
+      let args = []
+    else
+      let args = s:split(get(g:, 'rails_ctags_arguments', '--languages=ruby'))
+    endif
+    exe '!'.cmd.' -R '.join(args,' ')
+  finally
+    execute cd fnameescape(cwd)
+  endtry
   return ''
 endfunction
 
@@ -1318,9 +1329,12 @@ function! s:readable_default_rake_task(...) dict abort
   let placeholders = {}
   if lnum
     let placeholders.l = lnum
+    let placeholders.lnum = lnum
+    let placeholders.line = lnum
     let last = self.last_method(lnum)
     if !empty(last)
       let placeholders.d = last
+      let placeholders.define = last
     endif
   endif
   let tasks = self.projected('task', placeholders)
@@ -1351,10 +1365,8 @@ function! s:readable_default_rake_task(...) dict abort
         return "db:migrate:down VERSION=".ver
       elseif method == "up" || lnum == line('$')
         return "db:migrate:up VERSION=".ver
-      elseif lnum > 0
-        return "db:migrate:down db:migrate:up VERSION=".ver
       else
-        return "db:migrate VERSION=".ver
+        return "db:migrate:down db:migrate:up VERSION=".ver
       endif
     else
       return 'db:migrate'
@@ -1420,7 +1432,7 @@ function! s:app_rake_command(...) dict abort
 endfunction
 
 function! rails#complete_rake(A,L,P)
-  return s:completion_filter(rails#app().rake_tasks(),a:A)
+  return s:completion_filter(rails#app().rake_tasks(), a:A, ':')
 endfunction
 
 call s:add_methods('readable', ['test_file_candidates', 'test_file', 'default_rake_task'])
@@ -1802,8 +1814,8 @@ function! s:app_server_command(bang,arg) dict
 endfunction
 
 function! s:color_efm(pre, before, after)
-   return a:pre . '%\S%#  %#' . a:before . "\e[0m  %#" . a:after . ',' .
-         \ a:pre . '   %#'.a:before.' %#'.a:after . ','
+   return a:pre . '%\S%\+  %#' . a:before . "\e[0m  %#" . a:after . ',' .
+         \ a:pre . '%\s %#'.a:before.'  %#'.a:after . ','
 endfunction
 
 let s:efm_generate =
@@ -1813,6 +1825,7 @@ let s:efm_generate =
       \ s:color_efm('%-G', 'create', ' ') .
       \ s:color_efm('%-G', 'exist', ' ') .
       \ s:color_efm('Overwrite%.%#', '%m', '%f') .
+      \ s:color_efm('', '%m', '   %f') .
       \ s:color_efm('', '%m', '%f') .
       \ '%-G%.%#'
 
@@ -1826,17 +1839,17 @@ function! s:app_generator_command(bang,...) dict
     let &l:makeprg = self.prepare_rails_command(cmd)
     let &l:errorformat = s:efm_generate
     call s:push_chdir(1)
-    if a:bang
-      make!
-    else
-      make
-    endif
+    noautocmd make!
   finally
     call s:pop_command()
     let &l:errorformat = old_errorformat
     let &l:makeprg = old_makeprg
   endtry
-  return ''
+  if a:bang || empty(getqflist())
+    return ''
+  else
+    return 'cfirst'
+  endif
 endfunction
 
 call s:add_methods('app', ['generators','script_command','output_command','server_command','generator_command'])
@@ -2467,7 +2480,10 @@ function! s:BufProjectionCommands()
   endfor
 endfunction
 
-function! s:completion_filter(results,A)
+function! s:completion_filter(results, A, ...) abort
+  if exists('*projectionist#completion_filter')
+    return projectionist#completion_filter(a:results, a:A, a:0 ? a:1 : '/')
+  endif
   let results = sort(type(a:results) == type("") ? split(a:results,"\n") : copy(a:results))
   call filter(results,'v:val !~# "\\~$"')
   if a:A =~# '\*'
@@ -2796,7 +2812,7 @@ endfunc
 
 let s:view_types = split('rhtml,erb,rxml,builder,rjs,haml',',')
 
-function! s:readable_resolve_view(name,...) dict abort
+function! s:readable_resolve_view(name, ...) dict abort
   let name = a:name
   let pre = 'app/views/'
   if name !~# '/'
@@ -2805,7 +2821,9 @@ function! s:readable_resolve_view(name,...) dict abort
       let name = controller.'/'.name
     endif
   endif
-  if name =~# '\.\w\+\.\w\+$' || name =~# '\.\%('.join(s:view_types,'\|').'\)$'
+  if name =~# '/' && !self.app().has_path(fnamemodify('app/views/'.name, ':h'))
+    return ''
+  elseif name =~# '\.\w\+\.\w\+$' || name =~# '\.\%('.join(s:view_types,'\|').'\)$'
     return pre.name
   else
     for format in ['.'.self.format(a:0 ? a:1 : 0), '']
@@ -2842,7 +2860,7 @@ function! s:findlayout(name)
   return rails#buffer().resolve_layout(a:name, line('.'))
 endfunction
 
-function! s:viewEdit(cmd,...)
+function! s:viewEdit(cmd, ...) abort
   if a:0 && a:1 =~ '^[^!#:]'
     let view = matchstr(a:1,'[^!#:]*')
   elseif rails#buffer().type_name('controller','mailer')
@@ -2862,12 +2880,16 @@ function! s:viewEdit(cmd,...)
   endif
   let found = rails#buffer().resolve_view(view, line('.'))
   let djump = a:0 ? matchstr(a:1,'!.*\|#\zs.*\|:\zs\d*\ze\%(:in\)\=$') : ''
-  if found != ''
+  if !empty(found)
     call s:edit(a:cmd,found)
     call s:djump(djump)
     return ''
   elseif a:0 && a:1 =~# '!'
-    call s:edit(a:cmd,'app/views/'.view)
+    let file = 'app/views/'.view
+    if !rails#app().has_path(fnamemodify(file, ':h'))
+      call mkdir(rails#app().path(fnamemodify(file, ':h')), 'p')
+    endif
+    call s:edit(a:cmd, file)
     call s:djump(djump)
     return ''
   else
@@ -3042,7 +3064,7 @@ function! s:readable_open_command(cmd, argument, name, projections) dict abort
       let file = ''
     endif
     if !empty(file) && self.app().has_path(file)
-      let file = self.app().path(file)
+      let file = fnamemodify(self.app().path(file), ':.')
       return cmd . ' ' . s:fnameescape(file) . '|exe ' . s:sid . 'djump('.string(djump) . ')'
     endif
   endfor
@@ -3071,15 +3093,19 @@ function! s:readable_open_command(cmd, argument, name, projections) dict abort
       if has_key(projection, 'template')
       let template = s:split(projection.template)
       let ph = {
-              \ 'S': rails#camelize(root),
-              \ 'h': toupper(root[0]) . tr(rails#underscore(root), '_', ' ')[1:-1]}
+            \ 'match': root,
+            \ 'file': file,
+            \ 'project': self.app().path(),
+            \ 'S': rails#camelize(root),
+            \ 'h': toupper(root[0]) . tr(rails#underscore(root), '_', ' ')[1:-1]}
         call map(template, 's:expand_placeholders(v:val, ph)')
       else
         let projected = self.app().file(relative).projected('template')
         let template = s:split(get(projected, 0, ''))
       endif
       call map(template, 's:gsub(v:val, "\t", "  ")')
-      return cmd . ' ' . s:fnameescape(simplify(file)) . '|call setline(1, '.string(template).')' . '|set nomod'
+      let file = fnamemodify(simplify(file), ':.')
+      return cmd . ' ' . s:fnameescape(file) . '|call setline(1, '.string(template).')' . '|set nomod'
     endif
   endfor
   return 'echoerr '.string("Couldn't find destination directory for ".a:name.' '.a:argument)
@@ -3258,13 +3284,27 @@ function! s:readable_alternate_candidates(...) dict abort
     return ['app/helpers/application_helper.rb']
   elseif f =~# 'spec\.js$'
     return [s:sub(s:sub(f, 'spec/javascripts', 'app/assets/javascripts'), '_spec.js', '.js')."\n"]
+  elseif f =~# 'spec\.coffee$'
+    return [s:sub(s:sub(f, 'spec/javascripts', 'app/assets/javascripts'), '_spec.coffee', '.coffee')."\n"]
+  elseif f =~# 'spec\.js\.coffee$'
+    return [s:sub(s:sub(f, 'spec/javascripts', 'app/assets/javascripts'), '_spec.js.coffee', '.js.coffee')."\n"]
   elseif self.type_name('javascript')
     if f =~ 'public/javascripts'
       let to_replace = 'public/javascripts'
     else
       let to_replace = 'app/assets/javascripts'
     endif
-    return [s:sub(s:sub(f, to_replace, 'spec/javascripts'), '.js', '_spec.js')."\n"]
+    if f =~ '.coffee.js$'
+      let suffix = '.coffee.js'
+      let suffix_replacement = '_spec.coffee.js'
+    elseif f =~ '.coffee$'
+      let suffix = '.coffee'
+      let suffix_replacement = '_spec.coffee'
+    else
+      let suffix = '.js'
+      let suffix_replacement = '_spec.js'
+    endif
+    return [s:sub(s:sub(f, to_replace, 'spec/javascripts'), suffix, suffix_replacement)."\n"]
   elseif self.type_name('db-schema') || f =~# '^db/\w*structure.sql$'
     return ['db/seeds.rb']
   elseif f ==# 'db/seeds.rb'
@@ -4368,30 +4408,88 @@ endfunction
 
 call s:add_methods('app', ['gems', 'has_gem', 'engines', 'projections'])
 
+let s:transformations = {}
+
+function! s:transformations.dot(input, o) abort
+  return substitute(a:input, '/', '.', 'g')
+endfunction
+
+function! s:transformations.underscore(input, o) abort
+  return substitute(a:input, '/', '_', 'g')
+endfunction
+
+function! s:transformations.colons(input, o) abort
+  return substitute(a:input, '/', '::', 'g')
+endfunction
+
+function! s:transformations.hyphenate(input, o) abort
+  return tr(a:input, '_', '-')
+endfunction
+
+function! s:transformations.blank(input, o) abort
+  return tr(a:input, '_-', '  ')
+endfunction
+
+function! s:transformations.uppercase(input, o) abort
+  return toupper(a:input)
+endfunction
+
+function! s:transformations.camelcase(input, o) abort
+  return substitute(a:input, '[_-]\(.\)', '\u\1', 'g')
+endfunction
+
+function! s:transformations.capitalize(input, o) abort
+  return substitute(a:input, '\%(^\|/\)\zs\(.\)', '\u\1', 'g')
+endfunction
+
+function! s:transformations.dirname(input, o) abort
+  return substitute(a:input, '.[^\/]*$', '', '')
+endfunction
+
+function! s:transformations.basename(input, o) abort
+  return substitute(a:input, '.*[\/]', '', '')
+endfunction
+
+function! s:transformations.plural(input, o) abort
+  return rails#pluralize(a:input)
+endfunction
+
+function! s:transformations.singular(input, o) abort
+  return rails#singularize(a:input)
+endfunction
+
+function! s:transformations.open(input, o) abort
+  return '{'
+endfunction
+
+function! s:transformations.close(input, o) abort
+  return '}'
+endfunction
+
+function! s:expand_placeholder(placeholder, expansions) abort
+  let transforms = split(a:placeholder[1:-2], '|')
+  if has_key(a:expansions, get(transforms, 0, '}'))
+    let value = a:expansions[remove(transforms, 0)]
+  elseif has_key(a:expansions, 'match')
+    let value = a:expansions.match
+  else
+    return "\001"
+  endif
+  for transform in transforms
+    if !has_key(s:transformations, transform)
+      return "\001"
+    endif
+    let value = s:transformations[transform](value, a:expansions)
+  endfor
+  return value
+endfunction
+
 function! s:expand_placeholders(string, placeholders)
   if type(a:string) !=# type('')
     return a:string
   endif
   let ph = extend({'%': '%'}, a:placeholders)
-  let transitional = {
-        \ '{}': '%s',
-        \ '{capitalize|camelcase|colons}': '%S',
-        \ '{capitalize|camelcase|dot}': '%S',
-        \ '{camelcase|capitalize|colons}': '%S',
-        \ '{camelcase|capitalize|dot}': '%S',
-        \ '{plural}': '%p',
-        \ '{pluralize}': '%p',
-        \ '{singular}': '%i',
-        \ '{singularize}': '%i',
-        \ '{capitalize|blank}': '%h',
-        \ '{underscore|capitalize|blank}': '%h',
-        \ '{line}': '%l',
-        \ '{lnum}': '%l',
-        \ '{define}': '%d',
-        \ '{file}': '%%',
-        \ '{open}': '{',
-        \ '{close}': '}'}
-  let value = substitute(a:string, '{[^{}]*}', '\=get(transitional, submatch(0), submatch(0))', 'g')
+  let value = substitute(a:string, '{[^{}]*}', '\=s:expand_placeholder(submatch(0), ph)', 'g')
   let value = substitute(value, '%\([^: ]\)', '\=get(ph, submatch(1), "\001")', 'g')
   return value =~# "\001" ? '' : value
 endfunction
@@ -4408,6 +4506,9 @@ function! s:readable_projected(key, ...) dict abort
     if s:startswith(f, prefix) && s:endswith(f, suffix)
       let root = f[strlen(prefix) : -strlen(suffix)-1]
       let ph = extend({
+            \ 'match': root,
+            \ 'file': self.path(),
+            \ 'project': self.app().path(),
             \ 's': root,
             \ 'S': rails#camelize(root),
             \ 'h': toupper(root[0]) . tr(rails#underscore(root), '_', ' ')[1:-1],
