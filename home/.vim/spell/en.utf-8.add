@@ -48,3 +48,8 @@ ActiveRecord
 markup
 wiki
 FactoryGirl
+plugins
+ctags
+Homebrew
+Rubygems
+plugin
