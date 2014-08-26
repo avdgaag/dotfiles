@@ -18,6 +18,7 @@ home/.vim/bundle/vim-rails git@github.com:tpope/vim-rails.git
 home/.vim/bundle/vim-rbenv git@github.com:tpope/vim-rbenv.git
 home/.vim/bundle/vim-rbfactor git@github.com:avdgaag/vim-rbfactor.git
 home/.vim/bundle/vim-repeat git@github.com:tpope/vim-repeat.git
+home/.vim/bundle/vim-rake git@github.com:tpope/vim-rake.git
 home/.vim/bundle/vim-rhubarb git@github.com:tpope/vim-rhubarb.git
 home/.vim/bundle/vim-ruby git@github.com:vim-ruby/vim-ruby.git
 home/.vim/bundle/vim-surround git@github.com:tpope/vim-surround.git
@@ -26,3 +27,4 @@ home/.vim/bundle/vim-textobj-rubyblock git@github.com:nelstrom/vim-textobj-rubyb
 home/.vim/bundle/vim-textobj-user git@github.com:kana/vim-textobj-user.git
 home/.vim/bundle/vim-unimpaired git@github.com:tpope/vim-unimpaired.git
 home/.vim/bundle/vimux git@github.com:benmills/vimux.git
+home/.vim/bundle/vim-gitgutter git@github.com:airblade/vim-gitgutter.git
