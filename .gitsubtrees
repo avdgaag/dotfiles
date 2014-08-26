@@ -1,6 +1,5 @@
 home/.vim/bundle/ctrlp git@github.com:kien/ctrlp.vim.git
 home/.vim/bundle/mustache git@github.com:mustache/vim-mustache-handlebars.git
-home/.vim/bundle/syntastic git@github.com:scrooloose/syntastic.git
 home/.vim/bundle/tabular git@github.com:godlygeek/tabular.git
 home/.vim/bundle/ultisnips git@github.com:SirVer/ultisnips.git
 home/.vim/bundle/vim-airline git@github.com:bling/vim-airline.git

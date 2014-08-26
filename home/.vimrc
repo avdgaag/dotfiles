@@ -306,7 +306,4 @@ endif
 
 " }}}
 
-let g:ruby_path = '/usr/local/opt/rbenv/shims'
-let g:syntastic_ruby_checkers=['mri', 'rubocop']
-
 " vim:foldmethod=marker:foldlevel=0
