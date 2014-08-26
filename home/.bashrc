@@ -95,23 +95,5 @@ alias be='bundle exec'
 alias binstubs='export PATH=./bin:$PATH'
 
 # Rake
-alias migrate='rake db:migrate db:test:prepare'
-alias remigrate='rake db:drop db:create db:migrate db:test:prepare'
 alias rakes='rake `rake -T | selecta | awk "{ print $2 }"`'
 alias rake='noglob rake'
-
-# Heroku
-alias hrl='heroku logs -t'
-alias hr='heroku'
-alias hrr='heroku run'
-alias hrake='heroku run rake'
-
-# Vagrant
-alias vu='vagrant up'
-alias vs='vagrant ssh'
-alias vh='vagrant halt'
-alias vd='vagrant destroy'
-alias vsc='vagrant ssh-config'
-
-# Rsync
-alias sync='rsync -glpPrtvz --delete --exclude .svn --exclude .DS_Store --exclude .sass-cache'
