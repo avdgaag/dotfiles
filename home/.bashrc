@@ -9,6 +9,7 @@ alias nicedate='date "+%Y-%m-%d"'
 alias nicedatetime='date "+%Y-%m-%d %H:%M"'
 alias marked='open -a Marked'
 alias bbundle='bundle check || bundle install | grep -v "Using "'
+alias battery='ioreg -c AppleSmartBattery | awk '"'"'/MaxCapacity/ { max = $5 } /CurrentCapacity/ { current = $5 } END { printf("%.2f%%\n", current / max * 100) }'"'"
 alias -g bb='`git rev-parse --abbrev-ref HEAD`'
 
 function ffind() {
