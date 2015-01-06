@@ -1,0 +1,41 @@
+priority -50
+
+snippet exp "expect(...).to" b
+expect(${1:object}).to$0
+endsnippet
+
+snippet expe "expect(...).to.eql(...)" b
+expect(${1:object}).to.eql($0)
+endsnippet
+
+snippet expo "expect(...).to.be.ok" b
+expect(${1:object}).to.be.ok
+endsnippet
+
+snippet expno "expect(...).not.to.be.ok" b
+expect(${1:object}).not.to.be.ok
+endsnippet
+
+snippet expc "expect(...).to.have.been.called" b
+expect(${1:object}).to.have.been.called
+endsnippet
+
+snippet expcw "expect(...).to.have.been.calledWith(...)" b
+expect(${1:object}).to.have.been.calledWith($0)
+endsnippet
+
+snippet expi "expect(...).to.include(...)" b
+expect(${1:object}).to.include($0)
+endsnippet
+
+snippet expb "expect(...).to.be" b
+expect(${1:object}).to.be$0
+endsnippet
+
+snippet expl "expect(...).to.have.length(...)" b
+expect(${1:object}).to.have.length($0)
+endsnippet
+
+snippet expm "expect(...).to.match(...)" b
+expect(${1:object}).to.match($0)
+endsnippet

@@ -1,0 +1,44 @@
+priority -50
+
+snippet des "describe" b
+describe("${1:Subject}", function() {
+	$0
+});
+endsnippet
+
+snippet it "it" b
+it("${1:specification}", function() {
+	$0
+});
+endsnippet
+
+snippet ita "it (asynchronous)" b
+it("${1:specification}", function(done) {
+	$0
+});
+endsnippet
+
+snippet bef "beforeEach" b
+beforeEach(function() {
+	$0
+});
+endsnippet
+
+snippet aft "afterEach" b
+afterEach(function() {
+	$0
+});
+endsnippet
+
+snippet befa "beforeEach (asynchronous)" b
+beforeEach(function(done) {
+	$0
+});
+endsnippet
+
+snippet afta "afterEach (asynchronous)" b
+afterEach(function(done) {
+	$0
+});
+endsnippet
+

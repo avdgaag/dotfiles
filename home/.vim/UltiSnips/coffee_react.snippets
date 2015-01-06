@@ -1,0 +1,71 @@
+priority -50
+
+snippet React "React.createClass" b
+React.createClass
+	render: ->
+		$0
+endsnippet
+
+snippet React "React.renderComponent" b
+React.renderComponent(${1:component}, ${2:document.body})
+endsnippet
+
+snippet React "React.renderComponentToString" b
+React.renderComponentToString(${1:component})
+endsnippet
+
+snippet :g "getInitialState" b
+getInitialState: ->
+	$0
+
+endsnippet
+
+snippet :g "getDefaultProps" b
+getDefaultProps: ->
+	$0
+
+endsnippet
+
+snippet :c "componentWillReceiveProps" b
+componentWillReceiveProps: (newProps) ->
+	$0
+
+endsnippet
+
+snippet :c "componentWillUpdate" b
+componentWillUpdate: (prevProps, prevState) ->
+	$0
+
+endsnippet
+
+snippet :c "componentDidUpdate" b
+componentDidUpdate: (prevProps, prevState) ->
+	$0
+
+endsnippet
+
+snippet :c "componentWillMount" b
+componentWillMount: ->
+	$0
+
+endsnippet
+
+snippet :c "componentWillUnmount" b
+componentWillUnmount: ->
+	$0
+
+endsnippet
+
+snippet rpt "React.PropTypes" b
+React.PropTypes.${1:object}${2:.isRequired}$0
+endsnippet
+
+snippet dom "React.DOM"
+React.DOM.${1:div}({$2}, $3)
+endsnippet
+
+snippet cs "React.addons.classSet"
+React.addons.classSet(
+	$0
+)
+endsnippet

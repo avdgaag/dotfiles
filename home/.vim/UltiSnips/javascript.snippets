@@ -167,8 +167,8 @@ snippet def "define an AMD module"
 define(${1:optional_name, }[${2:'jquery'}], ${3:callback});
 endsnippet
 
-snippet req "require an AMD module"
-require([${1:'dependencies'}], ${2:callback});
+snippet req "require a CommonJS module"
+var ${1:name} = require('${2:$1}');
 endsnippet
 
 snippet class "class function"
