@@ -252,7 +252,7 @@ if has('autocmd')
 
     " Automatically strip trailing whitespace from most regular source code file
     " types using a custom function.
-    autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css,*.js,*.coffee call StripTrailingWhitespace()
+    autocmd BufWritePre,FileWritePre *.rake,*.html,*.haml,*.rb,*.php,*.xml,*.erb,*.yml,*.scss,*.css,*.sass,*.js,*.coffee,*.cjsx call StripTrailingWhitespace()
 
     " Resize all windows to optimum distribution whenever Vim itself (the
     " terminal window it lives in) is resized.
@@ -296,8 +296,14 @@ if has('autocmd')
     " Run javascript files with Node either directly or in a split tmux pane
     " using Vimux.
     autocmd Filetype javascript nnoremap <buffer> <Leader>r :!node %<CR>
+    autocmd Filetype javascript nnoremap <buffer> <Leader>k :!teaspoon %<cr>
     autocmd Filetype javascript nnoremap <buffer> <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
     autocmd Filetype coffee nnoremap <buffer> <Leader>r :CoffeeRun<CR>
+    autocmd Filetype coffee nnoremap <buffer> <Leader>k :!teaspoon %<cr>
+    autocmd Filetype coffee nnoremap <buffer> <Leader>vk :call VimuxRunCommand("clear; teaspoon " . bufname("%"))<CR>
+
+    " Treat .cjsx file as coffee script
+    autocmd BufNewFile,BufRead *.cjsx setlocal filetype=coffee
 
     " Treat JSON file as javascript
     autocmd BufNewFile,BufRead *.json setlocal filetype=javascript
