@@ -76,6 +76,7 @@ alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias grd='git rm $(git ls-files -d)'   # git remove deleted
 alias grs='git rebase --skip'
+alias grq='git rebase --interactive --autosquash'
 alias gs='git status -b -s --ignore-submodules=dirty'
 alias gsd='git svn dcommit'
 alias gsf='git svn fetch'
