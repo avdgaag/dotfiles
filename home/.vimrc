@@ -157,8 +157,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
 
 " CtrlP {{{
-let g:ctrlp_use_caching=0
-let g:ctrlp_user_command="find %s -type f -not -path '*/.git/*' -not -path '*/.sass-cache/*' -not -path '*/tmp/*'"
+" let g:ctrlp_use_caching=0
+" let g:ctrlp_user_command="find %s -type f -not -path '*/.git/*' -not -path '*/.sass-cache/*' -not -path '*/tmp/*'"
 " }}}
 
 " Mustache {{{
