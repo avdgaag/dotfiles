@@ -13,10 +13,10 @@
 --type-add=ruby:ext:prawn
 --type-add=css:ext:scss,sass
 --type-add=vim:is:.vimrc
---type-add=js:ext:json
+--type-add=js:ext:json,jsx
 --type-set=markdown:ext:md,mkd,markdown
 --type-set=cucumber:ext:feature
 --type-set=rdoc:ext:rdoc
 --type-set=haml:ext:haml
 --type-set=erb:ext:erb
---type-set=coffee:ext:coffee
+--type-set=coffee:ext:coffee,cjsx
