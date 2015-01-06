@@ -334,6 +334,8 @@ if has('autocmd')
     autocmd FileType scss setlocal suffixesadd+=.css.scss
     autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set filetype=tmux
 
+    autocmd BufNewFile,BufRead *.adoc set filetype=asciidoc
+
     " }}}
 
   augroup END
