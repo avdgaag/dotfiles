@@ -327,6 +327,7 @@ if has('autocmd')
     autocmd Filetype elixir nnoremap <buffer> <Leader>r :!elixir %<cr>
     autocmd Filetype elixir nnoremap <buffer> <Leader>k :!mix test %<cr>
     autocmd Filetype python nnoremap <buffer> <Leader>r :!python %<cr>
+    autocmd Filetype sh     nnoremap <buffer> <Leader>r :!%<cr>
 
     " Add Railsy file extensions to the suffixes list to enable find and gf to
     " jump to Sass stylesheets.
