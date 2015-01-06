@@ -45,6 +45,7 @@ syntax on
 filetype plugin indent on
 set background=dark
 colorscheme smyck
+set cursorline
 set nowrap
 set synmaxcol=200 " Do not highlight long lines
 set softtabstop=2
