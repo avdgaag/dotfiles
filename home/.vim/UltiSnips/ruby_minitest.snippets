@@ -1,0 +1,197 @@
+priority -50
+
+global !p
+import re
+import os
+
+def camelize(str):
+	return os.path.splitext(''.join([part.capitalize() for part in str.lower().split('_')]))[0]
+
+class Argument(object):
+	def __init__(self, argument_string):
+		self.value = re.split('=|:', argument_string)[0].strip()
+		self.name = re.sub('\*', '', self.value)
+
+	def __str__(self):
+		return self.name
+
+	def ivar(self):
+		return '@%s = %s' % (self.name, self.value)
+
+	def is_valid(self):
+		return not re.search('\'|"', self.name)
+
+class ArgumentList(object):
+	def __init__(self, argument_list):
+		self.arguments = [
+				Argument(arg) for
+				arg in argument_list.split(',')
+				if Argument(arg).is_valid()
+			]
+
+	def ivars(self):
+		return [arg.ivar() for arg in self.arguments]
+
+	def attr_reader(self):
+		return 'attr_reader ' + ', '.join([':%s' % arg.name for arg in self.arguments])
+endglobal
+
+
+snippet ass "assert" b
+assert ${1:value}${2:, "${3:message}"}
+endsnippet
+
+
+snippet assem "assert_empty" b
+assert_empty ${1:value}${2:, "${3:message}"}
+endsnippet
+
+
+snippet asse "assert_equal" b
+assert_equal ${1:expected}, ${2:actual}${3:, "${4:message}"}
+endsnippet
+
+
+snippet assi "assert_includes" b
+assert_includes ${1:collection}, ${2:value}${3:, "${4:message}"}
+endsnippet
+
+
+snippet assio "assert_instance_of" b
+assert_instance_of ${1:class}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet assko "assert_kind_of" b
+assert_kind_of ${1:class}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet assm "assert_match" b
+assert_match ${1:regex}, ${2:string}${3:, "${4:message}"}
+endsnippet
+
+
+snippet assn "assert_nil" b
+assert_nil ${1:value}${2:, "${3:message}"}
+endsnippet
+
+
+snippet assr "assert_raises" b
+assert_raises(${1:exception}${2:, "${3:message}"}) do
+	$0
+end
+endsnippet
+
+
+snippet assrt "assert_respond_to" b
+assert_respond_to ${1:object}, ${2:message}${3:, "${4:message}"}
+endsnippet
+
+
+snippet asss "assert_same" b
+assert_same ${1:object}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet asst "assert_throws" b
+assert_throws ${1:object}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet ref "refute" b
+refute ${1:value}${2:, "${3:message}"}
+endsnippet
+
+
+snippet refem "refute_empty" b
+refute_empty ${1:value}${2:, "${3:message}"}
+endsnippet
+
+
+snippet refe "refute_equal" b
+refute_equal ${1:expected}, ${2:actual}${3:, "${4:message}"}
+endsnippet
+
+
+snippet refi "refute_includes" b
+refute_includes ${1:collection}, ${2:value}${3:, "${4:message}"}
+endsnippet
+
+
+snippet refio "refute_instance_of" b
+refute_instance_of ${1:clref}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet refko "refute_kind_of" b
+refute_kind_of ${1:clref}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet refm "refute_match" b
+refute_match ${1:string}, ${2:regex}${3:, "${4:message}"}
+endsnippet
+
+
+snippet refn "refute_nil" b
+refute_nil ${1:value}${2:, "${3:message}"}
+endsnippet
+
+
+snippet refr "refute_raises" b
+refute_raises(${1:exception}${2:, "${3:message}"}) do
+	$0
+end
+endsnippet
+
+
+snippet refrt "refute_respond_to" b
+refute_respond_to ${1:object}, ${2:message}${3:, "${4:message}"}
+endsnippet
+
+
+snippet refs "refute_same" b
+refute_same ${1:object}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet reft "refute_throws" b
+refute_throws ${1:object}, ${2:object}${3:, "${4:message}"}
+endsnippet
+
+
+snippet test "Rails test case" b
+test "${1:description}" do
+	$0
+end
+endsnippet
+
+
+snippet classt "Minitest test case" b
+class ${1:`!p snip.rv = camelize(fn) or 'ClassNameTest'`} < Minitest::Test
+	$0
+end
+endsnippet
+
+
+snippet up "def setup" b
+def setup
+	$0
+end
+endsnippet
+
+
+snippet down "def teardown" b
+def teardown
+	$0
+end
+endsnippet
+
+
+snippet deft "Test method" b
+def test_${1:it_does_something}
+	$0
+end
+endsnippet
+# vim: set ts=2 sw=2 expandtab:
