@@ -17,7 +17,7 @@ set backspace=indent,eol,start
 
 set wildmenu
 set wildmode=longest,full
-set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg,doc,coverage
+set wildignore+=tmp,.bundle,.sass-cache,.git,.svn,.hg,doc,coverage,vendor,node_modules
 
 set scrolloff=3
 set splitright
