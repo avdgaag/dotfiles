@@ -1,5 +1,8 @@
 --sort-files
 --ignore-dir=rails
+--ignore-dir=coverage
+--ignore-dir=log
+--ignore-dir=.sass-cache
 --ignore-dir=tmp
 --ignore-dir=.yardoc
 --ignore-dir=.bundle
