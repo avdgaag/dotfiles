@@ -166,7 +166,35 @@ let g:mustache_abbreviations = 1
 " }}}
 
 " {{{ Projectionist
+let g:rails_projections = {
+  \  "app/assets/javascripts/models/*.js.coffee": {
+  \    "command": "jmodel",
+  \    "alternate": "spec/javascripts/models/%s_spec.js.coffee",
+  \    "template": "class @App.Models.%S extends Backbone.Model"
+  \  },
+  \
+  \  "app/assets/javascripts/collections/*.js.coffee": {
+  \    "command": "jcollection",
+  \    "alternate": "spec/javascripts/collections/%s_spec.js.coffee",
+  \    "template": "class @App.Collections.%S extends Backbone.Collection"
+  \  },
+  \
+  \  "app/assets/javascripts/routers/*.coffee": {
+  \    "command": "jrouter",
+  \    "alternate": "spec/javascripts/routers/%s_spec.coffee",
+  \    "template": "class @App.Routers.%S"
+  \   }
+\ }
 let g:rails_gem_projections = {
+  \ "active_model_serializers": {
+  \   "app/serializers/*_serializer.rb": {
+  \     "command": "serializer",
+  \     "template": "class %SSerializer < ActiveModel::Serializer\nend",
+  \     "affinity": "model",
+  \     "related": "app/serializers/%s.rb",
+  \     "test": ["test/serializers/%s_serializer_test.rb", "spec/serializers/%s_serializer_spec.rb"]
+  \   }
+  \ },
   \ "draper": {
   \   "app/decorators/*_decorator.rb": {
   \     "command": "decorator",
