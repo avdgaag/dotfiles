@@ -4,36 +4,36 @@ function! gitgutter#all()
   for buffer_id in tabpagebuflist()
     let file = expand('#' . buffer_id . ':p')
     if !empty(file)
-      call gitgutter#process_buffer(file, 0)
+      call gitgutter#process_buffer(buffer_id, 0)
     endif
   endfor
 endfunction
 
-" file: (string) the file to process.
+" bufnr: (integer) the buffer to process.
 " realtime: (boolean) when truthy, do a realtime diff; otherwise do a disk-based diff.
-function! gitgutter#process_buffer(file, realtime)
-  call gitgutter#utility#set_file(a:file)
+function! gitgutter#process_buffer(bufnr, realtime)
+  call gitgutter#utility#set_buffer(a:bufnr)
   if gitgutter#utility#is_active()
     if g:gitgutter_sign_column_always
       call gitgutter#sign#add_dummy_sign()
     endif
     try
-      if !a:realtime || gitgutter#utility#has_fresh_changes(a:file)
-        let diff = gitgutter#diff#run_diff(a:realtime || gitgutter#utility#has_unsaved_changes(a:file), 1)
+      if !a:realtime || gitgutter#utility#has_fresh_changes()
+        let diff = gitgutter#diff#run_diff(a:realtime || gitgutter#utility#has_unsaved_changes(), 1, 0)
         call gitgutter#hunk#set_hunks(gitgutter#diff#parse_diff(diff))
         let modified_lines = gitgutter#diff#process_hunks(gitgutter#hunk#hunks())
 
         if len(modified_lines) > g:gitgutter_max_signs
           call gitgutter#utility#warn('exceeded maximum number of signs (configured by g:gitgutter_max_signs).')
-          call gitgutter#sign#clear_signs(a:file)
+          call gitgutter#sign#clear_signs()
           return
         endif
 
         if g:gitgutter_signs || g:gitgutter_highlight_lines
-          call gitgutter#sign#update_signs(a:file, modified_lines)
+          call gitgutter#sign#update_signs(modified_lines)
         endif
 
-        call gitgutter#utility#save_last_seen_change(a:file)
+        call gitgutter#utility#save_last_seen_change()
       endif
     catch /diff failed/
       call gitgutter#hunk#reset()
@@ -53,8 +53,8 @@ function! gitgutter#disable()
   for buffer_id in buflist
     let file = expand('#' . buffer_id . ':p')
     if !empty(file)
-      call gitgutter#utility#set_file(file)
-      call gitgutter#sign#clear_signs(gitgutter#utility#file())
+      call gitgutter#utility#set_buffer(buffer_id)
+      call gitgutter#sign#clear_signs()
       call gitgutter#sign#remove_dummy_sign(1)
       call gitgutter#hunk#reset()
     endif
@@ -85,7 +85,7 @@ function! gitgutter#line_highlights_disable()
   call gitgutter#highlight#define_sign_line_highlights()
 
   if !g:gitgutter_signs
-    call gitgutter#sign#clear_signs(gitgutter#utility#file())
+    call gitgutter#sign#clear_signs()
     call gitgutter#sign#remove_dummy_sign(0)
   endif
 
@@ -133,7 +133,7 @@ function! gitgutter#signs_disable()
   call gitgutter#highlight#define_sign_text_highlights()
 
   if !g:gitgutter_highlight_lines
-    call gitgutter#sign#clear_signs(gitgutter#utility#file())
+    call gitgutter#sign#clear_signs()
     call gitgutter#sign#remove_dummy_sign(0)
   endif
 endfunction
@@ -156,20 +156,16 @@ function! gitgutter#stage_hunk()
     " It doesn't make sense to stage a hunk otherwise.
     silent write
 
-    " find current hunk
-    let current_hunk = gitgutter#hunk#current_hunk()
-    if empty(current_hunk)
-      return
-    endif
-
     " construct a diff
-    let diff_for_hunk = gitgutter#diff#generate_diff_for_hunk(current_hunk, 1)
+    let diff_for_hunk = gitgutter#diff#generate_diff_for_hunk(1, 1)
 
     " apply the diff
-    call gitgutter#utility#system(gitgutter#utility#command_in_directory_of_file('git apply --cached --unidiff-zero - '), diff_for_hunk)
+    call gitgutter#utility#system(gitgutter#utility#command_in_directory_of_file('git apply --cached --recount --allow-overlap - '), diff_for_hunk)
 
     " refresh gitgutter's view of buffer
     silent execute "GitGutter"
+
+    silent! call repeat#set("\<Plug>GitGutterStageHunk", -1)<CR>
   endif
 endfunction
 
@@ -179,20 +175,16 @@ function! gitgutter#revert_hunk()
     " It doesn't make sense to stage a hunk otherwise.
     silent write
 
-    " find current hunk
-    let current_hunk = gitgutter#hunk#current_hunk()
-    if empty(current_hunk)
-      return
-    endif
-
     " construct a diff
-    let diff_for_hunk = gitgutter#diff#generate_diff_for_hunk(current_hunk, 1)
+    let diff_for_hunk = gitgutter#diff#generate_diff_for_hunk(1, 1)
 
     " apply the diff
-    call gitgutter#utility#system(gitgutter#utility#command_in_directory_of_file('git apply --reverse --unidiff-zero - '), diff_for_hunk)
+    call gitgutter#utility#system(gitgutter#utility#command_in_directory_of_file('git apply --reverse - '), diff_for_hunk)
 
     " reload file
     silent edit
+
+    silent! call repeat#set("\<Plug>GitGutterRevertHunk", -1)<CR>
   endif
 endfunction
 
@@ -200,23 +192,17 @@ function! gitgutter#preview_hunk()
   if gitgutter#utility#is_active()
     silent write
 
-    " find current hunk
-    let current_hunk = gitgutter#hunk#current_hunk()
-    if empty(current_hunk)
-      return
-    endif
-
     " construct a diff
-    let diff_for_hunk = gitgutter#diff#generate_diff_for_hunk(current_hunk, 0)
+    let diff_for_hunk = gitgutter#diff#generate_diff_for_hunk(0, 0)
 
     " preview the diff
     silent! wincmd P
     if !&previewwindow
       execute 'bo ' . &previewheight . ' new'
       set previewwindow
-      setlocal filetype=diff buftype=nowrite
     endif
 
+    setlocal noro modifiable filetype=diff buftype=nofile bufhidden=delete noswapfile
     execute "%delete_"
     call append(0, split(diff_for_hunk, "\n"))
 
