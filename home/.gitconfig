@@ -20,6 +20,7 @@
 	autosetuprebase = always
 [mergetool]
 	keepBackup = true
+  prompt = false
 [diff]
 	tool = vimdiff
 	algorithm = patience
@@ -31,6 +32,7 @@
 	default = simple
 [merge]
 	conflictstyle = diff3
+  tool = vimdiff
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
