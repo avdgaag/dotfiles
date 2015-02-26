@@ -1,5 +1,5 @@
 " textobj-user - Support for user-defined text objects
-" Version: 0.6.3
+" Version: 0.6.4
 " Copyright (C) 2007-2014 Kana Natsuno <http://whileimautomaton.net/>
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
@@ -38,15 +38,14 @@ endfunction
 
 " FIXME: growing the current selection like iw/aw, is/as, and others.
 " FIXME: countable.
-" FIXME: In a case of a:pattern matches with one character.
 function! textobj#user#select(pattern, flags, previous_mode)
   let ORIG_POS = s:gpos_to_spos(getpos('.'))
 
   let posf_tail = searchpos(a:pattern, 'ceW')
-  let posf_head = searchpos(a:pattern, 'bW')
+  let posf_head = searchpos(a:pattern, 'bcW')
   call cursor(ORIG_POS)
   let posb_head = searchpos(a:pattern, 'bcW')
-  let posb_tail = searchpos(a:pattern, 'eW')
+  let posb_tail = searchpos(a:pattern, 'ceW')
 
   " search() family with 'c' flag may not be matched to a pattern which
   " matches to multiple lines.  To choose appropriate range, we have to check
