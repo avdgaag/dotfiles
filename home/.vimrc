@@ -119,6 +119,7 @@ nnoremap <leader>gs :topleft :split db/schema.rb<cr>
 nnoremap <leader>gg :topleft :split Gemfile<cr>
 nnoremap <leader>gt :topleft :split TODO<cr> " Handy for keeping a TODO list in the project root
 nnoremap <leader>i mmgg=G`m
+nnoremap <leader>gb :ls<cr>:b<space>
 " }}}
 
 " Plugins {{{
