@@ -48,7 +48,7 @@ function! PickRspecCommand()
   endif
 endfunction
 
-autocmd Filetype ruby nnoremap <buffer> <leader>k :call RunRspecFile()<cr>
-autocmd Filetype ruby nnoremap <buffer> <leader>K :call RunRspecLine()<cr>
-autocmd Filetype ruby nnoremap <buffer> <leader>l :call RunLastRspec()<cr>
-autocmd Filetype ruby nnoremap <buffer> <leader>L :call RunRspec()<cr>
+autocmd Filetype rspec.ruby nnoremap <buffer> <leader>k :call RunRspecFile()<cr>
+autocmd Filetype rspec.ruby nnoremap <buffer> <leader>K :call RunRspecLine()<cr>
+autocmd Filetype rspec.ruby nnoremap <buffer> <leader>l :call RunLastRspec()<cr>
+autocmd Filetype rspec.ruby nnoremap <buffer> <leader>L :call RunRspec()<cr>
