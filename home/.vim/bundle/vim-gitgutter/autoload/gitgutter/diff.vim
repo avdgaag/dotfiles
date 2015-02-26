@@ -1,19 +1,29 @@
 let s:grep_available = executable('grep')
-let s:grep_command = ' | ' . (g:gitgutter_escape_grep ? '\grep' : 'grep') . ' -e ' . gitgutter#utility#shellescape('^@@ ')
+let s:grep_command = ' | '.(g:gitgutter_escape_grep ? '\grep' : 'grep').' -e '.gitgutter#utility#shellescape('^@@ ')
 let s:hunk_re = '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@'
 
 
-function! gitgutter#diff#run_diff(realtime, use_external_grep)
-  " Wrap compound command in parentheses to make Windows happy.
-  let cmd = '(git ls-files --error-unmatch ' . gitgutter#utility#shellescape(gitgutter#utility#filename()) . ' && ('
+function! gitgutter#diff#run_diff(realtime, use_external_grep, lines_of_context)
+  " Wrap compound commands in parentheses to make Windows happy.
+  let cmd = '('
+
+  let bufnr = gitgutter#utility#bufnr()
+  let tracked = getbufvar(bufnr, 'gitgutter_tracked')  " i.e. tracked by git
+  if !tracked
+    let cmd .= 'git ls-files --error-unmatch '.gitgutter#utility#shellescape(gitgutter#utility#filename()).' && ('
+  endif
 
   if a:realtime
-    let blob_name = ':' . gitgutter#utility#shellescape(gitgutter#utility#file_relative_to_repo_root())
+    let blob_name = ':'.gitgutter#utility#shellescape(gitgutter#utility#file_relative_to_repo_root())
     let blob_file = tempname()
-    let cmd .= 'git show ' . blob_name . ' > ' . blob_file .
-          \ ' && diff -U0 ' . g:gitgutter_diff_args . ' ' . blob_file . ' - '
+    let cmd .= 'git show '.blob_name.' > '.blob_file.' && '
+  endif
+
+  let cmd .= 'git diff --no-ext-diff --no-color -U'.a:lines_of_context.' '.g:gitgutter_diff_args.' -- '
+  if a:realtime
+    let cmd .= blob_file.' - '
   else
-    let cmd .= 'git diff --no-ext-diff --no-color -U0 ' . g:gitgutter_diff_args . ' ' . gitgutter#utility#shellescape(gitgutter#utility#filename())
+    let cmd .= gitgutter#utility#shellescape(gitgutter#utility#filename())
   endif
 
   if a:use_external_grep && s:grep_available
@@ -28,7 +38,11 @@ function! gitgutter#diff#run_diff(realtime, use_external_grep)
     let cmd.= ' || exit 0'
   endif
 
-  let cmd .= '))'
+  let cmd .= ')'
+
+  if !tracked
+    let cmd .= ')'
+  endif
 
   if a:realtime
     let diff = gitgutter#utility#system(gitgutter#utility#command_in_directory_of_file(cmd), gitgutter#utility#buffer_contents())
@@ -37,9 +51,12 @@ function! gitgutter#diff#run_diff(realtime, use_external_grep)
   endif
 
   if gitgutter#utility#shell_error()
-    " A shell error indicates the file is not tracked by git (unless something
-    " bizarre is going on).
+    " A shell error indicates the file is not tracked by git (unless something bizarre is going on).
     throw 'diff failed'
+  endif
+
+  if !tracked
+    call setbufvar(bufnr, 'gitgutter_tracked', 1)
   endif
 
   return diff
@@ -182,22 +199,24 @@ function! gitgutter#diff#process_modified_and_removed(modifications, from_count,
   let a:modifications[-1] = [a:to_line + offset - 1, 'modified_removed']
 endfunction
 
-function! gitgutter#diff#generate_diff_for_hunk(hunk, keep_header)
-  let diff = gitgutter#diff#discard_hunks(gitgutter#diff#run_diff(0, 0), a:hunk, a:keep_header)
+function! gitgutter#diff#generate_diff_for_hunk(keep_header, lines_of_context)
+  let diff = gitgutter#diff#run_diff(0, 0, a:lines_of_context)
+  let diff_for_hunk = gitgutter#diff#discard_hunks(diff, a:keep_header)
   if !a:keep_header
     " Discard summary line
-    let diff = join(split(diff, '\n')[1:-1], "\n")
+    let diff_for_hunk = join(split(diff_for_hunk, '\n')[1:-1], "\n")
   endif
-  return diff
+  return diff_for_hunk
 endfunction
 
-function! gitgutter#diff#discard_hunks(diff, hunk_to_keep, keep_header)
+" diff - with non-zero lines of context
+function! gitgutter#diff#discard_hunks(diff, keep_header)
   let modified_diff = []
   let keep_line = a:keep_header
   for line in split(a:diff, '\n')
     let hunk_info = gitgutter#diff#parse_hunk(line)
     if len(hunk_info) == 4  " start of new hunk
-      let keep_line = (hunk_info == a:hunk_to_keep)
+      let keep_line = gitgutter#hunk#cursor_in_hunk(hunk_info)
     endif
     if keep_line
       call add(modified_diff, line)
