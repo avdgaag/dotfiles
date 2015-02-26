@@ -8,11 +8,11 @@ React.createClass({
 });
 endsnippet
 
-snippet React "React.renderComponent" b
+snippet React "React.renderComponent"
 React.renderComponent(${1:component}, ${2:document.body});
 endsnippet
 
-snippet React "React.renderComponentToString" b
+snippet React "React.renderComponentToString"
 React.renderComponentToString(${1:component});
 endsnippet
 
@@ -75,4 +75,52 @@ endsnippet
 
 snippet cs "React.addons.classSet"
 React.addons.classSet({ $0 });
+endsnippet
+
+snippet TestUtils.f "TestUtils.findRenderedDOMComponentWithClass" w
+TestUtils.findRenderedDOMComponentWithClass(${1:tree}, ${2:className})
+endsnippet
+
+snippet TestUtils.f "TestUtils.findRenderedComponentWithType" w
+TestUtils.findRenderedComponentWithType(${1:tree}, ${2:componentClass})
+endsnippet
+
+snippet TestUtils.f "TestUtils.findRenderedDOMComponentWithTag" w
+TestUtils.findRenderedDOMComponentWithTag(${1:tree}, ${2:tagName})
+endsnippet
+
+snippet TestUtils.s "TestUtils.scryRenderedDOMComponentsWithClass" w
+TestUtils.scryRenderedDOMComponentsWithClass(${1:tree}, ${2:className})
+endsnippet
+
+snippet TestUtils.s "TestUtils.scryRenderedDOMComponentsWithTag" w
+TestUtils.scryRenderedDOMComponentsWithTag(${1:tree}, ${2:tagName})
+endsnippet
+
+snippet TestUtils.s "TestUtils.scryRenderedComponentsWithType" w
+TestUtils.scryRenderedComponentsWithType(${1:tree}, ${2:componentClass})
+endsnippet
+
+snippet TestUtils.S "TestUtils.Simulate" w
+TestUtils.Simulate.${1:click}(${2:node})
+endsnippet
+
+snippet TestUtils.i "TestUtils.isElementOfType" w
+TestUtils.isElementOfType(${1:element}, ${2:componentClass})
+endsnippet
+
+snippet TestUtils.i "TestUtils.isDOMComponent" w
+TestUtils.isDOMComponent(${1:instance})
+endsnippet
+
+snippet TestUtils.i "TestUtils.isCompositeComponent" w
+TestUtils.isCompositeComponent(${1:instance})
+endsnippet
+
+snippet TestUtils.i "TestUtils.isCompositeComponentWithType" w
+TestUtils.isCompositeComponentWithType(${1:instance}, ${2:componentClass})
+endsnippet
+
+snippet TestUtils.i "TestUtils.isTextComponent" w
+TestUtils.isTextComponent(${1:instance})
 endsnippet
