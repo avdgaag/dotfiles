@@ -1,6 +1,6 @@
 " rake.vim - It's like rails.vim without the rails
 " Maintainer:   Tim Pope <http://tpo.pe/>
-" Version:      1.2
+" Version:      2.0
 " GetLatestVimScripts: 3669 1 :AutoInstall: rake.vim
 
 if exists('g:loaded_rake') || &cp || v:version < 700
@@ -192,7 +192,7 @@ function! rake#project(...) abort
   return {}
 endfunction
 
-function! s:project(...)
+function! s:project(...) abort
   let project = call('rake#project', a:000)
   if !empty(project)
     return project
@@ -263,7 +263,7 @@ function! s:RakeComplete(A, L, P, ...) abort
   return projectionist#completion_filter(project.tasks(), a:A, ':')
 endfunction
 
-function! CompilerComplete_rake(A, L, P)
+function! CompilerComplete_rake(A, L, P) abort
   let path = findfile('Rakefile', escape(getcwd(), ' ,;').';')
   if empty(path)
     return []
