@@ -278,7 +278,6 @@ if has('autocmd')
 
     " Run Ruby files either directly or in a tmux split pane using Vimux.
     autocmd Filetype ruby nnoremap <buffer> <Leader>r :!ruby %<CR>
-    autocmd Filetype ruby nnoremap <buffer> <leader>R :cexpr system('rubocop '. expand('%'))<CR>
     autocmd Filetype ruby nnoremap <buffer> <Leader>vr :call VimuxRunCommand("clear; ruby " . bufname("%"))<CR>
     autocmd FileType ruby setlocal path+=lib/**
     autocmd FileType ruby setlocal includeexpr=substitute(substitute(substitute(v:fname,'::','/','g'),'$','.rb',''),'\\(\\<\\u\\l\\+\\\\|\\l\\+\\)\\(\\u\\)','\\l\\1_\\l\\2','g')
@@ -289,6 +288,8 @@ if has('autocmd')
     " block.
     autocmd FileType ruby let g:surround_{char2nr("x")} = "expect(\r).to"
     autocmd FileType ruby let g:surround_{char2nr("X")} = "expect { \r }.to"
+
+    autocmd Filetype ruby command! -buffer -nargs=* Rubocop call Rubocop(<q-args>)
 
     " }}}
 
@@ -344,5 +345,17 @@ if has('autocmd')
 endif
 
 " }}}
+
+
+function! Rubocop(arg)
+  let oldmakeprg = &l:makeprg
+  try
+    execute "set makeprg=rubocop\\ " . a:arg . "\\ %" 
+    make
+  finally
+    let &l:makeprg = oldmakeprg
+  endtry
+endfunction
+
 
 " vim:foldmethod=marker:foldlevel=0
