@@ -37,7 +37,7 @@ set laststatus=2
 set showcmd
 set ruler
 set modelines=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 " }}}
 
 " Colors, formatting and syntax highlighting {{{
