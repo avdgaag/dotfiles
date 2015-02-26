@@ -11,9 +11,17 @@ command VimuxInspectRunner :call VimuxInspectRunner()
 command VimuxScrollUpInspect :call VimuxScrollUpInspect()
 command VimuxScrollDownInspect :call VimuxScrollDownInspect()
 command VimuxInterruptRunner :call VimuxInterruptRunner()
-command VimuxPromptCommand :call VimuxPromptCommand()
+command -nargs=? VimuxPromptCommand :call VimuxPromptCommand(<args>)
 command VimuxClearRunnerHistory :call VimuxClearRunnerHistory()
 command VimuxTogglePane :call VimuxTogglePane()
+
+function! VimuxRunCommandInDir(command, useFile)
+    let l:file = ""
+    if a:useFile ==# 1
+        let l:file = shellescape(expand('%:t'), 1)
+    endif
+    call VimuxRunCommand("cd ".shellescape(expand('%:p:h'), 1)." && ".a:command." ".l:file." && cd - > /dev/null")
+endfunction
 
 function! VimuxRunLastCommand()
   if exists("g:VimuxRunnerIndex")
@@ -131,8 +139,9 @@ function! VimuxClearRunnerHistory()
   endif
 endfunction
 
-function! VimuxPromptCommand()
-  let l:command = input(_VimuxOption("g:VimuxPromptString", "Command? "))
+function! VimuxPromptCommand(...)
+  let command = a:0 == 1 ? a:1 : ""
+  let l:command = input(_VimuxOption("g:VimuxPromptString", "Command? "), command)
   call VimuxRunCommand(l:command)
 endfunction
 
