@@ -1,4 +1,4 @@
-" MIT License. Copyright (c) 2013-2014 Bailey Ling.
+" MIT License. Copyright (c) 2013-2015 Bailey Ling.
 " vim: et ts=2 sts=2 sw=2
 
 let s:ext = {}
@@ -22,10 +22,10 @@ let s:script_path = tolower(resolve(expand('<sfile>:p:h')))
 let s:filetype_overrides = {
       \ 'nerdtree': [ 'NERD', '' ],
       \ 'gundo': [ 'Gundo', '' ],
-      \ 'diff': [ 'diff', '' ],
       \ 'vimfiler': [ 'vimfiler', '%{vimfiler#get_status_string()}' ],
       \ 'minibufexpl': [ 'MiniBufExplorer', '' ],
       \ 'startify': [ 'startify', '' ],
+      \ 'vim-plug': [ 'Plugins', '' ],
       \ }
 
 let s:filetype_regex_overrides = {}
@@ -178,7 +178,7 @@ function! airline#extensions#load()
     call airline#extensions#bufferline#init(s:ext)
   endif
 
-  if get(g:, 'virtualenv_loaded', 0) && get(g:, 'airline#extensions#virtualenv#enabled', 1)
+  if isdirectory($VIRTUAL_ENV) && get(g:, 'airline#extensions#virtualenv#enabled', 1)
     call airline#extensions#virtualenv#init(s:ext)
   endif
 
@@ -213,6 +213,10 @@ function! airline#extensions#load()
 
   if (get(g:, 'airline#extensions#capslock#enabled', 1) && exists('*CapsLockStatusline'))
     call airline#extensions#capslock#init(s:ext)
+  endif
+
+  if (get(g:, 'airline#extensions#windowswap#enabled', 1) && get(g:, 'loaded_windowswap', 0))
+    call airline#extensions#windowswap#init(s:ext)
   endif
 
   if !get(g:, 'airline#extensions#disable_rtp_load', 0)
