@@ -3,9 +3,10 @@
 Vim sugar for the UNIX shell commands that need it the most.  Features
 include:
 
-* `:Unlink`: Delete a buffer and the file on disk simultaneously.
-* `:Remove`: Like `:Unlink`, but doesn't require a neckbeard.
+* `:Remove`: Delete a buffer and the file on disk simultaneously.
+* `:Unlink`: Like `:Remove`, but keeps the now empty buffer.
 * `:Move`: Rename a buffer and the file on disk simultaneously.
+* `:Rename`: Like `:Move`, but relative to the current file's containing directory.
 * `:Chmod`: Change the permissions of the current file.
 * `:Mkdir`: Create a directory, defaulting to the parent of the current file.
 * `:Find`: Run `find` and load the results into the quickfix list.
