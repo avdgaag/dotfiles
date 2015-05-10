@@ -12,7 +12,7 @@ set noswapfile
 
 set hidden
 set autoread
-set history=100
+set history=1000
 set backspace=indent,eol,start
 
 set wildmenu
