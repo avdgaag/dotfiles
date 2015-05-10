@@ -1,7 +1,15 @@
 priority -50
 
+global !p
+import re
+import os
+
+def camelize(str):
+	return os.path.splitext(''.join([part.capitalize() for part in str.lower().split('_')]))[0]
+endglobal
+
 snippet React "React.createClass"
-React.createClass
+${1:`!p snip.rv = camelize(fn) or 'ClassName'`} = React.createClass
 	render: ->
 		$0
 endsnippet
@@ -40,6 +48,12 @@ endsnippet
 
 snippet :c "componentDidUpdate" b
 componentDidUpdate: (prevProps, prevState) ->
+	$0
+
+endsnippet
+
+snippet :c "componentDidMount" b
+componentDidMount: ->
 	$0
 
 endsnippet
