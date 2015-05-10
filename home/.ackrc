@@ -7,6 +7,8 @@
 --ignore-dir=.yardoc
 --ignore-dir=.bundle
 --ignore-file=is:tags
+--ignore-dir=vendor
+--ignore-dir=deps
 --type-add=ruby:is:Vagrantfile
 --type-add=ruby:is:Cheffile
 --type-add=ruby:is:Rules
