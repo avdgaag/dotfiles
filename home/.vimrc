@@ -230,6 +230,8 @@ let g:rails_gem_projections = {
 \ }
 " }}}
 
+" {{{ Markdown
+let g:markdown_fenced_languages = ['ruby', 'js=javascript', 'javascript', 'coffee', 'eruby']
 " }}}
 
 " Autocommands {{{
