@@ -99,3 +99,6 @@ alias binstubs='export PATH=./bin:$PATH'
 # Rake
 alias rakes='rake `rake -T | selecta | awk "{ print $2 }"`'
 alias rake='noglob rake'
+
+# Homebrew
+alias bup='brew update && brew upgrade --all'
