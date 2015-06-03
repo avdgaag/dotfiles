@@ -333,14 +333,21 @@ if has('autocmd')
 
     " }}}
 
-    " Other languages {{{
+    " Elixir {{{
 
+    " Treat mix.lock file as Elixir code
+    autocmd BufNewFile,BufRead mix.lock setlocal filetype=elixir
     autocmd Filetype elixir nnoremap <buffer> <Leader>r :!elixir %<cr>
     autocmd Filetype elixir nnoremap <buffer> <Leader>k :!mix test %<cr>
     autocmd Filetype elixir nnoremap <buffer> <Leader>K :execute "!mix test --only line:" . line(".") . " %"<cr>
     autocmd Filetype elixir nnoremap <buffer> <Leader>vr :call VimuxRunCommand("clear; elixir " . bufname("%"))<cr>
     autocmd Filetype elixir nnoremap <buffer> <Leader>vk :call VimuxRunCommand("clear; mix test " . bufname("%"))<cr>
     autocmd Filetype elixir nnoremap <buffer> <Leader>vK :call VimuxRunCommand("clear; mix test --only line:" . line(".") . " " . bufname("%"))<cr>
+
+    " }}}
+
+    " Other languages {{{
+
     autocmd Filetype python nnoremap <buffer> <Leader>r :!python %<cr>
     autocmd Filetype sh     nnoremap <buffer> <Leader>r :!%<cr>
 
