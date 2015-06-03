@@ -98,6 +98,13 @@ defmodule ${1:module_name} do
 end
 endsnippet
 
+snippet defmot
+defmodule ${1:module_name}Test do
+	use ExUnit.Case, async: true
+	${2}
+end
+endsnippet
+
 snippet defp
 defp ${1:name} do
 	${2}
