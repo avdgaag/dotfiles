@@ -169,6 +169,11 @@ let g:mustache_abbreviations = 1
 
 " {{{ Projectionist
 let g:rails_projections = {
+  \  "app/assets/javascripts/components/*.js.cjsx": {
+  \    "command": "jcomponent",
+  \    "alternate": "spec/javascripts/components/%s_spec.js.coffee"
+  \  },
+  \
   \  "app/assets/javascripts/models/*.js.coffee": {
   \    "command": "jmodel",
   \    "alternate": "spec/javascripts/models/%s_spec.js.coffee",
@@ -304,6 +309,7 @@ if has('autocmd')
     autocmd Filetype javascript nnoremap <buffer> <Leader>k :!teaspoon %<cr>
     autocmd Filetype javascript nnoremap <buffer> <Leader>vr :call VimuxRunCommand("clear; node " . bufname("%"))<CR>
     autocmd Filetype coffee nnoremap <buffer> <Leader>r :CoffeeRun<CR>
+    autocmd Filetype coffee nnoremap <buffer> <Leader>b :CoffeeCompile<CR>
     autocmd Filetype coffee nnoremap <buffer> <Leader>k :!teaspoon %<cr>
     autocmd Filetype coffee nnoremap <buffer> <Leader>vk :call VimuxRunCommand("clear; teaspoon " . bufname("%"))<CR>
 
