@@ -103,6 +103,7 @@ let s:projections = {
       \ '*': {},
       \ 'lib/*.rb': {'type': 'lib', 'alternate': [
       \   'test/{}_test.rb', 'test/lib/{}_test.rb', 'test/unit/{}_test.rb',
+      \   'test/{dirname}/test_{basename}.rb',
       \   'spec/{}_spec.rb', 'spec/lib/{}_spec.rb', 'spec/unit/{}_spec.rb']},
       \ 'test/test_helper.rb': {'type': 'test'},
       \ 'test/*_test.rb': {
@@ -110,6 +111,9 @@ let s:projections = {
       \   'alternate': 'lib/{}.rb'},
       \ 'test/lib/*_test.rb': {'alternate': 'lib/{}.rb'},
       \ 'test/unit/*_test.rb': {'alternate': 'lib/{}.rb'},
+      \ 'test/**/test_*.rb': {
+      \   'type': 'test',
+      \   'alternate': 'lib/{}.rb'},
       \ 'spec/spec_helper.rb': {'type': 'spec'},
       \ 'spec/*_spec.rb': {
       \   'type': 'spec',
@@ -204,7 +208,21 @@ function! s:project_path(...) dict abort
   return join([self._root]+a:000,'/')
 endfunction
 
-call s:add_methods('project',['path'])
+function! s:project_ruby_include_path() dict abort
+  if !has_key(self, '_ruby_include_path')
+    let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd' : 'cd'
+    let cwd = getcwd()
+    try
+      execute cd fnameescape(self.path())
+      let self._ruby_include_path = system('ruby -rrbconfig -e "print RbConfig::CONFIG[\"rubyhdrdir\"] || RbConfig::CONFIG[\"topdir\"]"')
+    finally
+      execute cd fnameescape(cwd)
+    endtry
+  endif
+  return self._ruby_include_path
+endfunction
+
+call s:add_methods('project',['path','ruby_include_path'])
 
 " }}}1
 " Rake {{{1
@@ -318,6 +336,11 @@ augroup rake_path
         \ if &suffixesadd =~# '\.rb\>' && stridx(&path, escape(s:project().path('lib'),', ')) < 0 |
         \   let &l:path = escape(s:project().path('lib'),', ')
         \     . ',' . escape(s:project().path('ext'),', ') . ',' . &path |
+        \ endif
+  autocmd User Rake
+        \ if &filetype ==# 'c' || &filetype ==# 'cpp' |
+        \   let &l:path .= ',' . escape(s:project().ruby_include_path(),', ') |
+        \   let &l:tags .= ',' . escape(s:project().ruby_include_path().'/tags',', ') |
         \ endif
 augroup END
 
