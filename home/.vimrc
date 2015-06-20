@@ -239,6 +239,10 @@ let g:rails_gem_projections = {
 let g:markdown_fenced_languages = ['ruby', 'js=javascript', 'javascript', 'coffee', 'eruby']
 " }}}
 
+" {{{ Asciidoc
+command! -nargs=0 AsciiDocPreview execute ':silent !asciidoc %' | execute ':redraw!'
+" }}}
+
 " Autocommands {{{
 
 function! StripTrailingWhitespace()
@@ -356,7 +360,8 @@ if has('autocmd')
     autocmd FileType scss setlocal suffixesadd+=.css.scss
     autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set filetype=tmux
 
-    autocmd BufNewFile,BufRead *.adoc set filetype=asciidoc
+    autocmd BufNewFile,BufRead *.adoc setlocal filetype=asciidoc textwidth=80 formatoptions=tcqn wrap formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
+    autocmd BufNewFile,BufRead *.adoc nmap <leader>w :AsciiDocPreview<cr>
 
     " }}}
 
