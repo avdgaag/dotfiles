@@ -48,7 +48,7 @@ function pk() {
 
 # Git
 # ---------------------------------------------------------------------------------------
-alias ga='git commit --amend'
+alias ga='git commit --amend --no-edit'
 alias gap='git add -p'
 alias gb='git branch'
 alias gbc='git rev-parse --abbrev-ref HEAD'
