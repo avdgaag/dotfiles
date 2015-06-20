@@ -393,7 +393,9 @@ view			test:functionals TEST=...	spec SPEC=...
 fixtures		db:fixtures:load FIXTURES=...
 migration		db:migrate:redo VERSION=...
 config/routes.rb	routes
+db/schema.rb		db:migrate:status
 db/seeds.rb		db:seed
+README			about
 
 Additionally, when :Rake is given a line number (e.g., :.Rake), the following
 additional tasks can be invoked:
@@ -460,8 +462,8 @@ A limited amount of completion with <Tab> is supported.
 
 						*rails-:Rserver*
 :Rserver {options}	Launches rails server {options} in the background.
-			On win32, this means |!start|.  Otherwise, the
-			--daemon option is passed in.
+			If dispatch.vim's :Start is available, that is used.
+			Otherwise, the --daemon option is passed in.
 
 						*rails-:Rserver!*
 :Rserver! {options}	Kill the pid found in tmp/pids/server.pid and then
