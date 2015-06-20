@@ -6,8 +6,16 @@
 "   See directions at the top of the test.py script located one
 "   directory above this file.
 
-if exists('did_UltiSnips_plugin') || &cp || version < 700
+if exists('did_UltiSnips_plugin') || &cp
     finish
+endif
+let did_UltiSnips_plugin=1
+
+if version < 704
+   echohl WarningMsg
+   echom  "UltiSnips requires Vim >= 7.4"
+   echohl None
+   finish
 endif
 
 " The Commands we define.
@@ -61,12 +69,14 @@ augroup UltiSnips
     au!
     au CursorMovedI * call UltiSnips#CursorMoved()
     au CursorMoved * call UltiSnips#CursorMoved()
-    au BufLeave * call UltiSnips#LeavingBuffer()
+
     au InsertLeave * call UltiSnips#LeavingInsertMode()
+
+    au BufLeave * call UltiSnips#LeavingBuffer()
+    au CmdwinEnter * call UltiSnips#LeavingBuffer()
+    au CmdwinLeave * call UltiSnips#LeavingBuffer()
 augroup END
 
 call UltiSnips#map_keys#MapKeys()
-
-let did_UltiSnips_plugin=1
 
 " vim: ts=8 sts=4 sw=4

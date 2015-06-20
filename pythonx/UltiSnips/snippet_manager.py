@@ -111,6 +111,7 @@ class SnippetManager(object):
     def jump_forwards(self):
         """Jumps to the next tabstop."""
         _vim.command('let g:ulti_jump_forwards_res = 1')
+        _vim.command('let &undolevels = &undolevels')
         if not self._jump():
             _vim.command('let g:ulti_jump_forwards_res = 0')
             return self._handle_failure(self.forward_trigger)
@@ -119,6 +120,7 @@ class SnippetManager(object):
     def jump_backwards(self):
         """Jumps to the previous tabstop."""
         _vim.command('let g:ulti_jump_backwards_res = 1')
+        _vim.command('let &undolevels = &undolevels')
         if not self._jump(True):
             _vim.command('let g:ulti_jump_backwards_res = 0')
             return self._handle_failure(self.backward_trigger)
@@ -203,18 +205,19 @@ class SnippetManager(object):
 
     @err_to_scratch_buffer
     def add_snippet(self, trigger, value, description,
-                    options, ft='all', priority=0):
+                    options, ft='all', priority=0, context=None):
         """Add a snippet to the list of known snippets of the given 'ft'."""
         self._added_snippets_source.add_snippet(ft,
                                                 UltiSnipsSnippetDefinition(priority, trigger, value,
-                                                                           description, options, {}, 'added'))
+                                                                           description, options, {}, 'added',
+                                                                           context))
 
     @err_to_scratch_buffer
-    def expand_anon(self, value, trigger='', description='', options=''):
+    def expand_anon(self, value, trigger='', description='', options='', context=None):
         """Expand an anonymous snippet right here."""
         before = _vim.buf.line_till_cursor
         snip = UltiSnipsSnippetDefinition(0, trigger, value, description,
-                                          options, {}, '')
+                                          options, {}, '', context)
 
         if not trigger or snip.matches(before):
             self._do_snippet(snip, before)
@@ -319,7 +322,7 @@ class SnippetManager(object):
                     lt = '\n'.join(lt)
                     ct = '\n'.join(ct)
                     es = diff(lt, ct, initial_line)
-                self._csnippets[0].replay_user_edits(es)
+                self._csnippets[0].replay_user_edits(es, self._ctab)
             except IndexError:
                 # Rather do nothing than throwing an error. It will be correct
                 # most of the time
@@ -572,16 +575,23 @@ class SnippetManager(object):
         if not before:
             return False
         snippets = self._snips(before, False)
+        if snippets:
+            # prefer snippets with context if any
+            snippets_with_context = [s for s in snippets if s.context]
+            if snippets_with_context:
+                snippets = snippets_with_context
         if not snippets:
             # No snippet found
             return False
-        elif len(snippets) == 1:
+        _vim.command('let &undolevels = &undolevels')
+        if len(snippets) == 1:
             snippet = snippets[0]
         else:
             snippet = _ask_snippets(snippets)
             if not snippet:
                 return True
         self._do_snippet(snippet, before)
+        _vim.command('let &undolevels = &undolevels')
         return True
 
     @property

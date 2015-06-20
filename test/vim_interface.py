@@ -2,12 +2,14 @@
 
 import os
 import re
+import shutil
 import subprocess
 import tempfile
 import textwrap
 import time
 
-from test.constant import *
+from test.constant import (ARR_D, ARR_L, ARR_R, ARR_U, BS, ESC, PYTHON3,
+        SEQUENCES)
 
 
 def wait_until_file_exists(file_path, times=None, interval=0.01):
@@ -127,50 +129,6 @@ class VimInterface(TempFileManager):
         self.send(3 * ESC + ':qa!\n')
         while is_process_running(self._vim_pid):
             time.sleep(.05)
-
-
-class VimInterfaceScreen(VimInterface):
-
-    def __init__(self, session):
-        VimInterface.__init__(self, 'Screen')
-        self.session = session
-        self.need_screen_escapes = 0
-        self.detect_parsing()
-
-    def send(self, s):
-        if self.need_screen_escapes:
-            # escape characters that are special to some versions of screen
-            repl = lambda m: '\\' + m.group(0)
-            s = re.sub(r"[$^#\\']", repl, s)
-
-        if PYTHON3:
-            s = s.encode('utf-8')
-
-        while True:
-            rv = 0
-            if len(s) > 30:
-                rv |= silent_call(
-                    ['screen', '-x', self.session, '-X', 'register', 'S', s])
-                rv |= silent_call(
-                    ['screen', '-x', self.session, '-X', 'paste', 'S'])
-            else:
-                rv |= silent_call(
-                    ['screen', '-x', self.session, '-X', 'stuff', s])
-            if not rv:
-                break
-            time.sleep(.2)
-
-    def detect_parsing(self):
-        self.launch()
-        # Send a string where the interpretation will depend on version of
-        # screen
-        string = '$TERM'
-        self.send('i' + string + ESC)
-        output = self.get_buffer_data()
-        # If the output doesn't match the input, need to do additional escaping
-        if output != string:
-            self.need_screen_escapes = 1
-        self.leave_with_wait()
 
 
 class VimInterfaceTmux(VimInterface):
