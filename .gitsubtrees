@@ -29,3 +29,4 @@ home/.vim/bundle/vim-unimpaired git@github.com:tpope/vim-unimpaired.git
 home/.vim/bundle/vimux git@github.com:benmills/vimux.git
 home/.vim/bundle/vim-gitgutter git@github.com:airblade/vim-gitgutter.git
 home/.vim/bundle/vim-jsx git@github.com:mxw/vim-jsx.git
+home/.vim/bundle/vim-dispatch git@github.com:tpope/vim-dispatch.git
