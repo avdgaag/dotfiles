@@ -41,3 +41,7 @@
 [alias]
 	safe = !mkdir .git/safe
 	unsafe = !rmdir .git/safe
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
