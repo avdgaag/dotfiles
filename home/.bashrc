@@ -26,6 +26,10 @@ function take() {
     cd "$*"
 }
 
+function dash() {
+  noglob open dash://"$*"
+}
+
 # Select a Tmux session to attach to
 alias tmuxs='tmux attach -t `tmux ls | selecta | cut -f1 -d:`'
 
