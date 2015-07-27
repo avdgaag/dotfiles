@@ -80,3 +80,6 @@
                          newline-mark))
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; Treat .adoc files as AsciiDoc automatically
+(add-to-list 'auto-mode-alist (cons "\\.adoc \\'" 'adoc-mode))
