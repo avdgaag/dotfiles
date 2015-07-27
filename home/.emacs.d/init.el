@@ -1,9 +1,8 @@
-(add-to-list 'load-path "~/.emacs.d/components/")
-(load-library "packages")
-(load-library "ui")
-(load-library "projectile")
-(load-library "keys")
-(load-library "ruby")
+(load-library "~/.emacs.d/components/packages")
+(load-library "~/.emacs.d/components/ui")
+(load-library "~/.emacs.d/components/projectile")
+(load-library "~/.emacs.d/components/keys")
+(load-library "~/.emacs.d/components/ruby")
 
 ;; Ensure we can load the actual binaries we want to use
 (push "/usr/local/bin" exec-path)
