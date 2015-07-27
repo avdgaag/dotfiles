@@ -83,3 +83,7 @@
 
 ;; Treat .adoc files as AsciiDoc automatically
 (add-to-list 'auto-mode-alist (cons "\\.adoc \\'" 'adoc-mode))
+
+;; Always autoscroll compilation output, so long reuslt listings are easier to
+;; read.
+(setq compilation-scroll-output t)
