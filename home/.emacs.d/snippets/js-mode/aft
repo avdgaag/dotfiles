@@ -1,0 +1,7 @@
+# name: afterEach
+# key: aft
+# contributor: Arjan van der Gaag
+# --
+afterEach(function() {
+  $0
+});

@@ -1,0 +1,6 @@
+# name: it
+# key: it
+# contributor: Arjan van der Gaag
+# --
+it "${1:does something}", ->
+  $0

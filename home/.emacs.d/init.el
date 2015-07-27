@@ -62,3 +62,7 @@
        (setq trash-directory "~/.Trash/")))
 
 (put 'upcase-region 'disabled nil)
+
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"))
+(yas-global-mode 1)
