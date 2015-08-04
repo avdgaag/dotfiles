@@ -1,5 +1,5 @@
 ;; Define key to open Magit status
-(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-c g") 'magit-status)
 
 ;; Define key to quickly open init.el in another window
 (defun find-user-init-file ()
