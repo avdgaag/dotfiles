@@ -15,12 +15,8 @@
  '(custom-safe-themes
    (quote
     ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "f4020e085253f630b9dedb0bb2bea7dc574100b7993cac011f94097c4f92fd13" default)))
-
- ;; Configuration for projectile to not look for `TAGS` file but a `tags` file.
+ '(enh-ruby-add-encoding-comment-on-save nil)
  '(projectile-tags-file-name "tags")
-
- ;; Configure rspec-mode to not use `bundle exec` or `rake` but just plain `rspec`
- ;; since we'll be using binstubs anyway.
  '(rspec-use-bundler-when-possible nil)
  '(rspec-use-rake-when-possible nil))
 
