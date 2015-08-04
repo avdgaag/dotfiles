@@ -1,0 +1,5 @@
+# name: React TestUtils scryRenderedDOMComponentsWithClass
+# key: TestUtils.fdc
+# contributor: Arjan van der Gaag
+# --
+TestUtils.findRenderedDOMComponentWithClass

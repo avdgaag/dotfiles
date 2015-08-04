@@ -1,0 +1,5 @@
+# name: React TestUtils scryRenderedDOMComponentsWithTag
+# key: TestUtils.sdt
+# contributor: Arjan van der Gaag
+# --
+TestUtils.scryRenderedDOMComponentsWithTag
