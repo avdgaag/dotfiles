@@ -14,3 +14,10 @@
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 (global-set-key (kbd "C-c <up>")    'windmove-up)
 (global-set-key (kbd "C-c <down>")  'windmove-down)
+
+;; Set up multiple cursors keybindings
+(global-set-key (kbd "C-c m") 'mc/edit-lines)
+(global-set-key (kbd "C-c M") 'mc/edit-ends-of-lines)
+(global-set-key (kbd "C-c >") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c <") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c /") 'mc/mark-all-like-this)
