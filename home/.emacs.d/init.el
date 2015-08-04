@@ -87,3 +87,8 @@
 ;; Always autoscroll compilation output, so long reuslt listings are easier to
 ;; read.
 (setq compilation-scroll-output t)
+
+;; Always use js2-mode for editing javascript
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.cjsx\\'" . coffee-mode))
