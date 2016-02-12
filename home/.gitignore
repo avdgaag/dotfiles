@@ -5,3 +5,5 @@
 .yardoc
 *~
 tags
+.dir-locals.el
+.projectile
