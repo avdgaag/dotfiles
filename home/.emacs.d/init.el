@@ -1,11 +1,27 @@
-(load-library "~/.emacs.d/components/packages")
-(load-library "~/.emacs.d/components/ui")
-(load-library "~/.emacs.d/components/projectile")
-(load-library "~/.emacs.d/components/keys")
-(load-library "~/.emacs.d/components/ruby")
+;;; init.el --- Arjan van der Gaag's Emacs configuration
 
-;; Ensure we can load the actual binaries we want to use
-(push "/usr/local/bin" exec-path)
+;; This file is not part of GNU Emacs.
+
+;;; Commentary:
+
+;; Main configuration file for custom settings.
+
+;;; License:
+
+;; Whatever.
+
+;;; Code:
+
+;; Define a location for custom configuration components
+(setq avdg-emacs-components-dir
+      (expand-file-name "components" user-emacs-directory))
+
+;; Load all files in the configuration components directory
+(if (file-exists-p avdg-emacs-components-dir)
+    (dolist (file
+             (directory-files avdg-emacs-components-dir t "\\.el$"))
+      (load file))
+    (message "Configuration components directory not found; skipping."))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -15,10 +31,19 @@
  '(custom-safe-themes
    (quote
     ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "f4020e085253f630b9dedb0bb2bea7dc574100b7993cac011f94097c4f92fd13" default)))
- '(enh-ruby-add-encoding-comment-on-save nil)
- '(projectile-tags-file-name "tags")
- '(rspec-use-bundler-when-possible nil)
- '(rspec-use-rake-when-possible nil))
+ '(safe-local-variable-values
+   (quote
+    ((eval progn
+           (require
+            (quote projectile))
+           (puthash
+            (projectile-project-root)
+            "bin/nanoc compile" projectile-compilation-cmd-map))
+     (flycheck-eslint-executable . "/Users/arjan/code/vecozo/node_modules/eslint/bin/eslint.js")
+     (flycheck-eslint-executable . /Users/arjan/code/vecozo/node_modules/eslint/bin/eslint\.js)
+     (flycheck-disabled-checkers . javascript-jshint)
+     (projectile-project-test-cmd . "mocha --no-colors --reporter dot"))))
+ '(sql-product (quote postgres)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -30,61 +55,11 @@
 ;; Use the Smyx color scheme
 (load-theme 'smyx)
 
-;; No need for backup files
-(setq make-backup-files nil)
-(setq backup-inhibited t)
-(setq auto-save-default nil)
-
-;; Default tab width and usage
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil)
-
-;; Set a default line width
-(setq-default fill-column 80)
-
-;; Enable clipboard copy/paste
-(setq x-select-enable-clipboard t)
-
-;; Always use UTF-8
-(setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
-
-;; On Mac OSX, delete files by moving them to ~/.Tash
-(cond ((eq system-type 'darwin)
-       (setq delete-by-moving-to-trash t)
-       (setq trash-directory "~/.Trash/")))
-
-(put 'upcase-region 'disabled nil)
-
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"))
-(yas-global-mode 1)
-
-(setq whitespace-style '(
-                         face
-                         tabs
-                         trailing
-                         lines-tail
-                         space-before-tab
-                         newline
-                         empty
-                         space-after-tab
-                         tab-mark
-                         newline-mark))
-(add-hook 'prog-mode-hook 'whitespace-mode)
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; Treat .adoc files as AsciiDoc automatically
-(add-to-list 'auto-mode-alist (cons "\\.adoc \\'" 'adoc-mode))
-
 ;; Always autoscroll compilation output, so long reuslt listings are easier to
 ;; read.
-(setq compilation-scroll-output t)
+(setq compilation-scroll-output 'first-error)
 
-;; Always use js2-mode for editing javascript
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.cjsx\\'" . coffee-mode))
+;; automatically tail opened log files
+(add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
+
+;;; init.el ends here

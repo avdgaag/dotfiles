@@ -1,8 +1,20 @@
-;; For projectile and general awesomeness, enable ido and flx-ido
-(ido-mode t)
-(flx-ido-mode 1)
-(ido-everywhere t)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-(ido-vertical-mode 1)
+;;; projectile.el --- configure projectile
+
+;;; Commentary:
+
+;;; Code:
+
 (projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(setq projectile-tags-command "ctags -Re -f \"%s\" %s")
+(setq projectile-tags-file-name "tags")
+(helm-projectile-on)
+
+(defun my-expand-completion-table (orig-fun &rest args)
+  "Extract all symbols from COMPLETION-TABLE before calling projectile--tags."
+  (let ((completion-table (all-completions "" (car args))))
+    (funcall orig-fun completion-table)))
+
+(advice-add 'projectile--tags :around #'my-expand-completion-table)
+
+;;; projectile.el ends here
