@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: testc
+# key: testc
+# --
+test "${1:does something}", %{conn: conn} do
+  $0
+end

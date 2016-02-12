@@ -2,6 +2,6 @@
 # name: defp
 # key: defp
 # --
-defp $1 do
+defp ${1:method}${2:(${3:args})} do
 	$0
 end
