@@ -1,8 +1,9 @@
 # Edit command in EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey -v
-bindkey -M vicmd v edit-command-line
+bindkey -e
+# bindkey -M vicmd v edit-command-line
+bindkey "^X^E" edit-command-line
 
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward

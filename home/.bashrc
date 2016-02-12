@@ -3,6 +3,8 @@
 
 alias vi='vim'
 alias vims='vim `find . -type f | grep -v "^\./\."  | selecta`'
+alias es='/usr/local/Cellar/emacs/24.5/bin/emacs --daemon'
+alias emacs='/usr/local/Cellar/emacs/24.5/bin/emacsclient -c -n -a ""'
 alias lsh='ls -lhGFr'
 alias lsa='ls -lhaGFr'
 alias nicedate='date "+%Y-%m-%d"'
@@ -38,7 +40,7 @@ alias kills='kill `ps aux | selecta | awk '"'"'{print $2 }'"'"'`'
 
 # Working with these dotfiles made easier
 alias reload='source ~/.bashrc'
-alias ea='vim ~/.bashrc && reload' # Edit aliases
+alias ea='emacs ~/.bashrc && reload' # Edit aliases
 
 # Pretty printing files
 function pp() {
