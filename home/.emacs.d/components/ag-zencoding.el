@@ -30,7 +30,7 @@
 ;;; Code:
 (use-package zencoding-mode
   :ensure t
-  :init
+  :config
   (add-hook 'sgml-mode-hook 'zencoding-mode))
 
 (provide 'ag-zencoding)

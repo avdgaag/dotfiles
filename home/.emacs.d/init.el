@@ -12,7 +12,6 @@
 
 ;;; Code:
 
-
 (setq load-prefer-newer t)
 
 ;; Define a location for custom configuration components
@@ -20,9 +19,17 @@
       (expand-file-name "components" user-emacs-directory))
 (setq avdg-emacs-themes-dir
       (expand-file-name "themes" user-emacs-directory))
+(setq avdg-emacs-core-dir
+      (expand-file-name "core" user-emacs-directory))
 
+(add-to-list 'load-path avdg-emacs-core-dir)
 (add-to-list 'load-path avdg-emacs-components-dir)
 (add-to-list 'custom-theme-load-path avdg-emacs-themes-dir)
+
+(require 'ag-editor)
+(require 'ag-functions)
+(require 'ag-keys)
+(require 'ag-osx)
 
 (require 'ag-packages)
 (require 'ag-ag)
@@ -31,18 +38,15 @@
 (require 'ag-clojure)
 (require 'ag-company)
 (require 'ag-css)
-(require 'ag-editor)
 (require 'ag-elixir)
 (require 'ag-expand-region)
 (require 'ag-flycheck)
 (require 'ag-helm)
 (require 'ag-javascript)
-(require 'ag-keys)
 (require 'ag-magit)
 (require 'ag-markdown)
 (require 'ag-multiple-cursors)
 (require 'ag-org)
-(require 'ag-osx)
 (require 'ag-paredit)
 (require 'ag-projectile)
 (require 'ag-ruby)

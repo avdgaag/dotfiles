@@ -1,4 +1,4 @@
-;;; ag-osx.el --- TODO
+;;; ag-ui.el --- customize the emacs UI
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,28 +28,35 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-;;; osx.el --- customizations for Mac OSX
 
-;;; Commentary:
+;; Use Y/N intead of Yes/No
+(fset 'yes-or-no-p 'y-or-n-p)
 
-;;; Code:
+;; Keep a couple of lines of screen context when scrolling
+(setq scroll-margin 3 scroll-preserve-screen-position 1)
 
-;; On Mac OSX, delete files by moving them to ~/.Tash
-(cond ((eq system-type 'darwin)
-       (setq delete-by-moving-to-trash t)
-       (setq trash-directory "~/.Trash/")))
+;; Customize line spacing
+(setq-default line-spacing 1)
 
-(setq mouse-wheel-scroll-amount '(1
-                                    ((shift) . 5)
-                                    ((control))))
-;; Ensure we can load the actual binaries we want to use
-(push "/usr/local/bin" exec-path)
+;; Use 4 columns for line numbers and then a space
+(setq linum-format "%4d ")
 
-(global-set-key (kbd "M-`") 'ns-next-frame)
-(global-set-key (kbd "M-h") 'ns-do-hide-emacs)
-(global-set-key (kbd "M-˙") 'ns-do-hide-others)
+;; Always show line and column numbers
+(global-linum-mode 1)
+(column-number-mode 1)
 
-;;; osx.el ends here
+;; Don't show startup screen
+(setq inhibit-startup-screen t)
+(setq inhibit-startup-echo-area-message t)
 
-(provide 'ag-osx)
-;;; ag-osx.el ends here
+;; Hide unnecessary GUI chrome
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(show-paren-mode t)
+
+;; do not blink
+(blink-cursor-mode -1)
+
+(provide 'ag-ui)
+;;; ag-ui.el ends here

@@ -1,4 +1,4 @@
-;;; ag-editor.el --- TODO
+;;; ag-editor.el --- customize the core editor experience
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -29,10 +29,11 @@
 
 ;;; Code:
 
-;; No need for backup files
-(setq make-backup-files nil)
-(setq backup-inhibited t)
-(setq auto-save-default nil)
+;; Store backup files in tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; Default tab width and usage
 (setq-default tab-width 2)

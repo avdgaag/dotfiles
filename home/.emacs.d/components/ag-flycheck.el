@@ -30,7 +30,7 @@
 ;;; Code:
 (use-package flycheck
   :ensure t
-  :init
+  :config
   (add-hook 'after-init-hook 'global-flycheck-mode))
 
 (provide 'ag-flycheck)

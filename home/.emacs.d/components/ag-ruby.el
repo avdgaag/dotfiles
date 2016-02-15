@@ -104,7 +104,7 @@
 (use-package minitest
   :ensure t)
 
-(load-library "~/.emacs.d/rails-sql-mode")
+(require 'rails-sql-mode)
 (add-hook 'projectile-rails-mode 'rails-sql-mode)
 
 (provide 'ag-ruby)

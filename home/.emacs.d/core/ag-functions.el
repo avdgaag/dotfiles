@@ -1,4 +1,4 @@
-;;; ag-keys.el --- TODO
+;;; ag-functions.el --- define all custom elisp functions
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,30 +28,13 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-;;; keys.el --- custom keybindings and functions
 
-;;; Commentary:
-
-;;; Code:
-
-;; Define key to open Magit status
-(global-set-key (kbd "C-c g") 'magit-status)
-
-;; Define key to quickly open init.el in another window
-(defun find-user-init-file ()
+(defun avdg-find-user-init-file ()
   "Edit the `init.el` file in another window."
   (interactive)
   (find-file-other-window user-init-file))
-(global-set-key (kbd "C-c I") 'find-user-init-file)
 
-;; Use C-c [arrow] to navigate windows
-;; (windmove-default-keybindings)
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
-
-(defun duplicate-line()
+(defun avdg-duplicate-line()
   "Duplicate the current line by killing it and than yanking it tiwce."
   (interactive)
   (move-beginning-of-line 1)
@@ -60,12 +43,8 @@
   (open-line 1)
   (forward-line 1)
   (yank))
-(global-set-key (kbd "s-d") 'duplicate-line)
 
-;; Define C-S-F to full screen window
-(global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
-
-(defun ag-move-line-down ()
+(defun avdg-move-line-down ()
   "Move the current line one line down."
   (interactive)
   (let ((col (current-column)))
@@ -75,7 +54,7 @@
     (forward-line)
     (move-to-column col)))
 
-(defun ag-move-line-up ()
+(defun avdg-move-line-up ()
   "Move the current line one line up."
   (interactive)
   (let ((col (current-column)))
@@ -85,17 +64,14 @@
     (forward-line -2)
     (move-to-column col)))
 
-(global-set-key (kbd "<C-S-down>") 'ag-move-line-down)
-(global-set-key (kbd "<C-S-up>") 'ag-move-line-up)
-
-(defun ag-open-line-below ()
+(defun avdg-open-line-below ()
   "Insert a new line below the current line."
   (interactive)
   (end-of-line)
   (newline)
   (indent-for-tab-command))
 
-(defun ag-open-line-above ()
+(defun avdg-open-line-above ()
   "Insert a new line above the current line."
   (interactive)
   (beginning-of-line)
@@ -103,30 +79,16 @@
   (forward-line -1)
   (indent-for-tab-command))
 
-(global-set-key (kbd "<C-return>") 'ag-open-line-below)
-(global-set-key (kbd "<C-S-return>") 'ag-open-line-above)
-
-;; Code alignment
-(global-set-key (kbd "C-x \\") 'align-regexp)
-
-;; Font size
-(global-set-key (kbd "s-=") 'text-scale-increase)
-(global-set-key (kbd "s--") 'text-scale-decrease)
-
-(global-set-key (kbd "C-c w") 'toggle-truncate-lines)
-
-(defun ag-join-with-next-line ()
+(defun avdg-join-with-next-line ()
   "Like C-^ but join with next instead of previous line."
   (join-line -1))
 
-(global-set-key (kbd "M-j") 'ag-join-with-next-line)
-
-(defun ag-indent-buffer ()
+(defun avdg-indent-buffer ()
   "Indent the currently visited buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
 
-(defun ag-indent-region-or-buffer ()
+(defun avdg-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
   (save-excursion
@@ -135,19 +97,14 @@
           (indent-region (region-beginning) (region-end))
           (message "Indented selected region."))
       (progn
-        (ag-indent-buffer)
+        (avdg-indent-buffer)
         (message "Indented buffer.")))))
 
-(global-set-key (kbd "C-M-\\") 'ag-indent-region-or-buffer)
-
-(defun ag-switch-to-previous-buffer ()
+(defun avdg-switch-to-previous-buffer ()
   "Switch to previously open buffer.
 Toggle between the two most recently open buffers on repeated invocations."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
-(global-set-key (kbd "C-c b") 'ag-switch-to-previous-buffer)
-;;; keys.el ends here
-
-(provide 'ag-keys)
-;;; ag-keys.el ends here
+(provide 'ag-functions)
+;;; ag-functions.el ends here
