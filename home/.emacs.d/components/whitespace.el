@@ -1,9 +1,3 @@
-;;; whitespace.el --- configure whitespace usage
-
-;;; Commentary:
-
-;;; Code:
-
 (setq whitespace-style '(
                          face
                          tabs
@@ -17,5 +11,3 @@
                          newline-mark))
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'before-save-hook 'whitespace-cleanup)
-
-;;; whitespace.el ends here

@@ -1,37 +1,78 @@
-;;; ruby.el --- configure Ruby and related packages
+(use-package enh-ruby-mode
+  :commands enh-ruby-mode
+  :ensure t
+  :interpreter "ruby"
+  :mode ("\\.rb$"
+         "\\.rake$"
+         "Rakefile$"
+         "\\.gemspec$"
+         "\\.ru$"
+         "Gemfile$"
+         "Vagrantfile$"
+         ".simplecov$")
+  :init
+  (setq ruby-insert-encoding-magic-comment nil)
+  (setq enh-ruby-add-encoding-comment-on-save nil)
+  (setq enh-ruby-deep-indent-paren nil)
+  (setq enh-ruby-hanging-paren-deep-indent-level 2))
 
-;;; Commentary:
+(use-package projectile-rails
+  :commands projectile-rails-on
+  :ensure t
+  :init
+  (add-hook 'projectile-mode-hook 'projectile-rails-on))
 
-;;; Code:
+(use-package rbenv
+  :commands global-rbenv-mode
+  :ensure t
+  :init
+  (add-hook 'enh-ruby-mode-hook 'global-rbenv-mode)
+  (add-hook 'enh-ruby-mode-hook 'rbenv-use-corresponding))
 
-(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
-(autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
-(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '(".simplecov$" . enh-ruby-mode))
+(use-package robe
+  :commands robe-mode
+  :ensure t
+  :init
+  (add-hook 'enh-ruby-mode-hook 'robe-mode))
 
-;; For Ruby files, enable projectile and projectile-rails
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
-(add-hook 'enh-ruby-mode-hook 'global-rbenv-mode)
-(add-hook 'enh-ruby-mode-hook 'rbenv-use-corresponding)
-(add-hook 'enh-ruby-mode-hook 'robe-mode)
-(add-hook 'enh-ruby-mode-hook 'yard-mode)
+(use-package yard-mode
+  :commands yard-mode
+  :ensure t
+  :init
+  (add-hook 'enh-ruby-mode-hook 'yard-mode))
+
+(use-package rspec-mode
+  :commands rspec-mode
+  :ensure t
+  :init
+  (setq rspec-use-bundler-when-possible nil)
+  (setq rspec-use-rake-when-possible nil))
+
+(use-package bundler
+  :ensure t)
+
+(use-package inf-ruby
+  :ensure t)
+
+(use-package ruby-refactor
+  :ensure t)
+
+(use-package rubocop
+  :ensure t)
+
+(use-package yaml-mode
+  :ensure t)
+
+(use-package haml-mode
+  :commands haml-mode
+  :ensure t)
+
+(use-package slim-mode
+  :commands slim-mode
+  :ensure t)
+
+(use-package minitest
+  :ensure t)
 
 (load-library "~/.emacs.d/rails-sql-mode")
 (add-hook 'projectile-rails-mode 'rails-sql-mode)
-
-;; Prevent ruby-mode from adding magic encoding comments to the top of files
-(setq ruby-insert-encoding-magic-comment nil)
-(setq enh-ruby-add-encoding-comment-on-save nil)
-(setq enh-ruby-deep-indent-paren nil)
-(setq enh-ruby-hanging-paren-deep-indent-level 2)
-
-(setq rspec-use-bundler-when-possible nil)
-(setq rspec-use-rake-when-possible nil)
-
-;;; ruby.el ends here

@@ -1,40 +1,35 @@
-;;; helm.el --- configuration for Helm
+(use-package helm
+  :ensure t
+  :init
+  (setq helm-M-x-fuzzy-match t)
+  (setq helm-recentf-fuzzy-match t)
+  (setq helm-locate-fuzzy-match t)
+  (setq helm-buffers-fuzzy-matching t)
+  (setq helm-locate-fuzzy-match t)
+  (setq helm-semantic-fuzzy-match t)
+  (setq helm-imenu-fuzzy-match t)
+  (setq helm-file-cache-fuzzy-match t)
+  (setq helm-apropos-fuzzy-match t)
+  (setq helm-lisp-fuzzy-completion t)
+  (setq helm-mode-fuzzy-match t)
+  (setq helm-completion-in-region-fuzzy-match t)
+  (setq helm-split-window-in-side-p t)
+  (setq helm-move-to-line-cycle-in-source t)
+  (setq helm-ff-file-name-history-use-recentf t)
+  :config
+  (require 'helm-config)
+  (global-unset-key (kbd "C-x c"))
+  (substitute-key-definition 'find-tag 'helm-etags-select global-map)
+  (helm-mode 1)
+  :bind (("C-c h" . helm-command-prefix)
+         ("M-x" . helm-M-x)
+         ("M-y" . helm-show-kill-ring)
+         ("C-x b" . helm-mini)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x C-f" . helm-find-files)
+         ("C-h f" . helm-apropos)
+         ("C-h r" . helm-info-emacs)
+         ("C-h C-l" . helm-locate-library)))
 
-;;; Commentary:
-
-;;; Code:
-
-(require 'helm)
-(require 'helm-config)
-
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-h f") 'helm-apropos)
-(global-set-key (kbd "C-h r") 'helm-info-emacs)
-(global-set-key (kbd "C-h C-l") 'helm-locate-library)
-(substitute-key-definition 'find-tag 'helm-etags-select global-map)
-
-(setq helm-M-x-fuzzy-match t
-      helm-recentf-fuzzy-match t
-      helm-locate-fuzzy-match t
-      helm-buffers-fuzzy-matching t
-      helm-locate-fuzzy-match t
-      helm-semantic-fuzzy-match t
-      helm-imenu-fuzzy-match t
-      helm-file-cache-fuzzy-match t
-      helm-apropos-fuzzy-match t
-      helm-lisp-fuzzy-completion t
-      helm-mode-fuzzy-match t
-      helm-completion-in-region-fuzzy-match t
-      helm-split-window-in-side-p t
-      helm-move-to-line-cycle-in-source t
-      helm-ff-file-name-history-use-recentf t)
-
-(helm-mode 1)
-
-;;; helm.el ends here
+(use-package helm-ag
+  :ensure t)

@@ -10,9 +10,6 @@
 ;; Keep a couple of lines of screen context when scrolling
 (setq scroll-margin 3 scroll-preserve-screen-position 1)
 
-;; Highlight current line
-(global-hl-line-mode +1)
-
 ;; Customize line spacing
 (setq-default line-spacing 1)
 
@@ -35,11 +32,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(blink-cursor-mode t)
 (show-paren-mode t)
-
-(require 'windmove)
-(windmove-default-keybindings)
 
 (setq ns-function-modifier 'hyper)
 (menu-bar-mode +1)
@@ -47,11 +40,4 @@
 ;; do not blink
 (blink-cursor-mode -1)
 
-;; Code alignment
-(global-set-key (kbd "C-x \\") 'align-regexp)
-
-;; Font size
-(global-set-key (kbd "s-=") 'text-scale-increase)
-(global-set-key (kbd "s--") 'text-scale-decrease)
-
-(global-set-key (kbd "C-c w") 'toggle-truncate-lines)
+;;; ui.el ends here

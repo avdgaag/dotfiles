@@ -38,4 +38,15 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; Automatically make scripts exectable if they contain a shebang line
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+;; Auto-pair parentheses
+(electric-pair-mode +1)
+
+;; Enable subword-mode in all programming modes to allow navigation
+;; over camelCased words
+(add-hook 'prog-mode-hook 'subword-mode)
+
 ;;; editor.el ends here

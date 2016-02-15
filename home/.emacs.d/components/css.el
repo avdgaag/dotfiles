@@ -1,8 +1,7 @@
-;;; css.el --- configure CSS
-
-;;; Commentary:
-
-;;; Code:
-
 (setq css-indent-offset 2)
-;;; css.el ends here
+
+(use-package scss-mode
+  :ensure t)
+
+(use-package sass-mode
+  :ensure t)
