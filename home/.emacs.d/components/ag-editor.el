@@ -1,4 +1,4 @@
-;;; ag_editor.el --- TODO
+;;; ag-editor.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -26,11 +26,6 @@
 ;; along with GNU Emacs; see the file COPYING.  If not, write to the
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
-
-;;; Code:
-;;; editor.el -- configure general editor settings
-
-;;; Commentary:
 
 ;;; Code:
 
@@ -79,4 +74,12 @@
 ;; over camelCased words
 (add-hook 'prog-mode-hook 'subword-mode)
 
-;;; editor.el ends here
+;; Always autoscroll compilation output, so long reuslt listings are easier to
+;; read.
+(setq compilation-scroll-output 'first-error)
+
+;; automatically tail opened log files
+(add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
+
+(provide 'ag-editor)
+;;; ag-editor.el ends here

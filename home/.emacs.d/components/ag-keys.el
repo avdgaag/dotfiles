@@ -1,4 +1,4 @@
-;;; ag_keys.el --- TODO
+;;; ag-keys.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -148,3 +148,6 @@ Toggle between the two most recently open buffers on repeated invocations."
 
 (global-set-key (kbd "C-c b") 'ag-switch-to-previous-buffer)
 ;;; keys.el ends here
+
+(provide 'ag-keys)
+;;; ag-keys.el ends here

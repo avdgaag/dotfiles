@@ -1,4 +1,4 @@
-;;; ag_multiple_cursors.el --- TODO
+;;; ag-clojure.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,10 +28,13 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package multiple-cursors
-  :ensure t
-  :bind (("C-c m" . mc/edit-lines)
-         ("C-c M" . mc/edit-ends-of-lines)
-         ("C-c >" . mc/mark-next-like-this)
-         ("C-c <" . mc/mark-previous-like-this)
-         ("C-c /" . mc/mark-all-like-this)))
+(use-package clojure-mode
+  :commands clojure-mode
+  :ensure t)
+
+(use-package cider
+  :commands cider-mode
+  :ensure t)
+
+(provide 'ag-clojure)
+;;; ag-clojure.el ends here

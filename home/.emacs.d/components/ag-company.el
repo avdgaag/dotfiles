@@ -1,4 +1,4 @@
-;;; ag_web_mode.el --- TODO
+;;; ag-company.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,15 +28,13 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package web-mode
-  :ensure t
-  :mode ("\\.html?\\'" "\\.eex\\'" "\\.erb\\'")
+(use-package company
   :init
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-script-padding 2)
-  (setq web-mode-block-padding 2)
-  (setq web-mode-comment-style 2)
-  (setq web-mode-code-indent-offset 2)
+  (setq company-idle-delay 0.5)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
   :config
-  (add-hook 'web-mode-hook 'ag-customize-web-mode-hook))
+  (global-company-mode 1))
+
+(provide 'ag-company)
+;;; ag-company.el ends here

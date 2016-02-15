@@ -1,4 +1,4 @@
-;;; ag_0_packages.el --- TODO
+;;; ag-expand_region.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,21 +28,9 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(require 'package)
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
 
-(add-to-list 'package-archives
-       '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-       '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
-(package-initialize)
-
-(unless package-archive-contents
-  (package-refresh-contents))
-
-(setq package-list
-      '(use-package))
-
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+(provide 'ag-expand-region)
+;;; ag-expand_region.el ends here

@@ -1,4 +1,4 @@
-;;; ag_projectile.el --- TODO
+;;; ag-osx.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,26 +28,28 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package projectile
-  :ensure t
-  :init
-  (setq projectile-completion-system 'helm)
-  (setq projectile-tags-command "ctags -Re -f \"%s\" %s")
-  (setq projectile-tags-file-name "tags")
-  :config
-  (projectile-global-mode)
+;;; osx.el --- customizations for Mac OSX
 
-  (defun ag-expand-completion-table (orig-fun &rest args)
-    "Extract all symbols from COMPLETION-TABLE before calling projectile--tags."
-    (let ((completion-table (all-completions "" (car args))))
-      (funcall orig-fun completion-table)))
+;;; Commentary:
 
-  (advice-add 'projectile--tags :around #'ag-expand-completion-table))
+;;; Code:
 
-(use-package helm-projectile
-  :ensure t
-  :config
-  (helm-projectile-on))
+;; On Mac OSX, delete files by moving them to ~/.Tash
+(cond ((eq system-type 'darwin)
+       (setq delete-by-moving-to-trash t)
+       (setq trash-directory "~/.Trash/")))
 
-(use-package ggtags
-  :ensure t)
+(setq mouse-wheel-scroll-amount '(1
+                                    ((shift) . 5)
+                                    ((control))))
+;; Ensure we can load the actual binaries we want to use
+(push "/usr/local/bin" exec-path)
+
+(global-set-key (kbd "M-`") 'ns-next-frame)
+(global-set-key (kbd "M-h") 'ns-do-hide-emacs)
+(global-set-key (kbd "M-˙") 'ns-do-hide-others)
+
+;;; osx.el ends here
+
+(provide 'ag-osx)
+;;; ag-osx.el ends here

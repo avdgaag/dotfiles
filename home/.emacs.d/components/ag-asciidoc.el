@@ -1,4 +1,4 @@
-;;; ag_ag.el --- TODO
+;;; ag-asciidoc.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,5 +28,10 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package ag
-  :ensure t)
+(use-package adoc-mode
+  :commands adoc-mode
+  :ensure t
+  :mode "\\.adoc\\'")
+
+(provide 'ag-asciidoc)
+;;; ag-asciidoc.el ends here

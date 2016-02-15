@@ -1,4 +1,4 @@
-;;; ag_company.el --- TODO
+;;; ag-ag.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,10 +28,8 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package company
-  :init
-  (setq company-idle-delay 0.5)
-  (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
-  :config
-  (global-company-mode 1))
+(use-package ag
+  :ensure t)
+
+(provide 'ag-ag)
+;;; ag-ag.el ends here

@@ -1,4 +1,4 @@
-;;; ag_paredit.el --- TODO
+;;; ag-avy.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,12 +28,15 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package paredit
+(require 'use-package)
+
+(use-package avy
   :ensure t
   :init
-  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-  (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-  (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode))
+  (setq avy-background t)
+  (setq avy-style 'at-full)
+  :bind (("C-c j" . avy-goto-word-or-subword-1)
+         ("s-." . avy-goto-word-or-subword-1)))
+
+(provide 'ag-avy)
+;;; ag-avy.el ends here

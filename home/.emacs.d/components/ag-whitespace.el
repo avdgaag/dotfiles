@@ -1,4 +1,4 @@
-;;; ag_sh.el --- TODO
+;;; ag-whitespace.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,5 +28,19 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(setq sh-basic-offset 2)
-(setq sh-indentation 2)
+(setq whitespace-style '(
+                         face
+                         tabs
+                         trailing
+                         lines-tail
+                         space-before-tab
+                         newline
+                         empty
+                         space-after-tab
+                         tab-mark
+                         newline-mark))
+(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
+(provide 'ag-whitespace)
+;;; ag-whitespace.el ends here

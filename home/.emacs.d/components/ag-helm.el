@@ -1,4 +1,4 @@
-;;; ag_helm.el --- TODO
+;;; ag-helm.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -63,3 +63,6 @@
 
 (use-package helm-ag
   :ensure t)
+
+(provide 'ag-helm)
+;;; ag-helm.el ends here

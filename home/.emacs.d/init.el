@@ -12,16 +12,51 @@
 
 ;;; Code:
 
+
+(setq load-prefer-newer t)
+
 ;; Define a location for custom configuration components
 (setq avdg-emacs-components-dir
       (expand-file-name "components" user-emacs-directory))
+(setq avdg-emacs-themes-dir
+      (expand-file-name "themes" user-emacs-directory))
 
-;; Load all files in the configuration components directory
-(if (file-exists-p avdg-emacs-components-dir)
-    (dolist (file
-             (directory-files avdg-emacs-components-dir t "\\.el$"))
-      (load file))
-    (message "Configuration components directory not found; skipping."))
+(add-to-list 'load-path avdg-emacs-components-dir)
+(add-to-list 'custom-theme-load-path avdg-emacs-themes-dir)
+
+(require 'ag-packages)
+(require 'ag-ag)
+(require 'ag-asciidoc)
+(require 'ag-avy)
+(require 'ag-clojure)
+(require 'ag-company)
+(require 'ag-css)
+(require 'ag-editor)
+(require 'ag-elixir)
+(require 'ag-expand-region)
+(require 'ag-flycheck)
+(require 'ag-helm)
+(require 'ag-javascript)
+(require 'ag-keys)
+(require 'ag-magit)
+(require 'ag-markdown)
+(require 'ag-multiple-cursors)
+(require 'ag-org)
+(require 'ag-osx)
+(require 'ag-paredit)
+(require 'ag-projectile)
+(require 'ag-ruby)
+(require 'ag-sh)
+(require 'ag-ui)
+(require 'ag-web_mode)
+(require 'ag-whitespace)
+(require 'ag-yas)
+(require 'ag-zencoding)
+
+(defun ag-recompile-init ()
+  "Byte-compile .emacs.d directory again."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -54,12 +89,5 @@
 
 ;; Use the Smyx color scheme
 (load-theme 'smyx)
-
-;; Always autoscroll compilation output, so long reuslt listings are easier to
-;; read.
-(setq compilation-scroll-output 'first-error)
-
-;; automatically tail opened log files
-(add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
 
 ;;; init.el ends here

@@ -1,4 +1,4 @@
-;;; ag_yas.el --- TODO
+;;; ag-zencoding.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,11 +28,10 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package yasnippet
+(use-package zencoding-mode
   :ensure t
   :init
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-  :config
-  (yas-global-mode 1)
-  (add-hook 'term-mode-hook (lambda()
-                              (setq yas-dont-activate t))))
+  (add-hook 'sgml-mode-hook 'zencoding-mode))
+
+(provide 'ag-zencoding)
+;;; ag-zencoding.el ends here

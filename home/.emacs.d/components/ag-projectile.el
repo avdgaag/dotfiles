@@ -1,4 +1,4 @@
-;;; ag_expand_region.el --- TODO
+;;; ag-projectile.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,6 +28,29 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package expand-region
+(use-package projectile
   :ensure t
-  :bind ("C-=" . er/expand-region))
+  :init
+  (setq projectile-completion-system 'helm)
+  (setq projectile-tags-command "ctags -Re -f \"%s\" %s")
+  (setq projectile-tags-file-name "tags")
+  :config
+  (projectile-global-mode)
+
+  (defun ag-expand-completion-table (orig-fun &rest args)
+    "Extract all symbols from COMPLETION-TABLE before calling projectile--tags."
+    (let ((completion-table (all-completions "" (car args))))
+      (funcall orig-fun completion-table)))
+
+  (advice-add 'projectile--tags :around #'ag-expand-completion-table))
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
+
+(use-package ggtags
+  :ensure t)
+
+(provide 'ag-projectile)
+;;; ag-projectile.el ends here

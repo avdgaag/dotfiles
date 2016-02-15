@@ -1,4 +1,4 @@
-;;; ag_clojure.el --- TODO
+;;; ag-yas.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,10 +28,14 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package clojure-mode
-  :commands clojure-mode
-  :ensure t)
+(use-package yasnippet
+  :ensure t
+  :init
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  :config
+  (yas-global-mode 1)
+  (add-hook 'term-mode-hook (lambda()
+                              (setq yas-dont-activate t))))
 
-(use-package cider
-  :commands cider-mode
-  :ensure t)
+(provide 'ag-yas)
+;;; ag-yas.el ends here

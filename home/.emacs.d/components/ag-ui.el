@@ -1,4 +1,4 @@
-;;; ag_ui.el --- TODO
+;;; ag-ui.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -71,3 +71,6 @@
 (blink-cursor-mode -1)
 
 ;;; ui.el ends here
+
+(provide 'ag-ui)
+;;; ag-ui.el ends here

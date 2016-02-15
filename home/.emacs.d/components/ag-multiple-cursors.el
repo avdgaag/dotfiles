@@ -1,4 +1,4 @@
-;;; ag_whitespace.el --- TODO
+;;; ag-multiple_cursors.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,16 +28,13 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(setq whitespace-style '(
-                         face
-                         tabs
-                         trailing
-                         lines-tail
-                         space-before-tab
-                         newline
-                         empty
-                         space-after-tab
-                         tab-mark
-                         newline-mark))
-(add-hook 'prog-mode-hook 'whitespace-mode)
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C-c m" . mc/edit-lines)
+         ("C-c M" . mc/edit-ends-of-lines)
+         ("C-c >" . mc/mark-next-like-this)
+         ("C-c <" . mc/mark-previous-like-this)
+         ("C-c /" . mc/mark-all-like-this)))
+
+(provide 'ag-multiple-cursors)
+;;; ag-multiple_cursors.el ends here

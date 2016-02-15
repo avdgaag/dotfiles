@@ -1,4 +1,4 @@
-;;; ag_org.el --- TODO
+;;; ag-javascript.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,5 +28,26 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package org
-  :ensure t)
+(use-package js2-mode
+  :commands js2-mode
+  :ensure t
+  :init
+  (setq js-curly-indent-offset 2)
+  (setq js-enabled-frameworks (quote (javascript)))
+  (setq js-expr-indent-offset 2)
+  (setq js-indent-level 2)
+  (setq js-paren-indent-offset 2)
+  (setq js-square-indent-offset 2)
+  (setq js2-basic-offset 2)
+  :mode ("\\.js\\'"
+         "\\.jsx\\'"))
+
+(use-package coffee-mode
+  :commands coffee-mode
+  :ensure t
+  :mode "\\.cjsx\\'")
+
+;;; javascript.el ends here
+
+(provide 'ag-javascript)
+;;; ag-javascript.el ends here

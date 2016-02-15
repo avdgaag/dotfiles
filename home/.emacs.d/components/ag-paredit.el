@@ -1,4 +1,4 @@
-;;; ag_css.el --- TODO
+;;; ag-paredit.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,10 +28,15 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(setq css-indent-offset 2)
+(use-package paredit
+  :ensure t
+  :init
+  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+  (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode))
 
-(use-package scss-mode
-  :ensure t)
-
-(use-package sass-mode
-  :ensure t)
+(provide 'ag-paredit)
+;;; ag-paredit.el ends here

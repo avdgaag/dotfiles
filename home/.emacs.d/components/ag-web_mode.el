@@ -1,4 +1,4 @@
-;;; ag_elixir.el --- TODO
+;;; ag-web_mode.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,12 +28,18 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package elixir-mode
-  :commands elixir-mode
-  :ensure t)
-
-(use-package alchemist
-  :commands alchemist-mode
+(use-package web-mode
   :ensure t
+  :mode ("\\.html?\\'" "\\.eex\\'" "\\.erb\\'")
   :init
-  (add-hook 'elixir-mode-hook 'alchemist-mode))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-script-padding 2)
+  (setq web-mode-block-padding 2)
+  (setq web-mode-comment-style 2)
+  (setq web-mode-code-indent-offset 2)
+  :config
+  (add-hook 'web-mode-hook 'ag-customize-web-mode-hook))
+
+(provide 'ag-web_mode)
+;;; ag-web_mode.el ends here

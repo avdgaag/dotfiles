@@ -1,4 +1,4 @@
-;;; ag_flycheck.el --- TODO
+;;; ag-elixir.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,7 +28,15 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package flycheck
+(use-package elixir-mode
+  :commands elixir-mode
+  :ensure t)
+
+(use-package alchemist
+  :commands alchemist-mode
   :ensure t
   :init
-  (add-hook 'after-init-hook 'global-flycheck-mode))
+  (add-hook 'elixir-mode-hook 'alchemist-mode))
+
+(provide 'ag-elixir)
+;;; ag-elixir.el ends here

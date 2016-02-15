@@ -1,4 +1,4 @@
-;;; ag_zencoding.el --- TODO
+;;; ag-org.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,7 +28,8 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package zencoding-mode
-  :ensure t
-  :init
-  (add-hook 'sgml-mode-hook 'zencoding-mode))
+(use-package org
+  :ensure t)
+
+(provide 'ag-org)
+;;; ag-org.el ends here

@@ -1,4 +1,4 @@
-;;; ag_ruby.el --- TODO
+;;; ag-ruby.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -106,3 +106,6 @@
 
 (load-library "~/.emacs.d/rails-sql-mode")
 (add-hook 'projectile-rails-mode 'rails-sql-mode)
+
+(provide 'ag-ruby)
+;;; ag-ruby.el ends here

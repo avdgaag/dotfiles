@@ -1,4 +1,4 @@
-;;; ag_asciidoc.el --- TODO
+;;; ag-markdown.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,7 +28,9 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package adoc-mode
-  :commands adoc-mode
-  :ensure t
-  :mode "\\.adoc\\'")
+(use-package markdown-mode
+  :commands markdown-mode
+  :ensure t)
+
+(provide 'ag-markdown)
+;;; ag-markdown.el ends here

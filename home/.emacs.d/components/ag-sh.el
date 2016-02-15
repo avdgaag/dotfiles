@@ -1,4 +1,4 @@
-;;; ag_javascript.el --- TODO
+;;; ag-sh.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,23 +28,8 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package js2-mode
-  :commands js2-mode
-  :ensure t
-  :init
-  (setq js-curly-indent-offset 2)
-  (setq js-enabled-frameworks (quote (javascript)))
-  (setq js-expr-indent-offset 2)
-  (setq js-indent-level 2)
-  (setq js-paren-indent-offset 2)
-  (setq js-square-indent-offset 2)
-  (setq js2-basic-offset 2)
-  :mode ("\\.js\\'"
-         "\\.jsx\\'"))
+(setq sh-basic-offset 2)
+(setq sh-indentation 2)
 
-(use-package coffee-mode
-  :commands coffee-mode
-  :ensure t
-  :mode "\\.cjsx\\'")
-
-;;; javascript.el ends here
+(provide 'ag-sh)
+;;; ag-sh.el ends here
