@@ -106,5 +106,39 @@ Toggle between the two most recently open buffers on repeated invocations."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
+(defun avdg-beginning-of-string ()
+  "Move to the beginning of a syntactic string."
+  (interactive)
+  (unless (in-string-p)
+    (error "You must be in a string for this command to work"))
+  (while (in-string-p)
+    (forward-char -1))
+  (point))
+
+(defun avdg-end-of-string ()
+  "Move to the end of a syntactic string."
+  (interactive)
+  (avdg-beginning-of-string)
+  (forward-sexp)
+  (point))
+
+(defun avdg-cycle-quotes ()
+  "Toggle single or double quotes in a syntactic string."
+  (interactive)
+  (save-excursion
+    (let ((bos (save-excursion
+                 (avdg-beginning-of-string)))
+          (eos (save-excursion
+                 (avdg-end-of-string)))
+          (replacement-char ?\'))
+      (goto-char bos)
+      (when (eq (following-char) ?\')
+        (setq replacement-char ?\"))
+      (delete-char 1)
+      (insert replacement-char)
+      (goto-char eos)
+      (delete-char -1)
+      (insert replacement-char))))
+
 (provide 'ag-functions)
 ;;; ag-functions.el ends here
