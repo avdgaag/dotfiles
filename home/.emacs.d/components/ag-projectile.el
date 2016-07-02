@@ -33,8 +33,6 @@
   :diminish projectile-mode
   :init
   (setq projectile-completion-system 'helm)
-  (setq projectile-tags-command "ctags -Re -f \"%s\" %s")
-  (setq projectile-tags-file-name "tags")
   :config
   (projectile-global-mode)
 
