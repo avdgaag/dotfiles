@@ -36,5 +36,10 @@
   :config
   (global-company-mode 1))
 
+(use-package company-emoji
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-emoji))
+
 (provide 'ag-company)
 ;;; ag-company.el ends here
