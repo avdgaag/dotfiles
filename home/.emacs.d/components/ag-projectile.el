@@ -30,6 +30,7 @@
 ;;; Code:
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :init
   (setq projectile-completion-system 'helm)
   (setq projectile-tags-command "ctags -Re -f \"%s\" %s")
@@ -50,6 +51,7 @@
   (helm-projectile-on))
 
 (use-package ggtags
+  :diminish ggtags-mode
   :ensure t)
 
 (provide 'ag-projectile)

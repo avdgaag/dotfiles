@@ -30,6 +30,7 @@
 ;;; Code:
 (use-package enh-ruby-mode
   :commands enh-ruby-mode
+  :diminish abbrev-mode
   :ensure t
   :interpreter "ruby"
   :mode ("\\.rb$"
@@ -53,20 +54,20 @@
   (add-hook 'projectile-mode-hook 'projectile-rails-on))
 
 (use-package rbenv
-  :commands global-rbenv-mode
+  :diminish rbenv-mode
   :ensure t
   :init
   (add-hook 'enh-ruby-mode-hook 'global-rbenv-mode)
   (add-hook 'enh-ruby-mode-hook 'rbenv-use-corresponding))
 
 (use-package robe
-  :commands robe-mode
+  :diminish robe-mode
   :ensure t
   :init
   (add-hook 'enh-ruby-mode-hook 'robe-mode))
 
 (use-package yard-mode
-  :commands yard-mode
+  :diminish yard-mode
   :ensure t
   :init
   (add-hook 'enh-ruby-mode-hook 'yard-mode))

@@ -1,4 +1,4 @@
-;;; ag-company.el --- TODO
+;;; ag-diminish.el --- TODO
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -28,20 +28,8 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(use-package company
-  :ensure t
-  :diminish company-mode
-  :init
-  (setq company-idle-delay 0.5)
-  (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
-  :config
-  (global-company-mode 1))
+(use-package diminish
+  :ensure t)
 
-(use-package company-emoji
-  :ensure t
-  :init
-  (add-to-list 'company-backends 'company-emoji))
-
-(provide 'ag-company)
-;;; ag-company.el ends here
+(provide 'ag-diminish)
+;;; ag-diminish.el ends here

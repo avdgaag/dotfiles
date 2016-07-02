@@ -30,6 +30,7 @@
 ;;; Code:
 (use-package paredit
   :ensure t
+  :diminish paredit-mode
   :commands enabled-paredit-mode
   :config
   (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)

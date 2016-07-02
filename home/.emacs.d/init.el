@@ -57,7 +57,10 @@
 (require 'ag-whitespace)
 (require 'ag-yas)
 (require 'ag-zencoding)
+(require 'ag-diminish)
 
+(require 'diminish)
+(diminish 'subword-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

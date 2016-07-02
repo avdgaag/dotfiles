@@ -30,6 +30,7 @@
 ;;; Code:
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :init
   (setq helm-M-x-fuzzy-match t)
   (setq helm-recentf-fuzzy-match t)
