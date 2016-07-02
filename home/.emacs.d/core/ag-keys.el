@@ -65,5 +65,7 @@
 
 (global-set-key (kbd "C-c b") 'avdg-switch-to-previous-buffer)
 
+(global-set-key (kbd "C-c l") 'avdg-toggle-line-numbers)
+
 (provide 'ag-keys)
 ;;; ag-keys.el ends here

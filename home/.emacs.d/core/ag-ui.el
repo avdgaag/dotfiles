@@ -41,8 +41,8 @@
 ;; Use 4 columns for line numbers and then a space
 (setq linum-format "%4d ")
 
-;; Always show line and column numbers
-(global-linum-mode 1)
+;; Always show line and column numbers in mode line
+(line-number-mode 1)
 (column-number-mode 1)
 
 ;; Don't show startup screen

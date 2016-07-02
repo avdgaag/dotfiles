@@ -145,5 +145,12 @@ Toggle between the two most recently open buffers on repeated invocations."
   (interactive)
   (byte-recompile-directory user-emacs-directory 0))
 
+(defun avdg-toggle-line-numbers ()
+  "Turn line numbers on or off."
+  (interactive)
+  (if (and (boundp 'linum-mode) linum-mode)
+      (linum-mode 0)
+      (linum-mode 1)))
+
 (provide 'ag-functions)
 ;;; ag-functions.el ends here
