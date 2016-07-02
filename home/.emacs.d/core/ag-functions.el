@@ -140,5 +140,10 @@ Toggle between the two most recently open buffers on repeated invocations."
       (delete-char -1)
       (insert replacement-char))))
 
+(defun avdg-recompile-init ()
+  "Byte-compile .emacs.d directory again."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
+
 (provide 'ag-functions)
 ;;; ag-functions.el ends here

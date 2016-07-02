@@ -57,10 +57,6 @@
 (require 'ag-yas)
 (require 'ag-zencoding)
 
-(defun ag-recompile-init ()
-  "Byte-compile .emacs.d directory again."
-  (interactive)
-  (byte-recompile-directory user-emacs-directory 0))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
