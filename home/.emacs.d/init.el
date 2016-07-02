@@ -58,6 +58,7 @@
 (require 'ag-yas)
 (require 'ag-zencoding)
 (require 'ag-elm)
+(require 'ag-mu4e)
 (require 'ag-diminish)
 
 (require 'diminish)
