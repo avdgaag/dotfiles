@@ -57,6 +57,7 @@
 (require 'ag-whitespace)
 (require 'ag-yas)
 (require 'ag-zencoding)
+(require 'ag-elm)
 (require 'ag-diminish)
 
 (require 'diminish)
