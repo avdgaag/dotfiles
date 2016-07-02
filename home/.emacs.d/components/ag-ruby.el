@@ -47,11 +47,16 @@
   (setq enh-ruby-deep-indent-paren nil)
   (setq enh-ruby-hanging-paren-deep-indent-level 2))
 
+(defun projectile-rails-or-hanami-on ()
+  "Activate either projectile-rails or projectile-hanami."
+  (if (projectile-hanami-applicable-p)
+      (projectile-hanami-mode +1)
+    (projectile-rails-on)))
+
 (use-package projectile-rails
-  :commands projectile-rails-on
   :ensure t
   :init
-  (add-hook 'projectile-mode-hook 'projectile-rails-on))
+  (add-hook 'projectile-mode-hook 'projectile-rails-or-hanami-on))
 
 (use-package rbenv
   :diminish rbenv-mode

@@ -60,6 +60,7 @@
 (require 'ag-elm)
 (require 'ag-mu4e)
 (require 'ag-diminish)
+(require 'projectile-hanami)
 
 (require 'diminish)
 (diminish 'subword-mode)
