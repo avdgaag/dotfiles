@@ -33,6 +33,7 @@
   :diminish projectile-mode
   :init
   (setq projectile-completion-system 'helm)
+  (setq projectile-create-missing-test-files t)
   :config
   (projectile-global-mode)
 

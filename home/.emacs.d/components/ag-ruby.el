@@ -45,7 +45,10 @@
   (setq ruby-insert-encoding-magic-comment nil)
   (setq enh-ruby-add-encoding-comment-on-save nil)
   (setq enh-ruby-deep-indent-paren nil)
-  (setq enh-ruby-hanging-paren-deep-indent-level 2))
+  (setq enh-ruby-hanging-paren-deep-indent-level 2)
+  :config
+  (require 'rcodetools)
+  (define-key enh-ruby-mode-map (kbd "C-c R") 'xmp))
 
 (defun projectile-rails-or-hanami-on ()
   "Activate either projectile-rails or projectile-hanami."
@@ -63,7 +66,9 @@
   :ensure t
   :init
   (add-hook 'enh-ruby-mode-hook 'global-rbenv-mode)
-  (add-hook 'enh-ruby-mode-hook 'rbenv-use-corresponding))
+  (add-hook 'enh-ruby-mode-hook 'rbenv-use-corresponding)
+  :config
+  (setq rbenv-modeline-function 'rbenv--modeline-plain))
 
 (use-package robe
   :diminish robe-mode
@@ -78,11 +83,12 @@
   (add-hook 'enh-ruby-mode-hook 'yard-mode))
 
 (use-package rspec-mode
-  :commands rspec-mode
   :ensure t
   :init
   (setq rspec-use-bundler-when-possible nil)
-  (setq rspec-use-rake-when-possible nil))
+  (setq rspec-compilation-skip-threshold 2)
+  (setq rspec-use-rake-when-possible nil)
+  (add-hook 'haml-mode-hook 'rspec-mode))
 
 (use-package bundler
   :ensure t)
