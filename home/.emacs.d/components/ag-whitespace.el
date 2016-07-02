@@ -28,19 +28,21 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(setq whitespace-style '(
-                         face
-                         tabs
-                         trailing
-                         lines-tail
-                         space-before-tab
-                         newline
-                         empty
-                         space-after-tab
-                         tab-mark
-                         newline-mark))
-(add-hook 'prog-mode-hook 'whitespace-mode)
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(use-package whitespace
+  :diminish whitespace-mode
+  :config
+  (setq whitespace-style '(
+                           face
+                           tabs
+                           trailing
+                           lines-tail
+                           space-before-tab
+                           empty
+                           space-after-tab
+                           tab-mark))
+  :init
+  (add-hook 'prog-mode-hook 'whitespace-mode)
+  (add-hook 'before-save-hook 'whitespace-cleanup))
 
 (provide 'ag-whitespace)
 ;;; ag-whitespace.el ends here

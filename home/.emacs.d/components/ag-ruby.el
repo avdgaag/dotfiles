@@ -108,6 +108,7 @@
   :ensure t)
 
 (use-package minitest
+  :commands minitest-mode
   :ensure t)
 
 (require 'rails-sql-mode)
