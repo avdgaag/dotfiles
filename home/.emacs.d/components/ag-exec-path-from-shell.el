@@ -1,4 +1,4 @@
-;;; ag-osx.el --- customizations specific to Emacs on Mac OS X
+;;; ag-exec-path-from-shell.el --- Ensure proper PATH on OSX
 ;;
 ;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
 ;; URL: http://arjanvandergaag.nl
@@ -8,7 +8,8 @@
 
 ;;; Commentary:
 
-;; TODO
+;; This file sets up exec-path-from-shell to make sure Emacs
+;; uses the same PATH environment variable as the shell does.
 
 ;;; License:
 
@@ -28,29 +29,11 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(use-package exec-path-from-shell
+  :ensure t)
 
-;; On Mac OSX, delete files by moving them to ~/.Tash
-(cond ((eq system-type 'darwin)
-       (setq delete-by-moving-to-trash t)
-       (setq trash-directory "~/.Trash/")))
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
-(setq mouse-wheel-scroll-amount '(1
-                                  ((shift) . 5)
-                                  ((control))))
-
-(global-set-key (kbd "M-`") 'ns-next-frame)
-(global-set-key (kbd "M-h") 'ns-do-hide-emacs)
-(global-set-key (kbd "M-˙") 'ns-do-hide-others)
-
-;; When using GUI, do not open new frames but re-use existing frames
-;; when opening new files.
-(setq ns-pop-up-frames nil)
-
-(setq ns-function-modifier 'hyper)
-
-;; Enable emoji, and stop the UI from freezing when trying to display them.
-(if (fboundp 'set-fontset-font)
-    (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
-
-(provide 'ag-osx)
-;;; ag-osx.el ends here
+(provide 'ag-exec-path-from-shell)
+;;; ag-exec-path-from-shell.el ends here

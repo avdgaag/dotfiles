@@ -32,6 +32,7 @@
 (require 'ag-osx)
 
 (require 'ag-packages)
+(require 'ag-exec-path-from-shell)
 (require 'ag-ag)
 (require 'ag-asciidoc)
 (require 'ag-avy)
