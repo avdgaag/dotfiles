@@ -24,6 +24,7 @@
 [diff]
 	tool = vimdiff
 	algorithm = patience
+	compactionHeuristic = true
 [credential]
 	helper = osxkeychain
 [rerere]
@@ -45,3 +46,5 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[submodule]
+	fetchJobs = 4
