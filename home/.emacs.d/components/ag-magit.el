@@ -35,6 +35,7 @@
   (setq magit-merge-arguments (quote ("--no-ff")))
   (setq magit-pull-arguments (quote ("--rebase")))
   (setq magit-push-arguments (quote ("--set-upstream")))
+  (setq magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
   :config
   (defun ag-visit-pull-request-url ()
     "Visit the current branch's PR on Github."
