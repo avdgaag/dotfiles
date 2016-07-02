@@ -32,7 +32,21 @@
   :ensure t
   :diminish company-mode
   :init
+  (setq company-backends
+        (quote
+         (company-elisp
+          company-emoji
+          company-nxml
+          company-css
+          company-semantic
+          company-clang
+          company-cmake
+          company-capf
+          company-files
+          (company-dabbrev-code company-gtags company-etags company-keywords)
+          company-dabbrev)))
   (setq company-idle-delay 0.5)
+  (setq company-etags-everywhere t)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
   :config
