@@ -1,56 +1,34 @@
-;;; ag-osx.el --- customizations specific to Emacs on Mac OS X
-;;
-;; Author: Arjan van der Gaag <arjan@arjanvandergaag.nl>
-;; URL: http://arjanvandergaag.nl
-;; Version: 1.0.0
+(setq ns-function-modifier 'hyper)
+(menu-bar-mode +1)
 
-;; This file is not part of GNU Emacs.
+;; Re-use existing frames to open new buffers
+(setq ns-pop-up-frames nil)
 
-;;; Commentary:
+;; On OSX, we delete files (in dired mode) by moving them to the trash.
+(setq delete-by-moving-to-trash t)
+(setq trash-directory "~/.Trash/")
 
-;; TODO
-
-;;; License:
-
-;; This program is free software; you can redistribute it and/or
-;; modify it under the terms of the GNU General Public License
-;; as published by the Free Software Foundation; either version 3
-;; of the License, or (at your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING.  If not, write to the
-;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-;; Boston, MA 02110-1301, USA.
-
-;;; Code:
-
-;; On Mac OSX, delete files by moving them to ~/.Tash
-(cond ((eq system-type 'darwin)
-       (setq delete-by-moving-to-trash t)
-       (setq trash-directory "~/.Trash/")))
-
+;; Sane scrolling with the mouse
 (setq mouse-wheel-scroll-amount '(1
                                   ((shift) . 5)
                                   ((control))))
 
+;; Fix emoji display
+(defun ag-set-emoji-font (frame)
+  "Adjust the font settings of FRAME so Emacs can display emoji properly."
+  (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") frame 'prepend))
+
+(when (fboundp 'set-fontset-font)
+  (ag-set-emoji-font nil)
+  (add-hook 'after-make-frame-functions 'ag-set-emoji-font))
+
+
+;; Some sane keyboard shortcuts for OSX conventions
 (global-set-key (kbd "M-`") 'ns-next-frame)
 (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
 (global-set-key (kbd "M-˙") 'ns-do-hide-others)
 
-;; When using GUI, do not open new frames but re-use existing frames
-;; when opening new files.
-(setq ns-pop-up-frames nil)
-
-(setq ns-function-modifier 'hyper)
-
-;; Enable emoji, and stop the UI from freezing when trying to display them.
-(if (fboundp 'set-fontset-font)
-    (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend))
+(setq exec-path-from-shell-check-startup-files nil)
+(exec-path-from-shell-initialize)
 
 (provide 'ag-osx)
-;;; ag-osx.el ends here
