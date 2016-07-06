@@ -101,9 +101,6 @@ function gg() {
 # Bundler
 alias be='bundle exec'
 
-# Add ./bin to PATH to use bundler binstubs
-alias binstubs='export PATH=./bin:$PATH'
-
 # Rake
 alias rakes='rake `rake -T | selecta | awk "{ print $2 }"`'
 alias rake='noglob rake'
