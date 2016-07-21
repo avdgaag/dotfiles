@@ -27,4 +27,12 @@
 
 ;; Use simpler Y/N prompt
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(defun avdg-toggle-line-numbers ()
+  "Turn line numbers on or off."
+  (interactive)
+  (if (and (boundp 'linum-mode) linum-mode)
+      (linum-mode 0)
+      (linum-mode 1)))
+(global-set-key (kbd "C-c l") 'avdg-toggle-line-numbers)
 (provide 'ag-ui)
