@@ -39,4 +39,17 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+(defun avdg-indent-region-or-buffer ()
+  "Indent a region if selected, otherwise the whole buffer."
+  (interactive)
+  (save-excursion
+    (if (region-active-p)
+        (progn
+          (indent-region (region-beginning) (region-end))
+          (message "Indented selected region."))
+      (progn
+        (avdg-indent-buffer)
+        (message "Indented buffer.")))))
+(global-set-key (kbd "C-M-\\") 'avdg-indent-region-or-buffer)
+
 (provide 'ag-editor)
