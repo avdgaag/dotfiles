@@ -10,4 +10,8 @@
   (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
   :mode "\\.js\\'")
 
+(use-package coffee-mode
+  :ensure t
+  :mode "\\.coffee\\'")
+
 (provide 'ag-javascript)
