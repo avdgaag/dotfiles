@@ -17,3 +17,4 @@
 (require 'ag-flycheck)
 (require 'ag-yasnippet)
 (require 'ag-org)
+(require 'ag-markdown)
