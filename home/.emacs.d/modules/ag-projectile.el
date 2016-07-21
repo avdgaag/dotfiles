@@ -8,6 +8,7 @@
              :diminish projectile-mode
              :ensure t
              :init
+             (setq projectile-completion-system 'helm)
              (setq projectile-create-missing-test-files t)
              (projectile-global-mode)
              (helm-projectile-on))
