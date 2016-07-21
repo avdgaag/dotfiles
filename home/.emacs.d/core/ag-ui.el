@@ -35,4 +35,12 @@
       (linum-mode 0)
       (linum-mode 1)))
 (global-set-key (kbd "C-c l") 'avdg-toggle-line-numbers)
+
+(defun avdg-switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Toggle between the two most recently open buffers on repeated invocations."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+(global-set-key (kbd "C-c b") 'avdg-switch-to-previous-buffer)
+
 (provide 'ag-ui)
