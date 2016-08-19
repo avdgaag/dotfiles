@@ -24,7 +24,17 @@
 ;; Whitespace
 (require 'whitespace)
 (setq whitespace-line-column 80)
-(setq whitespace-style '(face tabs empty trailing lines-tail))
+(setq whitespace-style '(
+                         face
+                         tabs
+                         empty
+                         trailing
+                         lines-tail
+                         space-before-tab
+                         space-after-tab
+                         tab-mark))
+(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Make files with a shebang executable on save
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
