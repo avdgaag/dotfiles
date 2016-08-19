@@ -14,4 +14,8 @@
   :ensure t
   :mode "\\.coffee\\'")
 
+(use-package json-mode
+  :ensure t
+  :mode "\\.json\\'")
+
 (provide 'ag-javascript)
