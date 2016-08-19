@@ -49,6 +49,11 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+(defun avdg-indent-buffer ()
+  "Indent the currently visited buffer."
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
 (defun avdg-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
