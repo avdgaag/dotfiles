@@ -4,13 +4,16 @@
   :ensure t
   :interpreter "ruby"
   :mode ("\\.rb$"
+         "\\.ruby$"
          "\\.rake$"
          "Rakefile$"
          "\\.gemspec$"
          "\\.ru$"
          "Gemfile$"
          "Vagrantfile$"
-         ".simplecov$"))
+         ".simplecov$")
+  :init
+  (setq enh-ruby-deep-indent-paren nil))
 
 (use-package projectile-rails
   :ensure t
