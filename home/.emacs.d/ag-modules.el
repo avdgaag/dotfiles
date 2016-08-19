@@ -18,3 +18,4 @@
 (require 'ag-yasnippet)
 (require 'ag-org)
 (require 'ag-markdown)
+(require 'ag-asciidoc)
