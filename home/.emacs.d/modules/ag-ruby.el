@@ -72,4 +72,13 @@
   :init
   (add-hook 'enh-ruby-mode-hook 'yard-mode))
 
+(use-package minitest
+  :ensure t
+  :defer t
+  :init
+  (setq minitest-keymap-prefix (kbd "C-c m"))
+  (add-hook 'enh-ruby-mode-hook 'minitest-mode)
+  :config
+  (minitest-install-snippets))
+
 (provide 'ag-ruby)
