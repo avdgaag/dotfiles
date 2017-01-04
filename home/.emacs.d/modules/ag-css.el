@@ -10,4 +10,9 @@
   :ensure t
   :defer t)
 
+(use-package stylefmt
+  :ensure t
+  :init
+  (add-hook 'css-mode-hook 'stylefmt-enable-on-save))
+
 (provide 'ag-css)
