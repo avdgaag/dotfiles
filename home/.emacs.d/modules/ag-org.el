@@ -3,6 +3,6 @@
 (use-package org
   :ensure t
   :commands org-mode
-  :mode ".org")
+  :mode "\\.org\\'")
 
 (provide 'ag-org)
