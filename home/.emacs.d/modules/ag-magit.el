@@ -26,4 +26,9 @@
   (eval-after-load 'magit
     '(define-key magit-mode-map "v"
        #'ag-visit-pull-request-url)))
+
+(use-package magithub
+  :ensure t
+  :after magit)
+
 (provide 'ag-magit)
