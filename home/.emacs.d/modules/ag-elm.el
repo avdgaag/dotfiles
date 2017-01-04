@@ -11,4 +11,10 @@
   :config
   (add-to-list 'company-backends 'company-elm))
 
+(use-package flycheck-elm
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
+
 (provide 'ag-elm)
