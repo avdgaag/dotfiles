@@ -4,5 +4,5 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
-(load-theme 'smyx)
+(load-theme 'gruvbox t)
 (provide 'ag-general)

@@ -1,5 +1,5 @@
 (tool-bar-mode -1)
-(setq-default line-spacing 1)
+(setq-default line-spacing 3)
 (setq linum-format "%4d ")
 (show-paren-mode t)
 
