@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: function
+# key: fun
+# --
+${1:myfun} : ${2:a -> b}
+$1${3: ${4:a}} =
+    $0

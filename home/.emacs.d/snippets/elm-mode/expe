@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Expect.equal
+# key: expe
+# --
+Expect.equal $0
