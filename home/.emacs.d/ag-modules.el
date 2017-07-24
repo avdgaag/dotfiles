@@ -21,3 +21,4 @@
 (require 'ag-asciidoc)
 (require 'ag-clojure)
 (require 'ag-avy)
+(require 'ag-smartparens)
