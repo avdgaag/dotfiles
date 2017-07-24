@@ -19,3 +19,4 @@
 (require 'ag-org)
 (require 'ag-markdown)
 (require 'ag-asciidoc)
+(require 'ag-clojure)
