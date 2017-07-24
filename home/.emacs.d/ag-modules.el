@@ -20,3 +20,4 @@
 (require 'ag-markdown)
 (require 'ag-asciidoc)
 (require 'ag-clojure)
+(require 'ag-avy)
