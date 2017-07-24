@@ -5,7 +5,7 @@
 
 ;; Navigate windows
 (require 'windmove)
-(windmove-default-keybindings 'meta)
+(windmove-default-keybindings)
 
 ;; Disable annoying UI features
 (blink-cursor-mode -1)
