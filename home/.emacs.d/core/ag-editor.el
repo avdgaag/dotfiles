@@ -49,33 +49,5 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-(defun avdg-indent-buffer ()
-  "Indent the currently visited buffer."
-  (interactive)
-  (indent-region (point-min) (point-max)))
-
-(defun avdg-indent-region-or-buffer ()
-  "Indent a region if selected, otherwise the whole buffer."
-  (interactive)
-  (save-excursion
-    (if (region-active-p)
-        (progn
-          (indent-region (region-beginning) (region-end))
-          (message "Indented selected region."))
-      (progn
-        (avdg-indent-buffer)
-        (message "Indented buffer.")))))
-(global-set-key (kbd "C-M-\\") 'avdg-indent-region-or-buffer)
-
-(defun avdg-duplicate-line()
-  "Duplicate the current line by killing it and than yanking it tiwce."
-  (interactive)
-  (move-beginning-of-line 1)
-  (kill-line)
-  (yank)
-  (open-line 1)
-  (forward-line 1)
-  (yank))
-(global-set-key (kbd "s-d") 'avdg-duplicate-line)
 
 (provide 'ag-editor)

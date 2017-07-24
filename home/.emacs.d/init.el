@@ -14,6 +14,7 @@
 (require 'ag-packages)
 (require 'ag-editor)
 (require 'ag-ui)
+(require 'ag-functions)
 (require 'ag-keys)
 (when (eq system-type 'darwin)
   (require 'ag-osx))
