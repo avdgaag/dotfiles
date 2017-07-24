@@ -22,3 +22,8 @@
 (if (file-exists-p ag-modules-file)
     (load ag-modules-file)
   (message "Missing modules file %s" ag-modules-file))
+
+;; Start Emacs server to make subsequent launches faster
+(require 'server)
+(unless (server-running-p)
+  (server-start))
