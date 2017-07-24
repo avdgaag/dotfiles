@@ -44,7 +44,7 @@ let g:airline_powerline_fonts=0
 syntax on
 filetype plugin indent on
 set background=dark
-colorscheme smyck
+colorscheme dracula 
 set cursorline
 set nowrap
 set synmaxcol=200 " Do not highlight long lines
