@@ -49,5 +49,8 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; When switching between different directories with their own tags tables,
+;; never merge the two.
+(setq tags-add-tables nil)
 
 (provide 'ag-editor)
