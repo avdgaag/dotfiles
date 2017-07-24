@@ -22,3 +22,4 @@
 (require 'ag-clojure)
 (require 'ag-avy)
 (require 'ag-smartparens)
+(require 'ag-erlang)
