@@ -1,5 +1,3 @@
-(setq use-package-verbose t)
-
 (require 'ag-ag)
 (require 'ag-projectile)
 (require 'ag-helm)

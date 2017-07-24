@@ -13,6 +13,6 @@
 (use-package stylefmt
   :ensure t
   :init
-  (add-hook 'css-mode-hook 'stylefmt-enable-on-save))
+  (stylefmt-enable-on-save))
 
 (provide 'ag-css)

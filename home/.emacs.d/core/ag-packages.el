@@ -26,4 +26,6 @@
 
 (ag-install-packages)
 
+(diminish 'whitespace-mode)
+
 (provide 'ag-packages)

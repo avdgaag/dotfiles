@@ -16,7 +16,8 @@
 ;; Fix emoji display
 (defun ag-set-emoji-font (frame)
   "Adjust the font settings of FRAME so Emacs can display emoji properly."
-  (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") frame 'prepend))
+  (progn
+    (set-fontset-font t 'symbol (font-spec :family "Symbola") frame 'prepend)))
 
 (when (fboundp 'set-fontset-font)
   (ag-set-emoji-font nil)
