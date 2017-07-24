@@ -8,7 +8,17 @@
   (setq js2-highlight-level 3)
   (setq js2-mode-assume-strict t)
   (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+  :config
+  (ag-setup-prettier-js)
   :mode "\\.js\\'")
+
+(defun ag-setup-prettier-js ()
+  "Set up custom prettier-js module for js2-mode."
+  (require 'prettier-js)
+  (setq prettier-target-mode "js2-mode")
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'prettier-before-save))))
 
 (use-package coffee-mode
   :ensure t

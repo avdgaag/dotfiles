@@ -6,9 +6,12 @@
   "The directory containing all additional modules.")
 (defvar ag-modules-file (expand-file-name "ag-modules.el" ag-dir)
   "List of additional modules to be loaded on startup.")
+(defvar ag-vendor-dir (expand-file-name "vendor" ag-dir)
+  "The directory containing vendor modules that could be installed via a package manager.")
 
 (add-to-list 'load-path ag-core-dir)
 (add-to-list 'load-path ag-modules-dir)
+(add-to-list 'load-path ag-vendor-dir)
 
 (require 'ag-general)
 (require 'ag-packages)
