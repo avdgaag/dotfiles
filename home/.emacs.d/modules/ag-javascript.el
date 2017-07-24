@@ -28,4 +28,14 @@
   :ensure t
   :mode "\\.json\\'")
 
+(use-package mocha
+  :ensure t
+  :init
+  (setq mocha-command "node_modules/.bin/mocha")
+  (setq mocha-options "--recursive --reporter dot")
+  (setq mocha-project-test-directory "test")
+  (setq mocha-reporter "spec")
+  (setq mocha-which-node "/usr/local/bin/node")
+  (setq mocha-environment-variables "NODE_ENV=test"))
+
 (provide 'ag-javascript)
