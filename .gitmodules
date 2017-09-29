@@ -1,3 +1,0 @@
-[submodule "home/.vim/bundle/vim-textobj-rubyblock"]
-	path = home/.vim/bundle/vim-textobj-rubyblock
-	url = git@github.com:nelstrom/vim-textobj-rubyblock.git
