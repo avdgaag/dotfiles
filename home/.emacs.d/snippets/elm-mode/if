@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: if
-# key: if
-# --
-if ${1:expr} then
-    ${2:when true}
-else
-    ${3:when not true}

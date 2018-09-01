@@ -1,6 +1,0 @@
-# name: Immediately-invoked function expression
-# key: iife
-# contributor: Arjan van der Gaag
-# --
-do (${1:arg}) ->
-  $0

@@ -1,7 +1,0 @@
-# name: describe
-# key: des
-# contributor: Arjan van der Gaag
-# --
-describe("${1:subject}", function() {
-  $0
-});

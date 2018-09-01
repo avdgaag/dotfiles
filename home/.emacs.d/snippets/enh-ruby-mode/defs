@@ -1,7 +1,0 @@
-# name: def self.
-# key: defs
-# contributor: Arjan van der Gaag
-# --
-def self.${1:method_name}${2:(${3:arg})}
-  $0
-end

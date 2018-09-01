@@ -1,5 +1,0 @@
-# name: attr_writer
-# key: w
-# contributor: Arjan van der Gaag
-# --
-attr_writer ${1::my_attribute}

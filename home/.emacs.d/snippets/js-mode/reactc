@@ -1,9 +1,0 @@
-# name: React.createClass
-# key: React.c
-# contributor: Arjan van der Gaag
-# --
-React.createClass({
-  render: function() {
-    $0
-  }
-});

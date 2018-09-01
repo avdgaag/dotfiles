@@ -1,8 +1,0 @@
-  # -*- mode: snippet -*-
-# name: setup
-# key: setup
-# --
-setup do
-  $0
-  :ok
-end

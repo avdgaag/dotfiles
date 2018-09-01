@@ -1,6 +1,0 @@
-# name: private attr_accessor
-# key: prw
-# contributor: Arjan van der Gaag
-# --
-attr_accessor ${1::my_attribute}
-private $1

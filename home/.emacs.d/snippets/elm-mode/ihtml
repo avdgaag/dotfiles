@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: import Html
-# key: ihtml
-# --
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)

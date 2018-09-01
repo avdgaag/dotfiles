@@ -1,5 +1,0 @@
-# name: allow(object).to
-# key: allow
-# contributor: Arjan van der Gaag
-# --
-allow(${1:object}).to receive(${2::method_name})${3:.with(${4:argument})}${5:.and_return(${6:value})}

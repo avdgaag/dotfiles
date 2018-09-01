@@ -1,5 +1,0 @@
-# name: console.log
-# key: con
-# contributor: Arjan van der Gaag
-# --
-console.${1:log}($0)

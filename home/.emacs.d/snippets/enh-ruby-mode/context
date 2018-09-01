@@ -1,7 +1,0 @@
-# name: context
-# key: con
-# contributor: Arjan van der Gaag
-# --
-context "${1:description}" do
-  $0
-end

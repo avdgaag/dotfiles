@@ -1,5 +1,0 @@
-# name: attr_reader :name
-# key: r
-# contributor: Arjan van der Gaag
-# --
-attr_reader ${1::my_attribute}

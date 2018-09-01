@@ -1,7 +1,0 @@
-# name: function
-# key: fun
-# contributor: Arjan van der Gaag
-# --
-function${1: ${2:name}}${3:(${4:arg})} {
-  $0
-}

@@ -1,5 +1,0 @@
-# name: expect(something).to
-# key: exp
-# contributor: Arjan van der Gaag
-# --
-expect(${1:subject}).${2:to} $0

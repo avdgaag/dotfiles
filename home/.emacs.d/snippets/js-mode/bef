@@ -1,7 +1,0 @@
-# name: beforeEach
-# key: bef
-# contributor: Arjan van der Gaag
-# --
-beforeEach(function() {
-  $0
-});

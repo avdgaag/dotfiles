@@ -1,7 +1,0 @@
-# name: Immediately-invoked function expression
-# key: iife
-# contributor: Arjan van der Gaag
-# --
-(function(${1:arg}) {
-  $0
-}($1));

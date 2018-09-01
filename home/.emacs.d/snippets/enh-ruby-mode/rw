@@ -1,5 +1,0 @@
-# name: attr_accessor
-# key: rw
-# contributor: Arjan van der Gaag
-# --
-attr_accessor ${1::my_attribute}

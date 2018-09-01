@@ -1,6 +1,0 @@
-# name: for own property
-# key: foro
-# contributor: Arjan van der Gaag
-# --
-for${1: own} ${2:key}, ${3:value} of ${4:object}
-  $0

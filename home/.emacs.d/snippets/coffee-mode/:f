@@ -1,6 +1,0 @@
-# name: function property
-# key: :f
-# contributor: Arjan van der Gaag
-# --
-${1:"${2:property}"}: (${3:arg}) ->
-  $0

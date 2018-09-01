@@ -1,7 +1,0 @@
-# name: def test_
-# key: deft
-# contributor: Arjan van der Gaag
-# --
-def test_${1:method_name}
-  $0
-end

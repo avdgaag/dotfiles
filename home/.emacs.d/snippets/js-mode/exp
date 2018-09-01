@@ -1,5 +1,0 @@
-# name: expect
-# key: exp
-# contributor: Arjan van der Gaag
-# --
-expect(${1:object}).to$0

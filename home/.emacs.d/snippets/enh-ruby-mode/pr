@@ -1,6 +1,0 @@
-# name: private attr_reader
-# key: pr
-# contributor: Arjan van der Gaag
-# --
-attr_reader ${1::my_attribute}
-private $1

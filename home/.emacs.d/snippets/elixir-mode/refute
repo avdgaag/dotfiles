@@ -1,5 +1,0 @@
-  # -*- mode: snippet -*-
-# name: refute
-# key: ref
-# --
-refute $0

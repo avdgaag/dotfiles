@@ -1,7 +1,0 @@
-# name: before
-# key: bef
-# contributor: Arjan van der Gaag
-# --
-before do
-  $0
-end

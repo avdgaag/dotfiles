@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: ({ model | field = value}, Cmd.none)
-# key: rret
-# --
-({ ${1:model} | ${2:field} = ${3:value} }, ${4:Cmd.none})

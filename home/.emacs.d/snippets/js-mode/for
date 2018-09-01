@@ -1,8 +1,0 @@
-# name: for loop
-# key: for
-# contributor: Arjan van der Gaag
-# --
-for(var i = 0, j = ${1:collection}.length; i < j; i++) {
-  var ${2:element} = $1[i];
-  $0
-}

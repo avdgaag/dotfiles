@@ -1,7 +1,0 @@
-# name: it "does something"
-# key: it
-# contributor: Arjan van der Gaag
-# --
-it "${1:does something}" do
-  $0
-end

@@ -1,7 +1,0 @@
-# name: describe
-# key: des
-# contributor: Arjan van der Gaag
-# --
-describe ${1:"${2:subject}"} do
-  $0
-end

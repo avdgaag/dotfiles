@@ -1,5 +1,0 @@
-# name: Ruby shebang line
-# key: #!
-# contributor: Arjan van der Gaag
-# --
-#!/usr/bin/env ruby -w

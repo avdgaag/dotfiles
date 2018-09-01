@@ -1,6 +1,0 @@
-# name: for loop
-# key: for
-# contributor: Arjan van der Gaag
-# --
-for ${1:element} in ${2:collection}
-  $0

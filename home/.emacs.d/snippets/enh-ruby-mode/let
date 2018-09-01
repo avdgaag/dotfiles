@@ -1,5 +1,0 @@
-# name: let
-# key: let
-# contributor: Arjan van der Gaag
-# --
-let(${1:name}) { $0 }

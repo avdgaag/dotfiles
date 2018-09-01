@@ -1,7 +1,0 @@
-# name: do/end block
-# key: do
-# contributor: Arjan van der Gaag
-# --
-do${1: |${2:arg}|}
-  $0
-end

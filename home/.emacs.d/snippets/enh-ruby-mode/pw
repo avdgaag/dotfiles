@@ -1,6 +1,0 @@
-# name: private attr_writer
-# key: pw
-# contributor: Arjan van der Gaag
-# --
-attr_writer ${1::my_attribute}
-private $1

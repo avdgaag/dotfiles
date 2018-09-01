@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Debug.log
-# key: log
-# --
-x = Debug.log "${1:log}" <| toString ${2:value}

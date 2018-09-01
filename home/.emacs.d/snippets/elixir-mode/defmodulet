@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: defmodulet
-# key: defmodulet
-# --
-defmodule $1Test do
-  use ExUnit.Case${2:, async: true}
-  $0
-end
