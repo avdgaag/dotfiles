@@ -5,17 +5,11 @@
 	ui = auto
 [core]
 	excludesfile = ~/.gitignore
-	editor = /usr/local/bin/emacsclient -t
 	quotepath = false
-[init]
-	templatedir = ~/.gittemplate
 [apply]
 	whitespace = nowarn
 [difftool]
 	prompt = false
-[github]
-	user = avdgaag
-	password = !security 2>&1 >/dev/null find-generic-password -gs github.password | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
 [branch]
 	autosetuprebase = always
 [mergetool]
@@ -34,11 +28,6 @@
 [merge]
 	conflictstyle = diff3
   tool = vimdiff
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
 [alias]
 	safe = !mkdir .git/safe
 	unsafe = !rmdir .git/safe
