@@ -1,7 +1,7 @@
 set number
 set background=dark
 set synmaxcol=120
-colorscheme dracula
+colorscheme Tomorrow-Night
 set ignorecase
 set smartcase
 set tabstop=8
@@ -21,8 +21,8 @@ set splitbelow
 set nowrap
 
 " Customize colouring of listchars
-hi NonText ctermfg=61 ctermbg=NONE cterm=NONE guifg=#525563 guibg=NONE gui=NONE
-hi SpecialKey ctermfg=61 ctermbg=NONE cterm=NONE guifg=#525563 guibg=NONE gui=NONE
+" hi NonText ctermfg=61 ctermbg=NONE cterm=NONE guifg=#525563 guibg=NONE gui=NONE
+" hi SpecialKey ctermfg=61 ctermbg=NONE cterm=NONE guifg=#525563 guibg=NONE gui=NONE
 
 " Always search with very magic mode enabled
 nnoremap / /\v
@@ -58,7 +58,6 @@ nmap ga <Plug>(EasyAlign)
 let g:tabprefix=''
 let g:python3_host_prog='/usr/local/bin/python3'
 let g:ackprg = 'ag --vimgrep --smart-case'
-let g:ctrlp_extensions = ['tag']
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 
@@ -70,8 +69,11 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \}
 nnoremap <Leader>f <Plug>(ale_fix)
-nnoremap ]s :ALENextWrap<cr>
-nnoremap [s :ALEPreviousWrap<cr>
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> [w <Plug>(ale_next)
+nmap <silent> [W <Plug>(ale_last)
+
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--trailing-comma all'
 
@@ -89,8 +91,14 @@ cnoreabbrev Ag Ack
 
 autocmd FileType elm set shiftwidth=4
 
+
+" FZF
+nnoremap <C-p> :<C-u>FZF<cr>
+
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -103,12 +111,13 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-haml'
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'mileszs/ack.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'ElmCast/elm-vim'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
-Plug 'kien/ctrlp.vim'
 Plug 'slashmili/alchemist.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'thoughtbot/vim-rspec'

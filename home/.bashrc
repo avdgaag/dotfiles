@@ -17,11 +17,13 @@ function take() {
   cd "$*" || exit
 }
 
+export FZF_DEFAULT_COMMAND='rg --files'
 export PS1="\[\033[0;34m\]\\$\[\033[0m\] "
 export EDITOR='nvim'
 export LANG=en_GB.UTF-8
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 export PATH="/$HOME/.cabal/bin:$PATH"
+export PATH="/Users/arjan/Library/Python/3.7/bin:$PATH"
 export PATH="/$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="./.git/safe/../../bin:$PATH"
