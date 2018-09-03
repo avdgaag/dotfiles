@@ -530,3 +530,6 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (custom-set-variables '(company-ghc-show-info t))
   (add-to-list 'company-backends 'company-ghc))
+
+(use-package diminish
+  :ensure t)
