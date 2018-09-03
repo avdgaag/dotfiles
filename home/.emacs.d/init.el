@@ -265,7 +265,8 @@ point reaches the beginning or end of the buffer, stop there."
 (unless (server-running-p)
   (server-start))
 
-(load-theme 'smyx)
+(add-to-list 'load-path "~/.emacs.d/")
+(load-theme 'tomorrow-night)
 
 (diminish 'whitespace-mode)
 
