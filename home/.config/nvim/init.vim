@@ -50,6 +50,10 @@ nnoremap <leader><leader> <c-^>
 " Hide search highlights
 nnoremap <leader>h :set invhls<CR>
 
+" Escape from terminal mode to normal mode using Esc
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
+
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
