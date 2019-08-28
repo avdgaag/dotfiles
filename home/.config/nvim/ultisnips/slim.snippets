@@ -1,0 +1,16 @@
+snippet form_with
+form_with model: ${1:model}, url: ${2:url}${3:, class: '${4:class}'}${5:, builder: ${6:MyBuilder}} do |f|
+	$0
+endsnippet
+
+snippet render "render ..." b
+render partial: "${1:name}", collection: ${2:obj}${3:, locals: $4}
+endsnippet
+
+snippet l "localize ..., format: <format>"
+localize ${1:value}${2:, format: ${4::short}}
+endsnippet
+
+snippet link_to "link_to <label>, <url>, <options>"
+link_to ${1:t('${2:key}')}, ${3:url}${4:, method: :${6:post}}${7:, class: '${8:class_name}'}
+endsnippet

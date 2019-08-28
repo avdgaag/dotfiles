@@ -1,0 +1,65 @@
+global !p
+def to_camel_case(str):
+        return ''.join(x.capitalize() or '_' for x in str.split('_'))
+
+def write_instance_vars(arglist, snip):
+	args = str(arglist).split(',')
+	for arg in args:
+		name = arg.strip().replace(':', ' ').split(' ', 1)[0]
+		if name:
+			snip += '  @{} = {}'.format(name, name)
+		else:
+			snip += ''
+
+endglobal
+
+snippet class
+class ${1:`!p snip.rv = to_camel_case(fn[:-3])`}
+	$0
+end
+endsnippet
+
+snippet mod
+module ${1:`!p snip.rv = to_camel_case(fn[:-3])`}
+	$0
+end
+endsnippet
+
+snippet "\b(de)?f" "def <name>..." r
+def ${1:function_name}${2:(${3:*args})}
+	$0
+end
+endsnippet
+
+snippet defs "def self.<name>..." b
+def self.${1:function_name}${2:(${3:*args})}
+	$0
+end
+endsnippet
+
+snippet defi "def initialize ..."
+def initialize($1)`!p write_instance_vars(t[1],snip)`$0
+end
+endsnippet
+
+snippet "(\S+)\.ea" "<elements>.each do |<element>| <block> end" r
+`!p snip.rv=match.group(1)`.each { |${1:e}| $0 }
+endsnippet
+
+snippet "(\S+)\.ead" "<elements>.each do |<element>| <block> end" r
+`!p snip.rv=match.group(1)`.each do |${1:e}|
+	$0
+end
+endsnippet
+
+snippet r "attr_reader" b
+attr_reader $0
+endsnippet
+
+snippet w "attr_writer" b
+attr_writer $0
+endsnippet
+
+snippet rw "attr_accessor" b
+attr_accessor $0
+endsnippet
