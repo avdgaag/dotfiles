@@ -21,6 +21,12 @@ set splitright
 set splitbelow
 set nowrap
 set inccommand=nosplit
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 " Customize colouring of listchars
 " hi NonText ctermfg=61 ctermbg=NONE cterm=NONE guifg=#525563 guibg=NONE gui=NONE
@@ -76,13 +82,13 @@ let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
 \   'typescript': ['tslint'],
 \   'json': ['prettier'],
-\   'ruby': ['standardrb']
+\   'ruby': ['rubocop']
 \}
 let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'tslint'],
 \   'json': ['prettier'],
-\   'ruby': ['standardrb']
+\   'ruby': ['rubocop']
 \}
 nnoremap <Leader>f <Plug>(ale_fix)
 nmap <silent> [W <Plug>(ale_first)
@@ -92,6 +98,8 @@ nmap <silent> [W <Plug>(ale_last)
 
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--trailing-comma none'
+" To conform to standardrb
+let g:ruby_indent_assignment_style = 'variable'
 
 " Javascript.vim
 let g:javascript_plugin_jsdoc = 1
@@ -153,13 +161,35 @@ Plug 'tpope/vim-projectionist'
 Plug 'mattn/emmet-vim'
 Plug 'posva/vim-vue'
 Plug 'leafgarland/typescript-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
+let g:UltiSnipsExpandTrigger="<leader-tab>"
+let g:UltiSnipsListSnippets="<leader-S-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <S-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Custom function to save the cursor position, strip trailing whitespace
 " and return to old position
