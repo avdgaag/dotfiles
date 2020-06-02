@@ -131,7 +131,7 @@
    `(default ((,class (:foreground ,smyx-fg :background ,smyx-black))))
    `(cursor ((,class (:background ,smyx-fg))))
    `(escape-glyph-face ((,class (:foreground ,smyx-red))))
-   ;; `(fringe ((,class (:foreground ,smyx-fg :background ,smyx-bg+1))))
+   `(fringe ((,class (:foreground ,smyx-fg :background ,smyx-bg))))
    `(header-line ((,class (:foreground ,smyx-yellow
 				       :background ,smyx-bg-1
 				       :box (:line-width -1 :style released-button)))))

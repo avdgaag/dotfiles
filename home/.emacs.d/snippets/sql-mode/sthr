@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: select throws_ok
+# key: sthr
+# --
+select throws_ok('${1:query}', '${2:error_code}', '${3:error code or msg}'${4:, '${5:description}'});

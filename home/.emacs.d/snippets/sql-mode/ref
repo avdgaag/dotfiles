@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: references
+# key: ref
+# --
+references ${1:table_name} (${2:id})$(3: on delete ${4:cascade})${5: on update ${6:cascade}}

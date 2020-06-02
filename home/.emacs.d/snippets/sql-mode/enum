@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: enum type
+# key: enum
+# --
+create type ${1:my_type} as enum (${2:values});
+comment on type $1 is '${3:description}';

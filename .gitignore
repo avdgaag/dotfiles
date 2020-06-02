@@ -9,3 +9,9 @@ home/.config/nvim/plugged
 /home/.emacs.d/rake.cache
 /home/.emacs.bak
 /home/.emacs.d/eshell
+/home/.emacs.d/forge-database.sqlite
+/home/.emacs.d/tramp
+/home/.emacs.d/url
+/home/.emacs.d/request
+/home/.emacs.d/transient
+/home/.emacs.d/recentf

@@ -6,6 +6,23 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(add-to-list 'load-path "~/.emacs.d/themes/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'smyx t)
+
+(use-package diminish
+  :ensure t)
+
+(use-package bind-key
+  :ensure t)
+
 (setq user-full-name "Arjan van der Gaag"
       user-mail-address "arjan.vandergaag@gmail.com")
 
@@ -18,17 +35,23 @@
 
 ;; Editor settings
 (delete-selection-mode t)
-(global-auto-revert-mode t)
 (setq tab-always-indent 'complete)
-;; (global-hl-line-mode +1)
 (add-hook 'prog-mode-hook 'subword-mode)
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
+
+;; Easier navigation to marks without using space bar which is already used for
+;; global shortcuts
+(global-set-key [C-tab] 'pop-global-mark)
+
+;; Quickly edit the .emacs.d/init.el file
+(global-set-key [f12] (lambda () (interactive) (find-file user-init-file)))
 
 ;; Sane whitespace handling
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 8)
 (setq-default fill-column 80)
 (setq require-final-newline t)
+(setq indicate-empty-lines t)
 
 ;; Store backup files in tmp dir
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
@@ -43,8 +66,9 @@
   (setq dired-dwim-target t)
   (require 'dired-x))
 
-(delete-selection-mode t)
 (global-auto-revert-mode t)
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
 (setq tab-always-indent 'complete)
 (global-hl-line-mode +1)
 (add-hook 'prog-mode-hook 'subword-mode)
@@ -55,6 +79,8 @@
 (setq-default line-spacing 3)
 (setq linum-format "%4d ")
 (show-paren-mode t)
+(setq window-combination-resize t)
+
 
 ;; Navigate windows
 (use-package windmove
@@ -65,6 +91,8 @@
 (blink-cursor-mode -1)
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-screen t)
+(setq inhibit-startup-buffer-menu t)
+(setq inhibit-startup-message t)
 
 ;; Sane scrolling
 (setq scroll-margin 0)
@@ -76,8 +104,14 @@
 (column-number-mode t)
 (size-indication-mode t)
 
+(setq-default indicate-buffer-boundaries '((top . right) (bottom . right) (t . nil)))
+
+
 ;; Hide scroll bar
-(scroll-bar-mode -1)
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)))
 
 ;; Use simpler Y/N prompt
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -219,7 +253,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-M-\\") 'avdg-indent-region-or-buffer)
 (global-set-key (kbd "s-d") 'avdg-duplicate-line)
 (global-set-key [remap move-beginning-of-line] 'avdg-smarter-move-beginning-of-line)
-(global-set-key (kbd "s-§") 'avdg-toggle-eshell-buffer)
+(global-set-key (kbd "s-`") 'avdg-toggle-eshell-buffer)
 (global-set-key (kbd "M-o") 'avdg-open-newline-below)
 (global-set-key (kbd "M-O") 'avdg-open-newline-above)
 (global-set-key (kbd "s-<up>") 'avdg-move-text-up)
@@ -240,16 +274,15 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-/") #'hippie-expand)
 (global-set-key (kbd "s-/") #'hippie-expand)
 
+(setq sentence-end-double-space nil)
+(setq lazy-highlight-initial-delay 0)
+
 ;; OSX settings
 (setq ns-function-modifier 'hyper)
 (menu-bar-mode +1)
 
 ;; Re-use existing frames to open new buffers
 (setq ns-pop-up-frames nil)
-
-;; On OSX, we delete files (in dired mode) by moving them to the trash.
-(setq delete-by-moving-to-trash t)
-(setq trash-directory "~/.Trash/")
 
 ;; Sane scrolling with the mouse
 (setq mouse-wheel-scroll-amount '(1
@@ -260,15 +293,16 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
 (global-set-key (kbd "M-˙") 'ns-do-hide-others)
 
+;; Use sql-mode for .pg files
+(add-to-list 'auto-mode-alist '("\\.pg\\'" . sql-mode))
+
 ;; Use Emacs server mode for quick init
 (require 'server)
 (unless (server-running-p)
   (server-start))
 
-(add-to-list 'load-path "~/.emacs.d/")
-(load-theme 'tomorrow-night)
-
 (diminish 'whitespace-mode)
+(diminish 'abbrev-mode)
 
 (require 'use-package)
 
@@ -277,6 +311,7 @@ point reaches the beginning or end of the buffer, stop there."
   (dolist (hook '(prog-mode-hook text-mode-hook))
     (add-hook hook #'whitespace-mode))
   (add-hook 'before-save-hook #'whitespace-cleanup)
+  :diminish whitespace-mode
   :config
   (setq whitespace-line-column 80)
   (setq whitespace-style '(face tabs empty trailing lines-tail)))
@@ -298,7 +333,8 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (add-hook 'prog-mode-hook #'smartparens-mode)
   :config
-  (require 'smartparens-config))
+  (require 'smartparens-config)
+  (add-hook 'web-mode-hook (lambda () (smartparens-mode -1))))
 
 (use-package elixir-mode
   :ensure t
@@ -390,8 +426,19 @@ point reaches the beginning or end of the buffer, stop there."
   ("C-c p" . projectile-command-map)
   :config
   (setq projectile-completion-system 'helm)
+  (setq projectile-tags-command "ctags -Re -f \"%s\" %s --languages=-javascript --exclude=doc --exclude=public/javascript --exclude=app/assets/javascripts --exclude=tmp --exclude=coverage")
   (projectile-mode +1)
   (helm-projectile-on))
+
+(use-package projectile-rails
+  :ensure t
+  :diminish projectile-rails-mode
+  :bind-keymap
+  ("C-c r" . projectile-rails-command-map)
+  :config
+  (projectile-rails-global-mode)
+  (setq projectile-rails-vanilla-command "bin/rails")
+  (setq projectile-rails-spring-command "bin/spring"))
 
 (use-package ag :ensure t :defer t)
 
@@ -403,7 +450,8 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (setq company-backends
         (quote
-         (company-elisp
+         (company-robe
+          company-elisp
           company-css
           company-semantic
           company-etags
@@ -432,9 +480,23 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (setq enh-ruby-deep-indent-paren nil))
 
+(use-package inf-ruby
+  :ensure t
+  :diminish inf-ruby-minor-mode
+  :config
+  (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+  (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter))
+
+(use-package rspec-mode
+  :ensure t
+  :init
+  (setq rspec-spec-command "bin/rspec")
+  (setq rspec-use-spring-when-possible nil)
+  (setq rspec-use-bundler-when-possible nil))
+
 (use-package web-mode
   :ensure t
-  :mode ("\\.html?\\'" "\\.eex\\'" "\\.erb\\'")
+  :mode ("\\.html?\\'" "\\.eex\\'" "\\.leex\\'" "\\.erb\\'" "\\.liquid\\'")
   :init
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -453,7 +515,7 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
   (setq elm-format-on-save t)
-  (setq elm-indent-offset 2)
+  (setq elm-indent-offset 4)
   (setq elm-tags-on-save t)
   (setq elm-sort-imports-on-save t)
   :config
@@ -472,6 +534,12 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (global-flycheck-mode))
 
+(use-package flycheck-color-mode-line
+  :ensure t
+  :diminish flycheck-color-mode-line-mode
+  :config
+  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+
 (use-package flycheck-elm
   :ensure t
   :config
@@ -484,8 +552,8 @@ point reaches the beginning or end of the buffer, stop there."
   :ensure t
   :bind (("C-c m" . mc/edit-lines)
          ("C-c M" . mc/edit-ends-of-lines)
-         ("s-]" . mc/mark-next-like-this)
-         ("s-[" . mc/mark-previous-like-this)
+         ("s-]" . mc/mark-next-like-this-word)
+         ("s-[" . mc/mark-previous-like-this-word)
          ("s-}" . mc/mark-all-like-this)
          ("s-{" . mc/mark-all-dwim)
          )
@@ -531,5 +599,78 @@ point reaches the beginning or end of the buffer, stop there."
   (custom-set-variables '(company-ghc-show-info t))
   (add-to-list 'company-backends 'company-ghc))
 
-(use-package diminish
-  :ensure t)
+(use-package powerline
+  :ensure t
+  :init
+  (powerline-default-theme))
+
+(use-package indent-guide
+  :ensure t
+  :diminish indent-guide-mode
+  :config
+  (setq indent-guide-delay 0.1)
+  :init
+  (indent-guide-global-mode))
+
+(use-package emmet-mode
+  :ensure t
+  :diminish emmet-mode
+  :init
+  (setq emmet-self-closing-tag-style "")
+  :config
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode))
+
+(use-package forge
+  :ensure t
+  :after magit)
+
+(use-package rubocop
+  :ensure t
+  :diminish rubocop-mode
+  :config
+  (add-hook 'enh-ruby-mode-hook #'rubocop-mode))
+
+(use-package yasnippet
+  :ensure t
+  :diminish yas
+  :config
+  (yas-global-mode 1))
+
+(use-package prettier-js
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook 'prettier-js-mode))
+
+(use-package sqlformat
+  :ensure t
+  :init
+  (setq sqlformat-command 'pgformatter)
+  (setq sqlformat-args '("--comma-start" "--comma-break" "--spaces" "2" "--keyword-case" "1" "--nogrouping" "--separator" "$$"))
+  :config
+  (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
+
+(use-package es-mode
+  :ensure t
+  :init
+  :mode ("\\.es"))
+
+(use-package jumplist
+  :ensure t
+  :diminish jumplist-ex-mode
+  :bind (("C-<" . 'jumplist-previous)
+         ("C->" . 'jumplist-next))
+  :config
+  (setq jumplist-hook-commands '(help-swoop dired-jump helm-for-files isearch-forward end-of-buffer beginning-of-buffer find-file))
+  (setq jumplist-ex-mode t))
+
+(use-package robe
+  :ensure t
+  :config
+  (add-hook 'enh-ruby-mode-hook 'robe-mode))
+
+(use-package magit-circleci
+  :ensure t
+  :config
+  (setq magit-circleci-token (shell-command-to-string "ruby -ryaml -e 'print YAML.load_file(%q{/Users/arjan/.circleci/cli.yml})[%q{token}]'"))
+  (setq magit-circleci-n-builds 10))

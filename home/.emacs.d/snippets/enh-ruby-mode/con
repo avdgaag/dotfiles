@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: context
+# key: con
+# --
+context "${1:description}" do
+  it "${2:does something}" do
+    $0
+  end
+end

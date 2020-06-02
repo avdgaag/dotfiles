@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: Trigger function
+# key: trigger
+# --
+create function ${1:trigger_function}() returns trigger
+as $$
+  declare
+  begin
+    $0
+  end;
+$$ language plpgsql;
+
+create trigger trigger__$1__${2:table_name}
+${3:before} insert ${4:or update ${5:of ${6:column}}}${7: or delete}${8: or truncate} on $2
+${9:when (OLD.$6 is distinct from NEW.$6)}
+for each ${10:row} execute procedure $1();

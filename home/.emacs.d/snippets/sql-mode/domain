@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: domain type
+# key: domain
+# --
+create domain ${1:my_type} as ${2:text} check (value ${3:= 'foo'});
+comment on type $1 is '${4:description}';

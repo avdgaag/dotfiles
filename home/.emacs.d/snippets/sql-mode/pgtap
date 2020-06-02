@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: pgtap boilerplate
+# key: pgtap
+# --
+set client_min_messages = warning;
+begin;
+
+select plan(1);
+
+$0
+
+select * from finish();
+
+rollback;

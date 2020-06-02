@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: defmodule
+# key: defmod
+# --
+defmodule ${1:`(concat (capitalize (file-name-nondirectory (directory-file-name (file-name-directory buffer-file-name)))) ".")`}${2:`(mapconcat 'capitalize (split-string (file-name-base) "_") "")`} do
+  @moduledoc """
+  ${2:Documentation for `$1`}
+  """
+
+  $0
+end

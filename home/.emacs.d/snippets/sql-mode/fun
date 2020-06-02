@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: create function
+# key: fun
+# --
+create function ${1:function_name}() returns trigger
+as $$
+  begin
+    $0
+  end;
+$$ language plpgsql;

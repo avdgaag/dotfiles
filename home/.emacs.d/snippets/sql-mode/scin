@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: select col_is_null
+# key: scin
+# --
+select col_is_null('${1:table}', ${2:'column'});

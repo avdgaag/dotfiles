@@ -1,0 +1,64 @@
+# -*- mode: snippet -*-
+# name: teaa
+# key: teaa
+# --
+module Main exposing (..)
+
+import Browser
+import Browser.Navigation
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+import Url exposing (Url)
+
+
+type alias Model =
+    { navigationKey : Browser.Navigation.Key }
+
+
+type alias Flags =
+    {}
+
+
+init : Flags -> Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
+init flags url key =
+    ( { navigationKey = key }, Cmd.none )
+
+
+type Msg
+    = UrlChange Url
+    | UrlRequest Browser.UrlRequest
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        UrlChange url ->
+            ( model, Cmd.none )
+
+        UrlRequest url ->
+            ( model, Cmd.none )
+
+
+view : Model -> Browser.Document Msg
+view model =
+    { title = "Cms"
+    , body = [ text "Hello, world!" ]
+    }
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
+
+
+main : Program Flags Model Msg
+main =
+    Browser.application
+        { init = init
+        , onUrlChange = UrlChange
+        , onUrlRequest = UrlRequest
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
