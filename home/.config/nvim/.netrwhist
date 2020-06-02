@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/arjan/code/cep/app/actions'
-let g:netrw_dirhist_2='/Users/arjan/code/cep/app/components/native/Comparison'
-let g:netrw_dirhist_3='/Users/arjan/code/cep/app/reducers'
-let g:netrw_dirhist_4='/Users/arjan/code/keurmerkapp/app/models'
-let g:netrw_dirhist_5='/Users/arjan/code/keurmerkapp/app/services'
-let g:netrw_dirhist_6='/Users/arjan/code/keurmerkapp/app'
-let g:netrw_dirhist_7='/Users/arjan/code/keurmerkapp/app/models'
