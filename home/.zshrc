@@ -1,21 +1,33 @@
+# if [ -x /usr/libexec/path_helper ]; then
+#   eval `/usr/libexec/path_helper -s`
+# fi
+
+# Correctly display UTF-8 with combining characters.
+# This code seems to come from the default OSX OhMyZsh.
+if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
+  setopt combiningchars
+fi
+
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-autoload -U compinit
-compinit
+unsetopt BGNICE
+setopt CHECK_JOBS
+unsetopt CORRECT
+unsetopt CORRECT_ALL
+setopt NO_BEEP
+setopt SHARE_HISTORY
 
-setopt correctall
+autoload -Uz compinit
+compinit -C -d ~/.zcompdump
 
 autoload -U promptinit
 promptinit
 
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt extendedglob
-
-autoload -U edit-command-line
+autoload -z edit-command-line
 zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 bindkey -e
 
 bindkey '^R' history-incremental-search-backward
@@ -48,7 +60,6 @@ ${vcs_info_msg_0_}${prompt_with_exit_status} '
 export CLICOLOR=1
 
 source /usr/local/opt/asdf/asdf.sh
-source /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
@@ -70,3 +81,11 @@ function take() {
   mkdir -p "$*"
   cd "$*" || exit
 }
+
+# For sendowl
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+alias ssh-danger="osascript -e 'tell application \"Terminal\" to set its current settings of selected tab of window 1 to settings set \"Tomorrow Night danger\"'"
+alias ssh-safe="osascript -e 'tell application \"Terminal\" to set its current settings of selected tab of window 1 to settings set \"Tomorrow Night\"'"
+
+eval "$(asdf exec direnv hook zsh)"
