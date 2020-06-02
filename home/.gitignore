@@ -12,3 +12,4 @@ GRTAGS
 GTAGS
 .vscode
 .#*
+/elm-stuff/

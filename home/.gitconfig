@@ -37,3 +37,7 @@
 	required = true
 [submodule]
 	fetchJobs = 4
+[github]
+	user = avdgaag
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
