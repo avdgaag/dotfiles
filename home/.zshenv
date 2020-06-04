@@ -65,6 +65,9 @@ export EDITOR="emacsclient -c"
 export VISUAL="emacsclient -c"
 export PAGER=less
 
+export FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi

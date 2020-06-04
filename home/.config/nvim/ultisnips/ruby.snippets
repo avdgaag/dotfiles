@@ -1,6 +1,14 @@
 global !p
+import re
+
 def to_camel_case(str):
         return ''.join(x.capitalize() or '_' for x in str.split('_'))
+
+def to_namespaces(str):
+	return '::'.join(to_camel_case(x) for x in str.split("/"))
+
+def to_project_namespaces(str):
+	return to_namespaces(re.sub(r'^.+/(lib|app/models|app/controllers|app/mailers|app/helpers)/', '', str))
 
 def write_instance_vars(arglist, snip):
 	args = str(arglist).split(',')
@@ -14,13 +22,13 @@ def write_instance_vars(arglist, snip):
 endglobal
 
 snippet class
-class ${1:`!p snip.rv = to_camel_case(fn[:-3])`}
+class ${1:`!p snip.rv = to_project_namespaces(path[:-3])`}
 	$0
 end
 endsnippet
 
 snippet mod
-module ${1:`!p snip.rv = to_camel_case(fn[:-3])`}
+module ${1:`!p snip.rv = to_project_namespaces(path[:-3])`}
 	$0
 end
 endsnippet

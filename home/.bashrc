@@ -42,3 +42,5 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="./.git/safe/../../bin:$PATH"
 export CLICOLOR=1
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

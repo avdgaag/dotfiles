@@ -15,3 +15,9 @@ home/.config/nvim/plugged
 /home/.emacs.d/request
 /home/.emacs.d/transient
 /home/.emacs.d/recentf
+/home/.config/coc
+/home/.config/hub
+/home/.config/gh
+/home/.config/stripe
+/home/.config/configstore
+/home/.config/nvim/.netrwhist
