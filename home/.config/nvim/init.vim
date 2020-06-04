@@ -112,6 +112,8 @@ nnoremap <Leader>th :set invhls!<cr>
 nnoremap <Leader>tn :set number!<cr>
 nnoremap <Leader>tl :set cursorline!<cr>
 nnoremap <Leader>tc :set cursorcolumn!<cr>
+nnoremap <Leader>tZ :set foldenable!<cr>
+nnoremap <Leader>tz za
 
 " Files
 nnoremap <Leader>fd :Delete<cr>
