@@ -1,0 +1,19 @@
+snippet if "if" b
+<%= if $1 do %>
+	$0
+<% end %>
+endsnippet
+
+snippet ife "if/else" b
+<%= if $1 do %>
+	$0
+<% else %>
+	$2
+<% end %>
+endsnippet
+
+snippet for "for" b
+<%= for ${1:object} <- ${2:@${3:objects}} do %>
+	$0
+<% end %>
+endsnippet

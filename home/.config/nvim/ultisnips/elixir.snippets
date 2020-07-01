@@ -1,0 +1,60 @@
+global !p
+import re
+
+def to_camel_case(str):
+        return ''.join(x.capitalize() or '_' for x in str.split('_'))
+
+def to_namespaces(str):
+	return '.'.join(to_camel_case(x) for x in str.split("/"))
+
+def to_project_namespaces(str):
+	return to_namespaces(re.sub(r'^.+/lib/', '', str))
+endglobal
+
+snippet defm "defmodule" b
+defmodule ${1:`!p snip.rv = to_project_namespaces(path[:-3])`} do
+	$0
+end
+endsnippet
+
+snippet deft "defmodule Test" b
+defmodule ${1:`!p snip.rv = to_project_namespaces(path[:-3])`}Test do
+	use ExUnit.Case, async: true
+	alias $1
+	doctest $1
+
+	$0
+end
+endsnippet
+
+snippet defp "defp" b
+defp ${1:name}${2:(${3:arg})} do
+	$0
+end
+endsnippet
+
+snippet def "def" b
+def ${1:name}${2:(${3:arg})} do
+	$0
+end
+endsnippet
+
+snippet case "case" b
+case ${1:value} do
+	${2:match} ->
+		$0
+end
+endsnippet
+
+snippet cond "cond" b
+cond do
+	${1:condition} ->
+		$0
+end
+endsnippet
+
+snippet with "with" b
+with ${1:var} <- ${2:value} do
+	$0
+end
+endsnippet
