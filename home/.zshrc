@@ -88,6 +88,8 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 alias ssh-danger="osascript -e 'tell application \"Terminal\" to set its current settings of selected tab of window 1 to settings set \"Tomorrow Night danger\"'"
 alias ssh-safe="osascript -e 'tell application \"Terminal\" to set its current settings of selected tab of window 1 to settings set \"Tomorrow Night\"'"
 
-eval "$(asdf exec direnv hook zsh)"
+. $(brew --prefix asdf)/asdf.sh
+
+eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -54,7 +54,7 @@ endif
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/Users/arjan/.asdf/shims/python'
 colorscheme Tomorrow-Night
 
 " == Keybindings
@@ -122,8 +122,11 @@ nnoremap <Leader>fr :Move<cr>
 nnoremap <Leader>fR :Rename<cr>
 nnoremap <Leader>fc :Chmod<cr>
 nnoremap <Leader>fm :Mkdir<cr>
+nnoremap <Leader>fe :e ~/.config/nvim/init.vim<cr>
 nnoremap <Leader>fo :silent exec "!open %"<cr>
 nnoremap <Leader>fO :silent exec "!open -R %"<cr>
+nmap <Leader>fj <Plug>VinegarUp
+nmap <Leader>fJ <Plug>VinegarSplitUp
 
 " LSP
 nmap <Leader>gd <Plug>(coc-definition)
@@ -165,7 +168,7 @@ let g:ale_linters = {
 \ 'ruby': ['rubocop'],
 \ 'javascript': ['eslint'],
 \ 'json': ['prettier'],
-\ 'elixir': ['credo', 'mix']
+\ 'elixir': ['elixir-ls', 'credo', 'mix']
 \}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -176,6 +179,7 @@ let g:ale_fixers = {
 \ 'sql': [{buffer -> {'command': 'sqlfmt --use-spaces --tab-width 2 --casemode lower'}}],
 \ 'elixir': ['mix_format']
 \}
+let g:ale_elixir_elixir_ls_release = expand("/Users/arjan/code/elixir-ls/rel/")
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 Plug 'dense-analysis/ale'
@@ -206,13 +210,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-markdown'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'elmcast/elm-vim'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.

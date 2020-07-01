@@ -1,0 +1,14 @@
+#!/bin/sh
+layout_postgres() {
+  export PGDATA="$(direnv_layout_dir)/postgres"
+  export PGHOST="$PGDATA"
+
+  if [[ ! -d "$PGDATA" ]]; then
+    initdb
+    cat >> "$PGDATA/postgresql.conf" <<-EOF
+listen_addresses = ''
+unix_socket_directories = '$PGHOST'
+EOF
+    echo "CREATE DATABASE $PGDATABASE;" | postgres --single -E postgres
+  fi
+}

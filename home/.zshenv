@@ -61,8 +61,8 @@ export PATH="/Users/arjan/bin:$PATH"
 # ASDF
 export PATH="/Users/arjan/.asdf/shims:$PATH"
 
-export EDITOR="emacsclient -c"
-export VISUAL="emacsclient -c"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export PAGER=less
 
 export FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
