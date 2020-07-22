@@ -28,6 +28,7 @@ set wildmenu
 set scrolloff=1
 set sidescrolloff=5
 set display+=lastline
+set clipboard+=unnamedplus
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
 endif
@@ -46,6 +47,7 @@ set viewoptions-=options
 if &t_Co == 8 && $TERM !~# '^Eterm'
   set t_Co=16
 endif
+set foldlevel=5
 
 " == Other settings
 if has('autocmd')
@@ -54,7 +56,7 @@ endif
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
-let g:python3_host_prog='/Users/arjan/.asdf/shims/python'
+let g:python3_host_prog='/Users/avdgaag/.asdf/shims/python'
 colorscheme Tomorrow-Night
 
 " == Keybindings
@@ -94,6 +96,31 @@ nnoremap <Leader>pT :FzfBufferTags<cr>
 nnoremap <Leader>pw :FzfWindows<cr>
 nnoremap <Leader>/: :FzfHistory:<cr>
 
+command! -bang FzfRailsModels call fzf#vim#files('app/models', <bang>0)
+command! -bang FzfRailsControllers call fzf#vim#files('app/controllers', <bang>0)
+command! -bang FzfRailsHelpers call fzf#vim#files('app/helpers', <bang>0)
+command! -bang FzfRailsJobs call fzf#vim#files('app/jobs', <bang>0)
+command! -bang FzfRailsViews call fzf#vim#files('app/views', <bang>0)
+command! -bang FzfRailsPolicies call fzf#vim#files('app/policies', <bang>0)
+command! -bang FzfRailsMailers call fzf#vim#files('app/mailers', <bang>0)
+command! -bang FzfRailsMigrations call fzf#vim#files('db/migrate', <bang>0)
+command! -bang FzfRailsInitializers call fzf#vim#files('config/initializers', <bang>0)
+command! -bang FzfRailsEnvironments call fzf#vim#files('config/environments', <bang>0)
+command! -bang FzfRailsLib call fzf#vim#files('lib', <bang>0)
+
+" Ruby on Rails project navigation
+nnoremap <Leader>frm :FzfRailsModels<cr>
+nnoremap <Leader>frc :FzfRailsControllers<cr>
+nnoremap <Leader>frh :FzfRailsHelpers<cr>
+nnoremap <Leader>frj :FzfRailsJobs<cr>
+nnoremap <Leader>frv :FzfRailsViews<cr>
+nnoremap <Leader>fro :FzfRailsPolicies<cr>
+nnoremap <Leader>fr@ :FzfRailsMailers<cr>
+nnoremap <Leader>frn :FzfRailsMigrations<cr>
+nnoremap <Leader>fri :FzfRailsInitializers<cr>
+nnoremap <Leader>fre :FzfRailsEnvironments<cr>
+nnoremap <Leader>frl :FzfRailsLib<cr>
+
 " Search
 nnoremap <Leader>// :FzfRg<cr>
 nnoremap <Leader>/? :FzfHistory/<cr>
@@ -112,8 +139,16 @@ nnoremap <Leader>th :set invhls!<cr>
 nnoremap <Leader>tn :set number!<cr>
 nnoremap <Leader>tl :set cursorline!<cr>
 nnoremap <Leader>tc :set cursorcolumn!<cr>
-nnoremap <Leader>tZ :set foldenable!<cr>
+nnoremap <Leader>tZ :call AgToggleFolding()<cr>
 nnoremap <Leader>tz za
+
+function! AgToggleFolding()
+  if &foldenable == 1
+    set nofoldenable foldcolumn=0
+  else
+    set foldenable foldcolumn=2
+  endif
+endfunction
 
 " Files
 nnoremap <Leader>fd :Delete<cr>
@@ -138,11 +173,11 @@ nmap <Leader>g= :ALEFix<cr>
 nmap <leader>ga <Plug>(coc-codeaction-selected)
 
 " Tests
-nnoremap <silent> <Leader>tn :TestNearest<cr>
-nnoremap <silent> <Leader>tf :TestFile<cr>
-nnoremap <silent> <Leader>ts :TestSuite<cr>
-nnoremap <silent> <Leader>tt :TestLast<cr>
-nnoremap <silent> <Leader>tv :TestVisit<cr>
+nnoremap <silent> <Leader>rn :TestNearest<cr>
+nnoremap <silent> <Leader>rf :TestFile<cr>
+nnoremap <silent> <Leader>rs :TestSuite<cr>
+nnoremap <silent> <Leader>rt :TestLast<cr>
+nnoremap <silent> <Leader>rv :TestVisit<cr>
 
 " Snippets
 nnoremap <Leader>is :FzfSnippets<cr>
@@ -191,8 +226,12 @@ Plug 'janko-m/vim-test'
 " Ruby
 let g:ruby_indent_block_style = 'do'
 let g:ruby_indent_assignment_style = 'variable'
-let g:ruby_no_expensive=1
+let g:ruby_operators = 1
+let g:ruby_pseudo_operators = 1
+let g:ruby_space_errors = 1
+" let g:ruby_no_expensive=1
 let g:ruby_fold = 1
+let g:ruby_foldable_groups = 'def class module'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
@@ -203,7 +242,10 @@ let g:UltiSnipsExpandTrigger='<M-/>'
 Plug 'SirVer/ultisnips'
 
 " Other plugins
+Plug 'slim-template/vim-slim'
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -220,6 +262,9 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'elmcast/elm-vim'
 Plug 'vimwiki/vimwiki'
+
+Plug 'lifepillar/pgsql.vim'
+let g:sql_type_default = 'pgsql'
 call plug#end()
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
@@ -261,3 +306,9 @@ endfunction
 nnoremap <Leader>vb :call <SID>ag_checkout_branch()<cr>
 nnoremap <Leader>vl :FzfCommits<cr>
 nnoremap <Leader>vL :FzfBCommits<cr>
+
+if exists("$EXTRA_VIM")
+  for path in split($EXTRA_VIM, ':')
+    exec "source ".path
+  endfor
+endif
