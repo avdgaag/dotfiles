@@ -31,6 +31,7 @@
 [alias]
 	safe = !mkdir .git/safe
 	unsafe = !rmdir .git/safe
+	extend = !git commit --amend --no-edit
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
