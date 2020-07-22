@@ -55,12 +55,6 @@ unsetopt CHASE_DOTS
 # Homebrew's sbin
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin"
 
-# Personal bin
-export PATH="/Users/arjan/bin:$PATH"
-
-# ASDF
-export PATH="/Users/arjan/.asdf/shims:$PATH"
-
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER=less

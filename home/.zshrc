@@ -59,8 +59,6 @@ ${vcs_info_msg_0_}${prompt_with_exit_status} '
 
 export CLICOLOR=1
 
-source /usr/local/opt/asdf/asdf.sh
-
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 alias gs='git status -b -s --ignore-submodules=dirty'
@@ -82,14 +80,7 @@ function take() {
   cd "$*" || exit
 }
 
-# For sendowl
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-alias ssh-danger="osascript -e 'tell application \"Terminal\" to set its current settings of selected tab of window 1 to settings set \"Tomorrow Night danger\"'"
-alias ssh-safe="osascript -e 'tell application \"Terminal\" to set its current settings of selected tab of window 1 to settings set \"Tomorrow Night\"'"
-
-. $(brew --prefix asdf)/asdf.sh
-
-eval "$(direnv hook zsh)"
+export PATH="/usr/local/opt/asdf/bin:$PATH"
+eval "$(asdf exec direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
