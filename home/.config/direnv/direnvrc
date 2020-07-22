@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
+export DIRENV_LOG_FORMAT=""
+
 layout_postgres() {
   export PGDATA="$(direnv_layout_dir)/postgres"
   export PGHOST="$PGDATA"
