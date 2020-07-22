@@ -33,9 +33,10 @@
 	unsafe = !rmdir .git/safe
 	extend = !git commit --amend --no-edit
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 [submodule]
 	fetchJobs = 4
 [github]
