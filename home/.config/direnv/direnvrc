@@ -23,3 +23,5 @@ add_extra_vimrc() {
     path_add EXTRA_VIM $extravim
   fi
 }
+
+source $(asdf which direnv_use_asdf)
