@@ -16,3 +16,4 @@
 .envrc
 /.elixir_ls
 /.direnv
+/.git-crypt/
