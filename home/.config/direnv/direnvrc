@@ -22,6 +22,6 @@ add_extra_vimrc() {
   fi
 }
 
-source $(asdf which direnv_use_asdf)
+source "$(asdf direnv hook asdf)"
 
 export DIRENV_LOG_FORMAT=""
