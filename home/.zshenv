@@ -55,6 +55,9 @@ unsetopt CHASE_DOTS
 # Homebrew's sbin
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin"
 
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.asdf/shims:$PATH"
+
 export EDITOR="emacsclient"
 export VISUAL="emacsclient"
 export PAGER=less
