@@ -57,7 +57,6 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 let g:python3_host_prog='/Users/avdgaag/.asdf/shims/python'
-colorscheme Tomorrow-Night
 
 " == Keybindings
 
@@ -262,7 +261,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'elmcast/elm-vim'
 Plug 'vimwiki/vimwiki'
-
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'lifepillar/pgsql.vim'
 let g:sql_type_default = 'pgsql'
 call plug#end()
@@ -271,6 +270,8 @@ call plug#end()
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
+
+colorscheme dracula
 
 " == Autocommands
 
