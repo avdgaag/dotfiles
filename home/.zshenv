@@ -55,8 +55,8 @@ unsetopt CHASE_DOTS
 # Homebrew's sbin
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin"
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="emacsclient"
+export VISUAL="emacsclient"
 export PAGER=less
 
 export FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
