@@ -5,6 +5,7 @@
 	ui = auto
 [core]
 	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 	quotepath = false
 [apply]
 	whitespace = nowarn
