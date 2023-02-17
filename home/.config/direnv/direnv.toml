@@ -1,2 +1,2 @@
 [global]
-strict_env = true
+strict_env = false

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export DIRENV_LOG_FORMAT=""
 layout_postgres() {
   export PGDATA="$(direnv_layout_dir)/postgres"
   export PGHOST="$PGDATA"
@@ -21,7 +21,3 @@ add_extra_vimrc() {
     path_add EXTRA_VIM $extravim
   fi
 }
-
-source "$(asdf direnv hook asdf)"
-
-export DIRENV_LOG_FORMAT=""
