@@ -33,3 +33,6 @@ def copy(*args)
     clipboard.puts args.map(&:inspect)
   end
 end
+
+IRB.conf[:USE_AUTOCOMPLETE] = false
+
