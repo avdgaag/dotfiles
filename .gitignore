@@ -28,3 +28,5 @@ home/.config/nvim/plugged
 !/home/.config/emacs/init.org
 !/home/.config/emacs/config.org
 /home/.config/nvim/autoload/plug.vim.old
+/home/.config/asdf-direnv/
+/home/.config/direnv/lib/
