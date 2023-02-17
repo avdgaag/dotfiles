@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: let build
+# key: letb
+# --
+let(:${1:name}) { build :${2:$1}$0 }

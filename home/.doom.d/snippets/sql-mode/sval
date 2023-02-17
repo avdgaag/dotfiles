@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: select (...) from values
+# key: sval
+# --
+select ${1:assertion} from (values (${2:'value'})$0) as v(v);

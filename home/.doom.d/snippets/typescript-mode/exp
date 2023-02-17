@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: expect
+# --
+expect(${1:value}).${2:toEqual}($0);

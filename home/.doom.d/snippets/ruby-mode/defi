@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: def initialize(...)
+# key: defi
+# condition: t                                                          
+# --
+${1:$(mapconcat
+(lambda (s) (format "attr_reader :%s" s))
+(let ((pos 0)
+      (matches ()))
+     (save-match-data
+       (while (string-match  "\\\\([a-zA-Z_]+\\\\)\\\\(?:\s*=\s*[^,]+\\\\|:\s*[^,]+\\\\|\\\\)" yas-text pos)
+         (push (match-string 1 yas-text) matches)
+         (setq pos (match-end 0))))
+     (setq matches (reverse matches))
+     matches)
+"\n\n")}
+
+def initialize(${1:arg})
+  ${1:$(mapconcat
+  (lambda (s) (format "@%s = %s" s s))
+  (let ((pos 0)
+        (matches ()))
+       (save-match-data
+         (while (string-match  "\\\\([a-zA-Z_]+\\\\)\\\\(?:\s*=\s*[^,]+\\\\|:\s*[^,]+\\\\|\\\\)" yas-text pos)
+           (push (match-string 1 yas-text) matches)
+           (setq pos (match-end 0))))
+       (setq matches (reverse matches))
+       matches)
+  "\n")}
+  $0
+end

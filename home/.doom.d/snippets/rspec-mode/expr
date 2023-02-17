@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: expect {  }.to raise_error
+# key: expr
+# --
+expect { $1 }
+	.to raise_error$0

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: describe "it does something"
+# key: desc
+# --
+describe "${1:subject}" do
+  it "${2:does something}" do
+    $0
+  end
+end

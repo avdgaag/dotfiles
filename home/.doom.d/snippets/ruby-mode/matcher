@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: matcher
+# key: matcher
+# --
+RSpec::Matchers.define :${1:match} do |expected|
+  match do |actual|
+    $0
+  end
+
+  failure_message do |actual|
+    "to $1 #{actual.inspect}"
+  end
+
+  failure_message_when_negated do |actual|
+    "not to $1 #{actual.inspect}"
+  end
+
+  description do |actual|
+    "$1 #{actual.inspect}"
+  end
+end

@@ -1,0 +1,64 @@
+# -*- mode: snippet -*-
+# name: Describe POST controller action
+# key: descp
+# condition: t
+# --
+describe "${1:POST} ${2:create}" do
+	it "routes to /${3:articles}" do
+		expect($1: "/$3").to route_to("${4:articles}#$2", $5$6)
+		expect($4_path(${5:customer_id: "2", }${6:id: "1"})).to eql("/$3")
+	end
+
+	context "when authenticated and authorized" do
+		let(:${7:article}) { ${8:Article}.new }
+
+		before do
+			allow($8).to receive(:new).with("1").and_return($7)
+		end
+
+        context "with valid parameters" do
+            before do
+              allow($7).to receive(:save).and_return(false)
+            end
+
+            it "redirects to the index page" do
+                $1 :$2, params: { $4$6 }
+                expect(response).to redirect_to("/$3")
+                expect(flash[:notice]).to eql("$8 created")
+            end
+        end
+
+        context "with invalid parameters" do
+            before do
+              allow($7).to receive(:save).and_return(false)
+            end
+
+            it "successfully renders the show template" do
+                $1 :$2, params: { $4$6 }
+                expect(response).to have_http_status(:ok)
+                expect(response).to render_template("$2")
+            end
+
+            it "assigns article" do
+                $1 :$2, params: { $4$6 }
+                expect(assigns[:$7]).to be($7)
+            end
+        end
+	end
+
+	context "when authenticated but not authorized" do
+		it "redirects to the index page" do
+			$1 :$2, params: { $4$6 }
+			expect(response).to redirect_to("/")
+			expect(flash[:alert]).to eql("You are not authorized")
+		end
+	end
+
+	context "when not authenticated" do
+		it "redirects to the log in page" do
+			$1 :$2, params: { $5$6 }
+			expect(response).to redirect_to("/session")
+			expect(flash[:alert]).to eql("You need to log in.")
+		end
+	end
+end

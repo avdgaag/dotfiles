@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: function component
+# key: fc
+# --
+
+import React, { FunctionComponent } from 'react';
+
+interface Props {
+  ${1:name: string;}
+}
+
+const ${2:`
+  (file-name-sans-extension
+    (file-name-nondirectory buffer-file-name))
+`}: FunctionComponent<Props> = ({ ${1:$
+(mapconcat
+ 'car
+ (seq-partition
+  (mapcar
+   (lambda (str) (substring str 0 -1))
+   (split-string yas-text))
+  2)
+ ", ")
+} }) => {
+  return (
+    <div>$0</div>
+  );
+};
+
+export default $2;

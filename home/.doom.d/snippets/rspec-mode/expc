@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: expect { ... }.to change
+# key: expc
+# --
+expect { $1 }
+       .to change { $2 }${3:.from($4).to($5)}

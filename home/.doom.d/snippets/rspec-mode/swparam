@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Swagger parameter
+# key: swparam
+# --
+parameter name: '${1:name}',
+	in: :${2:query},
+	type: :${2:string}

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: describe class
+# key: descc
+# --
+require '${1:rails}_helper'
+
+RSpec.describe ${2:`(let ((fn (capitalize (file-name-nondirectory
+                                          (file-name-sans-extension
+                          (or (buffer-file-name)
+                              (buffer-name (current-buffer))))))))
+                     (replace-regexp-in-string "_\\(Spec\\)?" "" fn t t))`}${3:, type: ${4::model}} do
+  $0
+end

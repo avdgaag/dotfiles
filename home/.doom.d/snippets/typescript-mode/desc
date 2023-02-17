@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: describe
+# condition: t
+# --
+describe('${1:subject}', () => {
+  $0
+});

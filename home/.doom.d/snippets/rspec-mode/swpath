@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Swagger path
+# key: swpath
+# --
+path '/${1:path}' do
+	$0
+end

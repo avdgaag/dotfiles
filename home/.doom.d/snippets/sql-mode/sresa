@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: select results_eq
+# key: sresa
+# --
+select results_eq('${1:select ...}', array[${2:'value'}], '${3:description}');

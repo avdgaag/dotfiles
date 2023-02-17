@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: before
+# key: bef
+# --
+before do
+       $0
+end

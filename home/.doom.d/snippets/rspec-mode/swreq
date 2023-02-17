@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Swagger request
+# key: swreq
+# --
+${1:get} '${2:description}' do
+	$0
+end
